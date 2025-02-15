@@ -1,4 +1,7 @@
 class Api::V1::NftsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  respond_to :json
+
   def index
     @nfts = Nft.joins(item: [ :type, :rarity ])
 

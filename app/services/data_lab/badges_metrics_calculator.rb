@@ -85,7 +85,7 @@ module DataLab
     private
 
     def load_badges
-      Item.includes(:type, :rarity, :item_farming, :item_recharge, :item_crafting, :nfts)
+      Item.includes(:type, :rarity, :item_farming, :item_recharge, :item_crafting)
           .joins(:rarity)
           .where(types: { name: 'Badge' })
           .map do |badge|
@@ -95,7 +95,7 @@ module DataLab
             end
             badge
           end
-          .sort_by { |badge| Constants::RARITY_ORDER.index(badge.rarity.name) }
+          .sort_by { |badge| RARITY_ORDER.index(badge.rarity.name) }
     end
 
     def calculate_badges_metrics(badges)

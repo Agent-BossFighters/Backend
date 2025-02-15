@@ -28,9 +28,7 @@ module DataLab
       contracts.map do |contract|
         rarity = contract.rarity.name
         recharge_cost = calculate_recharge_cost(rarity)
-        bft_per_minute = calculate_bft_per_minute(rarity)
         max_energy = calculate_max_energy(rarity)
-        bft_value_per_max_charge = calculate_bft_value_per_max_charge(rarity)
 
         {
           "1. rarity": rarity,

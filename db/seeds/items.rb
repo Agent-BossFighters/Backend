@@ -4,7 +4,7 @@ puts "\nCréation des items..."
 items = [
   # Badges
   {
-    name: "Rookie Badge",
+    name: "Rookie",
     type_name: "Badge",
     rarity_name: "Common",
     efficiency: 1.0,
@@ -13,7 +13,7 @@ items = [
     farming: { ratio: 1.0, in_game_time: 600 }
   },
   {
-    name: "Initiate Badge",
+    name: "Initiate",
     type_name: "Badge",
     rarity_name: "Uncommon",
     efficiency: 2.05,
@@ -22,7 +22,7 @@ items = [
     farming: { ratio: 2.05, in_game_time: 600 }
   },
   {
-    name: "Encore Badge",
+    name: "Encore",
     type_name: "Badge",
     rarity_name: "Rare",
     efficiency: 4.20,
@@ -31,7 +31,7 @@ items = [
     farming: { ratio: 2.15, in_game_time: 600 }
   },
   {
-    name: "Contender Badge",
+    name: "Contender",
     type_name: "Badge",
     rarity_name: "Epic",
     efficiency: 12.92,
@@ -40,7 +40,7 @@ items = [
     farming: { ratio: 8.72, in_game_time: 600 }
   },
   {
-    name: "Challenger Badge",
+    name: "Challenger",
     type_name: "Badge",
     rarity_name: "Legendary",
     efficiency: 39.74,
@@ -49,7 +49,7 @@ items = [
     farming: { ratio: 26.82, in_game_time: 600 }
   },
   {
-    name: "Veteran Badge",
+    name: "Veteran",
     type_name: "Badge",
     rarity_name: "Mythic",
     efficiency: 100.0,
@@ -58,7 +58,7 @@ items = [
     farming: { ratio: 60.0, in_game_time: 600 }
   },
   {
-    name: "Champion Badge",
+    name: "Champion",
     type_name: "Badge",
     rarity_name: "Exalted",
     efficiency: 250.0,
@@ -67,7 +67,7 @@ items = [
     farming: { ratio: 150.0, in_game_time: 600 }
   },
   {
-    name: "Sovereign Badge",
+    name: "Olympian",
     type_name: "Badge",
     rarity_name: "Exotic",
     efficiency: 625.0,
@@ -76,7 +76,7 @@ items = [
     farming: { ratio: 375.0, in_game_time: 600 }
   },
   {
-    name: "Ascendant Badge",
+    name: "Prodigy",
     type_name: "Badge",
     rarity_name: "Transcendent",
     efficiency: 1562.5,
@@ -85,7 +85,7 @@ items = [
     farming: { ratio: 937.5, in_game_time: 600 }
   },
   {
-    name: "Immortal Badge",
+    name: "MVP",
     type_name: "Badge",
     rarity_name: "Unique",
     efficiency: 3906.25,
@@ -96,7 +96,7 @@ items = [
 
   # Contracts
   {
-    name: "Rookie Showrunner Contract",
+    name: "Rookie",
     type_name: "Contract",
     rarity_name: "Common",
     efficiency: 1.0,
@@ -116,7 +116,7 @@ items = [
     }
   },
   {
-    name: "Initiate Showrunner Contract",
+    name: "Initiate",
     type_name: "Contract",
     rarity_name: "Uncommon",
     efficiency: 2.05,
@@ -136,7 +136,7 @@ items = [
     }
   },
   {
-    name: "Encore Showrunner Contract",
+    name: "Encore",
     type_name: "Contract",
     rarity_name: "Rare",
     efficiency: 4.20,
@@ -156,7 +156,7 @@ items = [
     }
   },
   {
-    name: "Contender Showrunner Contract",
+    name: "Contender",
     type_name: "Contract",
     rarity_name: "Epic",
     efficiency: 12.92,
@@ -176,7 +176,7 @@ items = [
     }
   },
   {
-    name: "Challenger Showrunner Contract",
+    name: "Challenger",
     type_name: "Contract",
     rarity_name: "Legendary",
     efficiency: 39.74,
@@ -196,7 +196,7 @@ items = [
     }
   },
   {
-    name: "Veteran Showrunner Contract",
+    name: "Veteran",
     type_name: "Contract",
     rarity_name: "Mythic",
     efficiency: 100.0,
@@ -216,7 +216,7 @@ items = [
     }
   },
   {
-    name: "Champion Showrunner Contract",
+    name: "Champion",
     type_name: "Contract",
     rarity_name: "Exalted",
     efficiency: 250.0,
@@ -236,7 +236,7 @@ items = [
     }
   },
   {
-    name: "Sovereign Showrunner Contract",
+    name: "Olympian",
     type_name: "Contract",
     rarity_name: "Exotic",
     efficiency: 625.0,
@@ -256,7 +256,7 @@ items = [
     }
   },
   {
-    name: "Ascendant Showrunner Contract",
+    name: "Prodigy",
     type_name: "Contract",
     rarity_name: "Transcendent",
     efficiency: 1562.5,
@@ -276,7 +276,7 @@ items = [
     }
   },
   {
-    name: "Immortal Showrunner Contract",
+    name: "MVP",
     type_name: "Contract",
     rarity_name: "Unique",
     efficiency: 3906.25,

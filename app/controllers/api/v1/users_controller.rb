@@ -1,4 +1,4 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < Api::V1::BaseController
   def index
     @users = User.all
     render json: @users
@@ -23,18 +23,19 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      render json: @user
+    if current_user.update(user_params)
+      render json: current_user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: { errors: current_user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    head :no_content
+    if current_user.destroy
+      render json: { message: 'User successfully deleted' }, status: :ok
+    else
+      render json: { error: 'Failed to delete user' }, status: :unprocessable_entity
+    end
   end
 
   def delete_profile

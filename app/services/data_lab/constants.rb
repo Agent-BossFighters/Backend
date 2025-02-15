@@ -127,9 +127,19 @@ module DataLab
 
       def calculate_recharge_cost(rarity)
         return nil unless RARITY_ORDER.include?(rarity)
-        rarity_index = RARITY_ORDER.index(rarity)
-        base_flex = 500
-        base_sm = 150
+
+        flex_costs = {
+          "Common" => 500,
+          "Uncommon" => 1400,
+          "Rare" => 2520,
+          "Epic" => 4800,
+          "Legendary" => 12000,
+          "Mythic" => 21000,
+          "Exalted" => 9800,
+          "Exotic" => 11200,
+          "Transcendent" => 12600,
+          "Unique" => 14000
+        }
 
         sm_costs = {
           "Common" => 150,
@@ -152,7 +162,7 @@ module DataLab
         {
           flex: flex_cost,
           sm: sm_cost,
-          total_usd: (flex_cost * FLEX_TO_USD + sm_cost * SM_TO_USD).round(2)
+          total_usd: (flex_cost * FLEX_TO_USD + sm_cost * BFT_TO_USD).round(2)
         }
       end
 
