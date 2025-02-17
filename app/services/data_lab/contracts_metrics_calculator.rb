@@ -72,13 +72,8 @@ module DataLab
     end
 
     def calculate_sp_marks_for_level(level)
-      if level <= 10
-        Constants::LEVEL_UP_COSTS[level] || 0
-      else
-        last_known = Constants::LEVEL_UP_COSTS[10]
-        increment = (last_known * 0.15).round
-        last_known + (increment * (level - 10))
-      end
+      # Formula: 1.8433(X)^2 + 192.9014(X) + 0.5702 where X = level
+      (1.8433 * level**2 + 192.9014 * level + 0.5702).round(2)
     end
 
     def calculate_craft_time(rarity)
