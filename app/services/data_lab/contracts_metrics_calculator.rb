@@ -32,7 +32,7 @@ module DataLab
 
         {
           "1. rarity": rarity,
-          "2. item": Constants::BADGE_NAMES[rarity] || "Unknown",
+          "2. item": Constants::BADGE_BASE_METRICS[rarity][:name] || "Unknown",
           "3. supply": contract.supply || 0,
           "4. floor_price": format_currency(contract.floorPrice),
           "5. lvl_max": Constants::CONTRACT_MAX_LEVEL[rarity],

@@ -50,7 +50,7 @@ module DataLab
 
       {
         "1. rarity": rarity,
-        "2. item": Constants::BADGE_NAMES[rarity] || "Unknown",
+        "2. item": Constants::BADGE_BASE_METRICS[rarity][:name] || "Unknown",
         "3. supply": badge.supply || 0,
         "4. floor_price": format_currency(badge.floorPrice),
         "5. efficiency": badge.item_farming&.efficiency || 0,
