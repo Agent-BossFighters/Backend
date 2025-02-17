@@ -8,7 +8,8 @@ module DataLab
       1 => 0,    # 0%
       2 => 10,   # 10%
       3 => 20,   # 20%
-      4 => 30    # 30%
+      4 => 30,   # 30%
+      5 => 40    # 40%
     }.freeze
 
     # Bonus BFT total par nombre de slots
@@ -16,7 +17,8 @@ module DataLab
       1 => 1.0,   # 1%
       2 => 4.5,   # 4.5%
       3 => 12.0,  # 12%
-      4 => 25.0   # 25%
+      4 => 25.0,  # 25%
+      5 => 40.0   # 40%
     }.freeze
 
     # Base values for calculations
@@ -46,17 +48,12 @@ module DataLab
       # Calcul des ROI avec les multiplicateurs
       base_roi = calculate_total_slots_roi(total_slots_cost, nb_slots, recharge_cost&.[](:total_usd), bft_value_per_charge)
 
+      # Appliquer le multiplicateur de rareté
+      rarity_multiplier = calculate_rarity_multiplier(@badge_rarity)
+
       {
         slots_cost: slots_costs,
-        unlocked_slots: {
-          "1. total_flex": total_flex,
-          "2. total_cost": format_currency(total_slots_cost),
-          "3. total_bonus_bft": TOTAL_BONUS_BFT_PERCENT[nb_slots] || 0,
-          "4. nb_tokens_roi": base_roi,
-          "5. nb_charges_roi_1.0": base_roi,
-          "6. nb_charges_roi_2.0": (base_roi / 2.0).round(0),
-          "7. nb_charges_roi_3.0": (base_roi / 3.0).round(0)
-        }
+        unlocked_slots: calculate_unlocked_slots_with_rarity(slots, rarity_multiplier, base_roi)
       }
     end
 
@@ -174,8 +171,8 @@ module DataLab
 
     def calculate_bonus_bft_per_slot(slot_id, bft_per_minute)
       return 0 if bft_per_minute.nil?
-      # Le bonus augmente de 5% par slot (10%, 15%, 20%, 25%, 30%)
-      bonus_percentage = 10 + ((slot_id - 1) * 5)
+      # Le bonus augmente de 10% par slot (0%, 10%, 20%, 30%, 40%)
+      bonus_percentage = BONUS_BFT_PERCENT[slot_id] || 0
       (bft_per_minute * (bonus_percentage / 100.0)).round(2)
     end
 
@@ -235,6 +232,41 @@ module DataLab
 
       unlocked_slots = @user.user_slots.count
       base_charges[unlocked_slots - 1] || 0
+    end
+
+    def calculate_rarity_multiplier(rarity)
+      case rarity
+      when "Common" then 1.0
+      when "Uncommon" then 1.5
+      when "Rare" then 2.0
+      when "Epic" then 2.5
+      when "Legendary" then 3.0
+      when "Mythic" then 3.5
+      when "Exalted" then 4.0
+      when "Exotic" then 4.5
+      when "Transcendent" then 5.0
+      when "Unique" then 5.5
+      else 1.0
+      end
+    end
+
+    def calculate_unlocked_slots_with_rarity(slots, multiplier, base_roi)
+      total_flex = slots.sum(:unlockCurrencyNumber)
+      total_cost = slots.sum(:unlockPrice)
+      nb_slots = @user.user_slots.count
+
+      adjusted_flex = (total_flex * multiplier).round(0)
+      adjusted_cost = (total_cost * multiplier).round(2)
+
+      {
+        "1. total_flex": adjusted_flex,
+        "2. total_cost": format_currency(adjusted_cost),
+        "3. total_bonus_bft": TOTAL_BONUS_BFT_PERCENT[nb_slots] || 0,
+        "4. nb_tokens_roi": (base_roi * multiplier).round(0),
+        "5. nb_charges_roi_1.0": (base_roi * multiplier).round(0),
+        "6. nb_charges_roi_2.0": ((base_roi * multiplier) / 2.0).round(0),
+        "7. nb_charges_roi_3.0": ((base_roi * multiplier) / 3.0).round(0)
+      }
     end
   end
 end
