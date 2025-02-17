@@ -27,4 +27,9 @@ class Api::V1::DataLabController < ApplicationController
     calculator = DataLab::CraftMetricsCalculator.new(current_user)
     render json: calculator.calculate
   end
+
+  def currency_metrics
+    calculator = DataLab::CurrencyMetricsCalculator.new(current_user)
+    render json: calculator.calculate
+  end
 end

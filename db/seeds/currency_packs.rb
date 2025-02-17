@@ -3,32 +3,17 @@ puts "\nCréation des currency packs..."
 # Définition des packs pour chaque currency
 Currency.find_each do |currency|
   currency_packs = case currency.name
-  when "CASH"
-    [
-      { currencyNumber: 5_000, price: 4.99, unitPrice: 0.000998 },
-      { currencyNumber: 15_000, price: 12.99, unitPrice: 0.000866 },
-      { currencyNumber: 50_000, price: 39.99, unitPrice: 0.000799 }
-    ]
   when "FLEX"
     [
-      { currencyNumber: 500, price: 4.99, unitPrice: 0.00998 },
-      { currencyNumber: 1_500, price: 12.99, unitPrice: 0.00866 },
-      { currencyNumber: 5_000, price: 39.99, unitPrice: 0.00799 }
-    ]
-  when "$BFT"
-    [
-      { currencyNumber: 100, price: 99.99, unitPrice: 0.9999 },
-      { currencyNumber: 500, price: 449.99, unitPrice: 0.8999 },
-      { currencyNumber: 1_000, price: 849.99, unitPrice: 0.8499 }
-    ]
-  when "Sponsor Marks"
-    [
-      { currencyNumber: 1_000, price: 49.99, unitPrice: 0.04999 },
-      { currencyNumber: 5_000, price: 224.99, unitPrice: 0.04499 },
-      { currencyNumber: 10_000, price: 424.99, unitPrice: 0.04249 }
+      { currencyNumber: 480, price: 4.99, unitPrice: (4.99 / 480.0).round(5) },
+      { currencyNumber: 1_730, price: 14.99, unitPrice: (14.99 / 1_730.0).round(5) },
+      { currencyNumber: 3_610, price: 29.99, unitPrice: (29.99 / 3_610.0).round(5) },
+      { currencyNumber: 6_250, price: 49.99, unitPrice: (49.99 / 6_250.0).round(5) },
+      { currencyNumber: 12_990, price: 99.99, unitPrice: (99.99 / 12_990.0).round(5) },
+      { currencyNumber: 67_330, price: 499.99, unitPrice: (499.99 / 67_330.0).round(5) }
     ]
   else
-    [] # Fame Points ne peuvent pas être achetés directement
+    []
   end
 
   if currency_packs.any?
@@ -41,7 +26,7 @@ Currency.find_each do |currency|
       ) do |pack|
         pack.price = pack_data[:price]
         pack.unitPrice = pack_data[:unitPrice]
-        puts "  - Pack de #{pack_data[:currencyNumber]} #{currency.name} à #{pack_data[:price]}$"
+        puts "  - Pack de #{pack_data[:currencyNumber]} #{currency.name} à #{pack_data[:price]}$ (#{pack_data[:unitPrice]}$/unité)"
       end
     end
   end
