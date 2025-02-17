@@ -6,7 +6,151 @@ module DataLab
     SM_TO_USD = 0.01
 
     # Ordre des raretés (fixe)
-    RARITY_ORDER = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythic", "Exalted", "Exotic", "Transcendent", "Unique"]
+    RARITY_ORDER = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythic", "Exalted", "Exotic", "Transcendent", "Unique"].freeze
+
+    # Métriques de base des badges
+    BADGE_BASE_METRICS = {
+      "Common" => { name: "Rookie", supply: 200_000, floor_price: 7.99, efficiency: 0.1 },
+      "Uncommon" => { name: "Initiate", supply: 100_000, floor_price: 28.50, efficiency: 0.205 },
+      "Rare" => { name: "Encore", supply: 50_000, floor_price: 82.50, efficiency: 0.420 },
+      "Epic" => { name: "Contender", supply: 25_000, floor_price: 410.00, efficiency: 1.292 },
+      "Legendary" => { name: "Challenger", supply: 10_000, floor_price: 1000.00, efficiency: 3.974 },
+      "Mythic" => { name: "Veteran", supply: 5_000, floor_price: 4000.00, efficiency: 12.219 },
+      "Exalted" => { name: "Champion", supply: 1_000, floor_price: 100_000.00, efficiency: 375.74 },
+      "Exotic" => { name: "Olympian", supply: 250, floor_price: 55_000.00, efficiency: 154.054 },
+      "Transcendent" => { name: "Prodigy", supply: 100, floor_price: 150000.00, efficiency: 631.620 },
+      "Unique" => { name: "MVP", supply: 1, floor_price: 500000.00, efficiency: 2589.642 }
+    }.freeze
+
+    # BFT par minute par rareté
+    BFT_PER_MINUTE_BY_RARITY = {
+      "Common" => 15,
+      "Uncommon" => 50,
+      "Rare" => 120,
+      "Epic" => 350,
+      "Legendary" => 1000,
+      "Mythic" => 2500,
+      "Exalted" => 5000,
+      "Exotic" => 10000,
+      "Transcendent" => 25000,
+      "Unique" => 50000
+    }.freeze
+
+    # Énergie maximale par rareté
+    MAX_ENERGY_BY_RARITY = {
+      "Common" => 1,
+      "Uncommon" => 2,
+      "Rare" => 3,
+      "Epic" => 4,
+      "Legendary" => 5,
+      "Mythic" => 6,
+      "Exalted" => 7,
+      "Exotic" => 8,
+      "Transcendent" => 9,
+      "Unique" => 10
+    }.freeze
+
+    # Temps de jeu par rareté
+    IN_GAME_TIME_BY_RARITY = {
+      "Common" => 60,
+      "Uncommon" => 120,
+      "Rare" => 180,
+      "Epic" => 240,
+      "Legendary" => 300,
+      "Mythic" => 360,
+      "Exalted" => 420,
+      "Exotic" => 480,
+      "Transcendent" => 540,
+      "Unique" => 600
+    }.freeze
+
+    # Coûts de recharge
+    RECHARGE_COSTS = {
+      flex: {
+        "Common" => 500,
+        "Uncommon" => 1400,
+        "Rare" => 2520,
+        "Epic" => 4800,
+        "Legendary" => 12000,
+        "Mythic" => 21000,
+        "Exalted" => 9800,
+        "Exotic" => 11200,
+        "Transcendent" => 12600,
+        "Unique" => 14000
+      }.freeze,
+      sm: {
+        "Common" => 150,
+        "Uncommon" => 350,
+        "Rare" => 1023,
+        "Epic" => 1980,
+        "Legendary" => 4065,
+        "Mythic" => 8136,
+        "Exalted" => nil,
+        "Exotic" => nil,
+        "Transcendent" => nil,
+        "Unique" => nil
+      }.freeze
+    }.freeze
+
+    # Niveaux maximum des contrats par rareté
+    CONTRACT_MAX_LEVEL = {
+      "Common" => 10,
+      "Uncommon" => 20,
+      "Rare" => 30,
+      "Epic" => 40,
+      "Legendary" => 50,
+      "Mythic" => 60,
+      "Exalted" => 70,
+      "Exotic" => 80,
+      "Transcendent" => 90,
+      "Unique" => 100
+    }.freeze
+
+    # Temps de craft de base et incrément
+    BASE_CRAFT_TIME = 120
+    CRAFT_TIME_INCREMENT = 60
+
+    # Coûts de level up des contrats
+    LEVEL_UP_COSTS = {
+      1 => 420,    # Valeur confirmée
+      2 => 855,    # Valeur calculée
+      3 => 1275,   # Valeur calculée
+      4 => 1695,   # Valeur calculée
+      5 => 2174,   # Valeur confirmée
+      6 => 2632,   # Valeur calculée
+      7 => 2940,   # Valeur calculée
+      8 => 3300,   # Valeur calculée
+      9 => 3750,   # Valeur calculée
+      10 => 4545   # Valeur confirmée
+    }.freeze
+
+    # Coûts de craft en FLEX par rareté
+    FLEX_CRAFT_COSTS = {
+      "Common" => 1300,
+      "Uncommon" => 290,
+      "Rare" => 1400,
+      "Epic" => 6300,
+      "Legendary" => 25600,
+      "Mythic" => 92700,
+      "Exalted" => 368192,
+      "Exotic" => 750000,
+      "Transcendent" => 1000000,
+      "Unique" => 1500000
+    }.freeze
+
+    # Coûts de craft en SP Marks par rareté
+    SP_MARKS_CRAFT_COSTS = {
+      "Common" => 0,
+      "Uncommon" => 3967,
+      "Rare" => 6616,
+      "Epic" => 16556,
+      "Legendary" => 27618,
+      "Mythic" => 28222,
+      "Exalted" => 219946,
+      "Exotic" => 300000,
+      "Transcendent" => 400000,
+      "Unique" => 500000
+    }.freeze
 
     # Prix des slots en FLEX
     SLOT_PRICES = {
@@ -46,20 +190,6 @@ module DataLab
     MINUTES_PER_MATCH = 10
     HOURS_PER_ENERGY = 1
 
-    # Efficacité par rareté
-    BADGE_EFFICIENCY = {
-      "Common" => 0.1,
-      "Uncommon" => 0.205,
-      "Rare" => 0.420,
-      "Epic" => 1.292,
-      "Legendary" => 3.974,
-      "Mythic" => 12.219,
-      "Exalted" => 375.74,
-      "Exotic" => 154.054,
-      "Transcendent" => 631.620,
-      "Unique" => 2589.642
-    }
-
     # Noms des badges (règles de jeu fixes)
     BADGE_NAMES = {
       "Common" => "Rookie",
@@ -72,7 +202,7 @@ module DataLab
       "Exotic" => "Olympian",
       "Transcendent" => "Prodigy",
       "Unique" => "MVP"
-    }
+    }.freeze
 
     # Temps de réduction possibles (en pourcentage)
     DISCOUNT_TIMES = [5, 9, 10, 13, 16, 20, 25].freeze
@@ -95,67 +225,23 @@ module DataLab
     module Calculator
       extend self
 
-      def calculate_max_energy(rarity)
-        return 1 unless rarity && RARITY_ORDER.include?(rarity)
-        RARITY_ORDER.index(rarity) + 1
-      end
-
       def calculate_recharge_time(rarity)
         return "8h00" unless rarity && RARITY_ORDER.include?(rarity)
-        case rarity
-        when "Common" then "8h00"
-        when "Uncommon" then "7h45"
-        when "Rare" then "7h30"
-        when "Epic" then "7h15"
-        when "Legendary" then "7h00"
-        when "Mythic" then "6h45"
-        when "Exalted" then "6h30"
-        when "Exotic" then "6h15"
-        when "Transcendent" then "6h00"
-        when "Unique" then "5h45"
-        else "5h30"
-        end
-      end
 
-      def calculate_bft_per_minute(rarity)
-        return 0 unless RARITY_ORDER.include?(rarity)
-        rarity_index = RARITY_ORDER.index(rarity)
-        base_value = 15 # Valeur de base pour Common
-        multiplier = rarity_index <= 5 ? 2.5 : 2.0
-        (base_value * (multiplier ** rarity_index)).round(0)
+        base_hours = 8
+        decrement = 0.25 * RARITY_ORDER.index(rarity)
+        hours = base_hours - decrement
+
+        whole_hours = hours.floor
+        minutes = ((hours - whole_hours) * 60).round
+        format("%dh%02d", whole_hours, minutes)
       end
 
       def calculate_recharge_cost(rarity)
         return nil unless RARITY_ORDER.include?(rarity)
 
-        flex_costs = {
-          "Common" => 500,
-          "Uncommon" => 1400,
-          "Rare" => 2520,
-          "Epic" => 4800,
-          "Legendary" => 12000,
-          "Mythic" => 21000,
-          "Exalted" => 9800,
-          "Exotic" => 11200,
-          "Transcendent" => 12600,
-          "Unique" => 14000
-        }
-
-        sm_costs = {
-          "Common" => 150,
-          "Uncommon" => 350,
-          "Rare" => 1023,
-          "Epic" => 1980,
-          "Legendary" => 4065,
-          "Mythic" => 8136,
-          "Exalted" => nil,
-          "Exotic" => nil,
-          "Transcendent" => nil,
-          "Unique" => nil
-        }
-
-        flex_cost = flex_costs[rarity]
-        sm_cost = sm_costs[rarity]
+        flex_cost = RECHARGE_COSTS[:flex][rarity]
+        sm_cost = RECHARGE_COSTS[:sm][rarity]
 
         return nil if flex_cost.nil? || sm_cost.nil?
 
@@ -166,12 +252,10 @@ module DataLab
         }
       end
 
-      def calculate_slot_cost(slot_id)
-        SLOT_PRICES[slot_id] || 0
-      end
-
       def calculate_slot_roi(badge, slots_count, slot_total_cost, recharge_cost, bft_value_per_max_charge)
-        return 0 if badge.nil? || slots_count.nil? || slot_total_cost.nil? || recharge_cost.nil? || bft_value_per_max_charge.nil? || bft_value_per_max_charge.zero?
+        return 0 if badge.nil? || slots_count.nil? || slot_total_cost.nil? ||
+                   recharge_cost.nil? || bft_value_per_max_charge.nil? ||
+                   bft_value_per_max_charge.zero?
 
         total_cost = badge.floor_price + recharge_cost
         slots = slots_count + 1

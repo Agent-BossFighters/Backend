@@ -28,19 +28,19 @@ module DataLab
       contracts.map do |contract|
         rarity = contract.rarity.name
         recharge_cost = calculate_recharge_cost(rarity)
-        max_energy = calculate_max_energy(rarity)
+        max_energy = Constants::MAX_ENERGY_BY_RARITY[rarity]
 
         {
           "1. rarity": rarity,
           "2. item": Constants::BADGE_NAMES[rarity] || "Unknown",
           "3. supply": contract.supply || 0,
           "4. floor_price": format_currency(contract.floorPrice),
-          "5. lvl_max": calculate_contract_max_level(rarity),
+          "5. lvl_max": Constants::CONTRACT_MAX_LEVEL[rarity],
           "6. max_energy": max_energy,
           "7. time_to_craft": format_hours(calculate_craft_time(rarity)),
           "8. nb_badges_required": contract.item_crafting&.nb_lower_badge_to_craft || 0,
-          "9. flex_craft": calculate_flex_craft_cost(rarity),
-          "10. sp_marks_craft": calculate_sp_marks_craft_cost(rarity),
+          "9. flex_craft": Constants::FLEX_CRAFT_COSTS[rarity],
+          "10. sp_marks_craft": Constants::SP_MARKS_CRAFT_COSTS[rarity],
           "11. time_to_charge": calculate_recharge_time(rarity),
           "12. flex_charge": recharge_cost&.[](:flex),
           "13. sp_marks_charge": recharge_cost&.[](:sm)
@@ -49,93 +49,42 @@ module DataLab
     end
 
     def calculate_level_up_costs
-      # D'après le notepad, les coûts de level up sont fixes par niveau
-      (1..15).map do |level|
-        sp_marks = case level
-          when 1 then 420
-          when 2 then 855
-          when 3 then 1275
-          when 4 then 1695
-          when 5 then 2174
-          when 6 then 2632
-          when 7 then 2940
-          when 8 then 760
-          when 9 then 848
-          when 10 then 4545
-          when 11 then 1025
-          when 12 then 1113
-          when 13 then 1201
-          when 14 then 1289
-          when 15 then 1378
-          else 0
-        end
+      sp_marks_data = []
+      sp_marks_cost_data = []
+      total_cost_data = []
+      total_cost = 0
 
-        {
-          "1. level": level,
-          "2. sp_marks_nb": sp_marks,
-          "3. sp_marks_cost": format_currency(sp_marks * Constants::SM_TO_USD),
-          "4. total_cost": format_currency(sp_marks * Constants::SM_TO_USD)
-        }
+      (1..30).each do |level|
+        sp_marks = calculate_sp_marks_for_level(level)
+        total_cost += sp_marks
+        sp_marks_cost = sp_marks * Constants::SM_TO_USD
+
+        sp_marks_data << sp_marks
+        sp_marks_cost_data << format_currency(sp_marks_cost)
+        total_cost_data << format_currency(total_cost)
       end
+
+      {
+        sp_marks_nb: sp_marks_data,
+        sp_marks_cost: sp_marks_cost_data,
+        total_cost: total_cost_data
+      }
     end
 
-    def calculate_contract_max_level(rarity)
-      # D'après le notepad
-      case rarity
-      when "Common" then 10
-      when "Uncommon" then 20
-      when "Rare" then 30
-      when "Epic" then 40
-      when "Legendary" then 50
-      when "Mythic" then 60
-      when "Exalted" then 70
-      when "Exotic" then 80
-      when "Transcendent" then 90
-      when "Unique" then 100
-      else 0
+    def calculate_sp_marks_for_level(level)
+      if level <= 10
+        Constants::LEVEL_UP_COSTS[level] || 0
+      else
+        last_known = Constants::LEVEL_UP_COSTS[10]
+        increment = (last_known * 0.15).round
+        last_known + (increment * (level - 10))
       end
     end
 
     def calculate_craft_time(rarity)
-      # D'après le notepad, temps de craft en heures
-      case rarity
-      when "Common" then 120
-      when "Uncommon" then 180
-      when "Rare" then 240
-      when "Epic" then 300
-      when "Legendary" then 360
-      when "Mythic" then 420
-      when "Exalted" then 480
-      else 0
-      end
-    end
-
-    def calculate_flex_craft_cost(rarity)
-      # D'après le notepad
-      case rarity
-      when "Common" then 1300
-      when "Uncommon" then 290
-      when "Rare" then 1400
-      when "Epic" then 6300
-      when "Legendary" then 25600
-      when "Mythic" then 92700
-      when "Exalted" then 368192
-      else 0
-      end
-    end
-
-    def calculate_sp_marks_craft_cost(rarity)
-      # D'après le notepad
-      case rarity
-      when "Common" then 0
-      when "Uncommon" then 3967
-      when "Rare" then 6616
-      when "Epic" then 16556
-      when "Legendary" then 27618
-      when "Mythic" then 28222
-      when "Exalted" then 219946
-      else 0
-      end
+      index = Constants::RARITY_ORDER.index(rarity)
+      return 0 unless index
+      Constants::BASE_CRAFT_TIME + (index * Constants::CRAFT_TIME_INCREMENT)
     end
 
     def format_hours(minutes)

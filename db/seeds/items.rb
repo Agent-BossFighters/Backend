@@ -224,15 +224,15 @@ items = [
     floorPrice: 4_500.00,
     farming: { ratio: 150.0, in_game_time: 192 * 60 },
     crafting: {
-      flex_craft: "???",
+      flex_craft: 500_000,
       sponsor_mark_craft: 219_946,
       nb_lower_badge_to_craft: 3
     },
     recharge: {
       max_energy_recharge: 7,
       time_to_charge: 6 * 60 + 30,
-      flex_charge: "???",
-      sponsor_mark_charge: "???"
+      flex_charge: 100_000,
+      sponsor_mark_charge: 500_000
     }
   },
   {
@@ -244,15 +244,15 @@ items = [
     floorPrice: 15_000.00,
     farming: { ratio: 375.0, in_game_time: 216 * 60 },
     crafting: {
-      flex_craft: "???",
-      sponsor_mark_craft: "???",
+      flex_craft: 750_000,
+      sponsor_mark_craft: 300_000,
       nb_lower_badge_to_craft: 4
     },
     recharge: {
       max_energy_recharge: 8,
       time_to_charge: 6 * 60 + 15,
-      flex_charge: "???",
-      sponsor_mark_charge: "???"
+      flex_charge: 150_000,
+      sponsor_mark_charge: 750_000
     }
   },
   {
@@ -260,19 +260,19 @@ items = [
     type_name: "Contract",
     rarity_name: "Transcendent",
     efficiency: 1562.5,
-    supply: 50,
-    floorPrice: 50_000.00,
+    supply: 100,
+    floorPrice: 45_000.00,
     farming: { ratio: 937.5, in_game_time: 240 * 60 },
     crafting: {
-      flex_craft: "???",
-      sponsor_mark_craft: "???",
+      flex_craft: 1_000_000,
+      sponsor_mark_craft: 400_000,
       nb_lower_badge_to_craft: 4
     },
     recharge: {
       max_energy_recharge: 9,
       time_to_charge: 6 * 60,
-      flex_charge: "???",
-      sponsor_mark_charge: "???"
+      flex_charge: 200_000,
+      sponsor_mark_charge: 1_000_000
     }
   },
   {
@@ -280,19 +280,19 @@ items = [
     type_name: "Contract",
     rarity_name: "Unique",
     efficiency: 3906.25,
-    supply: 1,
-    floorPrice: 150_000.00,
+    supply: 10,
+    floorPrice: 135_000.00,
     farming: { ratio: 2343.75, in_game_time: 264 * 60 },
     crafting: {
-      flex_craft: "???",
-      sponsor_mark_craft: "???",
+      flex_craft: 1_500_000,
+      sponsor_mark_craft: 500_000,
       nb_lower_badge_to_craft: 4
     },
     recharge: {
       max_energy_recharge: 10,
       time_to_charge: 5 * 60 + 45,
-      flex_charge: "???",
-      sponsor_mark_charge: "???"
+      flex_charge: 250_000,
+      sponsor_mark_charge: 1_500_000
     }
   }
 ]
@@ -301,40 +301,47 @@ items = [
 items.each do |item_data|
   puts "- Création de l'item: #{item_data[:name]} (#{item_data[:type_name]} - #{item_data[:rarity_name]})"
 
-  item = Item.find_or_create_by!(name: item_data[:name]) do |i|
-    i.type = Type.find_by!(name: item_data[:type_name])
-    i.rarity = Rarity.find_by!(name: item_data[:rarity_name])
-    i.efficiency = item_data[:efficiency]
-    i.supply = item_data[:supply]
-    i.floorPrice = item_data[:floorPrice]
-  end
+  # Trouver ou créer le type et la rareté
+  type = Type.find_by!(name: item_data[:type_name])
+  rarity = Rarity.find_by!(name: item_data[:rarity_name])
 
-  # Création des données de farming
+  # Créer l'item
+  item = Item.create_with(
+    efficiency: item_data[:efficiency],
+    supply: item_data[:supply],
+    floorPrice: item_data[:floorPrice]
+  ).find_or_create_by!(
+    name: item_data[:name],
+    type: type,
+    rarity: rarity
+  )
+
+  # Créer les données de farming si présentes
   if item_data[:farming]
-    ItemFarming.find_or_create_by!(item: item) do |farming|
-      farming.ratio = item_data[:farming][:ratio]
-      farming.efficiency = item.efficiency
-      farming.in_game_time = item_data[:farming][:in_game_time]
-    end
+    ItemFarming.create_with(
+      ratio: item_data[:farming][:ratio],
+      in_game_time: item_data[:farming][:in_game_time],
+      efficiency: item_data[:efficiency]
+    ).find_or_create_by!(item: item)
   end
 
-  # Création des données de crafting
+  # Créer les données de crafting si présentes
   if item_data[:crafting]
-    ItemCrafting.find_or_create_by!(item: item) do |crafting|
-      crafting.flex_craft = item_data[:crafting][:flex_craft]
-      crafting.sponsor_mark_craft = item_data[:crafting][:sponsor_mark_craft]
-      crafting.nb_lower_badge_to_craft = item_data[:crafting][:nb_lower_badge_to_craft]
-    end
+    ItemCrafting.create_with(
+      flex_craft: item_data[:crafting][:flex_craft],
+      sponsor_mark_craft: item_data[:crafting][:sponsor_mark_craft],
+      nb_lower_badge_to_craft: item_data[:crafting][:nb_lower_badge_to_craft]
+    ).find_or_create_by!(item: item)
   end
 
-  # Création des données de recharge
+  # Créer les données de recharge si présentes
   if item_data[:recharge]
-    ItemRecharge.find_or_create_by!(item: item) do |recharge|
-      recharge.max_energy_recharge = item_data[:recharge][:max_energy_recharge]
-      recharge.time_to_charge = item_data[:recharge][:time_to_charge]
-      recharge.flex_charge = item_data[:recharge][:flex_charge]
-      recharge.sponsor_mark_charge = item_data[:recharge][:sponsor_mark_charge]
-    end
+    ItemRecharge.create_with(
+      max_energy_recharge: item_data[:recharge][:max_energy_recharge],
+      time_to_charge: item_data[:recharge][:time_to_charge],
+      flex_charge: item_data[:recharge][:flex_charge],
+      sponsor_mark_charge: item_data[:recharge][:sponsor_mark_charge]
+    ).find_or_create_by!(item: item)
   end
 end
 

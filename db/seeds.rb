@@ -10,8 +10,7 @@ seed_files = [
   'currencies.rb',    # Création des currencies
   'currency_packs.rb',# Création des packs de currencies
   'slots.rb',         # Création des slots (dépend des currencies)
-  'items.rb',         # Création de tous les items (badges et contrats)
-  'item_crafting_farming.rb' # Configuration du crafting et farming des items
+  'items.rb'          # Création de tous les items (badges et contrats)
 ]
 
 puts "\nDébut du seeding..."
