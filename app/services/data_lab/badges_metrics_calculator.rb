@@ -3,8 +3,10 @@ module DataLab
     include Constants::Utils
     include Constants::Calculator
 
-    def initialize(user)
+    def initialize(user, slots_used = 1, bft_multiplier = 1.0)
       @user = user
+      @slots_used = slots_used.to_i.clamp(1, 5)  # Limiter entre 1 et 5 slots
+      @bft_multiplier = bft_multiplier.to_f.clamp(0.0, 10.0)  # Limiter le multiplicateur
     end
 
     def calculate
@@ -35,25 +37,25 @@ module DataLab
     def calculate_badges_metrics(badges)
       badges.map do |badge|
         next unless valid_badge?(badge)
-
         metrics_data(badge)
       end.compact
     end
 
     def metrics_data(badge)
       rarity = badge.rarity.name
+      base_metrics = Constants::BADGE_BASE_METRICS[rarity]
       recharge_cost = calculate_recharge_cost(rarity)
       bft_per_minute = calculate_bft_per_minute(badge)
-      max_energy = calculate_max_energy(badge)
+      max_energy = base_metrics[:max_energy]
       bft_value_per_max_charge = calculate_bft_value_per_max_charge(badge)
       recharge_time = calculate_recharge_time(badge)
 
       {
         "1. rarity": rarity,
-        "2. item": Constants::BADGE_BASE_METRICS[rarity][:name] || "Unknown",
+        "2. item": base_metrics[:name],
         "3. supply": badge.supply || 0,
         "4. floor_price": format_currency(badge.floorPrice),
-        "5. efficiency": badge.item_farming&.efficiency || 0,
+        "5. efficiency": base_metrics[:efficiency],
         "6. ratio": calculate_ratio(badge),
         "7. max_energy": max_energy,
         "8. time_to_charge": recharge_time,
@@ -70,7 +72,6 @@ module DataLab
     def calculate_badges_details(badges)
       badges.map do |badge|
         next unless valid_badge?(badge)
-
         details_data(badge)
       end.compact
     end
@@ -102,22 +103,19 @@ module DataLab
 
     def calculate_in_game_minutes(badge)
       return 0 unless valid_badge?(badge)
-      Constants::IN_GAME_TIME_BY_RARITY[badge.rarity.name] || 0
+      Constants::BADGE_BASE_METRICS[badge.rarity.name][:in_game_time] || 0
     end
 
     def calculate_bft_per_max_charge(badge)
       return 0 unless valid_badge?(badge)
-      rarity = badge.rarity.name
-      rarity_index = Constants::RARITY_ORDER.index(rarity) + 1
+      base_metrics = Constants::BADGE_BASE_METRICS[badge.rarity.name]
+      return 0 unless base_metrics
 
-      # Formule quadratique similaire à celle des SP marks mais adaptée pour les BFT
-      # Base : 600 BFT pour Common (rarity_index = 1)
-      # Progression quadratique pour les raretés supérieures
-      base = 600
-      quadratic = 1.8 * (rarity_index ** 2)
-      linear = 192.9 * rarity_index
+      base_bft = calculate_bft_per_minute(badge)
+      max_energy = base_metrics[:max_energy]
 
-      (base * quadratic + linear).round(0)
+      total_bft = base_bft * max_energy * 60
+      total_bft.round(0)
     end
 
     def calculate_recharge_cost(rarity)
@@ -134,17 +132,23 @@ module DataLab
     end
 
     def calculate_total_usd(flex_cost, sm_cost)
-      (flex_cost * Constants::FLEX_TO_USD + sm_cost * Constants::BFT_TO_USD).round(2)
+      (flex_cost * Constants::CURRENCY_RATES[:flex] + sm_cost * Constants::CURRENCY_RATES[:bft]).round(2)
     end
 
     def calculate_bft_per_minute(badge)
-      return nil unless valid_badge?(badge)
-      Constants::BFT_PER_MINUTE_BY_RARITY[badge.rarity.name]
+      return 0 unless valid_badge?(badge)
+      base_metrics = Constants::BADGE_BASE_METRICS[badge.rarity.name]
+      return 0 unless base_metrics
+
+      base_bft = base_metrics[:bft_per_minute]
+      slot_bonus = Constants::SLOT_BONUS_MULTIPLIERS[@slots_used] || 1.0
+
+      (base_bft * slot_bonus * @bft_multiplier).round(0)
     end
 
     def calculate_max_energy(badge)
       return nil unless valid_badge?(badge)
-      Constants::MAX_ENERGY_BY_RARITY[badge.rarity.name]
+      Constants::BADGE_BASE_METRICS[badge.rarity.name][:max_energy]
     end
 
     def calculate_recharge_time(badge)
@@ -156,7 +160,12 @@ module DataLab
       return 0 if invalid_roi_params?(badge, recharge_cost, bft_value_per_max_charge)
 
       total_cost = badge.floorPrice.to_f + recharge_cost.to_f
-      (total_cost / bft_value_per_max_charge).round(2)
+      charges_needed = (total_cost / bft_value_per_max_charge).round(2)
+
+      total_recharge_cost = charges_needed * recharge_cost.to_f
+      total_investment = badge.floorPrice.to_f + total_recharge_cost
+
+      (total_investment / bft_value_per_max_charge).round(2)
     end
 
     def invalid_roi_params?(badge, recharge_cost, bft_value_per_max_charge)
@@ -167,7 +176,7 @@ module DataLab
       bft_per_max_charge = calculate_bft_per_max_charge(badge)
       return 0 if bft_per_max_charge.nil?
 
-      (bft_per_max_charge * Constants::BFT_TO_USD).round(2)
+      (bft_per_max_charge * Constants::CURRENCY_RATES[:bft]).round(2)
     end
 
     def calculate_ratio(badge)

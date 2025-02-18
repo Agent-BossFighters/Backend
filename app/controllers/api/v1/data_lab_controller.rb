@@ -19,7 +19,10 @@ class Api::V1::DataLabController < ApplicationController
   end
 
   def badges_metrics
-    calculator = DataLab::BadgesMetricsCalculator.new(current_user)
+    slots_used = (params[:slots_used] || "1").to_i
+    bft_multiplier = (params[:bft_multiplier] || "1.0").to_f
+
+    calculator = DataLab::BadgesMetricsCalculator.new(current_user, slots_used, bft_multiplier)
     render json: calculator.calculate
   end
 

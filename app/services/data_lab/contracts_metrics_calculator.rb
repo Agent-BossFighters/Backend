@@ -28,19 +28,19 @@ module DataLab
       contracts.map do |contract|
         rarity = contract.rarity.name
         recharge_cost = calculate_recharge_cost(rarity)
-        max_energy = Constants::MAX_ENERGY_BY_RARITY[rarity]
+        base_metrics = Constants::BADGE_BASE_METRICS[rarity]
 
         {
           "1. rarity": rarity,
-          "2. item": Constants::BADGE_BASE_METRICS[rarity][:name] || "Unknown",
+          "2. item": base_metrics[:name],
           "3. supply": contract.supply || 0,
           "4. floor_price": format_currency(contract.floorPrice),
           "5. lvl_max": Constants::CONTRACT_MAX_LEVEL[rarity],
-          "6. max_energy": max_energy,
+          "6. max_energy": base_metrics[:max_energy],
           "7. time_to_craft": format_hours(calculate_craft_time(rarity)),
           "8. nb_badges_required": contract.item_crafting&.nb_lower_badge_to_craft || 0,
-          "9. flex_craft": Constants::FLEX_CRAFT_COSTS[rarity],
-          "10. sp_marks_craft": Constants::SP_MARKS_CRAFT_COSTS[rarity],
+          "9. flex_craft": Constants::CRAFT_METRICS[rarity][:bft_tokens],
+          "10. sp_marks_craft": Constants::CRAFT_METRICS[rarity][:sponsor_marks_reward],
           "11. time_to_charge": calculate_recharge_time(rarity),
           "12. flex_charge": recharge_cost&.[](:flex),
           "13. sp_marks_charge": recharge_cost&.[](:sm)
@@ -57,7 +57,7 @@ module DataLab
 
       (1..30).each do |level|
         sp_marks = calculate_sp_marks_for_level(level)
-        sp_marks_cost = (sp_marks * Constants::SM_TO_USD).round(2)
+        sp_marks_cost = (sp_marks * Constants::CURRENCY_RATES[:sm]).round(2)
 
         total_cost += sp_marks
         total_usd_cost += sp_marks_cost
@@ -83,6 +83,18 @@ module DataLab
       index = Constants::RARITY_ORDER.index(rarity)
       return 0 unless index
       Constants::BASE_CRAFT_TIME + (index * Constants::CRAFT_TIME_INCREMENT)
+    end
+
+    def calculate_recharge_cost(rarity)
+      {
+        flex: Constants::RECHARGE_COSTS[:flex][rarity],
+        sm: Constants::RECHARGE_COSTS[:sm][rarity]
+      }
+    end
+
+    def calculate_recharge_time(rarity)
+      base_metrics = Constants::BADGE_BASE_METRICS[rarity]
+      format_hours(base_metrics[:in_game_time])
     end
 
     def format_hours(minutes)
