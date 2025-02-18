@@ -53,15 +53,18 @@ module DataLab
       sp_marks_cost_data = []
       total_cost_data = []
       total_cost = 0
+      total_usd_cost = 0
 
       (1..30).each do |level|
         sp_marks = calculate_sp_marks_for_level(level)
-        total_cost += sp_marks
-        sp_marks_cost = sp_marks * Constants::SM_TO_USD
+        sp_marks_cost = (sp_marks * Constants::SM_TO_USD).round(2)
 
-        sp_marks_data << sp_marks
+        total_cost += sp_marks
+        total_usd_cost += sp_marks_cost
+
+        sp_marks_data << sp_marks.round(2)
         sp_marks_cost_data << format_currency(sp_marks_cost)
-        total_cost_data << format_currency(total_cost)
+        total_cost_data << format_currency(total_usd_cost)
       end
 
       {

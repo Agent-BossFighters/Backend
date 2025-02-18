@@ -24,16 +24,16 @@ module DataLab
 
     # BFT par minute par rareté
     BFT_PER_MINUTE_BY_RARITY = {
-      "Common" => 15,
-      "Uncommon" => 50,
-      "Rare" => 120,
-      "Epic" => 350,
-      "Legendary" => 1000,
-      "Mythic" => 2500,
-      "Exalted" => 5000,
-      "Exotic" => 10000,
-      "Transcendent" => 25000,
-      "Unique" => 50000
+      "Common" => 10,
+      "Uncommon" => 20,
+      "Rare" => 30,
+      "Epic" => 40,
+      "Legendary" => 50,
+      "Mythic" => 60,
+      "Exalted" => 70,
+      "Exotic" => 80,
+      "Transcendent" => 90,
+      "Unique" => 100
     }.freeze
 
     # Énergie maximale par rareté

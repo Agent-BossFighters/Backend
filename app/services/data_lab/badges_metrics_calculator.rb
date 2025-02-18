@@ -106,11 +106,18 @@ module DataLab
     end
 
     def calculate_bft_per_max_charge(badge)
-      bft_per_minute = calculate_bft_per_minute(badge)
-      max_energy = calculate_max_energy(badge)
-      return 0 if bft_per_minute.nil? || max_energy.nil?
+      return 0 unless valid_badge?(badge)
+      rarity = badge.rarity.name
+      rarity_index = Constants::RARITY_ORDER.index(rarity) + 1
 
-      (bft_per_minute * max_energy * 60).round(2)
+      # Formule quadratique similaire à celle des SP marks mais adaptée pour les BFT
+      # Base : 600 BFT pour Common (rarity_index = 1)
+      # Progression quadratique pour les raretés supérieures
+      base = 600
+      quadratic = 1.8 * (rarity_index ** 2)
+      linear = 192.9 * rarity_index
+
+      (base * quadratic + linear).round(0)
     end
 
     def calculate_recharge_cost(rarity)
