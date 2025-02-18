@@ -2,11 +2,11 @@ module DataLab
   module Constants
     module SlotConstants
       SLOT_BONUS_MULTIPLIERS = {
-        1 => 0,    # 0%
-        2 => 10,   # 10%
-        3 => 20,   # 20%
-        4 => 30,   # 30%
-        5 => 40    # 40%
+        1 => 0,    # 0% (bonus)
+        2 => 10,   # 10% (bonus)
+        3 => 20,   # 20% (bonus)
+        4 => 30,   # 30% (bonus)
+        5 => 40    # 40% (bonus)
       }.freeze
 
       # Bonus BFT total par nombre de slots

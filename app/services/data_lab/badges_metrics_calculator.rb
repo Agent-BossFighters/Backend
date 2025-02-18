@@ -141,9 +141,9 @@ module DataLab
       return 0 unless base_metrics
 
       base_bft = base_metrics[:bft_per_minute]
-      slot_bonus = Constants::SLOT_BONUS_MULTIPLIERS[@slots_used] || 1.0
+      slot_bonus = Constants::SLOT_BONUS_MULTIPLIERS[@slots_used] || 0
 
-      (base_bft * slot_bonus * @bft_multiplier).round(0)
+      (base_bft * (1 + slot_bonus/100.0) * @bft_multiplier).round(0)
     end
 
     def calculate_max_energy(badge)
