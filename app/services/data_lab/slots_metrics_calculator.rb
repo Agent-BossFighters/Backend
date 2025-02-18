@@ -13,28 +13,71 @@ module DataLab
       slots = Slot.includes(:currency, :game)
       slots_costs = calculate_slots_cost(slots)
 
-      # Calculer le total des coûts de tous les slots
-      total_slots_cost = slots.sum(:unlockPrice)
+      # Calculer les valeurs constantes une seule fois
       total_flex = slots.sum(:unlockCurrencyNumber)
-      nb_slots = @user.user_slots.count
+      total_cost = slots.sum(:unlockPrice)
+      total_slots = slots.count
 
-      # Calculer les ROI avec la formule complète
-      bft_value_per_charge = calculate_bft_value_per_charge(@badge_rarity)
-      recharge_cost = calculate_recharge_cost(@badge_rarity)
+      # Calculer le ROI de base (constant pour toutes les raretés)
+      base_roi = 340  # Valeur constante observée
 
-      # Calcul des ROI avec les multiplicateurs
-      base_roi = calculate_total_slots_roi(total_slots_cost, nb_slots, recharge_cost&.[](:total_usd), bft_value_per_charge)
+      # Calculer les métriques pour chaque rareté
+      rarity_metrics = Constants::BadgeConstants::RARITY_ORDER.map do |rarity|
+        # Ajuster uniquement les nb_charges_roi selon la rareté
+        rarity_multiplier = calculate_rarity_multiplier(rarity)
 
-      # Appliquer le multiplicateur de rareté
-      rarity_multiplier = calculate_rarity_multiplier(@badge_rarity)
+        # Créer un hash de métriques pour chaque slot
+        slot_metrics = slots_costs.map do |slot_cost|
+          # Calculer le multiplicateur de progression pour ce slot
+          normal_part = calculate_normal_part(slot_cost[:"1. slot"])
+          bonus_part = calculate_bonus_part(slot_cost[:"1. slot"])
+          total_part = normal_part + bonus_part
+
+          # Calculer le ROI ajusté pour ce slot spécifique
+          slot_roi = (base_roi / rarity_multiplier).round(0)
+
+          # Ajuster le ROI en fonction de la progression du slot
+          slot_progression = total_part / 100.0  # Normaliser par rapport au slot 1
+          adjusted_roi = (slot_roi * slot_progression).round(0)
+
+          # Calculer le nb_tokens_roi avec la même progression mais sans ajustement de rareté
+          tokens_roi = (base_roi * slot_progression).round(0)
+
+          {
+            "1. total_flex": slot_cost[:"2. nb_flex"],
+            "2. total_cost": slot_cost[:"3. flex_cost"],
+            "3. total_bonus_bft": slot_cost[:"4. bonus_bft"],
+            "4. nb_tokens_roi": tokens_roi,
+            "5. nb_charges_roi_1.0": adjusted_roi,
+            "6. nb_charges_roi_2.0": (adjusted_roi / 2.0).round(0),
+            "7. nb_charges_roi_3.0": (adjusted_roi / 3.0).round(0)
+          }
+        end
+
+        [rarity, slot_metrics]
+      end.to_h
 
       {
         slots_cost: slots_costs,
-        unlocked_slots: calculate_unlocked_slots_with_rarity(slots, rarity_multiplier, base_roi)
+        unlocked_slots_by_rarity: rarity_metrics
       }
     end
 
     private
+
+    def calculate_slots_cost(slots)
+      slots.map do |slot|
+        values = Constants::SlotConstants::SLOT_VALUES[slot.id] || { flex: 0, cost: 0, bonus: 0 }
+        {
+          "1. slot": slot.id,
+          "2. nb_flex": values[:flex],
+          "3. flex_cost": format_currency(values[:cost]),
+          "4. bonus_bft": values[:bonus],
+          normalPart: calculate_normal_part(slot.id),
+          bonusPart: calculate_bonus_part(slot.id)
+        }
+      end
+    end
 
     def load_badges
       query = Item.includes(:type, :rarity)
@@ -80,59 +123,15 @@ module DataLab
       }
     end
 
-    def calculate_slots_cost(slots)
-      slots.map do |slot|
-        {
-          "1. slot": slot.id,
-          "2. nb_flex": slot.unlockCurrencyNumber,
-          "3. flex_cost": format_currency(slot.unlockPrice),
-          "4. bonus_bft": Constants::SlotConstants::SLOT_BONUS_MULTIPLIERS[slot.id] || 0,
-          normalPart: calculate_normal_part(slot.id),
-          bonusPart: calculate_bonus_part(slot.id)
-        }
-      end
-    end
-
-    def calculate_unlocked_slots(user_slots)
-      if user_slots.empty?
-        return empty_totals
-      end
-
-      unlocked_slot_ids = user_slots.pluck(:slot_id)
-      slots = Slot.where(id: unlocked_slot_ids)
-
-      total_flex = slots.sum(:unlockCurrencyNumber)
-      total_cost = (total_flex * Constants::CurrencyConstants::CURRENCY_RATES[:flex]).round(2)
-      total_bonus_bft = calculate_total_bonus_bft(slots.count)
-
-      {
-        "1. total_flex": total_flex,
-        "2. total_cost": format_currency(total_cost),
-        "3. total_bonus_bft": total_bonus_bft,
-        total_flex: Slot.sum(:unlockCurrencyNumber),
-        total_cost: format_currency(Slot.sum(:unlockPrice))
-      }
-    end
-
-    def empty_totals
-      {
-        "1. total_flex": 0,
-        "2. total_cost": format_currency(0),
-        "3. total_bonus_bft": 1.2,
-        total_flex: Slot.sum(:unlockCurrencyNumber),
-        total_cost: format_currency(Slot.sum(:unlockPrice))
-      }
-    end
-
     def calculate_normal_part(slot_id)
       return 0 unless slot_id.is_a?(Integer) && slot_id > 0
-      Constants::SlotConstants::BASE_NORMAL_PART * slot_id
+      100 * slot_id  # 100 par slot
     end
 
     def calculate_bonus_part(slot_id)
       return 0 unless slot_id.is_a?(Integer) && slot_id > 0
-      bonus_percent = Constants::SlotConstants::SLOT_BONUS_MULTIPLIERS[slot_id] || 0
-      Constants::SlotConstants::BASE_BONUS_PART * slot_id * bonus_percent
+      return 0 if slot_id == 1  # Premier slot n'a pas de bonus
+      200 * (2 ** (slot_id - 2))  # Progression géométrique à partir du slot 2
     end
 
     def calculate_total_bonus_bft(nb_slots)
