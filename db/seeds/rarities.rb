@@ -1,14 +1,14 @@
 rarities = [
-  { name: "Common", color: "#808080" },        # Gris
-  { name: "Uncommon", color: "#1eff00" },      # Vert
-  { name: "Rare", color: "#0070dd" },          # Bleu
-  { name: "Epic", color: "#a335ee" },          # Violet
-  { name: "Legendary", color: "#ff8000" },     # Orange
-  { name: "Mythic", color: "#ff00ff" },        # Magenta
-  { name: "Exalted", color: "#ffff00" },       # Jaune
-  { name: "Exotic", color: "#ff007f" },        # Rose vif
-  { name: "Transcendent", color: "#00ffff" },  # Cyan
-  { name: "Unique", color: "#ffffff" }         # Blanc
+  { name: "Common", color: "#858F9B" },        # Gris
+  { name: "Uncommon", color: "#1CBF6A" },      # Vert
+  { name: "Rare", color: "#159CFD" },          # Bleu
+  { name: "Epic", color: "#A369FF" },          # Violet
+  { name: "Legendary", color: "#E67E22" },     # Orange
+  { name: "Mythic", color: "#FFD32A" },        # Magenta
+  { name: "Exalted", color: "#EF5777" },       # Jaune
+  { name: "Exotic", color: "#BE2EDD" },        # Rose vif
+  { name: "Transcendent", color: "#FF3838" },  # Cyan
+  { name: "Unique", color: "#F368E0" }         # Blanc
 ]
 
 rarities.each do |rarity|
