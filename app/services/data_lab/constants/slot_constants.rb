@@ -2,11 +2,11 @@ module DataLab
   module Constants
     module SlotConstants
       SLOT_BONUS_MULTIPLIERS = {
-        1 => 1.0,    # 0% bonus
-        2 => 1.1,    # 10% bonus
-        3 => 1.2,    # 20% bonus
-        4 => 1.3,    # 30% bonus
-        5 => 1.4     # 40% bonus
+        1 => 0,    # 0%
+        2 => 10,   # 10%
+        3 => 20,   # 20%
+        4 => 30,   # 30%
+        5 => 40    # 40%
       }.freeze
 
       # Bonus BFT total par nombre de slots
@@ -20,7 +20,7 @@ module DataLab
 
       # Constantes pour les calculs de parts normales et bonus
       BASE_NORMAL_PART = 100
-      BASE_BONUS_PART = 50
+      BASE_BONUS_PART = 10
     end
   end
 end
