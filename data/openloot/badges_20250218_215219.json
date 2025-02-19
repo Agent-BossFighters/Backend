@@ -1,0 +1,104 @@
+{
+  "items": [
+    {
+      "name": "Challenger Badge",
+      "archetypeId": "BF_BADGE_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/f227202b-217f-4a69-8940-4f4af0a404d8/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 10000,
+      "minPrice": 2900,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Champion Badge",
+      "archetypeId": "BF_BADGE_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e02348d5-a3bc-4312-87d2-e3cdfcc76a31/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Contender Badge",
+      "archetypeId": "BF_BADGE_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1d90003a-cd5a-4ec4-aa6b-3d1bdc004299/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25000,
+      "minPrice": 349,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Encore Badge",
+      "archetypeId": "BF_BADGE_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/9ed14144-6439-4616-98e7-d6b2813dd91a/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50000,
+      "minPrice": 89,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Initiate Badge",
+      "archetypeId": "BF_BADGE_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/eb009e37-3a5f-4e98-875c-fa0e166a68b2/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100000,
+      "minPrice": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "MVP Badge",
+      "archetypeId": "BF_BADGE_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/5c3ef2aa-8acb-40d1-9c60-811249f9977b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Olympian Badge",
+      "archetypeId": "BF_BADGE_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/dd1e7ded-64ec-4e21-805c-1224d4759928/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Prodigy Badge",
+      "archetypeId": "BF_BADGE_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/75ad2107-9df8-407d-af9a-9d1634c1ad86/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Rookie Badge",
+      "archetypeId": "BF_BADGE_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/31bf04dc-a8dc-4b4f-bdc3-14c28758264d/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200000,
+      "minPrice": 7,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Veteran Badge",
+      "archetypeId": "BF_BADGE_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1ff00bad-1b63-41a8-aac1-f014c005a999/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "gameName": "BOSS FIGHTERS"
+    }
+  ],
+  "pageSize": 20,
+  "currentPage": 1,
+  "totalPages": 1,
+  "totalItems": 10,
+  "facets": []
+}

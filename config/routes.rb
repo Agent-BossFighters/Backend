@@ -78,6 +78,10 @@ Rails.application.routes.draw do
       get 'profile', to: 'users#profile'
       patch 'profile', to: 'users#update_profile'
       delete 'profile', to: 'users#delete_profile'
+
+      # Routes OpenLoot
+      get 'open_loot/badges', to: 'open_loot#badges'
+      get 'open_loot/showrunner_contracts', to: 'open_loot#showrunner_contracts'
     end
   end
 

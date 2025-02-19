@@ -82,3 +82,4 @@ gem 'stripe'
 
 # Pour gérer CORS
 gem 'rack-cors'
+gem 'httparty'

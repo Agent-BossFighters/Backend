@@ -1,0 +1,107 @@
+{
+  "items": [
+    {
+      "name": "Challenger Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/575b4135-5820-49b2-ae61-05ef95052f80/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 400,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Champion Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CONTRACT_EXALTED.png",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 100000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Contender Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d3655cc9-04dc-42d6-a202-38e6cce6c5a0/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 10000,
+      "minPrice": 220,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Encore Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/03b85b3c-fd43-4a84-a5f2-6e4cd8fb8ebe/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 20000,
+      "minPrice": 88,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Initiate Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ffc32821-2196-4300-84bb-7b9731a8bf76/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 35000,
+      "minPrice": 33,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "MVP Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CONTRACT_UNIQUE.png",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Olympian Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CONTRACT_EXOTIC.png",
+      "videoUrl": null,
+      "maxIssuance": 250,
+      "minPrice": 55000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Prodigy Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CONTRACT_TRANSCENDENT.png",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Rookie Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/86833a8f-1d98-4a73-bf9a-e62a34687bbb/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50000,
+      "minPrice": 18,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Veteran Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/cba42781-5da3-420f-94f3-8f9c9927d85e/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2500,
+      "minPrice": 550,
+      "gameName": "BOSS FIGHTERS"
+    }
+  ],
+  "pageSize": 20,
+  "currentPage": 1,
+  "totalPages": 1,
+  "totalItems": 10,
+  "facets": []
+}
