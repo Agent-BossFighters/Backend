@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       resources :item_farming
       resources :item_crafting
       resources :item_recharge
-      resources :matches
+      resources :matches, only: [:index, :create, :update, :destroy]
       resources :player_cycles, only: [:index, :show]
       resources :nfts, only: [:index, :show, :update, :destroy] do
         collection do
@@ -82,6 +82,10 @@ Rails.application.routes.draw do
       # Routes OpenLoot
       get 'open_loot/badges', to: 'open_loot#badges'
       get 'open_loot/showrunner_contracts', to: 'open_loot#showrunner_contracts'
+
+      # Routes pour daily_metrics
+      get 'daily_metrics', to: 'matches#daily_metrics'  # Pour aujourd'hui
+      get 'daily_metrics/:date', to: 'matches#daily_metrics'  # Pour une date spécifique
     end
   end
 

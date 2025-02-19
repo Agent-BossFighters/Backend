@@ -1,6 +1,5 @@
 class Api::V1::BaseController < ApplicationController
   protect_from_forgery with: :null_session
-  before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -25,20 +24,41 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def authenticate_user!
-    if request.headers['Authorization'].present?
-      token = request.headers['Authorization'].split(' ').last
-      begin
-        jwt_payload = JWT.decode(token, Rails.application.credentials.devise_jwt_secret_key!).first
-        @current_user_id = jwt_payload['id']
-      rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
-        head :unauthorized
-      end
-    else
-      head :unauthorized
+    Rails.logger.info "Authorization Header: #{request.headers['Authorization']}"
+
+    if current_user
+      Rails.logger.info "User authenticated: #{current_user.id}"
+      return true
     end
+
+    Rails.logger.error "Authentication failed"
+    render json: {
+      error: 'Unauthorized',
+      message: 'Invalid or missing authentication token'
+    }, status: :unauthorized
   end
 
   def current_user
-    @current_user ||= User.find(@current_user_id)
+    return @current_user if defined?(@current_user)
+
+    header = request.headers['Authorization']
+    return nil unless header
+
+    token = header.split(' ').last
+    begin
+      decoded = JWT.decode(
+        token,
+        Rails.application.credentials.devise_jwt_secret_key!,
+        true,
+        algorithm: 'HS256'
+      )
+      @current_user = User.find(decoded.first['id'])
+    rescue JWT::DecodeError => e
+      Rails.logger.error "JWT Decode Error: #{e.message}"
+      nil
+    rescue ActiveRecord::RecordNotFound => e
+      Rails.logger.error "User not found: #{e.message}"
+      nil
+    end
   end
 end
