@@ -31,6 +31,7 @@ module Api
 
       def create
         @match = current_user.matches.build(match_params)
+        @match.date ||= DateTime.current
 
         if @match.save
           if params[:badges].present?
@@ -71,15 +72,21 @@ module Api
       end
 
       def destroy
-        date = @match.date.to_date
-        @match.destroy
+        begin
+          @match = current_user.matches.find(params[:id])
+          match_date = @match.date.to_date
+          @match.destroy
 
-        render json: {
-          status: :ok,
-          daily_metrics: DataLab::DailyMetricsCalculator.new(current_user, date).calculate
-        }
-      rescue ActiveRecord::RecordNotFound
-        render json: { error: "Match not found" }, status: :not_found
+          render json: {
+            status: :ok,
+            daily_metrics: DataLab::DailyMetricsCalculator.new(current_user, match_date).calculate
+          }
+        rescue ActiveRecord::RecordNotFound
+          render json: {
+            error: "Match not found",
+            details: "Le match avec l'ID #{params[:id]} n'existe pas ou n'appartient pas à l'utilisateur courant"
+          }, status: :not_found
+        end
       end
 
       def daily_metrics
@@ -93,17 +100,24 @@ module Api
       private
 
       def calculate_financials
+        # Récupérer le build de l'utilisateur
+        build_name = params[:match][:build].is_a?(ActionController::Parameters) ? params[:match][:build][:buildName] : params[:match][:build]
+        user_build = current_user.user_builds.find_by(buildName: build_name)
+
+        # Mettre à jour le build dans les paramètres pour qu'il soit juste le nom
+        params[:match][:build] = build_name
+
         # Calcul du coût total
         total_cost = 0
 
         # Coût des frais
         if params[:match][:totalFee].present? && params[:match][:feeCost].present?
-          total_cost += params[:match][:totalFee].to_i * params[:match][:feeCost].to_f
+          total_cost += params[:match][:totalFee].to_f * params[:match][:feeCost].to_f
         end
 
         # Coût de l'énergie
         if params[:match][:energyUsed].present? && params[:match][:energyCost].present?
-          total_cost += params[:match][:energyUsed].to_i * params[:match][:energyCost].to_f
+          total_cost += params[:match][:energyUsed].to_f * params[:match][:energyCost].to_f
         end
 
         # Calcul des gains
@@ -111,16 +125,24 @@ module Api
 
         # Valeur des tokens BFT
         if params[:match][:totalToken].present? && params[:match][:tokenValue].present?
-          total_earnings += params[:match][:totalToken].to_i * params[:match][:tokenValue].to_f
+          total_earnings += params[:match][:totalToken].to_f * params[:match][:tokenValue].to_f
         end
 
         # Valeur des tokens FLEX
         if params[:match][:totalPremiumCurrency].present? && params[:match][:premiumCurrencyValue].present?
-          total_earnings += params[:match][:totalPremiumCurrency].to_i * params[:match][:premiumCurrencyValue].to_f
+          total_earnings += params[:match][:totalPremiumCurrency].to_f * params[:match][:premiumCurrencyValue].to_f
         end
 
-        # Calcul du profit
-        params[:match][:profit] = (total_earnings - total_cost).round(2)
+        # Calcul du profit de base (avant multiplicateurs)
+        base_profit = total_earnings - total_cost
+
+        # Application des multiplicateurs du build
+        total_profit = base_profit
+        if user_build
+          total_profit *= user_build.bonusMultiplier.to_f * user_build.perksMultiplier.to_f
+        end
+
+        params[:match][:profit] = total_profit.round(2)
       end
 
       def set_match
@@ -128,6 +150,19 @@ module Api
       end
 
       def match_json(match)
+        user_build = current_user.user_builds.find_by(buildName: match.build)
+        multipliers = if user_build
+          {
+            bonus: user_build.bonusMultiplier,
+            perks: user_build.perksMultiplier
+          }
+        else
+          {
+            bonus: 1.0,
+            perks: 1.0
+          }
+        end
+
         {
           id: match.id,
           build: match.build,
@@ -145,8 +180,8 @@ module Api
           totalPremiumCurrency: match.totalPremiumCurrency,
           premiumCurrencyValue: match.premiumCurrencyValue,
           profit: match.profit,
-          bonusMultiplier: match.bonusMultiplier,
-          perksMultiplier: match.perksMultiplier,
+          bonusMultiplier: multipliers[:bonus],
+          perksMultiplier: multipliers[:perks],
           badges: match.badge_used.map { |badge| badge_used_json(badge) }
         }
       end
@@ -167,9 +202,10 @@ module Api
       end
 
       def multipliers_json(match, metrics)
+        user_build = current_user.user_builds.find_by(buildName: match.build)
         {
-          bonus: match.bonusMultiplier,
-          perks: match.perksMultiplier,
+          bonus: user_build&.bonusMultiplier || 1.0,
+          perks: user_build&.perksMultiplier || 1.0,
           badge: metrics[:efficiency]
         }
       end
@@ -209,9 +245,7 @@ module Api
           :tokenValue,
           :totalPremiumCurrency,
           :premiumCurrencyValue,
-          :profit,
-          :bonusMultiplier,
-          :perksMultiplier
+          :profit
         )
       end
     end

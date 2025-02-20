@@ -34,7 +34,11 @@ Rails.application.routes.draw do
       resources :item_farming
       resources :item_crafting
       resources :item_recharge
-      resources :matches, only: [:index, :create, :update, :destroy]
+      resources :matches, only: [:index, :create, :update, :destroy] do
+        collection do
+          get 'daily_metrics/:date', to: 'matches#daily_metrics'
+        end
+      end
       resources :player_cycles, only: [:index, :show]
       resources :nfts, only: [:index, :show, :update, :destroy] do
         collection do
