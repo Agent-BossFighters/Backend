@@ -5,5 +5,5 @@ class BadgeUsed < ApplicationRecord
   validates :slot, presence: true,
                   numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 5 }
   validates :rarity, presence: true,
-                    inclusion: { in: %w(rare epic legendary exalted mythic transcendent uncommon) }
+                    inclusion: { in: %w(common uncommon rare epic legendary mythic exotic exalted transcendent unique) }
 end
