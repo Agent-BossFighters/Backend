@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_21_132429) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_21_155933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,6 +19,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_21_132429) do
     t.integer "nftId"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "rarity"
+    t.integer "slot"
     t.index ["match_id"], name: "index_badge_useds_on_match_id"
     t.index ["nftId"], name: "index_badge_useds_on_nftId"
   end
@@ -120,6 +122,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_21_132429) do
     t.float "perksMultiplier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "result"
     t.index ["user_id"], name: "index_matches_on_user_id"
   end
 

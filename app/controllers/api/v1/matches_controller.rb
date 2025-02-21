@@ -1,252 +1,128 @@
 module Api
   module V1
     class MatchesController < Api::V1::BaseController
-      before_action :set_match, only: [:show, :update, :destroy]
-      before_action :calculate_financials, only: [:create, :update]
-
       def index
-        @matches = current_user.matches.includes(:badge_used)
-        render json: {
-          matches: @matches.map { |match| match_json(match) }
-        }
-      end
-
-      def show
-        badge = @match.badge_used.first&.nft&.item
-        metrics = badge ? calculate_badge_metrics(badge) : {}
-
-        render json: {
-          match: match_json(@match),
-          metrics: {
-            combat_stats: combat_stats_json(@match),
-            time_efficiency: @match.profit / @match.time,
-            badge_metrics: metrics,
-            multipliers: multipliers_json(@match, metrics)
-          },
-          rewards: calculate_match_rewards
-        }
-      rescue ActiveRecord::RecordNotFound
-        render json: { error: "Match not found" }, status: :not_found
+        @matches = current_user.matches.includes(:badge_used).order(created_at: :desc)
+        render json: { matches: matches_json(@matches) }
       end
 
       def create
         @match = current_user.matches.build(match_params)
         @match.date ||= DateTime.current
 
-        if @match.save
-          if params[:badges].present?
-            params[:badges].each do |badge|
-              @match.badge_used.create(nftId: badge[:nft_id])
-            end
-          end
+        Rails.logger.debug "Match attributes: #{@match.attributes.inspect}"
+        Rails.logger.debug "Badge used attributes: #{@match.badge_used.map(&:attributes)}"
 
-          render json: {
-            status: :created,
-            match: match_json(@match),
-            daily_metrics: DataLab::DailyMetricsCalculator.new(current_user, @match.date.to_date).calculate
-          }
+        # Calculate energyUsed before validation
+        if @match.time.present? && @match.energyUsed.nil?
+          @match.energyUsed = (@match.time.to_f / 10.0).round(2)
+        end
+
+        # Préparer les badges si non fournis
+        if params[:match][:badge_used_attributes].blank?
+          params[:match][:badge_used_attributes] = Array.new(5) { |i| { slot: i + 1, rarity: 'rare' } }
+        end
+
+        if @match.save
+          render json: { match: match_json(@match) }, status: :created
         else
-          render json: { errors: @match.errors.full_messages }, status: :unprocessable_entity
+          Rails.logger.debug "Match errors: #{@match.errors.full_messages}"
+          Rails.logger.debug "Badge errors: #{@match.badge_used.map { |b| b.errors.full_messages }}"
+          render json: {
+            errors: @match.errors.full_messages,
+            badge_errors: @match.badge_used.map { |b| b.errors.full_messages }.flatten
+          }, status: :unprocessable_entity
         end
       end
 
       def update
-        if @match.update(match_params)
-          if params[:badges].present?
-            @match.badge_used.destroy_all
-            params[:badges].each do |badge|
-              @match.badge_used.create(nftId: badge[:nft_id])
-            end
-          end
+        @match = current_user.matches.find(params[:id])
 
-          render json: {
-            status: :ok,
-            match: match_json(@match),
-            daily_metrics: DataLab::DailyMetricsCalculator.new(current_user, @match.date.to_date).calculate
-          }
+        # Préparer les badges si non fournis
+        if params[:match][:badge_used_attributes].blank?
+          params[:match][:badge_used_attributes] = Array.new(5) { |i| { slot: i + 1, rarity: 'rare' } }
+        end
+
+        if @match.update(match_params)
+          render json: { match: match_json(@match) }
         else
           render json: { errors: @match.errors.full_messages }, status: :unprocessable_entity
         end
       rescue ActiveRecord::RecordNotFound
-        render json: { error: "Match not found" }, status: :not_found
+        render json: { error: "Match introuvable" }, status: :not_found
       end
 
       def destroy
-        begin
-          @match = current_user.matches.find(params[:id])
-          match_date = @match.date.to_date
-          @match.destroy
-
-          render json: {
-            status: :ok,
-            daily_metrics: DataLab::DailyMetricsCalculator.new(current_user, match_date).calculate
-          }
-        rescue ActiveRecord::RecordNotFound
-          render json: {
-            error: "Match not found",
-            details: "Le match avec l'ID #{params[:id]} n'existe pas ou n'appartient pas à l'utilisateur courant"
-          }, status: :not_found
-        end
+        @match = current_user.matches.find(params[:id])
+        @match.destroy
+        render json: { status: :ok }
+      rescue ActiveRecord::RecordNotFound
+        render json: { error: "Match introuvable" }, status: :not_found
       end
 
       def daily_metrics
         date = params[:date] ? Date.parse(params[:date]) : Date.current
-        render json: {
-          date: date,
-          metrics: DataLab::DailyMetricsCalculator.new(current_user, date).calculate
-        }
+        matches = current_user.matches
+                           .where("DATE(date) = ?", date)
+                           .includes(:badge_used)
+                           .order(created_at: :asc)
+
+        render json: { matches: matches_json(matches) }
       end
 
       private
 
-      def calculate_financials
-        # Récupérer le build de l'utilisateur
-        build_name = params[:match][:build].is_a?(ActionController::Parameters) ? params[:match][:build][:buildName] : params[:match][:build]
-        user_build = current_user.user_builds.find_by(buildName: build_name)
-
-        # Mettre à jour le build dans les paramètres pour qu'il soit juste le nom
-        params[:match][:build] = build_name
-
-        # Calcul du coût total
-        total_cost = 0
-
-        # Coût des frais
-        if params[:match][:totalFee].present? && params[:match][:feeCost].present?
-          total_cost += params[:match][:totalFee].to_f * params[:match][:feeCost].to_f
-        end
-
-        # Coût de l'énergie
-        if params[:match][:energyUsed].present? && params[:match][:energyCost].present?
-          total_cost += params[:match][:energyUsed].to_f * params[:match][:energyCost].to_f
-        end
-
-        # Calcul des gains
-        total_earnings = 0
-
-        # Valeur des tokens BFT
-        if params[:match][:totalToken].present? && params[:match][:tokenValue].present?
-          total_earnings += params[:match][:totalToken].to_f * params[:match][:tokenValue].to_f
-        end
-
-        # Valeur des tokens FLEX
-        if params[:match][:totalPremiumCurrency].present? && params[:match][:premiumCurrencyValue].present?
-          total_earnings += params[:match][:totalPremiumCurrency].to_f * params[:match][:premiumCurrencyValue].to_f
-        end
-
-        # Calcul du profit de base (avant multiplicateurs)
-        base_profit = total_earnings - total_cost
-
-        # Application des multiplicateurs du build
-        total_profit = base_profit
-        if user_build
-          total_profit *= user_build.bonusMultiplier.to_f * user_build.perksMultiplier.to_f
-        end
-
-        params[:match][:profit] = total_profit.round(2)
-      end
-
-      def set_match
-        @match = current_user.matches.find(params[:id])
-      end
-
       def match_json(match)
-        user_build = current_user.user_builds.find_by(buildName: match.build)
-        multipliers = if user_build
-          {
-            bonus: user_build.bonusMultiplier,
-            perks: user_build.perksMultiplier
-          }
-        else
-          {
-            bonus: 1.0,
-            perks: 1.0
-          }
-        end
-
         {
           id: match.id,
-          build: match.build,
           date: match.date,
+          build: match.build,
           map: match.map,
-          totalFee: match.totalFee,
-          feeCost: match.feeCost,
-          slots: match.slots,
-          luckrate: match.luckrate,
           time: match.time,
           energyUsed: match.energyUsed,
-          energyCost: match.energyCost,
+          result: match.result,
           totalToken: match.totalToken,
-          tokenValue: match.tokenValue,
           totalPremiumCurrency: match.totalPremiumCurrency,
+          luckrate: match.luckrate,
+          energyCost: match.energyCost,
+          tokenValue: match.tokenValue,
           premiumCurrencyValue: match.premiumCurrencyValue,
-          profit: match.profit,
-          bonusMultiplier: multipliers[:bonus],
-          perksMultiplier: multipliers[:perks],
-          badges: match.badge_used.map { |badge| badge_used_json(badge) }
+          badge_used: match.badge_used.order(:slot).map { |badge|
+            {
+              id: badge.id,
+              slot: badge.slot,
+              rarity: badge.rarity,
+              nftId: badge.nftId
+            }
+          }
         }
       end
 
-      def badge_used_json(badge_used)
-        {
-          id: badge_used.id,
-          nftId: badge_used.nftId
-        }
-      end
-
-      def combat_stats_json(match)
-        {
-          damage_dealt: match.damage_dealt,
-          damage_taken: match.damage_taken,
-          critical_hits: match.critical_hits
-        }
-      end
-
-      def multipliers_json(match, metrics)
-        user_build = current_user.user_builds.find_by(buildName: match.build)
-        {
-          bonus: user_build&.bonusMultiplier || 1.0,
-          perks: user_build&.perksMultiplier || 1.0,
-          badge: metrics[:efficiency]
-        }
-      end
-
-      def calculate_badge_metrics(badge)
-        return {} unless badge
-        {
-          efficiency: badge.efficiency,
-          rarity: badge.rarity.name,
-          level: badge.level
-        }
-      end
-
-      def calculate_match_rewards
-        {
-          currencies: {
-            bft: @match.totalToken,
-            flex: @match.totalPremiumCurrency
-          },
-          total_profit: @match.profit
-        }
+      def matches_json(matches)
+        matches.map { |match| match_json(match) }
       end
 
       def match_params
         params.require(:match).permit(
-          :build,
           :date,
           :map,
-          :totalFee,
-          :feeCost,
-          :slots,
-          :luckrate,
+          :build,
           :time,
           :energyUsed,
-          :energyCost,
+          :result,
           :totalToken,
-          :tokenValue,
           :totalPremiumCurrency,
+          :luckrate,
+          :energyCost,
+          :tokenValue,
           :premiumCurrencyValue,
-          :profit
-        )
+          badge_used_attributes: [:id, :slot, :rarity, :nftId, :_destroy]
+        ).tap do |whitelisted|
+          # Valeurs par défaut pour les champs calculés
+          whitelisted[:energyCost] ||= 1.49
+          whitelisted[:tokenValue] ||= 0.01
+          whitelisted[:premiumCurrencyValue] ||= 0.00744
+        end
       end
     end
   end
