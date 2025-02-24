@@ -5,12 +5,54 @@ class Match < ApplicationRecord
 
   accepts_nested_attributes_for :badge_used, allow_destroy: true
 
-  # Validations
+  # Callbacks
+  before_validation :normalize_map
+  before_validation :calculate_energy_used
+  before_save :calculate_values
+
+  # Validations essentielles
   validates :build, presence: true
-  validates :map, presence: true
+  validates :map, presence: true, inclusion: { in: %w[toxic_river award radiation_rift] }
   validates :time, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :energyUsed, presence: true, numericality: { greater_than: 0 }
-  validates :result, inclusion: { in: %w[win loss] }, allow_nil: true
+  validates :result, inclusion: { in: %w[win loss draw] }, allow_nil: true
   validates :totalToken, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validates :totalPremiumCurrency, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
+
+  private
+
+  def normalize_map
+    self.map = map.gsub(' ', '_') if map.present?
+  end
+
+  def calculate_energy_used
+    if time.present? && energyUsed.nil?
+      self.energyUsed = (time.to_f / 10.0).round(2)
+    end
+  end
+
+  def calculate_values
+    # Valeurs par défaut
+    self.energyCost = (energyUsed * 1.49).round(2)
+    self.tokenValue = ((totalToken || 0) * 0.01).round(2)
+    self.premiumCurrencyValue = ((totalPremiumCurrency || 0) * 0.00744).round(2)
+    self.profit = (tokenValue + premiumCurrencyValue - energyCost).round(2)
+
+    # Calcul du luckrate basé sur les badges
+    self.luckrate = calculate_luckrate
+  end
+
+  def calculate_luckrate
+    return 0 if badge_used.empty?
+
+    badge_used.sum do |badge|
+      case badge.rarity.downcase
+      when 'common' then 1
+      when 'rare' then 2
+      when 'epic' then 3
+      when 'legendary' then 4
+      else 0
+      end
+    end
+  end
 end

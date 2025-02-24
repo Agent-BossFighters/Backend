@@ -10,24 +10,9 @@ module Api
         @match = current_user.matches.build(match_params)
         @match.date ||= DateTime.current
 
-        Rails.logger.debug "Match attributes: #{@match.attributes.inspect}"
-        Rails.logger.debug "Badge used attributes: #{@match.badge_used.map(&:attributes)}"
-
-        # Calculate energyUsed before validation
-        if @match.time.present? && @match.energyUsed.nil?
-          @match.energyUsed = (@match.time.to_f / 10.0).round(2)
-        end
-
-        # Préparer les badges si non fournis
-        if params[:match][:badge_used_attributes].blank?
-          params[:match][:badge_used_attributes] = Array.new(5) { |i| { slot: i + 1, rarity: 'rare' } }
-        end
-
         if @match.save
           render json: { match: match_json(@match) }, status: :created
         else
-          Rails.logger.debug "Match errors: #{@match.errors.full_messages}"
-          Rails.logger.debug "Badge errors: #{@match.badge_used.map { |b| b.errors.full_messages }}"
           render json: {
             errors: @match.errors.full_messages,
             badge_errors: @match.badge_used.map { |b| b.errors.full_messages }.flatten
@@ -36,20 +21,22 @@ module Api
       end
 
       def update
-        @match = current_user.matches.find(params[:id])
+        begin
+          @match = current_user.matches.find(params[:id])
 
-        # Préparer les badges si non fournis
-        if params[:match][:badge_used_attributes].blank?
-          params[:match][:badge_used_attributes] = Array.new(5) { |i| { slot: i + 1, rarity: 'rare' } }
+          if @match.update(match_params)
+            render json: { match: match_json(@match) }
+          else
+            render json: {
+              errors: @match.errors.full_messages,
+              badge_errors: @match.badge_used.map { |b| b.errors.full_messages }.flatten,
+              received_params: match_params.to_h,
+              validation_details: @match.errors.details
+            }, status: :unprocessable_entity
+          end
+        rescue ActiveRecord::RecordNotFound
+          render json: { error: "Match introuvable" }, status: :not_found
         end
-
-        if @match.update(match_params)
-          render json: { match: match_json(@match) }
-        else
-          render json: { errors: @match.errors.full_messages }, status: :unprocessable_entity
-        end
-      rescue ActiveRecord::RecordNotFound
-        render json: { error: "Match introuvable" }, status: :not_found
       end
 
       def destroy
@@ -67,7 +54,10 @@ module Api
                            .includes(:badge_used)
                            .order(created_at: :asc)
 
-        render json: { matches: matches_json(matches) }
+        render json: {
+          matches: matches_json(matches),
+          metrics: calculate_daily_metrics(matches)
+        }
       end
 
       private
@@ -83,10 +73,8 @@ module Api
           result: match.result,
           totalToken: match.totalToken,
           totalPremiumCurrency: match.totalPremiumCurrency,
-          luckrate: match.luckrate,
-          energyCost: match.energyCost,
-          tokenValue: match.tokenValue,
-          premiumCurrencyValue: match.premiumCurrencyValue,
+          bonusMultiplier: match.bonusMultiplier,
+          perksMultiplier: match.perksMultiplier,
           badge_used: match.badge_used.order(:slot).map { |badge|
             {
               id: badge.id,
@@ -102,6 +90,23 @@ module Api
         matches.map { |match| match_json(match) }
       end
 
+      def calculate_daily_metrics(matches)
+        return {} if matches.empty?
+
+        {
+          total_matches: matches.count,
+          total_energy: matches.sum(&:energyUsed),
+          total_bft: matches.sum(&:totalToken),
+          total_flex: matches.sum(&:totalPremiumCurrency),
+          win_rate: calculate_win_rate(matches)
+        }
+      end
+
+      def calculate_win_rate(matches)
+        return 0 if matches.empty?
+        ((matches.count { |m| m.result == 'win' } / matches.count.to_f) * 100).round(2)
+      end
+
       def match_params
         params.require(:match).permit(
           :date,
@@ -113,16 +118,11 @@ module Api
           :totalToken,
           :totalPremiumCurrency,
           :luckrate,
-          :energyCost,
-          :tokenValue,
-          :premiumCurrencyValue,
+          :slots,
+          :bonusMultiplier,
+          :perksMultiplier,
           badge_used_attributes: [:id, :slot, :rarity, :nftId, :_destroy]
-        ).tap do |whitelisted|
-          # Valeurs par défaut pour les champs calculés
-          whitelisted[:energyCost] ||= 1.49
-          whitelisted[:tokenValue] ||= 0.01
-          whitelisted[:premiumCurrencyValue] ||= 0.00744
-        end
+        )
       end
     end
   end
