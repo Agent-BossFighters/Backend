@@ -36,7 +36,10 @@ Rails.application.routes.draw do
       resources :item_recharge
       resources :matches, only: [:index, :create, :update, :destroy] do
         collection do
+          get 'daily_metrics', to: 'matches#daily_metrics'
           get 'daily_metrics/:date', to: 'matches#daily_metrics'
+          get 'monthly_metrics', to: 'matches#monthly_metrics'
+          get 'monthly_metrics/:date', to: 'matches#monthly_metrics'
         end
       end
       resources :player_cycles, only: [:index, :show]

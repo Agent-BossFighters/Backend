@@ -60,6 +60,55 @@ module Api
         }
       end
 
+      def monthly_metrics
+        begin
+          if params[:date]
+            year, month = params[:date].split('-').map(&:to_i)
+            date = Date.new(year, month, 1)
+          else
+            date = Date.current
+          end
+
+          start_date = date.beginning_of_month
+          end_date = date.end_of_month
+
+          daily_matches = current_user.matches
+                                  .where(date: start_date..end_date)
+                                  .order(date: :asc)
+                                  .group_by { |m| m.date.to_date }
+
+          daily_metrics = daily_matches.transform_values do |matches|
+            {
+              date: matches.first.date.to_date,
+              total_matches: matches.count,
+              total_energy: matches.sum(&:energyUsed),
+              total_bft: matches.sum(&:totalToken),
+              total_flex: matches.sum(&:totalPremiumCurrency),
+              win_rate: calculate_win_rate(matches),
+              build: matches.group_by(&:build)
+                           .transform_values(&:count)
+                           .max_by { |_, count| count }&.first,
+              map: matches.group_by(&:map)
+                         .transform_values(&:count)
+                         .max_by { |_, count| count }&.first
+            }
+          end
+
+          render json: {
+            daily_metrics: daily_metrics,
+            monthly_totals: {
+              total_matches: daily_matches.values.sum(&:count),
+              total_energy: daily_matches.values.flatten.sum(&:energyUsed),
+              total_bft: daily_matches.values.flatten.sum(&:totalToken),
+              total_flex: daily_matches.values.flatten.sum(&:totalPremiumCurrency),
+              average_win_rate: daily_matches.values.flatten.any? ? (daily_matches.values.flatten.count { |m| m.result == 'win' } / daily_matches.values.flatten.count.to_f * 100).round(2) : 0
+            }
+          }
+        rescue Date::Error
+          render json: { error: "Format de date invalide. Utilisez YYYY-MM" }, status: :bad_request
+        end
+      end
+
       private
 
       def match_json(match)
