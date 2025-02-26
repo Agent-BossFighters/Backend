@@ -10,18 +10,18 @@ module Api
         render json: {
           matchesCount: matches.count,
           energyUsed: {
-            amount: total_calculations.sum { |c| c[:energyUsed] },
-            cost: total_calculations.sum { |c| c[:energyCost] }
+            amount: total_calculations.sum { |c| c[:energyUsed] }.round(2),
+            cost: total_calculations.sum { |c| c[:energyCost] }.round(2)
           },
           totalBft: {
-            amount: matches.sum(&:totalToken),
-            value: total_calculations.sum { |c| c[:tokenValue] }
+            amount: matches.sum(&:totalToken).to_f.round(2),
+            value: total_calculations.sum { |c| c[:tokenValue] }.round(2)
           },
           totalFlex: {
-            amount: matches.sum(&:totalPremiumCurrency),
-            value: total_calculations.sum { |c| c[:premiumValue] }
+            amount: matches.sum(&:totalPremiumCurrency).to_f.round(2),
+            value: total_calculations.sum { |c| c[:premiumValue] }.round(2)
           },
-          profit: total_calculations.sum { |c| c[:profit] },
+          profit: total_calculations.sum { |c| c[:profit] }.round(2),
           results: {
             win: matches.where(result: 'win').count,
             loss: matches.where(result: 'loss').count,
@@ -47,13 +47,22 @@ module Api
 
           render json: {
             total_matches: matches.count,
-            total_energy: total_calculations.sum { |c| c[:energyUsed] },
-            total_bft: matches.sum(&:totalToken),
-            total_flex: matches.sum(&:totalPremiumCurrency),
-            profit: total_calculations.sum { |c| c[:profit] },
-            total_wins: matches.where(result: 'win').count,
-            total_losses: matches.where(result: 'loss').count,
-            total_draws: matches.where(result: 'draw').count
+            total_energy: total_calculations.sum { |c| c[:energyUsed] }.round(2),
+            total_energy_cost: total_calculations.sum { |c| c[:energyCost] }.round(2),
+            total_bft: {
+              amount: matches.sum(&:totalToken).to_f.round(2),
+              value: total_calculations.sum { |c| c[:tokenValue] }.round(2)
+            },
+            total_flex: {
+              amount: matches.sum(&:totalPremiumCurrency).to_f.round(2),
+              value: total_calculations.sum { |c| c[:premiumValue] }.round(2)
+            },
+            profit: total_calculations.sum { |c| c[:profit] }.round(2),
+            results: {
+              win: matches.where(result: 'win').count,
+              loss: matches.where(result: 'loss').count,
+              draw: matches.where(result: 'draw').count
+            }
           }
         rescue Date::Error => e
           render json: { error: e.message }, status: :bad_request

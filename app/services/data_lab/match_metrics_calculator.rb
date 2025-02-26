@@ -40,9 +40,9 @@ module DataLab
     def calculate_luckrate
       return 0 unless @match.badge_used.any?
 
-      @match.badge_used.sum do |badge|
-        Constants::MatchConstants::LUCK_RATES[badge.rarity.downcase] || 0
-      end
+      @match.badge_used
+        .select { |badge| badge && badge.rarity.downcase != 'select' }
+        .sum { |badge| Constants::MatchConstants::LUCK_RATES[badge.rarity.downcase] || 0 }
     end
 
     def calculate_profit
