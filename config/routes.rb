@@ -36,10 +36,8 @@ Rails.application.routes.draw do
       resources :item_recharge
       resources :matches, only: [:index, :create, :update, :destroy] do
         collection do
-          get 'daily_metrics', to: 'matches#daily_metrics'
-          get 'daily_metrics/:date', to: 'matches#daily_metrics'
-          get 'monthly_metrics', to: 'matches#monthly_metrics'
-          get 'monthly_metrics/:date', to: 'matches#monthly_metrics'
+          get 'daily/:date', to: 'matches#daily'
+          get 'monthly/:date', to: 'matches#monthly'
         end
       end
       resources :player_cycles, only: [:index, :show]
@@ -93,6 +91,10 @@ Rails.application.routes.draw do
       # Routes pour daily_metrics
       get 'daily_metrics', to: 'matches#daily_metrics'  # Pour aujourd'hui
       get 'daily_metrics/:date', to: 'matches#daily_metrics'  # Pour une date spécifique
+
+      # Remplacer le namespace summary par des routes directes
+      get 'summaries/daily/:date', to: 'summaries#daily'
+      get 'summaries/monthly/:date', to: 'summaries#monthly'
     end
   end
 

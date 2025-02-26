@@ -5,6 +5,7 @@ require_relative 'constants/recharge_constants'
 require_relative 'constants/craft_constants'
 require_relative 'constants/contract_constants'
 require_relative 'constants/game_constants'
+require_relative 'constants/match_constants'
 
 module DataLab
   module Constants
@@ -15,6 +16,7 @@ module DataLab
     include CraftConstants
     include ContractConstants
     include GameConstants
+    include MatchConstants
 
     # Méthodes utilitaires communes
     module Utils
