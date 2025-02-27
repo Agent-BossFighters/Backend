@@ -7,7 +7,6 @@
       "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/f227202b-217f-4a69-8940-4f4af0a404d8/original.PNG",
       "videoUrl": null,
       "maxIssuance": 10000,
-      "minPrice": 2900,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -26,7 +25,6 @@
       "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1d90003a-cd5a-4ec4-aa6b-3d1bdc004299/original.PNG",
       "videoUrl": null,
       "maxIssuance": 25000,
-      "minPrice": 349,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -36,7 +34,7 @@
       "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/9ed14144-6439-4616-98e7-d6b2813dd91a/original.PNG",
       "videoUrl": null,
       "maxIssuance": 50000,
-      "minPrice": 89,
+      "minPrice": 107,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -46,7 +44,7 @@
       "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/eb009e37-3a5f-4e98-875c-fa0e166a68b2/original.PNG",
       "videoUrl": null,
       "maxIssuance": 100000,
-      "minPrice": 25,
+      "minPrice": 34.75,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -83,7 +81,7 @@
       "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/31bf04dc-a8dc-4b4f-bdc3-14c28758264d/original.PNG",
       "videoUrl": null,
       "maxIssuance": 200000,
-      "minPrice": 7,
+      "minPrice": 9.74,
       "gameName": "BOSS FIGHTERS"
     },
     {

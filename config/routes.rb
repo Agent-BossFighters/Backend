@@ -87,6 +87,9 @@ Rails.application.routes.draw do
       # Routes OpenLoot
       get 'open_loot/badges', to: 'open_loot#badges'
       get 'open_loot/showrunner_contracts', to: 'open_loot#showrunner_contracts'
+      get 'open_loot/all_listings', to: 'open_loot#all_listings'
+      get 'open_loot/currency_stats', to: 'open_loot#currency_stats'
+      get 'open_loot/currency_stats/:currency_id', to: 'open_loot#currency_stats'
 
       # Routes pour daily_metrics
       get 'daily_metrics', to: 'matches#daily_metrics'  # Pour aujourd'hui

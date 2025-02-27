@@ -1,0 +1,3545 @@
+{
+  "items": [
+    {
+      "name": "Alpha Boss \"Demolition Master\"",
+      "archetypeId": "BF_DEMOLITION_MASTER_BOSS",
+      "rarity": "uncommon",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/DEMOLITION_MASTER_BOSS.png",
+      "videoUrl": null,
+      "maxIssuance": 1200,
+      "minPrice": 4.98,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Boss \"Hot Blaze\"",
+      "archetypeId": "BF_HOT_BLAZE_BOSS",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/HOT_BLAZE_BOSS.png",
+      "videoUrl": null,
+      "maxIssuance": 1400,
+      "minPrice": 27.5,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Boss \"Iridescent\"",
+      "archetypeId": "BF_IRIDESCENT_BOSS",
+      "rarity": "legendary",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/IRIDESCENT_BOSS.png",
+      "videoUrl": null,
+      "maxIssuance": 600,
+      "minPrice": 79,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Boss \"Pink Prowler\"",
+      "archetypeId": "BF_PINK_PROWLER_BOSS",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/PINK_PROWLER_BOSS.png",
+      "videoUrl": null,
+      "maxIssuance": 800,
+      "minPrice": 9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Boss \"Tournament Winner I\"",
+      "archetypeId": "BF_ALPHA_TOURN_1_VR_1",
+      "rarity": "transcendent",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/ALPHA_TOURN_1_VR_1.png",
+      "videoUrl": null,
+      "maxIssuance": 10,
+      "minPrice": 9500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Boss \"Tournament Winner II\"",
+      "archetypeId": "BF_ALPHA_TOURN_1_VR_2",
+      "rarity": "transcendent",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/ALPHA_TOURN_1_VR_2.png",
+      "videoUrl": null,
+      "maxIssuance": 10,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Boss \"Tournament Winner III\"",
+      "archetypeId": "BF_ALPHA_TOURN_1_VR_3",
+      "rarity": "transcendent",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/ALPHA_TOURN_1_VR_3.png",
+      "videoUrl": null,
+      "maxIssuance": 10,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Fighter Epic",
+      "archetypeId": "BF_ALPHA_STARS_2",
+      "rarity": "epic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a5767f1b-5784-44b7-bb17-258c367bc21b/original.JPEG",
+      "videoUrl": null,
+      "maxIssuance": 129,
+      "minPrice": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Fighter Legendary",
+      "archetypeId": "BF_ALPHA_STARS_3",
+      "rarity": "legendary",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ea30ef5a-0b85-4eb1-b849-472c351c5251/original.JPEG",
+      "videoUrl": null,
+      "maxIssuance": 119,
+      "minPrice": 270,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Fighter Mythic",
+      "archetypeId": "BF_ALPHA_STARS_4",
+      "rarity": "mythic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/78afe603-0980-4f6e-8ce2-89dfdf1333e7/original.JPEG",
+      "videoUrl": null,
+      "maxIssuance": 78,
+      "minPrice": 270,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Fighter Rare",
+      "archetypeId": "BF_ALPHA_STARS_1",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/90b4c41b-736b-4880-a310-b56b04ee450f/original.JPEG",
+      "videoUrl": null,
+      "maxIssuance": 155,
+      "minPrice": 79.9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Fighter Uncommon",
+      "archetypeId": "BF_ALPHA_STARS_0",
+      "rarity": "uncommon",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/32bf5c03-da4b-4f87-8872-636835abf231/original.JPEG",
+      "videoUrl": null,
+      "maxIssuance": 169,
+      "minPrice": 140,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Railgun \"Ducks\"",
+      "archetypeId": "BF_DUCK_RAILGUN",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/DUCK_RAILGUN.png",
+      "videoUrl": null,
+      "maxIssuance": 667,
+      "minPrice": 10,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Railgun \"Flash\"",
+      "archetypeId": "BF_FLASH_RAILGUN",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c2f0ae20-b804-44e1-9dae-c467c81f1cce/original.JPEG",
+      "videoUrl": null,
+      "maxIssuance": 44,
+      "minPrice": 290,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Railgun \"Rainbow\"",
+      "archetypeId": "BF_RAINBOW_RAILGUN",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/RAINBOW_RAILGUN.png",
+      "videoUrl": null,
+      "maxIssuance": 44,
+      "minPrice": 245,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Railgun \"Shark\"",
+      "archetypeId": "BF_SHARK_RAILGUN",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/SHARK_RAILGUN.png",
+      "videoUrl": null,
+      "maxIssuance": 130,
+      "minPrice": 48.8,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Railgun \"Tournament Winner\"",
+      "archetypeId": "BF_ALPHA_TOURN_1_RAILGUN",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b43b228e-37e9-4246-a88b-85f3bf4508fd/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 10,
+      "minPrice": 6969,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Slime Lobber \"Ducks\"",
+      "archetypeId": "BF_DUCK_SLIME_LOBBER",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/DUCK_SLIME_LOBBER.png",
+      "videoUrl": null,
+      "maxIssuance": 667,
+      "minPrice": 6,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Slime Lobber \"Flash\"",
+      "archetypeId": "BF_FLASH_SLIME_LOBBER",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/9de2855c-b543-4753-afb9-927f62e89372/original.JPEG",
+      "videoUrl": null,
+      "maxIssuance": 44,
+      "minPrice": 174.4,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Slime Lobber \"Rainbow\"",
+      "archetypeId": "BF_RAINBOW_SLIME_LOBBER",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/RAINBOW_SLIME_LOBBER.png",
+      "videoUrl": null,
+      "maxIssuance": 44,
+      "minPrice": 350,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Slime Lobber \"Shark\"",
+      "archetypeId": "BF_SHARK_SLIME_LOBBER",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/SHARK_SLIME_LOBBER.png",
+      "videoUrl": null,
+      "maxIssuance": 130,
+      "minPrice": 44.9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Slime Lobber \"Tournament Winner\"",
+      "archetypeId": "BF_ALPHA_TOURN_1_SLIME_LOBBER",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/2014f0cb-a12e-470a-bb40-a82d6161736a/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 10,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Striker \"Ducks\"",
+      "archetypeId": "BF_DUCK_STRIKER",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/DUCK_STRIKER.png",
+      "videoUrl": null,
+      "maxIssuance": 667,
+      "minPrice": 7.49,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Striker \"Flash\"",
+      "archetypeId": "BF_FLASH_STRIKER",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/991da8ea-54a2-4a05-ac39-d1c797f1469d/original.JPEG",
+      "videoUrl": null,
+      "maxIssuance": 44,
+      "minPrice": 130,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Striker \"Rainbow\"",
+      "archetypeId": "BF_RAINBOW_STRIKER",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/RAINBOW_STRIKER.png",
+      "videoUrl": null,
+      "maxIssuance": 44,
+      "minPrice": 316,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Striker \"Shark\"",
+      "archetypeId": "BF_SHARK_STRIKER",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/SHARK_STRIKER.png",
+      "videoUrl": null,
+      "maxIssuance": 130,
+      "minPrice": 28,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Alpha Striker \"Tournament Winner\"",
+      "archetypeId": "BF_ALPHA_TOURN_1_STRIKER",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/25d0feae-8776-4731-849f-0370e016ea90/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 10,
+      "minPrice": 12500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Animal Railgun",
+      "archetypeId": "BF_SKIN_WPN_RAILGUN_ANIMAL",
+      "rarity": "common",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/SKIN_WPN_RAILGUN_ANIMAL.png",
+      "videoUrl": null,
+      "maxIssuance": 2500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Animal Slime Lobber",
+      "archetypeId": "BF_SKIN_WPN_SLIMEL_ANIMAL",
+      "rarity": "common",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/SKIN_WPN_SLIMEL_ANIMAL.png",
+      "videoUrl": null,
+      "maxIssuance": 2500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Animal Striker",
+      "archetypeId": "BF_SKIN_WPN_STRIKER_ANIMAL",
+      "rarity": "common",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/SKIN_WPN_STRIKER_ANIMAL.png",
+      "videoUrl": null,
+      "maxIssuance": 2500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun \"Celestial Mist\" Skin",
+      "archetypeId": "BF_SKIN_WPN_ANTIMATTERGUN_CELESTIAL",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/cdc67d9a-03d3-47e5-866f-fe1641890836/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 22,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun Common",
+      "archetypeId": "BF_WPN_ANTIMATTERGUN_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/6a15f7ce-5b98-48dd-ad8b-eb01e691f63f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun Epic",
+      "archetypeId": "BF_WPN_ANTIMATTERGUN_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c709cf1d-7b2d-4189-abae-0be0dd055e1e/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 85,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun Exalted",
+      "archetypeId": "BF_WPN_ANTIMATTERGUN_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/cbe7fc74-a68f-4c49-9f61-093cfd4045ef/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun Exotic",
+      "archetypeId": "BF_WPN_ANTIMATTERGUN_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1921dd48-23d5-443c-9e98-b400f62fae14/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun Legendary",
+      "archetypeId": "BF_WPN_ANTIMATTERGUN_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e46f49e1-3626-484c-9799-477dbefbe7f1/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun Mythic",
+      "archetypeId": "BF_WPN_ANTIMATTERGUN_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/90b971b3-5868-4ac1-b467-4811d8292b68/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun Rare",
+      "archetypeId": "BF_WPN_ANTIMATTERGUN_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/032e4b0b-a6c3-47f7-9b64-8829862ae9ed/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun Transcendent",
+      "archetypeId": "BF_WPN_ANTIMATTERGUN_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b2078245-87dc-4919-b126-fbcd4c0ded50/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun Uncommon",
+      "archetypeId": "BF_WPN_ANTIMATTERGUN_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/7f258da7-70c8-43ec-a51f-975aabc143e1/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 4.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Antimatter Gun Unique",
+      "archetypeId": "BF_WPN_ANTIMATTERGUN_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b82c62fe-2c95-4ba4-bb64-f554d74fe162/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Arctic Assassin Railgun",
+      "archetypeId": "BF_SKIN_WPN_RAILGUN_ARCTIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1014ee1e-ae6a-4d56-9936-4064499b0814/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "minPrice": 48,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Autorepair Common ",
+      "archetypeId": "BF_GADGET_AUTOREPAIR_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/8d6fa30b-b30e-4048-a3fb-5264f9eeefdb/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Autorepair Epic ",
+      "archetypeId": "BF_GADGET_AUTOREPAIR_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b79998c0-54cd-4295-92b7-0ac6130239e9/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 5,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Autorepair Exalted",
+      "archetypeId": "BF_GADGET_AUTOREPAIR_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ea8ad344-3522-407f-802b-5d4e23f42519/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 199,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Autorepair Exotic",
+      "archetypeId": "BF_GADGET_AUTOREPAIR_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d738f270-2f6b-4415-b79b-d8bb914c272c/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Autorepair Legendary",
+      "archetypeId": "BF_GADGET_AUTOREPAIR_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/5a60a9b3-0449-4230-93a0-4fd8b32b821f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Autorepair Mythic",
+      "archetypeId": "BF_GADGET_AUTOREPAIR_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/8f9221ec-e7eb-4246-9972-9072c8ace6cb/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Autorepair Rare",
+      "archetypeId": "BF_GADGET_AUTOREPAIR_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d7d9cc56-efd5-44ea-b9ca-c37ecb9d3f72/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 10,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Autorepair Transcendent",
+      "archetypeId": "BF_GADGET_AUTOREPAIR_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/34a4e50a-a632-454c-8c02-b1fa0cd6359f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Autorepair Uncommon",
+      "archetypeId": "BF_GADGET_AUTOREPAIR_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/2b2b3cc3-a8bd-47a8-a20e-c641d8054427/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 8,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Autorepair Unique",
+      "archetypeId": "BF_GADGET_AUTOREPAIR_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b228bcb2-90ea-4fcc-ab5f-5d022a5be9a2/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Beam Caster Common",
+      "archetypeId": "BF_WPN_BEAMC_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_BEAMC_COMMON.png",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Beam Caster Epic",
+      "archetypeId": "BF_WPN_BEAMC_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_BEAMC_EPIC.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Beam Caster Exalted",
+      "archetypeId": "BF_WPN_BEAMC_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_BEAMC_EXALTED.png",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Beam Caster Exotic",
+      "archetypeId": "BF_WPN_BEAMC_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_BEAMC_EXOTIC.png",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Beam Caster Legendary",
+      "archetypeId": "BF_WPN_BEAMC_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_BEAMC_LEGENDARY.png",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Beam Caster Mythic",
+      "archetypeId": "BF_WPN_BEAMC_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_BEAMC_MYTHIC.png",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Beam Caster Rare",
+      "archetypeId": "BF_WPN_BEAMC_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_BEAMC_RARE.png",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Beam Caster Transcendent",
+      "archetypeId": "BF_WPN_BEAMC_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_BEAMC_TRANSCENDENT.png",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Beam Caster Uncommon",
+      "archetypeId": "BF_WPN_BEAMC_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_BEAMC_UNCOMMON.png",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Beam Caster Unique",
+      "archetypeId": "BF_WPN_BEAMC_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_BEAMC_UNIQUE.png",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Booster Pack",
+      "archetypeId": "BF_PACK_BOOSTERP",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d6426984-ffc0-4ba6-adf7-6ca3441a17fb/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/PACK_BOOSTERP.webm",
+      "maxIssuance": 1000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss ''Alchemist Guildmaster''",
+      "archetypeId": "BF_ALCHEMIST_BOSS",
+      "rarity": "exotic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/ALCHEMIST_BOSS.png",
+      "videoUrl": null,
+      "maxIssuance": 30,
+      "minPrice": 16000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss \"Blitz\" Skin",
+      "archetypeId": "BF_SKIN_BOSS_MARTIAN_BLITZ",
+      "rarity": "common",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_BOSS_MARTIAN_BLITZ.png",
+      "videoUrl": null,
+      "maxIssuance": 2500,
+      "minPrice": 1.39,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Body Common",
+      "archetypeId": "BF_BODY_BOSS_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a1351e97-131a-4b37-be2e-181ffcd4460c/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 2.9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Body Epic",
+      "archetypeId": "BF_BODY_BOSS_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e9365dc6-f767-4460-bf4f-894e32b11ab0/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 9.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Body Exalted",
+      "archetypeId": "BF_BODY_BOSS_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/4092cdb8-05b9-462a-8c91-1967121917a5/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_BOSS_EXALTED.webm",
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Body Exotic",
+      "archetypeId": "BF_BODY_BOSS_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/aa1aa133-6e3d-4e49-a651-26e8e09093fb/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_BOSS_EXOTIC.webm",
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Body Legendary",
+      "archetypeId": "BF_BODY_BOSS_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/afdf7a89-4eba-402e-a602-05433178d694/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 23.5,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Body Mythic",
+      "archetypeId": "BF_BODY_BOSS_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e986ec4a-fb21-43ae-b138-fa88b341493a/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 65,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Body Rare Fighter",
+      "archetypeId": "BF_BODY_BOSS_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/69af600c-ef3e-4693-836b-359d74b5ba89/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 4,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Body Transcendent",
+      "archetypeId": "BF_BODY_BOSS_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/02f93989-884d-41b9-9a5d-067b5e20ed83/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_BOSS_TRANSCENDENT.webm",
+      "maxIssuance": 25,
+      "minPrice": 8500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Body Uncommon",
+      "archetypeId": "BF_BODY_BOSS_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/59c21315-26d2-4507-9d24-6b36c3471170/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 2.75,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Body Unique",
+      "archetypeId": "BF_BODY_BOSS_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/6ea01183-0a38-4f8a-b126-8f474dbf76ef/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_BOSS_UNIQUE.webm",
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss \"Brat\" Skin",
+      "archetypeId": "BF_SKIN_BOSS_MARTIAN_BRAT",
+      "rarity": "uncommon",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_BOSS_MARTIAN_BRAT.png",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 1.5,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss ''Cog Commander Steampunk''",
+      "archetypeId": "BF_STEAMPUNK_BOSS",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/STEAMPUNK_BOSS.png",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Gadget Gas Pod \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_GADGET_GASPOD_FT",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_GADGET_GASPOD_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Gadget Gas Pod \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_GADGET_GASPOD_TC",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_GADGET_GASPOD_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Gravity Gun \"Celestial Mist\" Skin",
+      "archetypeId": "BF_SKIN_WPN_GRAVITYG_CELESTIAL",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/7814a152-588f-4e65-809f-bdaf529c65f3/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss \"Kreddy Frueger\" Skin",
+      "archetypeId": "BF_SKIN_BODY_BOSS_KREDDYF",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_BODY_BOSS_KREDDYF.png",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/SKIN_BODY_BOSS_KREDDYF.webm\r",
+      "maxIssuance": 100,
+      "minPrice": 40,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Laser \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_WPN_LASER_FT",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_LASER_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Laser \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_WPN_LASER_TC",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_LASER_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Martian \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_BOSS_MARTIAN_TC",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_BOSS_MARTIAN_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 70,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss ''Predator Overlord''",
+      "archetypeId": "BF_ANIMAL_BOSS",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/bdc80c56-b922-4fdf-86a9-ed65d2892eaa/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 35,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Seismic Hammer \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_WPN_HAMMER_FT",
+      "rarity": "legendary",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_HAMMER_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 250,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Seismic Hammer \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_WPN_HAMMER_TC",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_HAMMER_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Spiked Maul \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_WPN_SPIKEDM_FT",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_SPIKEDM_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Spiked Maul \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_WPN_SPIKEDM_TC",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_SPIKEDM_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss \"Surge\" Skin",
+      "archetypeId": "BF_SKIN_BOSS_MARTIAN_SURGE",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_BOSS_MARTIAN_SURGE.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 3,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Toxic Gun \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_WPN_TOXICGUN_FT",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_TOXICGUN_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "minPrice": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Boss Toxic Gun \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_WPN_TOXICGUN_TC",
+      "rarity": "legendary",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_TOXICGUN_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 250,
+      "minPrice": 450,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Celestial Mist Boss",
+      "archetypeId": "BF_SKIN_BODY_BOSS_CELESTIAL",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/9045b54b-0d8b-43c2-87d4-60e0d39a8711/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 2.5,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Challenger Badge",
+      "archetypeId": "BF_BADGE_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/f227202b-217f-4a69-8940-4f4af0a404d8/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 10000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Challenger Rowdies",
+      "archetypeId": "BF_ROWDIES_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/ROWDIES_EXALTED.png",
+      "videoUrl": null,
+      "maxIssuance": 480,
+      "minPrice": 498,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Challenger Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/575b4135-5820-49b2-ae61-05ef95052f80/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 695,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Champion Badge",
+      "archetypeId": "BF_BADGE_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e02348d5-a3bc-4312-87d2-e3cdfcc76a31/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Champion Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CONTRACT_EXALTED.png",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 7500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Contender Badge",
+      "archetypeId": "BF_BADGE_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1d90003a-cd5a-4ec4-aa6b-3d1bdc004299/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Contender Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d3655cc9-04dc-42d6-a202-38e6cce6c5a0/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 10000,
+      "minPrice": 399,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Cozy Blast Striker",
+      "archetypeId": "BF_SKIN_WPN_STRIKER_COZY",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/9b9ebda6-f979-46b1-8cc0-4409086bfe17/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2500,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Cranky Cookie Boss",
+      "archetypeId": "BF_SKIN_BODY_BOSS_CRANKYCOOKIE",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/cb9cb0f0-804f-4fda-b936-c9e1e98bd04b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "minPrice": 23.49,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Dash Common",
+      "archetypeId": "BF_GADGET_DASH_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e24a97d8-15dd-42a5-8166-144cfd33f217/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Dash Epic",
+      "archetypeId": "BF_GADGET_DASH_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/bb57956c-e46d-4e97-ab51-a1ee87735c5f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 19.9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Dash Exalted",
+      "archetypeId": "BF_GADGET_DASH_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/70ebb381-22fc-4ecc-a2ed-f94f4df2fa06/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 666,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Dash Exotic",
+      "archetypeId": "BF_GADGET_DASH_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ce681a09-dcd8-4430-a376-a5d4ad8fb705/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Dash Legendary",
+      "archetypeId": "BF_GADGET_DASH_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/574fe7b5-fd45-484d-a007-4c7aace50584/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Dash Mythic",
+      "archetypeId": "BF_GADGET_DASH_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/14b551b9-26d8-439d-924b-ae18279e5a35/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Dash Rare",
+      "archetypeId": "BF_GADGET_DASH_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/0dbdfb79-d846-41e1-addf-bd5ffd5d7f18/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 12,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Dash Transcendent",
+      "archetypeId": "BF_GADGET_DASH_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/54254b33-a905-41f7-af87-a469d2649390/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Dash Uncommon",
+      "archetypeId": "BF_GADGET_DASH_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b9c646ea-b944-42ef-b4e1-cc20df30d949/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 2,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Dash Unique",
+      "archetypeId": "BF_GADGET_DASH_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c4e6a91d-7959-4537-a044-d5758ae0f827/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Debutant Rowdies",
+      "archetypeId": "BF_ROWDIES_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/ROWDIES_MYTHIC.png",
+      "videoUrl": null,
+      "maxIssuance": 810,
+      "minPrice": 216.66,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Double Jump Common",
+      "archetypeId": "BF_GADGET_DOUBLEJ_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/30f9e1bf-0083-4732-85d8-e865dcf5011c/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Double Jump Epic",
+      "archetypeId": "BF_GADGET_DOUBLEJ_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1fcd85e4-5b19-4ae7-ae94-3411a29926b5/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 19.9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Double Jump Exalted",
+      "archetypeId": "BF_GADGET_DOUBLEJ_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a48fbb59-c747-4e3e-abd7-bf10bbdde2db/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Double Jump Exotic",
+      "archetypeId": "BF_GADGET_DOUBLEJ_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d2a521c5-2bbf-46e2-b5b9-f45c2b1212b1/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Double Jump Legendary",
+      "archetypeId": "BF_GADGET_DOUBLEJ_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c46ad39a-11e3-44bf-a559-ced634f8f501/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 30,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Double Jump Mythic",
+      "archetypeId": "BF_GADGET_DOUBLEJ_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/4ffce6d8-4c82-43c6-8738-c1b35dd6b439/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 147,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Double Jump Rare",
+      "archetypeId": "BF_GADGET_DOUBLEJ_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c5c195fd-af0c-42ac-a953-7401d0dbf867/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 5,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Double Jump Transcendent",
+      "archetypeId": "BF_GADGET_DOUBLEJ_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/62d46f1f-9336-495a-bf4c-2db9dc3c0fc9/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Double Jump Uncommon",
+      "archetypeId": "BF_GADGET_DOUBLEJ_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/71f23235-0c70-4f19-a9ad-8123f03a14f8/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 2,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Double Jump Unique",
+      "archetypeId": "BF_GADGET_DOUBLEJ_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/df79e0ad-4b7f-4a45-a9ad-9715ecb78acf/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Encore Badge",
+      "archetypeId": "BF_BADGE_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/9ed14144-6439-4616-98e7-d6b2813dd91a/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50000,
+      "minPrice": 107,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Encore Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/03b85b3c-fd43-4a84-a5f2-6e4cd8fb8ebe/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 20000,
+      "minPrice": 110,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Epic Alpha Pass",
+      "archetypeId": "BF_ALPHA_PASS_2",
+      "rarity": "epic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a7b7f300-dd55-44ee-95a6-bbf53b65692e/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 130,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Feeling Toasty Mystery Box",
+      "archetypeId": "BF_CHEST_FEELING_TOASTY",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/CHEST_FEELING_TOASTY.png",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 700,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female \"Celestial Mist\" Skin",
+      "archetypeId": "BF_SKIN_FIGHTER_FEMALE_CELESTIAL",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/7bdd0909-c2a4-4839-9f60-c9510e74f98d/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 3.37,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_FIGHTER_FEMALE_FT",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_FIGHTER_FEMALE_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female Fighter Common",
+      "archetypeId": "BF_BODY_FIGHTERF_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/55cf63fa-5431-415d-a06e-ba114db88482/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female Fighter Epic",
+      "archetypeId": "BF_BODY_FIGHTERF_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/0d7693bf-efef-4035-8336-60f443a64f34/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 23,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female Fighter Exalted",
+      "archetypeId": "BF_BODY_FIGHTERF_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/40fad878-8948-4b56-977c-eb0a308e8c00/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_FIGHTERF_EXALTED.webm",
+      "maxIssuance": 100,
+      "minPrice": 666,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female Fighter Exotic",
+      "archetypeId": "BF_BODY_FIGHTERF_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/fbeb94a8-d319-43b6-968c-f613ef12f380/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_FIGHTERF_EXOTIC.webm",
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female Fighter Legendary",
+      "archetypeId": "BF_BODY_FIGHTERF_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e6377f22-e608-440e-b525-d2198e48feea/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 30,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female Fighter Mythic",
+      "archetypeId": "BF_BODY_FIGHTERF_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/2c632ccd-784b-4531-a870-21122d57790d/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 66,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female Fighter Rare",
+      "archetypeId": "BF_BODY_FIGHTERF_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/46ddc993-e80f-4f47-ae03-325c94b68cd8/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 4.5,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female Fighter Transcendent\\",
+      "archetypeId": "BF_BODY_FIGHTERF_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/3620b0eb-c2e6-44a0-b500-8b224676cd7f/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_FIGHTERF_TRANSCENDENT.webm",
+      "maxIssuance": 25,
+      "minPrice": 4900,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female Fighter Uncommon",
+      "archetypeId": "BF_BODY_FIGHTERF_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b7cf889b-c1d0-4222-9468-f29ff81afa7f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 1.07,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female Fighter Unique",
+      "archetypeId": "BF_BODY_FIGHTERF_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/4f0c3ea2-7da1-4568-835e-05b8f3571f38/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_FIGHTERF_UNIQUE.webm",
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Female \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_FIGHTER_FEMALE_TC",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_FIGHTER_FEMALE_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Fighter \"Acid Avenger Female\"",
+      "archetypeId": "BF_ACID_FIGHTER_FEMALE",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a2b8b0bb-7754-4bd3-8cdf-e0ca4af5f6cc/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 700,
+      "minPrice": 3.3,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Fighter \"Acid Avenger Male\"",
+      "archetypeId": "BF_ACID_FIGHTER_MALE",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a2bcb76f-60e9-4ca6-ab0c-32e5b6d11dd0/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 700,
+      "minPrice": 1.9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Fighter \"Beast Mode Brawler\"",
+      "archetypeId": "BF_ANIMAL_FIGHTER_MALE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/f0a24ad3-8096-47c0-b1f2-3864258af29c/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 10,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Fighter Rowdies",
+      "archetypeId": "BF_ROWDIES_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/ROWDIES_EXOTIC.png",
+      "videoUrl": null,
+      "maxIssuance": 154,
+      "minPrice": 1200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Fighter \"Savage Huntress\"",
+      "archetypeId": "BF_ANIMAL_FIGHTER_FEMALE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a31cb9ca-b61a-4b15-97ec-1dcf7cef0269/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 8,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "FLEX Booster Pack",
+      "archetypeId": "BF_PACK_BOOSTERFLEX",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/PACK_BOOSTERFLEX.png",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 69.98,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frost Ray Common",
+      "archetypeId": "BF_WPN_FROSTRAY_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_FROSTRAY_COMMON.png",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frost Ray Epic",
+      "archetypeId": "BF_WPN_FROSTRAY_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_FROSTRAY_EPIC.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frost Ray Exalted",
+      "archetypeId": "BF_WPN_FROSTRAY_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_FROSTRAY_EXALTED.png",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frost Ray Exotic",
+      "archetypeId": "BF_WPN_FROSTRAY_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_FROSTRAY_EXOTIC.png",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frost Ray Legendary",
+      "archetypeId": "BF_WPN_FROSTRAY_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_FROSTRAY_LEGENDARY.png",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frost Ray Mythic",
+      "archetypeId": "BF_WPN_FROSTRAY_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_FROSTRAY_MYTHIC.png",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frost Ray Rare",
+      "archetypeId": "BF_WPN_FROSTRAY_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_FROSTRAY_RARE.png",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frost Ray Transcendent",
+      "archetypeId": "BF_WPN_FROSTRAY_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_FROSTRAY_TRANSCENDENT.png",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frost Ray Uncommon",
+      "archetypeId": "BF_WPN_FROSTRAY_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_FROSTRAY_UNCOMMON.png",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frost Ray Unique",
+      "archetypeId": "BF_WPN_FROSTRAY_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_FROSTRAY_UNIQUE.png",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Frozen Punisher Boss",
+      "archetypeId": "BF_SKIN_BODY_BOSS_FROZENPUNISHER",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/4061a0e4-76d8-4e52-b99e-20b694116f48/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 1.4,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gadget Dash \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_GADGET_DASH_FT",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_GADGET_DASH_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gadget Dash \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_GADGET_DASH_TC",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_GADGET_DASH_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gadget Double Jump \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_GADGET_JUMP_FT",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_GADGET_JUMP_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 250,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gadget Double Jump \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_GADGET_JUMP_TC",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_GADGET_JUMP_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gadget Hook \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_GADGET_HOOK_FT",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_GADGET_HOOK_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 149.9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gadget Hook \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_GADGET_HOOK_TC",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_GADGET_HOOK_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gadget JetPack \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_GADGET_JETPACK_FT",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_GADGET_JETPACK_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gadget JetPack \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_GADGET_JETPACK_TC",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_GADGET_JETPACK_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Game Share",
+      "archetypeId": "BF_GAME_SHARE",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/2b29491c-4a0d-4544-b6c8-da12a468fda0/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/GAME_SHARE.webm\n",
+      "maxIssuance": 10000,
+      "minPrice": 53,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Game Share Basic Pack",
+      "archetypeId": "BF_GAME_SHARE_PACK_BASIC",
+      "rarity": "legendary",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/GAME_SHARE_PACK_BASIC.png",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/GAME_SHARE_PACK_BASIC.webm\n",
+      "maxIssuance": 1000,
+      "minPrice": 78,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Game Shares Pro Pack",
+      "archetypeId": "BF_GAME_SHARE_PACK_PRO",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/GAME_SHARE_PACK_PRO.png",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/GAME_SHARE_PACK_PRO.webm",
+      "maxIssuance": 400,
+      "minPrice": 879.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gas Pod Common",
+      "archetypeId": "BF_GADGET_GASPOD_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/726dc967-1795-42e6-8162-674b1e9c5ad3/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gas Pod Epic",
+      "archetypeId": "BF_GADGET_GASPOD_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/5697d4fd-2ad3-4bc4-b647-9da77dadb655/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 20,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gas Pod Exalted",
+      "archetypeId": "BF_GADGET_GASPOD_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/194f5aff-86c8-4820-984c-4ab1860cd3ef/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gas Pod Exotic",
+      "archetypeId": "BF_GADGET_GASPOD_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/72f30979-a1b1-4277-a2d5-20392087d169/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gas Pod Legendary",
+      "archetypeId": "BF_GADGET_GASPOD_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/8599ecee-d415-45bf-adb9-24aecdd75738/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 70,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gas Pod Mythic",
+      "archetypeId": "BF_GADGET_GASPOD_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b72086a4-ea43-4ed6-8107-5acb5a14e74f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 119.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gas Pod Rare",
+      "archetypeId": "BF_GADGET_GASPOD_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/73a40896-882a-4a91-9c11-eaf6492e4a81/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 13.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gas Pod Transcendent",
+      "archetypeId": "BF_GADGET_GASPOD_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/64f43eb5-8d38-4c49-a503-558e33f76f9e/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gas Pod Uncommon",
+      "archetypeId": "BF_GADGET_GASPOD_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/985b8ff1-77f7-41d1-84b5-3a7eace32032/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 2,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gas Pod Unique",
+      "archetypeId": "BF_GADGET_GASPOD_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/0bd18331-6fd7-4305-baaf-9f04c34cdf63/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gladiator Rowdies",
+      "archetypeId": "BF_ROWDIES_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/ROWDIES_TRANSCENDENT.png",
+      "videoUrl": null,
+      "maxIssuance": 56,
+      "minPrice": 9999,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Golden Serpent Boss",
+      "archetypeId": "BF_SKIN_BODY_BOSS_GOLDENSERPENT",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d08610cd-3264-4943-82d4-0110c8697e1b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "minPrice": 360,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Golden Serpent Toxic Gun",
+      "archetypeId": "BF_SKIN_WPN_TOXICGUN_GOLDENSERPENT",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/0a86a7c5-b794-4966-b751-067b7e2b7f6c/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Graffiti Boss",
+      "archetypeId": "BF_SKIN_BODY_BOSS_GRAFFITI",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ba14a1e3-fb1a-4d74-aeb1-11551d3d54ad/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 320,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Graffiti Striker",
+      "archetypeId": "BF_SKIN_WPN_STRIKER_GRAFFITI",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/862b93fe-3e49-4c32-9c55-6ecbee35c1b1/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2500,
+      "minPrice": 10,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Common",
+      "archetypeId": "BF_WPN_GRAVITYGUN_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/3ca886d7-b4f1-4f45-b68d-c82641e70ada/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 4.89,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Epic",
+      "archetypeId": "BF_WPN_GRAVITYGUN_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/f2965fb4-ac2b-4e47-aa29-d864a8bdafed/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Exalted",
+      "archetypeId": "BF_WPN_GRAVITYGUN_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/24c76105-6a58-45c3-a851-96028e0596c1/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Exotic",
+      "archetypeId": "BF_WPN_GRAVITYGUN_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/4594e549-c2e6-41f8-9646-28ee1dfd2584/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Jade Fang",
+      "archetypeId": "BF_SKIN_WPN_GRAVITYGUN_JADEFANG",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e34715de-fe36-42db-91c3-61d799e41240/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "minPrice": 250,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Legendary",
+      "archetypeId": "BF_WPN_GRAVITYGUN_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a7daadcc-d43a-498d-bdbc-0483ca6f056e/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Mythic",
+      "archetypeId": "BF_WPN_GRAVITYGUN_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/757fefc7-1608-4a43-8ae8-99e048b25020/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Rare",
+      "archetypeId": "BF_WPN_GRAVITYGUN_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/2132db47-6561-4f3f-a0d8-768e9952f02a/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 39.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Transcendent",
+      "archetypeId": "BF_WPN_GRAVITYGUN_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/7209545d-2de6-462f-93f9-c144f21b5dab/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Uncommon",
+      "archetypeId": "BF_WPN_GRAVITYGUN_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d44e8562-f5ef-4d9a-bfe8-ca826223c1d2/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 9.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Gravity Gun Unique",
+      "archetypeId": "BF_WPN_GRAVITYGUN_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1daad936-d79d-4427-894b-d5fb49014311/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Halloween Boss",
+      "archetypeId": "BF_SKIN_BODY_BOSS_HALLOWEEN",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/492426e6-3852-4760-ab10-1a2c5501557a/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Halloween Striker",
+      "archetypeId": "BF_SKIN_WPN_STRIKER_HALLOWEEN",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/20c59162-6bc5-4c98-92c4-e7499e302277/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 87,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Headliner Mystery Box",
+      "archetypeId": "BF_CHEST_HEADLINER",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/CHEST_HEADLINER.png",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 1500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Hook Common",
+      "archetypeId": "BF_GADGET_HOOK_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/01e6215a-b364-4cfa-9bf9-0ce7b35f55ea/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Hook Epic",
+      "archetypeId": "BF_GADGET_HOOK_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/15635195-fcf0-41fb-849a-987b3a68f301/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 15,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Hook Exalted",
+      "archetypeId": "BF_GADGET_HOOK_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/95cf2c06-d104-4378-ab58-f64b9f649ffa/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Hook Exotic",
+      "archetypeId": "BF_GADGET_HOOK_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/6f036cc6-02ad-4488-96bf-b1a6e4197ecc/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Hook Legendary",
+      "archetypeId": "BF_GADGET_HOOK_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/50edf850-df3e-4b47-ad72-0bb0fc68ac7f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 23,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Hook Mythic",
+      "archetypeId": "BF_GADGET_HOOK_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/4e5b80c1-3535-446c-b26a-b5e450d22a8e/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Hook Rare",
+      "archetypeId": "BF_GADGET_HOOK_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a54c766d-267d-496f-aae5-475d925683f3/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 5.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Hook Transcendent",
+      "archetypeId": "BF_GADGET_HOOK_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/7f22ee48-8745-4dab-a042-542eec197f7f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Hook Uncommon",
+      "archetypeId": "BF_GADGET_HOOK_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/dc0ead7f-8b24-4678-92fb-6f3a7655be49/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 14,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Hook Unique",
+      "archetypeId": "BF_GADGET_HOOK_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/6f24eb1e-bc57-4b93-9a03-9bd6cde7009a/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Initiate Badge",
+      "archetypeId": "BF_BADGE_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/eb009e37-3a5f-4e98-875c-fa0e166a68b2/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100000,
+      "minPrice": 34.75,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Initiate Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ffc32821-2196-4300-84bb-7b9731a8bf76/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 35000,
+      "minPrice": 44,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jade Fang Boss",
+      "archetypeId": "BF_SKIN_BODY_BOSS_JADEFANG",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/024f30c3-cd72-43a9-aa56-8cc34268c398/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "minPrice": 450,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jetpack Common",
+      "archetypeId": "BF_GADGET_JETPACK_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/78014b60-376a-4f11-8bdd-5984707d48ea/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jetpack Epic",
+      "archetypeId": "BF_GADGET_JETPACK_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/8365932e-809f-4b8c-9622-6d194ef853f0/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jetpack Exalted",
+      "archetypeId": "BF_GADGET_JETPACK_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e1aeef61-f3a5-415b-85d3-072b5b7c50db/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 199,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jetpack Exotic",
+      "archetypeId": "BF_GADGET_JETPACK_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/be6a22d6-fac1-4c45-be3d-ddc1d8932fd2/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "minPrice": 599,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jetpack Legendary",
+      "archetypeId": "BF_GADGET_JETPACK_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/8ec1b836-1fc1-4e3c-b63d-e76660af272a/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jetpack Mythic",
+      "archetypeId": "BF_GADGET_JETPACK_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e911cb5e-6ffc-42ab-849a-94fd83cece0a/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jetpack Rare",
+      "archetypeId": "BF_GADGET_JETPACK_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d4af0e18-3170-408f-ae06-46a59f6d5200/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 3.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jetpack Transcendent",
+      "archetypeId": "BF_GADGET_JETPACK_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/47b868e2-439e-4c17-ac13-588a242cd9d9/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "minPrice": 4900,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jetpack Uncommon",
+      "archetypeId": "BF_GADGET_JETPACK_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d7f04ce8-9e82-4245-90e5-faf5eb3a5476/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 1.49,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Jetpack Unique",
+      "archetypeId": "BF_GADGET_JETPACK_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a44adc5b-e9a1-414e-aa7b-9c8ddebc03f1/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Laser Common",
+      "archetypeId": "BF_WPN_LASER_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1f94fa5b-44c1-46e3-97a2-dbd5b14ba1c8/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Laser Epic",
+      "archetypeId": "BF_WPN_LASER_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/76bee455-b96d-483e-8982-823aa837b289/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 15,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Laser Exalted",
+      "archetypeId": "BF_WPN_LASER_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/584d406d-2dbe-4e81-ab27-2fd76817011e/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 250,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Laser Exotic",
+      "archetypeId": "BF_WPN_LASER_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/da77a448-2a91-4e71-a631-c1b7fef2177c/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Laser Legendary",
+      "archetypeId": "BF_WPN_LASER_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/9abf0d16-a321-4f3a-a847-a3d51c4b6a88/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 60,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Laser Mythic",
+      "archetypeId": "BF_WPN_LASER_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/68783b68-0c66-457d-a71d-0945ebbe0011/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Laser Rare",
+      "archetypeId": "BF_WPN_LASER_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/47126878-7ef3-48bd-a2b4-85205109f5dc/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 4.49,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Laser Transcendent",
+      "archetypeId": "BF_WPN_LASER_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/447cec1a-18e9-45d1-9e0f-d4587ed264f0/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Laser Uncommon",
+      "archetypeId": "BF_WPN_LASER_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ff303c51-e6a6-4f8d-bece-c2e765886389/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 4.49,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Laser Unique",
+      "archetypeId": "BF_WPN_LASER_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ee9cb9bb-d8ea-45d6-a58a-54bdb38e4a80/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Legend Rowdy",
+      "archetypeId": "BF_ROWDIES_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/ROWDIES_UNIQUE.png",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Legendary Alpha Pass",
+      "archetypeId": "BF_ALPHA_PASS_3",
+      "rarity": "legendary",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/034fb74a-15b4-4787-a704-f2b8abe6c09b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 130,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Lucky Fighter Mystery Box",
+      "archetypeId": "BF_CHEST_LUCKY_FIGHTER",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c4539758-a407-421c-a1eb-a9a6ccd6fffb/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 4000,
+      "minPrice": 62.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Lunar Mystery Box",
+      "archetypeId": "BF_CHEST_LUNAR",
+      "rarity": "exalted",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CHEST_LUNAR.png",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 300,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male \"Celestial Mist\" Skin",
+      "archetypeId": "BF_SKIN_FIGHTER_MALE_CELESTIAL",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c5792638-ed64-4611-861b-3c734b0f7cf5/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_FIGHTER_MALE_FT",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_FIGHTER_MALE_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 450,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male Fighter Common",
+      "archetypeId": "BF_BODY_FIGHTERM_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/914765aa-52ea-4ced-9ba5-4385834e9bdb/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male Fighter Epic",
+      "archetypeId": "BF_BODY_FIGHTERM_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/bc538a30-6d9f-4858-b2ad-09c0ec5aad7d/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 8.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male Fighter Exalted",
+      "archetypeId": "BF_BODY_FIGHTERM_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/8fff7865-7b2d-4386-9b17-73bfb607d3e7/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_FIGHTERM_EXALTED.webm",
+      "maxIssuance": 100,
+      "minPrice": 499,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male Fighter Exotic",
+      "archetypeId": "BF_BODY_FIGHTERM_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/fc7cae8f-9c2c-4223-a657-18ed80fe6860/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_FIGHTERM_EXOTIC.webm",
+      "maxIssuance": 50,
+      "minPrice": 599,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male Fighter Legendary",
+      "archetypeId": "BF_BODY_FIGHTERM_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/f52c1cb8-6ff1-4b07-9a8e-d9cccf04278d/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 21,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male Fighter Mythic",
+      "archetypeId": "BF_BODY_FIGHTERM_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b60cd542-1a75-4909-acd0-a26cba65f2f5/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 88.88,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male Fighter Rare",
+      "archetypeId": "BF_BODY_FIGHTERM_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d46641b7-aa8e-4a59-8037-250248896e4f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 3,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male Fighter Transcendent",
+      "archetypeId": "BF_BODY_FIGHTERM_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/2ef46a05-e3a3-4600-b5f8-fedbba1fc757/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_FIGHTERM_TRANSCENDENT.webm",
+      "maxIssuance": 25,
+      "minPrice": 10000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male Fighter Uncommon",
+      "archetypeId": "BF_BODY_FIGHTERM_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1414f43f-dec8-4aa4-ade3-aa7c3ee66e7a/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 1.5,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male Fighter Unique",
+      "archetypeId": "BF_BODY_FIGHTERM_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/72365008-c74d-41b3-9879-f8692e832dc3/original.PNG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/BODY_FIGHTERM_UNIQUE.webm",
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Male \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_FIGHTER_MALE_TC",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_FIGHTER_MALE_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 98.89,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Manipulator Common",
+      "archetypeId": "BF_TOOL_MANIPULATORT_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/TOOL_MANIPULATORT_COMMON.png",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Manipulator Epic",
+      "archetypeId": "BF_TOOL_MANIPULATORT_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/TOOL_MANIPULATORT_EPIC.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Manipulator Exalted",
+      "archetypeId": "BF_TOOL_MANIPULATORT_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/TOOL_MANIPULATORT_EXALTED.png",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Manipulator Exotic",
+      "archetypeId": "BF_TOOL_MANIPULATORT_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/TOOL_MANIPULATORT_EXOTIC.png",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Manipulator Legendary",
+      "archetypeId": "BF_TOOL_MANIPULATORT_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/TOOL_MANIPULATORT_LEGENDARY.png",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Manipulator Mythic",
+      "archetypeId": "BF_TOOL_MANIPULATORT_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/TOOL_MANIPULATORT_MYTHIC.png",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Manipulator Rare",
+      "archetypeId": "BF_TOOL_MANIPULATORT_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/TOOL_MANIPULATORT_RARE.png",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Manipulator Transcendent",
+      "archetypeId": "BF_TOOL_MANIPULATORT_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/TOOL_MANIPULATORT_TRANSCENDENT.png",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Manipulator Uncommon",
+      "archetypeId": "BF_TOOL_MANIPULATORT_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/TOOL_MANIPULATORT_UNCOMMON.png",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Manipulator Unique",
+      "archetypeId": "BF_TOOL_MANIPULATORT_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/TOOL_MANIPULATORT_UNIQUE.png",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Master Level Mystery Box",
+      "archetypeId": "BF_CHEST_MASTER_LEVEL",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b0ba444b-0250-4453-ad38-7ea82091c253/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 3500,
+      "minPrice": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "MVP Badge",
+      "archetypeId": "BF_BADGE_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/5c3ef2aa-8acb-40d1-9c60-811249f9977b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "MVP Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CONTRACT_UNIQUE.png",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Nutty Nutcracker Boss",
+      "archetypeId": "BF_SKIN_BODY_BOSS_NUTCRACKER",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/5736f25f-9a21-4acf-b4a7-665344fb1ed8/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 80,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Olympian Badge",
+      "archetypeId": "BF_BADGE_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/dd1e7ded-64ec-4e21-805c-1224d4759928/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Olympian Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CONTRACT_EXOTIC.png",
+      "videoUrl": null,
+      "maxIssuance": 250,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Portable Grinder Common",
+      "archetypeId": "BF_WPN_PORTABLEG_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_PORTABLEG_COMMON.png",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Portable Grinder Epic",
+      "archetypeId": "BF_WPN_PORTABLEG_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_PORTABLEG_EPIC.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Portable Grinder Exalted",
+      "archetypeId": "BF_WPN_PORTABLEG_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_PORTABLEG_EXALTED.png",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Portable Grinder Exotic",
+      "archetypeId": "BF_WPN_PORTABLEG_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_PORTABLEG_EXOTIC.png",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Portable Grinder Legendary",
+      "archetypeId": "BF_WPN_PORTABLEG_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_PORTABLEG_LEGENDARY.png",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Portable Grinder Mythic",
+      "archetypeId": "BF_WPN_PORTABLEG_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_PORTABLEG_MYTHIC.png",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Portable Grinder Rare",
+      "archetypeId": "BF_WPN_PORTABLEG_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_PORTABLEG_RARE.png",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Portable Grinder Transcendent",
+      "archetypeId": "BF_WPN_PORTABLEG_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_PORTABLEG_TRANSCENDENT.png",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Portable Grinder Uncommon",
+      "archetypeId": "BF_WPN_PORTABLEG_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_PORTABLEG_UNCOMMON.png",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Portable Grinder Unique",
+      "archetypeId": "BF_WPN_PORTABLEG_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/WPN_PORTABLEG_UNIQUE.png",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Prodigy Badge",
+      "archetypeId": "BF_BADGE_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/75ad2107-9df8-407d-af9a-9d1634c1ad86/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Prodigy Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CONTRACT_TRANSCENDENT.png",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun \"Blitz\" Skin",
+      "archetypeId": "BF_SKIN_WPN_RAILGUN_BLITZ",
+      "rarity": "common",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_RAILGUN_BLITZ.png",
+      "videoUrl": null,
+      "maxIssuance": 2500,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun Common",
+      "archetypeId": "BF_WPN_RAILGUN_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b552cf04-3c29-43ca-a1a2-83c5d56269cc/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun Epic",
+      "archetypeId": "BF_WPN_RAILGUN_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1a983ddd-4cf9-4278-ac18-c40328660045/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 15,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun Exalted",
+      "archetypeId": "BF_WPN_RAILGUN_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e158f8ff-02b2-4d59-bf98-f08c2bb49df0/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 238,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun Exotic",
+      "archetypeId": "BF_WPN_RAILGUN_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/cef65f75-a3ef-42e8-bfa3-ba5a27a7cea8/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "minPrice": 598,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_WPN_RAILGUN_FT",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_RAILGUN_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "minPrice": 199,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun Legendary",
+      "archetypeId": "BF_WPN_RAILGUN_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/6c08bfc3-4ac4-4359-b25c-8aa5b70da954/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 19.9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun \"Moonrage\" Skin",
+      "archetypeId": "BF_SKIN_WPN_RAILGUN_MOONRAGE",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_RAILGUN_MOONRAGE.png",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/SKIN_WPN_RAILGUN_MOONRAGE.webm\r",
+      "maxIssuance": 100,
+      "minPrice": 87.97,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun Mythic",
+      "archetypeId": "BF_WPN_RAILGUN_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/f4174c08-2984-48f8-b2ca-660890f625e6/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 57,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun Rare",
+      "archetypeId": "BF_WPN_RAILGUN_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ed5a5433-7349-4fdf-a2bd-226041f2219b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 5,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_WPN_RAILGUN_TC",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_RAILGUN_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "minPrice": 199,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun \"Toxic Railgun\"",
+      "archetypeId": "BF_ACID_RAILGUN",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/23f7ee41-bbf7-4565-9ed4-93e45dc92630/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 700,
+      "minPrice": 3.3,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun Transcendent",
+      "archetypeId": "BF_WPN_RAILGUN_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c922d17c-e655-4785-8c27-303fd9ce0c3b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "minPrice": 2666,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun Uncommon",
+      "archetypeId": "BF_WPN_RAILGUN_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/6d272ff7-1de5-44cd-aaea-42801ed90017/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 3.3,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Railgun Unique",
+      "archetypeId": "BF_WPN_RAILGUN_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1c54f31f-a38d-40b9-8f73-c5e85529e910/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Rare Alpha Pass",
+      "archetypeId": "BF_ALPHA_PASS_1",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/81e2d66f-c4f0-4c4a-9fc9-4757aa163051/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 390,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Rare Find Mystery Box",
+      "archetypeId": "BF_CHEST_RARE_FIND",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/6203be8e-e265-41c2-a314-cbeb96176d63/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2500,
+      "minPrice": 280,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Rising Star Mystery Box",
+      "archetypeId": "BF_CHEST_RISING_STAR",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/efd6e054-f81d-42b2-9e23-584649e012d0/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 420,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Rookie Badge",
+      "archetypeId": "BF_BADGE_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/31bf04dc-a8dc-4b4f-bdc3-14c28758264d/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200000,
+      "minPrice": 9.74,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Rookie Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/86833a8f-1d98-4a73-bf9a-e62a34687bbb/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50000,
+      "minPrice": 21.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Rowdies",
+      "archetypeId": "BF_ROWDIES",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF/ROWDIES.png",
+      "videoUrl": null,
+      "maxIssuance": 1502,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Santa's Nightmare Boss",
+      "archetypeId": "BF_SKIN_BODY_BOSS_SANTA",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1be1265e-bacd-4ae0-bae7-5607edc14ca0/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 2.8,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Seismic Hammer Common",
+      "archetypeId": "BF_WPN_SEISMICH_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/3a8f6448-53a8-4d03-a2af-1db64fae3279/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1.23,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Seismic Hammer Epic",
+      "archetypeId": "BF_WPN_SEISMICH_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c9d0cfdf-066c-4c10-8dbc-abd849b4ffe8/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 20,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Seismic Hammer Exalted",
+      "archetypeId": "BF_WPN_SEISMICH_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/f9168f79-edaf-4168-b800-33d9eb207191/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Seismic Hammer Exotic",
+      "archetypeId": "BF_WPN_SEISMICH_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b7e2b64e-b133-4373-b1a4-a05a12972887/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Seismic Hammer Legendary",
+      "archetypeId": "BF_WPN_SEISMICH_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/efa2ff03-03d6-4157-b072-e17d82680d84/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 70,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Seismic Hammer Mythic",
+      "archetypeId": "BF_WPN_SEISMICH_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/8a9911bc-9c50-4e45-af4c-250c8050e67c/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 158,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Seismic Hammer Rare",
+      "archetypeId": "BF_WPN_SEISMICH_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e3a9a710-008f-45e4-9987-286f4b77f37e/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Seismic Hammer Transcendent",
+      "archetypeId": "BF_WPN_SEISMICH_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/55a9075d-2189-47f8-b139-a2408677e768/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Seismic Hammer Uncommon",
+      "archetypeId": "BF_WPN_SEISMICH_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/6f08f834-d5d0-4055-ab78-22100d614076/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 4,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Seismic Hammer Unique",
+      "archetypeId": "BF_WPN_SEISMICH_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/433cbf18-ab13-4948-b89d-f8fd88844cba/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Showrunner Mystery Box",
+      "archetypeId": "BF_CHEST_SHOWRUNNER",
+      "rarity": "uncommon",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/49aab0f7-b982-487c-bc80-a0fd047a81eb/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 6000,
+      "minPrice": 35,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber \"Blobbrain\" Skin",
+      "archetypeId": "BF_SKIN_WPN_SLIMEL_BLOBBRAIN",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_SLIMEL_BLOBBRAIN.png",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/SKIN_WPN_SLIMEL_BLOBBRAIN.webm",
+      "maxIssuance": 100,
+      "minPrice": 63,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber \"Brat\" Skin",
+      "archetypeId": "BF_SKIN_WPN_SLIMEL_BRAT",
+      "rarity": "uncommon",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_SLIMEL_BRAT.png",
+      "videoUrl": null,
+      "maxIssuance": 1000,
+      "minPrice": 1.28,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber Common",
+      "archetypeId": "BF_WPN_SLIMEL_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/80ba4b78-950c-4f46-a174-db6cbfe89179/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber Epic",
+      "archetypeId": "BF_WPN_SLIMEL_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/8cf7ab45-c3bf-47ac-bd7a-f3d5ea1ca92c/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber Exalted",
+      "archetypeId": "BF_WPN_SLIMEL_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ab17fd0b-ed75-4f59-ab76-59ae9d0e2202/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber Exotic",
+      "archetypeId": "BF_WPN_SLIMEL_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1b978b8a-281d-40e6-8b70-4eafb608d5ee/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_WPN_SLIMEL_FT",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_SLIMEL_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "minPrice": 79.89,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber Legendary",
+      "archetypeId": "BF_WPN_SLIMEL_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/5502400f-7dd0-4e88-9fc1-c7a33799a753/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 30,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber Mythic",
+      "archetypeId": "BF_WPN_SLIMEL_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ea500c69-adcc-47cf-8088-b943f91a1bc7/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 68,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber Rare",
+      "archetypeId": "BF_WPN_SLIMEL_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/19a46f9c-c09e-4c9c-9264-f7d935aea238/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 6,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber \"Slime Slinger\"",
+      "archetypeId": "BF_ACID_SLIME_LOBBER",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/9c3e1ffe-dfec-48ec-bcfb-ff65af308d2d/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 700,
+      "minPrice": 1.98,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_WPN_SLIMEL_TC",
+      "rarity": "legendary",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_SLIMEL_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 250,
+      "minPrice": 149.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber Transcendent",
+      "archetypeId": "BF_WPN_SLIMEL_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/f01cc41d-8ad8-45a0-91b5-afaba5f2eb5f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "minPrice": 13000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber Uncommon",
+      "archetypeId": "BF_WPN_SLIMEL_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/27991bb5-ab89-449c-b790-47818b49901b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 1.9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Slime Lobber Unique",
+      "archetypeId": "BF_WPN_SLIMEL_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/5fe6c47a-faf8-4a7e-8d2c-4b9e055d27fe/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "minPrice": 27000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Spiked Maul Common",
+      "archetypeId": "BF_WPN_SPIKEDM_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/aa584ca0-7fbc-4dca-87d7-a48de08f1e6d/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1.24,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Spiked Maul Epic",
+      "archetypeId": "BF_WPN_SPIKEDM_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/57fbf2df-0948-4e2f-a543-8437b22d56b6/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 9.9,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Spiked Maul Exalted",
+      "archetypeId": "BF_WPN_SPIKEDM_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1131e876-68bc-454a-8ac7-1a579252f5bc/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Spiked Maul Exotic",
+      "archetypeId": "BF_WPN_SPIKEDM_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b53c1bf5-d9d3-4232-a130-27401b2e8fa3/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Spiked Maul Legendary",
+      "archetypeId": "BF_WPN_SPIKEDM_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/8ff076f5-9f58-42e5-9ffc-cc424d978de5/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 33,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Spiked Maul Mythic",
+      "archetypeId": "BF_WPN_SPIKEDM_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a042bdc0-2acc-4f7e-a7c1-dd2c0b6b81a3/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 145,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Spiked Maul Rare",
+      "archetypeId": "BF_WPN_SPIKEDM_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/b3887a74-f41c-4c11-8a9b-def99d811dcd/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 10,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Spiked Maul Transcendent",
+      "archetypeId": "BF_WPN_SPIKEDM_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ff0fc6c1-7189-4f4b-b51a-550bb35a5851/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Spiked Maul Uncommon",
+      "archetypeId": "BF_WPN_SPIKEDM_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/4cc206ae-9487-4fc0-96b6-39777186a395/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 4.8,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Spiked Maul Unique",
+      "archetypeId": "BF_WPN_SPIKEDM_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d210de2c-a56e-4679-a147-18d695e149a2/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Starter Pack",
+      "archetypeId": "BF_PACK_STARTERKIT",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c77f8433-5cc4-41c7-bfa5-a8c17192f16b/original.JPEG",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/PACK_STARTERKIT.webm\n",
+      "maxIssuance": 2500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Starter Show Mystery Box",
+      "archetypeId": "BF_CHEST_STARTER_SHOW",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/53e072e8-1097-4ee3-9db2-792fa25ab1d6/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 42.2,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker Common",
+      "archetypeId": "BF_WPN_STRIKER_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c9e37a94-5532-4acc-a436-ccfeb9e1e10f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker \"Corrosive Striker\"",
+      "archetypeId": "BF_ACID_STRIKER",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/03b79945-3ede-4d8b-b698-c16d7eb96bea/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 700,
+      "minPrice": 1.39,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker Epic",
+      "archetypeId": "BF_WPN_STRIKER_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/807a3316-d338-4f36-adb7-159ce618ec5b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 12,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker Exalted",
+      "archetypeId": "BF_WPN_STRIKER_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/85873ab5-7ddf-4a5d-a630-c73af0c21c56/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 888,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker Exotic",
+      "archetypeId": "BF_WPN_STRIKER_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/9b33a6b4-707e-4e48-af3c-c08c7e0ddfaf/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker \"Feeling Toasty\" Skin",
+      "archetypeId": "BF_SKIN_WPN_STRIKER_FT",
+      "rarity": "legendary",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_STRIKER_FT.png",
+      "videoUrl": null,
+      "maxIssuance": 250,
+      "minPrice": 100,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker Legendary",
+      "archetypeId": "BF_WPN_STRIKER_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e1dd59f5-98b6-4b18-b0e1-f39b0e7b77b3/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 20,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker Mythic",
+      "archetypeId": "BF_WPN_STRIKER_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/a5af5724-e649-4e27-a431-9b744395ed6b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 140,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker Rare",
+      "archetypeId": "BF_WPN_STRIKER_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/436049cb-012d-48af-a4b8-8f2a92b3d9fa/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 3.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker \"Strikenstein\" Skin",
+      "archetypeId": "BF_SKIN_WPN_STRIKER_STRIKENSTEIN",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_STRIKER_STRIKENSTEIN.png",
+      "videoUrl": "https://openloot-metadata.bigtime.gg/BF/SKIN_WPN_STRIKER_STRIKENSTEIN.webm\r",
+      "maxIssuance": 100,
+      "minPrice": 74,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker \"Surge\" Skin",
+      "archetypeId": "BF_SKIN_WPN_STRIKER_SURGE",
+      "rarity": "rare",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_STRIKER_SURGE.png",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 8.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker \"Toxic Cola\" Skin",
+      "archetypeId": "BF_SKIN_WPN_STRIKER_TC",
+      "rarity": "epic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/SKIN_WPN_STRIKER_TC.png",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "minPrice": 120,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker Transcendent",
+      "archetypeId": "BF_WPN_STRIKER_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/3c7b3c66-2d5c-42fd-a8ff-56a5b0e04b94/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker Uncommon",
+      "archetypeId": "BF_WPN_STRIKER_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/0147bae1-bd65-450c-95f6-c9284cb67c08/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 1.49,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Striker Unique",
+      "archetypeId": "BF_WPN_STRIKER_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/5cbd97da-fc92-4ae5-870e-75e88e612157/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Sugar Rush Slime Lobber\t",
+      "archetypeId": "BF_SKIN_WPN_SLIMEL_SUGAR",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/3384f21d-2b3c-471b-9313-72f6686e3c33/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 375,
+      "minPrice": 10,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Teleboss",
+      "archetypeId": "BF_SKIN_BODY_BOSS_TELEBOSS",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/bd3db1a2-1fb4-4724-8b95-20c775a0a641/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 250,
+      "minPrice": 14.99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Telegun",
+      "archetypeId": "BF_SKIN_WPN_RAILGUN_TELEGUN",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/5e5f533d-2fee-400c-805a-18c1d13594ec/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 250,
+      "minPrice": 17.98,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Cola Mystery Box",
+      "archetypeId": "BF_CHEST_TOXIC_COLA",
+      "rarity": "mythic",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/CHEST_TOXIC_COLA.png",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 750,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Gun Common",
+      "archetypeId": "BF_WPN_TOXICGUN_COMMON",
+      "rarity": "common",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/c3f65cc9-e788-4039-bfe9-4ee370d2a81b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "minPrice": 2,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Gun Epic",
+      "archetypeId": "BF_WPN_TOXICGUN_EPIC",
+      "rarity": "epic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/48f09f8a-5173-490b-9423-2b2708692f5b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 750,
+      "minPrice": 15,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Gun Exalted",
+      "archetypeId": "BF_WPN_TOXICGUN_EXALTED",
+      "rarity": "exalted",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/e7258f6f-a9b6-40da-a28a-72b5531038e8/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 100,
+      "minPrice": 500,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Gun Exotic",
+      "archetypeId": "BF_WPN_TOXICGUN_EXOTIC",
+      "rarity": "exotic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1d051f6b-fcfd-4dc1-b1b2-f597e6adbc36/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 50,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Gun Legendary",
+      "archetypeId": "BF_WPN_TOXICGUN_LEGENDARY",
+      "rarity": "legendary",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/cf11b388-9bce-4cff-adab-09ca40a08139/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 55,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Gun Mythic",
+      "archetypeId": "BF_WPN_TOXICGUN_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ae2a1661-53ea-4d00-b94d-372caef19995/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 200,
+      "minPrice": 99,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Gun Rare",
+      "archetypeId": "BF_WPN_TOXICGUN_RARE",
+      "rarity": "rare",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/08aeefd9-48c1-4e59-8a82-4fc50843fb2b/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1500,
+      "minPrice": 5,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Gun Transcendent",
+      "archetypeId": "BF_WPN_TOXICGUN_TRANSCENDENT",
+      "rarity": "transcendent",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/9ea1a124-4ecd-480d-aa30-e24fef223ea9/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 25,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Gun Uncommon",
+      "archetypeId": "BF_WPN_TOXICGUN_UNCOMMON",
+      "rarity": "uncommon",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/92b981dc-c018-4b40-8275-a8e26bf35b1f/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "minPrice": 3,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Toxic Gun Unique",
+      "archetypeId": "BF_WPN_TOXICGUN_UNIQUE",
+      "rarity": "unique",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/51ce7adc-ff5d-4467-90a7-d42249088731/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 1,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Uncommon Alpha Pass",
+      "archetypeId": "BF_ALPHA_PASS_0",
+      "rarity": "uncommon",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/4fa50145-6466-4710-9c9d-5703dff13f63/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Veteran Badge",
+      "archetypeId": "BF_BADGE_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://prod-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/1ff00bad-1b63-41a8-aac1-f014c005a999/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 5000,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Veteran Mystery Box",
+      "archetypeId": "BF_CHEST_VETERAN",
+      "rarity": "exalted",
+      "imageUrl": "https://openloot-metadata.bigtime.gg/BF0/CHEST_VETERAN.png",
+      "videoUrl": null,
+      "maxIssuance": 500,
+      "minPrice": 1125,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "Veteran Showrunner Contract",
+      "archetypeId": "BF_CONTRACT_MYTHIC",
+      "rarity": "mythic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/cba42781-5da3-420f-94f3-8f9c9927d85e/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2500,
+      "minPrice": 666,
+      "gameName": "BOSS FIGHTERS"
+    },
+    {
+      "name": "VR Alpha Pass",
+      "archetypeId": "BF_ALPHA_PASS_VR",
+      "rarity": "epic",
+      "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/6d0b9b11-bb6a-4a25-9f45-61b693823726/original.PNG",
+      "videoUrl": null,
+      "maxIssuance": 2000,
+      "gameName": "BOSS FIGHTERS"
+    }
+  ]
+}

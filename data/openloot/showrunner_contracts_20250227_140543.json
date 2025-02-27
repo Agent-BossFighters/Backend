@@ -7,7 +7,7 @@
       "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/575b4135-5820-49b2-ae61-05ef95052f80/original.PNG",
       "videoUrl": null,
       "maxIssuance": 5000,
-      "minPrice": 400,
+      "minPrice": 695,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -17,7 +17,7 @@
       "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CONTRACT_EXALTED.png",
       "videoUrl": null,
       "maxIssuance": 1000,
-      "minPrice": 100000,
+      "minPrice": 7500,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -27,7 +27,7 @@
       "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/d3655cc9-04dc-42d6-a202-38e6cce6c5a0/original.PNG",
       "videoUrl": null,
       "maxIssuance": 10000,
-      "minPrice": 220,
+      "minPrice": 399,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -37,7 +37,7 @@
       "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/03b85b3c-fd43-4a84-a5f2-6e4cd8fb8ebe/original.PNG",
       "videoUrl": null,
       "maxIssuance": 20000,
-      "minPrice": 88,
+      "minPrice": 110,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -47,7 +47,7 @@
       "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/ffc32821-2196-4300-84bb-7b9731a8bf76/original.PNG",
       "videoUrl": null,
       "maxIssuance": 35000,
-      "minPrice": 33,
+      "minPrice": 44,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -66,7 +66,6 @@
       "imageUrl": "https://openloot-metadata.bigtime.gg/BF/CONTRACT_EXOTIC.png",
       "videoUrl": null,
       "maxIssuance": 250,
-      "minPrice": 55000,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -85,7 +84,7 @@
       "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/86833a8f-1d98-4a73-bf9a-e62a34687bbb/original.PNG",
       "videoUrl": null,
       "maxIssuance": 50000,
-      "minPrice": 18,
+      "minPrice": 22,
       "gameName": "BOSS FIGHTERS"
     },
     {
@@ -95,7 +94,7 @@
       "imageUrl": "https://dev-hub-ui-content.s3.eu-central-1.amazonaws.com/collections_images/cba42781-5da3-420f-94f3-8f9c9927d85e/original.PNG",
       "videoUrl": null,
       "maxIssuance": 2500,
-      "minPrice": 550,
+      "minPrice": 666,
       "gameName": "BOSS FIGHTERS"
     }
   ],
