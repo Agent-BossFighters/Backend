@@ -5,6 +5,6 @@ class Nft < ApplicationRecord
 
   # Méthode pour faciliter l'accès à l'utilisateur
   def user
-    User.find_by(openLootID: owner)
+    User.find_by(id: owner)
   end
 end

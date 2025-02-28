@@ -51,12 +51,13 @@ module DataLab
       energy_cost = calculate_energy_cost
       base_profit = bft_value + flex_value - energy_cost
 
-      # Récupérer le build et son multiplicateur
+      # Appliquer le bonus BFT s'il existe
       if @match.build.present?
         build = @match.user.user_builds.find_by(buildName: @match.build)
-        if build
-          multiplier = build.calculate_multiplier
-          return (base_profit * multiplier).round(2)
+        if build && build.bftBonus
+          # Utiliser directement le pourcentage du bonus
+          bonus_multiplier = 1 + (build.bftBonus / 100.0)
+          return (base_profit * bonus_multiplier).round(2)
         end
       end
 

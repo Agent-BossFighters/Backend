@@ -69,13 +69,10 @@ class Api::V1::UserBuildsController < Api::V1::BaseController
   end
 
   def build_json(build)
-    percentage = build.calculate_multiplier
     {
       id: build.id,
       buildName: build.buildName,
-      multiplierInput: build.bftBonus,  # X : valeur d'entrée (entre 0 et 600)
-      bftBonusPercent: "#{percentage}%", # Y : pourcentage calculé
-      bftBonus: percentage,              # Y : pourcentage calculé (en nombre)
+      bftBonus: build.bftBonus,  # Valeur brute sans transformation
       created_at: build.created_at,
       updated_at: build.updated_at
     }
@@ -85,18 +82,12 @@ class Api::V1::UserBuildsController < Api::V1::BaseController
     matches = Match.where(build: @build.buildName).last(10)
     return {} if matches.empty?
 
-    percentage = @build.calculate_multiplier
     {
       recent_performance: {
         average_profit: matches.sum(&:profit) / matches.size,
         total_bft: matches.sum(&:totalToken),
         total_flex: matches.sum(&:totalFee),
         matches_count: matches.size
-      },
-      multipliers: {
-        multiplierInput: @build.bftBonus,  # X : valeur d'entrée (entre 0 et 600)
-        bftBonusPercent: "#{percentage}%", # Y : pourcentage calculé
-        bftBonus: percentage               # Y : pourcentage calculé (en nombre)
       }
     }
   end

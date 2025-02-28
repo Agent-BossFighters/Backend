@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   # Associations
-  has_many :nfts, foreign_key: :owner, primary_key: :openLootID, dependent: :destroy
+  has_many :nfts, foreign_key: :owner, primary_key: :id, dependent: :destroy
   has_many :matches, dependent: :destroy
   has_many :user_slots, dependent: :destroy
   has_many :user_builds, dependent: :destroy
