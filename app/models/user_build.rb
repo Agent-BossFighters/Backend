@@ -9,33 +9,13 @@ class UserBuild < ApplicationRecord
     # Si bftBonus est 0, retourner 1.0 (pas de bonus)
     return 1.0 if bftBonus.nil? || bftBonus.zero?
 
-    # Points de référence connus (bftBonus => multiplicateur)
-    known_points = {
-      100.45 => 0.2905,
-      148.81 => 0.3990,
-      200.00 => 0.5700,
-      276.12 => 0.7610,
-      309.33 => 0.8450,
-      400.00 => 1.0800,
-      458.59 => 1.2050,
-      600.00 => 1.5400
-    }
+    # bftBonus est le multiplicateur X (entre 0 et 600)
+    # On calcule le pourcentage Y avec la formule : Y = 4.046E-7 * X^2 + 0.03236 * X + 6.409
+    x = bftBonus
+    percentage = 4.046e-7 * x * x + 0.03236 * x + 6.409
 
-    # Pour les valeurs en dehors de la plage connue
-    return 0.2905 if bftBonus <= 100.45  # Minimum connu
-    return 1.5400 if bftBonus >= 600.00  # Maximum connu
-
-    # Trouver les points entre lesquels interpoler
-    sorted_points = known_points.keys.sort
-    lower_bonus = sorted_points.select { |x| x <= bftBonus }.last
-    upper_bonus = sorted_points.select { |x| x > bftBonus }.first
-
-    # Interpolation linéaire
-    lower_mult = known_points[lower_bonus]
-    upper_mult = known_points[upper_bonus]
-
-    # Formule d'interpolation
-    lower_mult + (bftBonus - lower_bonus) * (upper_mult - lower_mult) / (upper_bonus - lower_bonus)
+    # Le résultat est déjà un pourcentage, pas besoin de conversion
+    percentage.round(4)
   end
 
   private

@@ -38,7 +38,15 @@ class Api::V1::UserBuildsController < Api::V1::BaseController
   end
 
   def update
+    old_build_name = @build.buildName
+
     if @build.update(build_params)
+      # Si le nom du build a changé, mettre à jour tous les matchs associés
+      if old_build_name != @build.buildName
+        matches_updated = current_user.matches.where(build: old_build_name).update_all(build: @build.buildName)
+        Rails.logger.info "Updated #{matches_updated} matches from '#{old_build_name}' to '#{@build.buildName}'"
+      end
+
       render json: { build: build_json(@build) }
     else
       render json: { error: @build.errors.full_messages }, status: :unprocessable_entity
@@ -61,12 +69,13 @@ class Api::V1::UserBuildsController < Api::V1::BaseController
   end
 
   def build_json(build)
+    percentage = build.calculate_multiplier
     {
       id: build.id,
       buildName: build.buildName,
-      bftBonus: build.bftBonus,
-      bftBonusPercent: "#{build.bftBonus}%",
-      multiplier: build.calculate_multiplier,
+      multiplierInput: build.bftBonus,  # X : valeur d'entrée (entre 0 et 600)
+      bftBonusPercent: "#{percentage}%", # Y : pourcentage calculé
+      bftBonus: percentage,              # Y : pourcentage calculé (en nombre)
       created_at: build.created_at,
       updated_at: build.updated_at
     }
@@ -76,6 +85,7 @@ class Api::V1::UserBuildsController < Api::V1::BaseController
     matches = Match.where(build: @build.buildName).last(10)
     return {} if matches.empty?
 
+    percentage = @build.calculate_multiplier
     {
       recent_performance: {
         average_profit: matches.sum(&:profit) / matches.size,
@@ -84,9 +94,9 @@ class Api::V1::UserBuildsController < Api::V1::BaseController
         matches_count: matches.size
       },
       multipliers: {
-        bftBonus: @build.bftBonus,
-        bftBonusPercent: "#{@build.bftBonus}%",
-        multiplier: @build.calculate_multiplier
+        multiplierInput: @build.bftBonus,  # X : valeur d'entrée (entre 0 et 600)
+        bftBonusPercent: "#{percentage}%", # Y : pourcentage calculé
+        bftBonus: percentage               # Y : pourcentage calculé (en nombre)
       }
     }
   end

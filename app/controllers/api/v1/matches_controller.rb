@@ -56,7 +56,32 @@ module Api
                              .includes(:badge_used)
                              .order(created_at: :desc)
 
-        render json: { matches: matches_json(@matches) }
+        calculations = @matches.map { |m| DataLab::MatchMetricsCalculator.new(m).calculate }
+
+        render json: {
+          summary: {
+            matchesCount: @matches.count,
+            energyUsed: {
+              amount: calculations.sum { |c| c[:energyUsed] }.round(2),
+              cost: calculations.sum { |c| c[:energyCost] }.round(2)
+            },
+            totalBft: {
+              amount: @matches.sum(&:totalToken).to_f.round(2),
+              value: calculations.sum { |c| c[:tokenValue] }.round(2)
+            },
+            totalFlex: {
+              amount: @matches.sum(&:totalPremiumCurrency).to_f.round(2),
+              value: calculations.sum { |c| c[:premiumValue] }.round(2)
+            },
+            profit: calculations.sum { |c| c[:profit] }.round(2),
+            results: {
+              win: @matches.where(result: 'win').count,
+              loss: @matches.where(result: 'loss').count,
+              draw: @matches.where(result: 'draw').count
+            }
+          },
+          matches: matches_json(@matches)
+        }
       end
 
       def monthly

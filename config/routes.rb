@@ -46,7 +46,7 @@ Rails.application.routes.draw do
           post 'create'
         end
       end
-      resources :user_builds, only: [:index, :show, :update, :destroy] do
+      resources :user_builds do
         collection do
           post 'create'
         end
