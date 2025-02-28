@@ -51,10 +51,16 @@ module DataLab
       energy_cost = calculate_energy_cost
       base_profit = bft_value + flex_value - energy_cost
 
-      bonus_multiplier = @match.bonusMultiplier || 1.0
-      perks_multiplier = @match.perksMultiplier || 1.0
+      # Récupérer le build et son multiplicateur
+      if @match.build.present?
+        build = @match.user.user_builds.find_by(buildName: @match.build)
+        if build
+          multiplier = build.calculate_multiplier
+          return (base_profit * multiplier).round(2)
+        end
+      end
 
-      (base_profit * bonus_multiplier * perks_multiplier).round(2)
+      base_profit.round(2)
     end
   end
 end

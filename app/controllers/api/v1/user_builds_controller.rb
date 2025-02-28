@@ -64,8 +64,9 @@ class Api::V1::UserBuildsController < Api::V1::BaseController
     {
       id: build.id,
       buildName: build.buildName,
-      bonusMultiplier: build.bonusMultiplier,
-      perksMultiplier: build.perksMultiplier,
+      bftBonus: build.bftBonus,
+      bftBonusPercent: "#{build.bftBonus}%",
+      multiplier: build.calculate_multiplier,
       created_at: build.created_at,
       updated_at: build.updated_at
     }
@@ -83,14 +84,14 @@ class Api::V1::UserBuildsController < Api::V1::BaseController
         matches_count: matches.size
       },
       multipliers: {
-        bonus: @build.bonusMultiplier,
-        perks: @build.perksMultiplier,
-        total: (@build.bonusMultiplier || 1.0) * (@build.perksMultiplier || 1.0)
+        bftBonus: @build.bftBonus,
+        bftBonusPercent: "#{@build.bftBonus}%",
+        multiplier: @build.calculate_multiplier
       }
     }
   end
 
   def build_params
-    params.require(:user_build).permit(:buildName, :bonusMultiplier, :perksMultiplier)
+    params.require(:user_build).permit(:buildName, :bftBonus)
   end
 end
