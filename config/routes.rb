@@ -104,7 +104,6 @@ Rails.application.routes.draw do
   scope '/payments' do
     # Routes Stripe
     scope '/checkout' do
-      get 'test', to: 'checkout#test_stripe', as: 'checkout_test'
       post 'create', to: 'checkout#create', as: 'checkout_create'
       get 'success', to: 'checkout#success', as: 'checkout_success'
       get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
