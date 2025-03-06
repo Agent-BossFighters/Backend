@@ -107,7 +107,11 @@ Rails.application.routes.draw do
       post 'create', to: 'checkout#create', as: 'checkout_create'
       get 'success', to: 'checkout#success', as: 'checkout_success'
       get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+      get 'verify/:session_id', to: 'checkout#verify', as: 'checkout_verify'
     end
+
+    # Webhook Stripe
+    post 'webhook', to: 'checkout#webhook', as: 'stripe_webhook'
 
     # Routes Crypto
     scope '/crypto' do
