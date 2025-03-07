@@ -54,7 +54,10 @@ class CheckoutController < ApplicationController
 
       if payment_intent.status == 'succeeded'
         user = User.find(session.metadata.user_id)
-        user&.update(is_premium: true)
+        if user&.update(is_premium: true)
+          # Envoyer l'email de confirmation
+          PaymentMailer.payment_success_email(user).deliver_later
+        end
 
         render json: {
           success: true,
@@ -95,7 +98,10 @@ class CheckoutController < ApplicationController
       if event.type == 'checkout.session.completed'
         session = event.data.object
         user = User.find(session.metadata.user_id)
-        user&.update(is_premium: true)
+        if user&.update(is_premium: true)
+          # Envoyer l'email de confirmation via le webhook
+          PaymentMailer.payment_success_email(user).deliver_later
+        end
       end
 
       render json: { received: true }
