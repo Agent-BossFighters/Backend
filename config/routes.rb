@@ -98,25 +98,28 @@ Rails.application.routes.draw do
       # Remplacer le namespace summary par des routes directes
       get 'summaries/daily/:date', to: 'summaries#daily'
       get 'summaries/monthly/:date', to: 'summaries#monthly'
-    end
-  end
 
-  scope '/payments' do
-    # Routes Stripe
-    scope '/checkout' do
-      post 'create', to: 'checkout#create', as: 'checkout_create'
-      get 'success', to: 'checkout#success', as: 'checkout_success'
-      get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
-      get 'verify/:session_id', to: 'checkout#verify', as: 'checkout_verify'
-    end
+      # Routes de paiement
+      scope '/payments' do
+        # Routes Stripe
+        scope '/checkout' do
+          post 'create', to: 'checkout#create', as: 'checkout_create'
+          get 'success', to: 'checkout#success', as: 'checkout_success'
+          get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+        end
 
-    # Webhook Stripe
-    post 'webhook', to: 'checkout#webhook', as: 'stripe_webhook'
+        # Webhook Stripe
+        post 'webhook', to: 'checkout#webhook', as: 'stripe_webhook'
 
-    # Routes Crypto
-    scope '/crypto' do
-      post 'metamask', to: 'crypto_payments#metamask'
-      get 'verify/:tx_hash', to: 'crypto_payments#verify', constraints: { tx_hash: /0x[a-fA-F0-9]{64}/ }
+        # Portail client Stripe
+        post 'customer-portal', to: 'customer_portal#create', as: 'customer_portal'
+
+        # Routes Crypto
+        scope '/crypto' do
+          post 'metamask', to: 'crypto_payments#metamask'
+          get 'verify/:tx_hash', to: 'crypto_payments#verify', constraints: { tx_hash: /0x[a-fA-F0-9]{64}/ }
+        end
+      end
     end
   end
 end

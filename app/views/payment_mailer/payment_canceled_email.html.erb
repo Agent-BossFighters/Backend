@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Au revoir <%= @user.username %></h1>
+    <p>
+      Votre abonnement Premium a bien été annulé.<br>
+      Nous espérons vous revoir bientôt !
+    </p>
+    <p>
+      Si vous souhaitez réactiver votre abonnement, vous pouvez le faire à tout moment en vous connectant sur : <%= ENV['FRONTEND_URL'] %>
+    </p>
+    <p>Merci de votre confiance !</p>
+  </body>
+</html>

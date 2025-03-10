@@ -181,7 +181,22 @@ module DataLab
 
     def calculate_ratio(badge)
       return 0 unless valid_badge?(badge)
-      Constants::RARITY_ORDER.index(badge.rarity.name) + 1
+
+      # Table de correspondance des ratios exacts
+      ratios = {
+        "Common" => 1.00,
+        "Uncommon" => 2.05,
+        "Rare" => 2.15,
+        "Epic" => 8.72,
+        "Legendary" => 26.82,
+        "Mythic" => 82.45,
+        "Exalted" => 253.55,
+        "Exotic" => 1164.8,
+        "Transcendent" => 4775.66,
+        "Unique" => 19580.22
+      }
+
+      ratios[badge.rarity.name] || 0
     end
 
     def calculate_cost_per_hour(recharge_cost, recharge_time)
