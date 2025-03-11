@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to our Premium platform, <%= @user.username %>!</h1>
+    <p>
+      Your payment has been successfully confirmed.<br>
+      You now have access to all premium features!
+    </p>
+    <p>
+      To access your account, please log in at: <%= ENV['FRONTEND_URL'] %>
+    </p>
+    <p>Thank you for your trust and see you soon!</p>
+  </body>
+</html>

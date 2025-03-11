@@ -18,6 +18,10 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
+  # Callbacks
+  before_create :set_default_premium_status
+  after_create :send_welcome_email
+
   # JWT token generation
   def generate_jwt
     JWT.encode(
@@ -35,9 +39,20 @@ class User < ApplicationRecord
     # Vous pouvez ajouter ici une logique supplémentaire lors de la création du token
   end
 
-  after_create :send_welcome_email
+  # Premium methods
+  def premium?
+    isPremium
+  end
+
+  def update_premium_status_based_on_subscription
+    update(isPremium: stripe_subscription_id.present?)
+  end
 
   private
+
+  def set_default_premium_status
+    self.isPremium = false
+  end
 
   def send_welcome_email
     NotificationMailer.welcome_email(self).deliver_later

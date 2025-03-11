@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Goodbye <%= @user.username %></h1>
+    <p>
+      Your Premium subscription has been successfully cancelled.<br>
+      We hope to see you again soon!
+    </p>
+    <p>
+      If you wish to reactivate your subscription, you can do so at any time by logging in at: <%= ENV['FRONTEND_URL'] %>
+    </p>
+    <p>Thank you for your trust!</p>
+  </body>
+</html>

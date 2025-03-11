@@ -13,7 +13,7 @@ module DataLab
           name: "Rookie",
           supply: 200_000,
           floor_price: 7.99,
-          efficiency: 0.1,
+          efficiency: 1.00,
           bft_per_minute: 10,
           max_energy: 1,
           in_game_time: 60
@@ -22,7 +22,7 @@ module DataLab
           name: "Initiate",
           supply: 100_000,
           floor_price: 28.50,
-          efficiency: 0.205,
+          efficiency: 2.05,
           bft_per_minute: 20,
           max_energy: 2,
           in_game_time: 120
@@ -31,7 +31,7 @@ module DataLab
           name: "Encore",
           supply: 50_000,
           floor_price: 82.50,
-          efficiency: 0.420,
+          efficiency: 4.20,
           bft_per_minute: 30,
           max_energy: 3,
           in_game_time: 180
@@ -40,7 +40,7 @@ module DataLab
           name: "Contender",
           supply: 25_000,
           floor_price: 410.00,
-          efficiency: 1.292,
+          efficiency: 12.92,
           bft_per_minute: 40,
           max_energy: 4,
           in_game_time: 240
@@ -49,7 +49,7 @@ module DataLab
           name: "Challenger",
           supply: 10_000,
           floor_price: 1000.00,
-          efficiency: 3.974,
+          efficiency: 39.74,
           bft_per_minute: 50,
           max_energy: 5,
           in_game_time: 300
@@ -58,7 +58,7 @@ module DataLab
           name: "Veteran",
           supply: 5_000,
           floor_price: 4000.00,
-          efficiency: 12.219,
+          efficiency: 122.19,
           bft_per_minute: 60,
           max_energy: 6,
           in_game_time: 360
@@ -76,7 +76,7 @@ module DataLab
           name: "Olympian",
           supply: 250,
           floor_price: 55_000.00,
-          efficiency: 154.054,
+          efficiency: 1540.54,
           bft_per_minute: 80,
           max_energy: 8,
           in_game_time: 480
@@ -85,7 +85,7 @@ module DataLab
           name: "Prodigy",
           supply: 100,
           floor_price: 150000.00,
-          efficiency: 631.620,
+          efficiency: 6316.20,
           bft_per_minute: 90,
           max_energy: 9,
           in_game_time: 540
@@ -94,7 +94,7 @@ module DataLab
           name: "MVP",
           supply: 1,
           floor_price: 500000.00,
-          efficiency: 2589.642,
+          efficiency: 25896.42,
           bft_per_minute: 100,
           max_energy: 10,
           in_game_time: 600
