@@ -27,8 +27,8 @@ module Api
             },
             customer: current_user.stripe_customer_id,
             customer_email: current_user.email,
-            success_url: "#{base_url}/payments/success?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url: "#{base_url}/payments/cancel",
+            success_url: "#{base_url}#/payments/success?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url: "#{base_url}#/payments/cancel",
             allow_promotion_codes: true,
             locale: 'en'
           }
