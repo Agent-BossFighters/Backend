@@ -106,6 +106,7 @@ Rails.application.routes.draw do
           post 'create', to: 'checkout#create', as: 'checkout_create'
           get 'success', to: 'checkout#success', as: 'checkout_success'
           get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+          get 'test_premium', to: 'checkout#test_premium', as: 'test_premium'
         end
 
         # Webhook Stripe

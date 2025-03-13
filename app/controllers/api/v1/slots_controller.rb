@@ -79,7 +79,7 @@ class Api::V1::SlotsController < ApplicationController
       unlock_price: slot.unlockPrice,
       unlocked: UserSlot.exists?(user: current_user, slot: slot),
       total_cost: slot.totalCost,
-      is_premium: slot.currency.name == "FLEX",
+      isPremium: slot.currency.name == "FLEX",
       is_free: slot.unlockCurrencyNumber.zero?
     }
   end

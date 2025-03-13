@@ -6,9 +6,9 @@ module DataLab
       # BFT: taux fixe de 0.01 USD
       # SM (Sponsor Marks): taux fixe de 0.01 USD
       CURRENCY_RATES = {
-        flex: 0.00743,  # FLEX to USD (499.99 / 67_330)
-        bft: 0.01,      # BFT to USD
-        sm: 0.01,       # Sponsor Marks to USD
+        flex: 499 / 480,  # FLEX to USD (499.99 / 67_330)
+        bft: 19.07/1000,      # BFT to USD
+        sm: 2.95/100,       # Sponsor Marks to USD
         energy: 1.49    # Energy cost in USD
       }.freeze
 
