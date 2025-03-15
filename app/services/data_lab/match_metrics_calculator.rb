@@ -26,15 +26,15 @@ module DataLab
     end
 
     def calculate_energy_cost
-      (calculate_energy_used * CURRENCY_RATES[:energy]).round(2)
+      (calculate_energy_used * Constants::CurrencyConstants.currency_rates[:energy]).round(2)
     end
 
     def calculate_token_value
-      (@match.totalToken.to_f * CURRENCY_RATES[:bft]).round(2)
+      (@match.totalToken.to_f * Constants::CurrencyConstants.currency_rates[:bft]).round(2)
     end
 
     def calculate_premium_value
-      (@match.totalPremiumCurrency.to_f * CURRENCY_RATES[:flex]).round(2)
+      (@match.totalPremiumCurrency.to_f * Constants::CurrencyConstants.currency_rates[:flex]).round(2)
     end
 
     def calculate_luckrate

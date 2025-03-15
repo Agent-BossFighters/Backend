@@ -120,6 +120,31 @@ Rails.application.routes.draw do
           get 'verify/:tx_hash', to: 'crypto_payments#verify', constraints: { tx_hash: /0x[a-fA-F0-9]{64}/ }
         end
       end
+
+      # Routes d'administration
+      namespace :admin do
+        resources :users do
+          member do
+            post 'promote', to: 'users#promote'
+            post 'demote', to: 'users#demote'
+          end
+        end
+        
+        # Ajoutez cette ligne pour les devises
+        resources :currencies
+        
+        # Autres ressources d'administration
+        resources :matches, only: [:index, :show, :destroy]
+        resources :nfts, only: [:index, :show, :destroy]
+        
+        # Dashboard d'administration
+        get 'dashboard', to: 'dashboard#index'
+
+        # Routes pour les devises du jeu
+        get 'game_currencies', to: 'game_currencies#index'
+        patch 'game_currencies/bft', to: 'game_currencies#update_bft'
+        patch 'game_currencies/sponsor_marks', to: 'game_currencies#update_sponsor_marks'
+      end
     end
   end
 end
