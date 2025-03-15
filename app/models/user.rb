@@ -48,6 +48,21 @@ class User < ApplicationRecord
     update(isPremium: stripe_subscription_id.present?)
   end
 
+  # Méthode pour vérifier si l'utilisateur est un administrateur
+  def admin?
+    is_admin == true
+  end
+
+  # Méthode pour promouvoir un utilisateur en administrateur
+  def make_admin!
+    update(is_admin: true)
+  end
+
+  # Méthode pour révoquer les droits d'administrateur
+  def revoke_admin!
+    update(is_admin: false)
+  end
+
   private
 
   def set_default_premium_status

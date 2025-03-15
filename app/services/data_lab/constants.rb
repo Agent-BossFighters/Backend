@@ -59,7 +59,7 @@ module DataLab
         {
           flex: flex_cost,
           sm: sm_cost,
-          total_usd: (flex_cost * CurrencyConstants::CURRENCY_RATES[:flex] + sm_cost * CurrencyConstants::CURRENCY_RATES[:bft]).round(2)
+          total_usd: (flex_cost * CurrencyConstants.currency_rates[:flex] + sm_cost * CurrencyConstants.currency_rates[:sm]).round(2)
         }
       end
 

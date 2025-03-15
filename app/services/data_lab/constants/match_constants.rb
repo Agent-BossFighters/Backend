@@ -1,7 +1,7 @@
 module DataLab
   module Constants
     module MatchConstants
-      include CurrencyConstants
+      include DataLab::Constants::CurrencyConstants
 
       ENERGY_CONSUMPTION = {
         RATE_PER_MINUTE: 0.1

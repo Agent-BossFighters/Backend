@@ -132,7 +132,7 @@ module DataLab
     end
 
     def calculate_total_usd(flex_cost, sm_cost)
-      (flex_cost * Constants::CURRENCY_RATES[:flex] + sm_cost * Constants::CURRENCY_RATES[:bft]).round(2)
+      (flex_cost * Constants::CurrencyConstants.currency_rates[:flex] + sm_cost * Constants::CurrencyConstants.currency_rates[:sm]).round(2)
     end
 
     def calculate_bft_per_minute(badge)
@@ -176,7 +176,7 @@ module DataLab
       bft_per_max_charge = calculate_bft_per_max_charge(badge)
       return 0 if bft_per_max_charge.nil?
 
-      (bft_per_max_charge * Constants::CURRENCY_RATES[:bft]).round(2)
+      (bft_per_max_charge * Constants::CurrencyConstants.currency_rates[:bft]).round(2)
     end
 
     def calculate_ratio(badge)

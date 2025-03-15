@@ -29,4 +29,11 @@ class ApplicationController < ActionController::Base
       nil
     end
   end
+
+  def authenticate_admin!
+    authenticate_user!
+    unless current_user&.admin?
+      render json: { error: 'Accès refusé. Droits d\'administrateur requis.' }, status: :forbidden
+    end
+  end
 end
