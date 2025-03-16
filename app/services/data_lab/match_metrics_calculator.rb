@@ -57,7 +57,7 @@ module DataLab
         if build && build.bftBonus
           # Utiliser directement le pourcentage du bonus
           bonus_multiplier = 1 + (build.bftBonus / 100.0)
-          return (base_profit * bonus_multiplier).round(2)
+          return (base_profit).round(2)
         end
       end
 
