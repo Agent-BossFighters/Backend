@@ -84,7 +84,7 @@ module Api
           if session.subscription
             puts "📌 Subscription trouvée : #{session.subscription.id}"
 
-            user = User.find_by(id: session.metadata.user_id)
+            user = User.find_by(email: session.customer_email)
 
             if user.nil?
               puts "❌ Utilisateur introuvable avec ID #{session.metadata.user_id}"
@@ -94,12 +94,12 @@ module Api
 
             puts "✅ Utilisateur trouvé : #{user.email}"
 
-            # success = user.update(
-            #   isPremium: true,
-            #   stripe_customer_id: session.customer&.id,
-            #   stripe_subscription_id: session.subscription.id
-            # )
-            # PaymentMailer.payment_succeeded_email(user).deliver_later
+             success = user.update(
+               isPremium: true,
+               stripe_customer_id: session.customer,
+               stripe_subscription_id: session.subscription.id
+             )
+             PaymentMailer.payment_succeeded_email(user).deliver_later
 
             render json: {
               success: true,
