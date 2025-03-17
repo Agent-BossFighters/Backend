@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         collection do
           get 'daily/:date', to: 'matches#daily'
           get 'monthly/:date', to: 'matches#monthly'
+          get 'monthly_summary/:date', to: 'matches#monthly_summary'
         end
       end
       resources :player_cycles, only: [:index, :show]
