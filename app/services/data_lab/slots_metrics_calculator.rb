@@ -113,7 +113,7 @@ module DataLab
       return 0 if bft_per_minute.nil? || max_energy.nil?
 
       total_bft = bft_per_minute * max_energy * 60
-      (total_bft * Constants::CurrencyConstants::CURRENCY_RATES[:bft]).round(2)
+      (total_bft * Constants::CurrencyConstants.currency_rates[:bft]).round(2)
     end
 
     def calculate_recharge_cost(rarity)

@@ -18,9 +18,9 @@ module DataLab
           "2. supply": craft_metrics[:supply],
           "3. nb_previous_rarity_item": craft_metrics[:previous_rarity_needed],
           "4. flex_craft": craft_metrics[:bft_tokens],
-          "5. flex_craft_cost": format_currency(craft_metrics[:bft_tokens] * Constants::CURRENCY_RATES[:bft]),
+          "5. flex_craft_cost": format_currency(craft_metrics[:bft_tokens] * Constants::CurrencyConstants.currency_rates[:bft]),
           "6. sp_marks_craft": craft_metrics[:sponsor_marks_reward],
-          "7. sp_marks_value": format_currency(craft_metrics[:sponsor_marks_reward] * Constants::CURRENCY_RATES[:sm])
+          "7. sp_marks_value": format_currency(craft_metrics[:sponsor_marks_reward] * Constants::CurrencyConstants.currency_rates[:sm])
         }
       end.compact
     end
