@@ -139,6 +139,54 @@ module Api
         end
       end
 
+      def monthly_summary
+        begin
+          date = if params[:date]
+                   raise Date::Error, "Format de date invalide. Utilisez YYYY-MM" unless params[:date].match?(/^\d{4}-\d{2}$/)
+                   Date.parse("#{params[:date]}-01")
+                 else
+                   Date.current
+                 end
+
+          start_date = date.beginning_of_month
+          end_date = date.end_of_month
+
+          @matches = current_user.matches
+                              .where(date: start_date..end_date)
+                              .includes(:badge_used)
+                              .order(created_at: :desc)
+
+          calculations = @matches.map { |m| DataLab::MatchMetricsCalculator.new(m).calculate }
+
+          render json: {
+            summary: {
+              matchesCount: @matches.count,
+              energyUsed: {
+                amount: calculations.sum { |c| c[:energyUsed] }.round(2),
+                cost: calculations.sum { |c| c[:energyCost] }.round(2)
+              },
+              totalBft: {
+                amount: @matches.sum(&:totalToken).to_f.round(2),
+                value: calculations.sum { |c| c[:tokenValue] }.round(2)
+              },
+              totalFlex: {
+                amount: @matches.sum(&:totalPremiumCurrency).to_f.round(2),
+                value: calculations.sum { |c| c[:premiumValue] }.round(2)
+              },
+              profit: calculations.sum { |c| c[:profit] }.round(2),
+              results: {
+                win: @matches.where(result: 'win').count,
+                loss: @matches.where(result: 'loss').count,
+                draw: @matches.where(result: 'draw').count
+              },
+              winRate: calculate_win_rate(@matches)
+            }
+          }
+        rescue Date::Error => e
+          render json: { error: e.message }, status: :bad_request
+        end
+      end
+
       private
 
       def format_match_response(match)
