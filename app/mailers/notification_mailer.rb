@@ -3,7 +3,7 @@ class NotificationMailer < ApplicationMailer
 
   def welcome_email(user)
     @user = user
-    @url = 'https://votre-domaine.com/login'
+    @url = 'https://agent-bossfighters.com/login'
 
     mail(
       to: @user.email,
@@ -14,7 +14,7 @@ class NotificationMailer < ApplicationMailer
   def match_summary(user, match)
     @user = user
     @match = match
-    @url = "https://votre-domaine.com/matches/#{match.id}"
+    @url = "https://agent-bossfighters.com/matches/#{match.id}"
 
     mail(
       to: @user.email,
