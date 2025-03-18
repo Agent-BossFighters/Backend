@@ -34,7 +34,7 @@ module Api
             success_url: "#{base_url}#/payments/success?session_id={CHECKOUT_SESSION_ID}",
             cancel_url: "#{base_url}#/payments/cancel",
             allow_promotion_codes: true,
-            locale: 'en'
+            locale: detect_locale_from_header
           }
 
           if current_user.stripe_customer_id.present?
@@ -265,7 +265,7 @@ module Api
         PaymentMailer.payment_failed_email(user).deliver_later
 
         if invoice[:attempt_count] > 3
-          user.update(is_premium: false)
+          user.update(isPremium: false)
           puts "⏳ Désactivation de l'abonnement pour #{user.email}"
         end
       end
