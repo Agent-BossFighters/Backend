@@ -1,5 +1,13 @@
 module DataLab
   class CurrencyRatesService
+    # Taux de change par défaut
+    DEFAULT_RATES = {
+      flex: 0.00743,
+      bft: 3.0,
+      sm: 0.028,  # Taux par défaut pour les Sponsor Marks
+      energy: 1.49
+    }.freeze
+
     FLEX_PACKS = [
       { amount: 480, price: 4.99, bonus: 0 },      # 0.0104 par FLEX
       { amount: 1_730, price: 14.99, bonus: 20 },  # 0.00867 par FLEX
@@ -12,10 +20,10 @@ module DataLab
     def self.get_rates
       Rails.cache.fetch("currency_rates", expires_in: 1.hour) do
         {
-          flex: Currency.find_by(name: "FLEX")&.price || 0.00743,
-          bft: Currency.find_by(name: "$BFT")&.price || 3.0,
-          sm: Currency.find_by(name: "Sponsor Marks")&.price || 0.01,
-          energy: Currency.find_by(name: "Energy")&.price || 1.49
+          flex: Currency.find_by(name: "FLEX")&.price || DEFAULT_RATES[:flex],
+          bft: Currency.find_by(name: "$BFT")&.price || DEFAULT_RATES[:bft],
+          sm: Currency.find_by(name: "Sponsor Marks")&.price || DEFAULT_RATES[:sm],  # Utiliser la valeur de la DB
+          energy: Currency.find_by(name: "Energy")&.price || DEFAULT_RATES[:energy]
         }
       end
     end
@@ -23,9 +31,9 @@ module DataLab
     def self.get_flex_packs
       FLEX_PACKS
     end
-    
+
     def self.invalidate_cache
       Rails.cache.delete("currency_rates")
     end
   end
-end 
+end
