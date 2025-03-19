@@ -90,8 +90,8 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def user_params
-    # Permettre username et autres attributs si nécessaire, mais pas current_password
-    params.require(:user).permit(:username, :isPremium, :level, :experience,
+    # Permettre username, email et autres attributs si nécessaire, mais pas current_password
+    params.require(:user).permit(:username, :email, :isPremium, :level, :experience,
     :assetType, :asset, :slotUnlockedId, :maxRarity)
   end
 end
