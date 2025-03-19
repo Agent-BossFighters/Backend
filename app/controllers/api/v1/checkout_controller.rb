@@ -19,7 +19,7 @@ module Api
 
           session_params = {
             mode: 'subscription',
-            payment_method_types: ['card'],
+            payment_method_types: ['card', 'paypal', 'link'],
             line_items: [{
               price: params[:priceId],
               quantity: 1

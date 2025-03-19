@@ -36,3 +36,5 @@
 .env
 
 notepads
+
+credentials.yml.enc
