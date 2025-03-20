@@ -11,11 +11,11 @@ module DataLab
 
       # Bonus BFT total par nombre de slots
       TOTAL_BONUS_BFT_PERCENT = {
-        1 => 1.0,   # 1%
-        2 => 4.5,   # 4.5%
-        3 => 12.0,  # 12%
-        4 => 25.0,  # 25%
-        5 => 40.0   # 40%
+        1 => 0.0,   # 0%
+        2 => 1.0,   # 4.5%
+        3 => 4.5,   # 12%
+        4 => 12.0,  # 25%
+        5 => 25.0   # 40%
       }.freeze
 
       # Constantes pour les calculs de parts normales et bonus

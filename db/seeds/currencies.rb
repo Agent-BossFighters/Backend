@@ -13,25 +13,25 @@ currencies = [
   {
     name: "FLEX",
     onChain: false,
-    price: 10.0,
+    price: 0.0104,
     game: game
   },
   {
     name: "$BFT",
     onChain: true,
-    price: 100.0,
+    price: 0.0230,
     game: game
   },
   {
     name: "Sponsor Marks",
     onChain: true,
-    price: 50.0,
+    price: 0.0280,
     game: game
   },
   {
     name: "Fame Points",
     onChain: false,
-    price: 5.0,
+    price: 0.0,
     game: game
   }
 ]

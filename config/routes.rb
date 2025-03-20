@@ -24,7 +24,12 @@ Rails.application.routes.draw do
       resources :currencies, only: [:index, :show]
       resources :currency_packs, only: [:index, :show]
 
-      resources :users, only: [:show, :update, :destroy]
+      resources :users, only: [:show, :update, :destroy] do
+        collection do
+          patch 'tactics', to: 'users#update_tactics'
+          get 'flex_packs', to: 'users#get_flex_packs'
+        end
+      end
       resources :badges do
         collection do
           get 'owned', to: 'badges#owned_badges'

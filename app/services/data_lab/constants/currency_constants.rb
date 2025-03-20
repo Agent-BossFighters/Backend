@@ -6,6 +6,11 @@ module DataLab
         DataLab::CurrencyRatesService.get_rates
       end
 
+      # Méthode pour obtenir les taux de Flex spécifiques à l'utilisateur
+      def self.user_currency_rates(user)
+        DataLab::CurrencyRatesService.get_user_rates(user)
+      end
+
       # Méthode pour accéder aux taux comme constante pour compatibilité
       def self.CURRENCY_RATES
         currency_rates

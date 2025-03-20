@@ -132,7 +132,7 @@ module DataLab
     end
 
     def calculate_total_usd(flex_cost, sm_cost)
-      (flex_cost * Constants::CurrencyConstants.currency_rates[:flex] + sm_cost * Constants::CurrencyConstants.currency_rates[:sm]).round(2)
+        (flex_cost * Constants::CurrencyConstants.user_currency_rates(@user)[:flex] + sm_cost * Constants::CurrencyConstants.currency_rates[:sm]).round(2)
     end
 
     def calculate_bft_per_minute(badge)
