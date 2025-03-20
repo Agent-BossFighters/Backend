@@ -51,6 +51,12 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def update_tactics
     if current_user.update(tactics_params)
+      # Invalider le cache pour que les nouveaux taux soient utilisés
+      DataLab::CurrencyRatesService.invalidate_cache
+      
+      # Invalider le cache de Data Lab pour cet utilisateur
+      Rails.cache.delete_matched("data_lab/*/#{current_user.id}*")
+      
       render json: {
         message: 'Tactics successfully updated',
         user: current_user
