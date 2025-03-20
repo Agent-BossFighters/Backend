@@ -3,22 +3,11 @@ class NotificationMailer < ApplicationMailer
 
   def welcome_email(user)
     @user = user
-    @url = 'https://votre-domaine.com/login'
+    @url = 'https://agent-bossfighters.com/login'
 
     mail(
       to: @user.email,
-      subject: 'Bienvenue sur Boss Fighters!'
-    )
-  end
-
-  def match_summary(user, match)
-    @user = user
-    @match = match
-    @url = "https://votre-domaine.com/matches/#{match.id}"
-
-    mail(
-      to: @user.email,
-      subject: 'Résumé de votre match Boss Fighters'
+      subject: 'Welcome to Agent-BossFighters!'
     )
   end
 end
