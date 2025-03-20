@@ -82,12 +82,18 @@ module DataLab
     private
 
     def calculate_slots_cost(slots)
+
+      user_rates = Constants::CurrencyConstants.user_currency_rates(@user)
+
       slots.map do |slot|
         values = Constants::SlotConstants::SLOT_VALUES[slot.id] || { flex: 0, cost: 0, bonus: 0 }
+
+        flex_amount = values[:flex] * user_rates[:flex]
+
         {
           "1. slot": slot.id,
           "2. nb_flex": values[:flex],
-          "3. flex_cost": format_currency(values[:cost]),
+          "3. flex_cost": format_currency(flex_amount),
           "4. bonus_bft": values[:bonus],
           normalPart: calculate_normal_part(slot.id),
           bonusPart: calculate_bonus_part(slot.id)
