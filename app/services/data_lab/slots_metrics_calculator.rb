@@ -40,13 +40,29 @@ module DataLab
           slot_progression = total_part / 100.0  # Normaliser par rapport au slot 1
           adjusted_roi = (slot_roi * slot_progression).round(0)
 
-          # Calculer le nb_tokens_roi avec la même progression mais sans ajustement de rareté
-          tokens_roi = (base_roi * slot_progression).round(0)
+          # Récupérer la valeur du coût en dollars pour ce slot
+          slot_cost_value = slot_cost[:"3. flex_cost"].is_a?(String) ? 
+                             slot_cost[:"3. flex_cost"].gsub('$', '').to_f : 
+                             slot_cost[:"3. flex_cost"].to_f
+
+          # Calculer le nb_tokens_roi en fonction du coût et de la valeur BFT en base
+          bft_value = Constants::CurrencyConstants.currency_rates[:bft]
+          tokens_roi = bft_value > 0 ? (slot_cost_value / bft_value).round(0) : 0
+          
+          # Récupérer directement les valeurs des constantes pour le bonus BFT
+          slot_id = slot_cost[:"1. slot"]
+          # Traiter spécifiquement le cas du slot 1 pour avoir 0%
+          if slot_id == 1
+            total_bonus_bft = 0
+          else
+            # Pour les autres slots, utiliser TOTAL_BONUS_BFT_PERCENT
+            total_bonus_bft = Constants::SlotConstants::TOTAL_BONUS_BFT_PERCENT[slot_id] || 0
+          end
 
           {
             "1. total_flex": slot_cost[:"2. nb_flex"],
             "2. total_cost": slot_cost[:"3. flex_cost"],
-            "3. total_bonus_bft": slot_cost[:"4. bonus_bft"],
+            "3. total_bonus_bft": total_bonus_bft,
             "4. nb_tokens_roi": tokens_roi,
             "5. nb_charges_roi_1.0": adjusted_roi,
             "6. nb_charges_roi_2.0": (adjusted_roi / 2.0).round(0),

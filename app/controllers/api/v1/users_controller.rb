@@ -49,6 +49,36 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
   end
 
+  def update_tactics
+    if current_user.update(tactics_params)
+      render json: {
+        message: 'Tactics successfully updated',
+        user: current_user
+      }
+    else
+      render json: { errors: current_user.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def get_flex_packs
+    packs = DataLab::CurrencyRatesService::FLEX_PACKS.map.with_index(1) do |pack, index|
+      {
+        id: index,
+        amount: pack[:amount],
+        price: pack[:price],
+        bonus: pack[:bonus],
+        unit_price: (pack[:price] / pack[:amount]).round(5)
+      }
+    end
+
+    current_pack = current_user.flex_pack || 1 # Use default pack (id: 1) if not set
+
+    render json: {
+      packs: packs,
+      current_pack: current_pack
+    }
+  end
+
   def destroy
     if current_user.destroy
       render json: { message: 'User successfully deleted' }, status: :ok
@@ -92,6 +122,10 @@ class Api::V1::UsersController < Api::V1::BaseController
   def user_params
     # Permettre username, email et autres attributs si nécessaire, mais pas current_password
     params.require(:user).permit(:username, :email, :isPremium, :level, :experience,
-    :assetType, :asset, :slotUnlockedId, :maxRarity)
+    :assetType, :asset, :slotUnlockedId, :maxRarity, :flex_pack)
+  end
+
+  def tactics_params
+    params.require(:user).permit(:flex_pack)
   end
 end

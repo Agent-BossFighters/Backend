@@ -5,6 +5,7 @@ module DataLab
 
     def initialize(match)
       @match = match
+      @user = match.user
     end
 
     def calculate
@@ -34,7 +35,8 @@ module DataLab
     end
 
     def calculate_premium_value
-      (@match.totalPremiumCurrency.to_f * Constants::CurrencyConstants.currency_rates[:flex]).round(2)
+      user_rates = Constants::CurrencyConstants.user_currency_rates(@user)
+      (@match.totalPremiumCurrency.to_f * user_rates[:flex]).round(2)
     end
 
     def calculate_luckrate
