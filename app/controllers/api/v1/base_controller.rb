@@ -38,6 +38,20 @@ class Api::V1::BaseController < ApplicationController
     }, status: :unauthorized
   end
 
+  def isPremium_user!
+
+    if current_user.isPremium
+      Rails.logger.info "User is premium: #{current_user.id}"
+      return true
+    end
+
+    Rails.logger.error "Authentication failed"
+    render json: {
+      error: 'Unauthorized',
+      message: 'User need Premium to access this feature'
+    }, status: :unauthorized
+  end
+
   def current_user
     return @current_user if defined?(@current_user)
 
