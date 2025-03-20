@@ -5,23 +5,35 @@ game = Game.find_by!(name: "Boss Fighters")
 # Définition des currencies de Boss Fighters
 currencies = [
   {
+    name: "CASH",
+    onChain: false,
+    price: 1.0,
+    game: game
+  },
+  {
     name: "FLEX",
     onChain: false,
-    price: 10.0,
+    price: 0.0104,
     game: game
   },
   {
     name: "$BFT",
     onChain: true,
-    price: 100.0,
+    price: 0.0230,
     game: game
   },
   {
     name: "Sponsor Marks",
     onChain: true,
-    price: 0.028,  # Valeur initiale, peut être modifiée via l'admin
+    price: 0.0280,
     game: game
   },
+  {
+    name: "Fame Points",
+    onChain: false,
+    price: 0.0,
+    game: game
+  }
 ]
 
 # Création des currencies
