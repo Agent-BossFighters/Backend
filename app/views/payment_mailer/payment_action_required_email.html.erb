@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Action Required for <%= @user.username %> ⏳</h1>
+    <p>
+      Your payment requires additional verification to be completed.<br>
+      Please follow the instructions from your bank or payment provider.
+    </p>
+    <p>
+      You can complete the payment process by logging in at:<br>
+      <a href="<%= ENV['FRONTEND_URL'] %>/billing">Complete Payment</a>
+    </p>
+    <p>If you need help, don't hesitate to reach out to our support team.</p>
+    <p>Thank you for choosing our service!</p>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Payment Failed for <%= @user.username %> ❌</h1>
+    <p>
+      Unfortunately, your recent payment attempt was unsuccessful.<br>
+      This may be due to insufficient funds, an expired card, or another issue.
+    </p>
+    <p>
+      Please update your payment method as soon as possible to avoid any service disruption:<br>
+      <a href="<%= ENV['FRONTEND_URL'] %>/billing">Update Payment Details</a>
+    </p>
+    <p>If you need assistance, feel free to contact our support team.</p>
+    <p>Thank you for your trust!</p>
+  </body>
+</html>
