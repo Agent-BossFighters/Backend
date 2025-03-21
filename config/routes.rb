@@ -124,6 +124,7 @@ Rails.application.routes.draw do
         scope '/crypto' do
           post 'metamask', to: 'crypto_payments#metamask'
           get 'verify/:tx_hash', to: 'crypto_payments#verify', constraints: { tx_hash: /0x[a-fA-F0-9]{64}/ }
+          post 'onramp', to: 'checkout#create_crypto_onramp', as: 'crypto_onramp'
         end
       end
 
@@ -135,7 +136,7 @@ Rails.application.routes.draw do
             post 'demote', to: 'users#demote'
           end
         end
-        
+
         # Ajoutez cette ligne pour les devises
         resources :currencies
         
@@ -145,7 +146,7 @@ Rails.application.routes.draw do
         # Autres ressources d'administration
         resources :matches, only: [:index, :show, :destroy]
         resources :nfts, only: [:index, :show, :destroy]
-        
+
         # Dashboard d'administration
         get 'dashboard', to: 'dashboard#index'
 

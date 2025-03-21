@@ -53,18 +53,16 @@ module DataLab
       sp_marks_cost_data = []
       total_cost_data = []
       total_cost = 0
-      total_usd_cost = 0
 
       (1..30).each do |level|
-        sp_marks = calculate_sp_marks_for_level(level)
-        sp_marks_cost = (sp_marks * Constants::CurrencyConstants.currency_rates[:sm]).round(2)
+        sp_marks = Constants::ContractConstants::CONTRACT_LEVEL_UP_COSTS[level]
+        sp_marks_cost = (sp_marks * 0.028).round(2)
 
         total_cost += sp_marks
-        total_usd_cost += sp_marks_cost
 
-        sp_marks_data << sp_marks.round(2)
+        sp_marks_data << sp_marks
         sp_marks_cost_data << format_currency(sp_marks_cost)
-        total_cost_data << format_currency(total_usd_cost)
+        total_cost_data << total_cost
       end
 
       {
@@ -72,11 +70,6 @@ module DataLab
         sp_marks_cost: sp_marks_cost_data,
         total_cost: total_cost_data
       }
-    end
-
-    def calculate_sp_marks_for_level(level)
-      # Formula: 1.8433(X)^2 + 192.9014(X) + 0.5702 where X = level
-      (1.8433 * level**2 + 192.9014 * level + 0.5702).round(2)
     end
 
     def calculate_craft_time(rarity)

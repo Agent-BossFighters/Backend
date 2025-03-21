@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_03_19_234246) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -247,14 +246,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_19_234246) do
     t.datetime "remember_created_at"
     t.string "username"
     t.string "stripe_customer_id"
-    t.string "stripe_subscription_id"
     t.boolean "is_admin", default: false
+    t.string "stripe_subscription_id"
     t.integer "flex_pack", default: 1
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["is_admin"], name: "index_users_on_is_admin"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["stripe_customer_id"], name: "index_users_on_stripe_customer_id"
-    t.index ["stripe_subscription_id"], name: "index_users_on_stripe_subscription_id"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
