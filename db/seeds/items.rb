@@ -9,8 +9,14 @@ items = [
     rarity_name: "Common",
     efficiency: 1.0,
     supply: 200_000,
-    floorPrice: 7.98,
-    farming: { ratio: 1.0, in_game_time: 600 }
+    floorPrice: 7.99,
+    farming: { ratio: 1.0, in_game_time: 60 },
+    recharge: {
+      max_energy_recharge: 1,
+      time_to_charge: 480,
+      flex_charge: 500,
+      sponsor_mark_charge: 150
+    }
   },
   {
     name: "Initiate",
@@ -18,8 +24,14 @@ items = [
     rarity_name: "Uncommon",
     efficiency: 2.05,
     supply: 100_000,
-    floorPrice: 34.00,
-    farming: { ratio: 2.05, in_game_time: 600 }
+    floorPrice: 28.50,
+    farming: { ratio: 1.0, in_game_time: 120 },
+    recharge: {
+      max_energy_recharge: 2,
+      time_to_charge: 465,
+      flex_charge: 1400,
+      sponsor_mark_charge: 350
+    }
   },
   {
     name: "Encore",
@@ -27,8 +39,14 @@ items = [
     rarity_name: "Rare",
     efficiency: 4.20,
     supply: 50_000,
-    floorPrice: 95.00,
-    farming: { ratio: 2.15, in_game_time: 600 }
+    floorPrice: 82.50,
+    farming: { ratio: 1.0, in_game_time: 180 },
+    recharge: {
+      max_energy_recharge: 3,
+      time_to_charge: 450,
+      flex_charge: 2520,
+      sponsor_mark_charge: 1023
+    }
   },
   {
     name: "Contender",
@@ -36,8 +54,14 @@ items = [
     rarity_name: "Epic",
     efficiency: 12.92,
     supply: 25_000,
-    floorPrice: 409.00,
-    farming: { ratio: 8.72, in_game_time: 600 }
+    floorPrice: 410.00,
+    farming: { ratio: 1.0, in_game_time: 240 },
+    recharge: {
+      max_energy_recharge: 4,
+      time_to_charge: 435,
+      flex_charge: 4800,
+      sponsor_mark_charge: 1980
+    }
   },
   {
     name: "Challenger",
@@ -45,53 +69,89 @@ items = [
     rarity_name: "Legendary",
     efficiency: 39.74,
     supply: 10_000,
-    floorPrice: 2_900.00,
-    farming: { ratio: 26.82, in_game_time: 600 }
+    floorPrice: 1000.00,
+    farming: { ratio: 1.0, in_game_time: 300 },
+    recharge: {
+      max_energy_recharge: 5,
+      time_to_charge: 420,
+      flex_charge: 12000,
+      sponsor_mark_charge: 4065
+    }
   },
   {
     name: "Veteran",
     type_name: "Badge",
     rarity_name: "Mythic",
-    efficiency: 100.0,
+    efficiency: 122.19,
     supply: 5_000,
-    floorPrice: 8_900.00,
-    farming: { ratio: 60.0, in_game_time: 600 }
+    floorPrice: 4000.00,
+    farming: { ratio: 1.0, in_game_time: 360 },
+    recharge: {
+      max_energy_recharge: 6,
+      time_to_charge: 405,
+      flex_charge: 21000,
+      sponsor_mark_charge: 8136
+    }
   },
   {
     name: "Champion",
     type_name: "Badge",
     rarity_name: "Exalted",
-    efficiency: 250.0,
-    supply: 2_000,
-    floorPrice: 25_000.00,
-    farming: { ratio: 150.0, in_game_time: 600 }
+    efficiency: 375.74,
+    supply: 1_000,
+    floorPrice: 100_000.00,
+    farming: { ratio: 1.0, in_game_time: 420 },
+    recharge: {
+      max_energy_recharge: 7,
+      time_to_charge: 390,
+      flex_charge: 9800,
+      sponsor_mark_charge: nil
+    }
   },
   {
     name: "Olympian",
     type_name: "Badge",
     rarity_name: "Exotic",
-    efficiency: 625.0,
-    supply: 1_000,
-    floorPrice: 75_000.00,
-    farming: { ratio: 375.0, in_game_time: 600 }
+    efficiency: 1540.54,
+    supply: 250,
+    floorPrice: 55_000.00,
+    farming: { ratio: 1.0, in_game_time: 480 },
+    recharge: {
+      max_energy_recharge: 8,
+      time_to_charge: 375,
+      flex_charge: 11200,
+      sponsor_mark_charge: nil
+    }
   },
   {
     name: "Prodigy",
     type_name: "Badge",
     rarity_name: "Transcendent",
-    efficiency: 1562.5,
-    supply: 500,
-    floorPrice: 225_000.00,
-    farming: { ratio: 937.5, in_game_time: 600 }
+    efficiency: 6316.20,
+    supply: 100,
+    floorPrice: 150000.00,
+    farming: { ratio: 1.0, in_game_time: 540 },
+    recharge: {
+      max_energy_recharge: 9,
+      time_to_charge: 360,
+      flex_charge: 12600,
+      sponsor_mark_charge: nil
+    }
   },
   {
     name: "MVP",
     type_name: "Badge",
     rarity_name: "Unique",
-    efficiency: 3906.25,
-    supply: 100,
-    floorPrice: 675_000.00,
-    farming: { ratio: 2343.75, in_game_time: 600 }
+    efficiency: 25896.42,
+    supply: 1,
+    floorPrice: 500000.00,
+    farming: { ratio: 1.0, in_game_time: 600 },
+    recharge: {
+      max_energy_recharge: 10,
+      time_to_charge: 345,
+      flex_charge: 14000,
+      sponsor_mark_charge: nil
+    }
   },
 
   # Contracts
