@@ -1,16 +1,10 @@
 require_relative 'constants/currency_constants'
-require_relative 'constants/slot_constants'
-require_relative 'constants/recharge_constants'
-require_relative 'constants/contract_constants'
 require_relative 'constants/game_constants'
 require_relative 'constants/match_constants'
 
 module DataLab
   module Constants
     include CurrencyConstants
-    include SlotConstants
-    include RechargeConstants
-    include ContractConstants
     include GameConstants
     include MatchConstants
 
@@ -52,8 +46,15 @@ module DataLab
       def calculate_recharge_cost(rarity)
         return nil unless Rarity.exists?(name: rarity)
 
-        flex_cost = RechargeConstants::RECHARGE_COSTS[:flex][rarity]
-        sm_cost = RechargeConstants::RECHARGE_COSTS[:sm][rarity]
+        item = Item.includes(:item_recharge)
+                  .joins(:rarity)
+                  .where(rarities: { name: rarity }, types: { name: 'Badge' })
+                  .first
+
+        return nil unless item&.item_recharge
+
+        flex_cost = item.item_recharge.flex_charge
+        sm_cost = item.item_recharge.sponsor_mark_charge
 
         return nil if flex_cost.nil? || sm_cost.nil?
 

@@ -236,7 +236,9 @@ items = [
     crafting: {
       flex_craft: 1_320,
       sponsor_mark_craft: 0,
-      nb_lower_badge_to_craft: 0
+      nb_lower_badge_to_craft: 0,
+      craft_time: 120,  # 2 heures en minutes
+      max_level: 10
     },
     recharge: {
       max_energy_recharge: 1,
@@ -256,7 +258,9 @@ items = [
     crafting: {
       flex_craft: 293,
       sponsor_mark_craft: 2_400,
-      nb_lower_badge_to_craft: 2
+      nb_lower_badge_to_craft: 2,
+      craft_time: 180,  # 3 heures en minutes
+      max_level: 20
     },
     recharge: {
       max_energy_recharge: 2,
@@ -462,7 +466,9 @@ items.each do |item_data|
       sponsor_mark_craft: item_data[:crafting][:sponsor_mark_craft],
       nb_lower_badge_to_craft: item_data[:crafting][:nb_lower_badge_to_craft],
       craft_tokens: item_data[:crafting][:craft_tokens],
-      sponsor_marks_reward: item_data[:crafting][:sponsor_marks_reward]
+      sponsor_marks_reward: item_data[:crafting][:sponsor_marks_reward],
+      craft_time: item_data[:crafting][:craft_time],
+      max_level: item_data[:crafting][:max_level]
     ).find_or_create_by!(item: item)
   end
 

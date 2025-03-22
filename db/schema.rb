@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_22_181505) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_22_190130) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -70,6 +70,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_181505) do
     t.datetime "updated_at", null: false
     t.integer "craft_tokens"
     t.integer "sponsor_marks_reward"
+    t.integer "craft_time"
+    t.integer "max_level"
     t.index ["item_id"], name: "index_item_craftings_on_item_id"
   end
 
@@ -190,6 +192,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_181505) do
     t.float "bonus_multiplier"
     t.float "bonus_bft_percent"
     t.integer "base_bonus_part"
+    t.integer "flex_value"
+    t.float "cost_value"
+    t.float "bonus_value"
     t.index ["currency_id"], name: "index_slots_on_currency_id"
     t.index ["game_id"], name: "index_slots_on_game_id"
   end

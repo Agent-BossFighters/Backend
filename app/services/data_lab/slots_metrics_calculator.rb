@@ -49,15 +49,10 @@ module DataLab
           bft_value = Constants::CurrencyConstants.currency_rates[:bft]
           tokens_roi = bft_value > 0 ? (slot_cost_value / bft_value).round(0) : 0
 
-          # Récupérer directement les valeurs des constantes pour le bonus BFT
+          # Récupérer le bonus BFT directement depuis la base de données
           slot_id = slot_cost[:"1. slot"]
-          # Traiter spécifiquement le cas du slot 1 pour avoir 0%
-          if slot_id == 1
-            total_bonus_bft = 0
-          else
-            # Pour les autres slots, utiliser TOTAL_BONUS_BFT_PERCENT
-            total_bonus_bft = Constants::SlotConstants::TOTAL_BONUS_BFT_PERCENT[slot_id] || 0
-          end
+          slot = slots.find { |s| s.id == slot_id }
+          total_bonus_bft = slot_id == 1 ? 0 : (slot&.bonus_bft_percent || 0)
 
           {
             "1. total_flex": slot_cost[:"2. nb_flex"],
@@ -82,19 +77,16 @@ module DataLab
     private
 
     def calculate_slots_cost(slots)
-
       user_rates = Constants::CurrencyConstants.user_currency_rates(@user)
 
       slots.map do |slot|
-        values = Constants::SlotConstants::SLOT_VALUES[slot.id] || { flex: 0, cost: 0, bonus: 0 }
-
-        flex_amount = values[:flex] * user_rates[:flex]
+        flex_amount = slot.flex_value * user_rates[:flex]
 
         {
           "1. slot": slot.id,
-          "2. nb_flex": values[:flex],
+          "2. nb_flex": slot.flex_value,
           "3. flex_cost": format_currency(flex_amount),
-          "4. bonus_bft": values[:bonus],
+          "4. bonus_bft": slot.bonus_value,
           normalPart: calculate_normal_part(slot.id),
           bonusPart: calculate_bonus_part(slot.id)
         }
@@ -141,9 +133,16 @@ module DataLab
     end
 
     def calculate_recharge_cost(rarity)
+      item = Item.includes(:item_recharge)
+                .joins(:rarity)
+                .where(rarities: { name: rarity }, types: { name: 'Badge' })
+                .first
+
+      return { flex: 0, sm: 0 } unless item&.item_recharge
+
       {
-        flex: Constants::RechargeConstants::RECHARGE_COSTS[:flex][rarity],
-        sm: Constants::RechargeConstants::RECHARGE_COSTS[:sm][rarity]
+        flex: item.item_recharge.flex_charge || 0,
+        sm: item.item_recharge.sponsor_mark_charge || 0
       }
     end
 
@@ -203,10 +202,13 @@ module DataLab
       adjusted_flex = (total_flex * multiplier).round(0)
       adjusted_cost = (total_cost * multiplier).round(2)
 
+      slot = Slot.find_by(id: nb_slots)
+      total_bonus_bft = slot&.bonus_bft_percent || 0
+
       {
         "1. total_flex": adjusted_flex,
         "2. total_cost": format_currency(adjusted_cost),
-        "3. total_bonus_bft": Constants::SlotConstants::TOTAL_BONUS_BFT_PERCENT[nb_slots] || 0,
+        "3. total_bonus_bft": total_bonus_bft,
         "4. nb_tokens_roi": (base_roi * multiplier).round(0),
         "5. nb_charges_roi_1.0": (base_roi * multiplier).round(0),
         "6. nb_charges_roi_2.0": ((base_roi * multiplier) / 2.0).round(0),

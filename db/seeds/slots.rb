@@ -14,7 +14,10 @@ slots = [
     unlockPrice: 0,
     bonus_multiplier: 0,    # 0% bonus
     bonus_bft_percent: 0.0, # 0% BFT bonus
-    base_bonus_part: 0      # Pas de bonus
+    base_bonus_part: 0,     # Pas de bonus
+    flex_value: 0,
+    cost_value: 0.00,
+    bonus_value: 0.0
   },
   # Premier slot payant
   {
@@ -25,40 +28,52 @@ slots = [
     unlockPrice: 51.98,
     bonus_multiplier: 10,   # 10% bonus
     bonus_bft_percent: 1.0, # 1% BFT bonus
-    base_bonus_part: 10     # Bonus part de base
+    base_bonus_part: 10,    # Bonus part de base
+    flex_value: 7_000,
+    cost_value: 51.98,
+    bonus_value: 0.5
   },
   # Deuxième slot
   {
     currency: flex,
     game: game,
     unlocked: false,
-    unlockCurrencyNumber: 20_000,
-    unlockPrice: 148.52,
+    unlockCurrencyNumber: 13_000,
+    unlockPrice: 96.54,
     bonus_multiplier: 20,   # 20% bonus
     bonus_bft_percent: 4.5, # 4.5% BFT bonus
-    base_bonus_part: 10     # Bonus part de base
+    base_bonus_part: 10,    # Bonus part de base
+    flex_value: 13_000,
+    cost_value: 96.54,
+    bonus_value: 1.5
   },
   # Troisième slot
   {
     currency: flex,
     game: game,
     unlocked: false,
-    unlockCurrencyNumber: 40_000,
-    unlockPrice: 297.04,
+    unlockCurrencyNumber: 20_000,
+    unlockPrice: 148.52,
     bonus_multiplier: 30,   # 30% bonus
     bonus_bft_percent: 12.0, # 12% BFT bonus
-    base_bonus_part: 10     # Bonus part de base
+    base_bonus_part: 10,     # Bonus part de base
+    flex_value: 20_000,
+    cost_value: 148.52,
+    bonus_value: 3.0
   },
   # Quatrième slot
   {
     currency: flex,
     game: game,
     unlocked: false,
-    unlockCurrencyNumber: 66_000,
-    unlockPrice: 490.11,
+    unlockCurrencyNumber: 26_000,
+    unlockPrice: 193.07,
     bonus_multiplier: 40,   # 40% bonus
     bonus_bft_percent: 25.0, # 25% BFT bonus
-    base_bonus_part: 10     # Bonus part de base
+    base_bonus_part: 10,     # Bonus part de base
+    flex_value: 26_000,
+    cost_value: 193.07,
+    bonus_value: 5.0
   }
 ]
 

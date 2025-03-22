@@ -27,20 +27,20 @@ module DataLab
     def calculate_contracts_metrics(contracts)
       contracts.map do |contract|
         rarity = contract.rarity.name
-        recharge_cost = calculate_recharge_cost(rarity)
+        recharge_cost = calculate_recharge_cost(contract)
 
         {
           "1. rarity": rarity,
           "2. item": contract.name,
           "3. supply": contract.supply || 0,
           "4. floor_price": format_currency(contract.floorPrice),
-          "5. lvl_max": Constants::CONTRACT_MAX_LEVEL[rarity],
+          "5. lvl_max": contract.item_crafting&.max_level || 0,
           "6. max_energy": contract.item_recharge&.max_energy_recharge || 0,
-          "7. time_to_craft": format_hours(calculate_craft_time(rarity)),
+          "7. time_to_craft": format_hours(calculate_craft_time(contract)),
           "8. nb_badges_required": contract.item_crafting&.nb_lower_badge_to_craft || 0,
           "9. flex_craft": contract.item_crafting&.craft_tokens || 0,
           "10. sp_marks_craft": contract.item_crafting&.sponsor_marks_reward || 0,
-          "11. time_to_charge": calculate_recharge_time(rarity),
+          "11. time_to_charge": calculate_recharge_time(contract),
           "12. flex_charge": recharge_cost&.[](:flex),
           "13. sp_marks_charge": recharge_cost&.[](:sm)
         }
@@ -53,8 +53,8 @@ module DataLab
       total_cost_data = []
       total_cost = 0
 
-      (1..30).each do |level|
-        sp_marks = Constants::ContractConstants::CONTRACT_LEVEL_UP_COSTS[level]
+      ::ContractLevelCost.order(:level).limit(30).each do |level_cost|
+        sp_marks = level_cost.sponsor_mark_cost
         sp_marks_cost = (sp_marks * 0.028).round(2)
 
         total_cost += sp_marks
@@ -71,32 +71,25 @@ module DataLab
       }
     end
 
-    def calculate_craft_time(rarity)
-      return 0 if rarity.nil?
+    def calculate_craft_time(contract)
+      return 0 if contract.nil? || contract.item_crafting.nil?
 
-      rarity_record = Rarity.find_by(name: rarity)
-      return 0 if rarity_record.nil?
-
-      # Calcul du temps de craft basé sur l'ID de la rareté
-      craft_time = Constants::BASE_CRAFT_TIME + ((rarity_record.id - 1) * Constants::CRAFT_TIME_INCREMENT)
-
-      # S'assurer que le temps de craft est positif
-      [craft_time, 0].max
+      # Le temps de craft est stocké directement dans item_crafting
+      contract.item_crafting.craft_time || 0
     end
 
-    def calculate_recharge_cost(rarity)
+    def calculate_recharge_cost(contract)
+      return { flex: 0, sm: 0 } if contract.nil? || contract.item_recharge.nil?
+
       {
-        flex: Constants::RECHARGE_COSTS[:flex][rarity],
-        sm: Constants::RECHARGE_COSTS[:sm][rarity]
+        flex: contract.item_recharge.flex_charge || 0,
+        sm: contract.item_recharge.sponsor_mark_charge || 0
       }
     end
 
-    def calculate_recharge_time(rarity)
-      item = Item.joins(:rarity, :item_farming)
-                 .where(rarities: { name: rarity }, types: { name: 'Contract' })
-                 .first
-
-      format_hours(item&.item_farming&.in_game_time || 0)
+    def calculate_recharge_time(contract)
+      return "N/A" if contract.nil? || contract.item_farming.nil?
+      format_hours(contract.item_farming.in_game_time || 0)
     end
 
     def format_hours(minutes)
