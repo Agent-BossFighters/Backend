@@ -21,26 +21,25 @@ module DataLab
       Item.includes(:type, :rarity, :item_crafting, :item_farming, :item_recharge)
           .joins(:rarity)
           .where(types: { name: 'Contract' })
-          .sort_by { |contract| Constants::RARITY_ORDER.index(contract.rarity.name) }
+          .order('rarities.id ASC')
     end
 
     def calculate_contracts_metrics(contracts)
       contracts.map do |contract|
         rarity = contract.rarity.name
         recharge_cost = calculate_recharge_cost(rarity)
-        base_metrics = Constants::BADGE_BASE_METRICS[rarity]
 
         {
           "1. rarity": rarity,
-          "2. item": base_metrics[:name],
+          "2. item": contract.name,
           "3. supply": contract.supply || 0,
           "4. floor_price": format_currency(contract.floorPrice),
           "5. lvl_max": Constants::CONTRACT_MAX_LEVEL[rarity],
-          "6. max_energy": base_metrics[:max_energy],
+          "6. max_energy": contract.item_recharge&.max_energy_recharge || 0,
           "7. time_to_craft": format_hours(calculate_craft_time(rarity)),
           "8. nb_badges_required": contract.item_crafting&.nb_lower_badge_to_craft || 0,
-          "9. flex_craft": Constants::CRAFT_METRICS[rarity][:bft_tokens],
-          "10. sp_marks_craft": Constants::CRAFT_METRICS[rarity][:sponsor_marks_reward],
+          "9. flex_craft": contract.item_crafting&.craft_tokens || 0,
+          "10. sp_marks_craft": contract.item_crafting&.sponsor_marks_reward || 0,
           "11. time_to_charge": calculate_recharge_time(rarity),
           "12. flex_charge": recharge_cost&.[](:flex),
           "13. sp_marks_charge": recharge_cost&.[](:sm)
@@ -73,9 +72,16 @@ module DataLab
     end
 
     def calculate_craft_time(rarity)
-      index = Constants::RARITY_ORDER.index(rarity)
-      return 0 unless index
-      Constants::BASE_CRAFT_TIME + (index * Constants::CRAFT_TIME_INCREMENT)
+      return 0 if rarity.nil?
+
+      rarity_record = Rarity.find_by(name: rarity)
+      return 0 if rarity_record.nil?
+
+      # Calcul du temps de craft basé sur l'ID de la rareté
+      craft_time = Constants::BASE_CRAFT_TIME + ((rarity_record.id - 1) * Constants::CRAFT_TIME_INCREMENT)
+
+      # S'assurer que le temps de craft est positif
+      [craft_time, 0].max
     end
 
     def calculate_recharge_cost(rarity)
@@ -86,11 +92,15 @@ module DataLab
     end
 
     def calculate_recharge_time(rarity)
-      base_metrics = Constants::BADGE_BASE_METRICS[rarity]
-      format_hours(base_metrics[:in_game_time])
+      item = Item.joins(:rarity, :item_farming)
+                 .where(rarities: { name: rarity }, types: { name: 'Contract' })
+                 .first
+
+      format_hours(item&.item_farming&.in_game_time || 0)
     end
 
     def format_hours(minutes)
+      return "N/A" if minutes.nil? || minutes.zero?
       hours = minutes / 60
       "#{hours}h"
     end

@@ -1,8 +1,6 @@
 require_relative 'constants/currency_constants'
-require_relative 'constants/badge_constants'
 require_relative 'constants/slot_constants'
 require_relative 'constants/recharge_constants'
-require_relative 'constants/craft_constants'
 require_relative 'constants/contract_constants'
 require_relative 'constants/game_constants'
 require_relative 'constants/match_constants'
@@ -10,13 +8,15 @@ require_relative 'constants/match_constants'
 module DataLab
   module Constants
     include CurrencyConstants
-    include BadgeConstants
     include SlotConstants
     include RechargeConstants
-    include CraftConstants
     include ContractConstants
     include GameConstants
     include MatchConstants
+
+    # Constantes de craft
+    BASE_CRAFT_TIME = 120  # 2 heures en minutes
+    CRAFT_TIME_INCREMENT = 60  # 1 heure en minutes
 
     # Méthodes utilitaires communes
     module Utils
@@ -37,10 +37,11 @@ module DataLab
       extend self
 
       def calculate_recharge_time(rarity)
-        return "8h00" unless rarity && BadgeConstants::RARITY_ORDER.include?(rarity)
+        return "8h00" unless rarity && Rarity.exists?(name: rarity)
 
         base_hours = 8
-        decrement = 0.25 * BadgeConstants::RARITY_ORDER.index(rarity)
+        rarity_index = Rarity.find_by(name: rarity).id - 1
+        decrement = 0.25 * rarity_index
         hours = base_hours - decrement
 
         whole_hours = hours.floor
@@ -49,7 +50,7 @@ module DataLab
       end
 
       def calculate_recharge_cost(rarity)
-        return nil unless BadgeConstants::RARITY_ORDER.include?(rarity)
+        return nil unless Rarity.exists?(name: rarity)
 
         flex_cost = RechargeConstants::RECHARGE_COSTS[:flex][rarity]
         sm_cost = RechargeConstants::RECHARGE_COSTS[:sm][rarity]

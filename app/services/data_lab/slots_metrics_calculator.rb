@@ -22,9 +22,9 @@ module DataLab
       base_roi = 340  # Valeur constante observée
 
       # Calculer les métriques pour chaque rareté
-      rarity_metrics = Constants::BadgeConstants::RARITY_ORDER.map do |rarity|
+      rarity_metrics = Rarity.order(:id).map do |rarity|
         # Ajuster uniquement les nb_charges_roi selon la rareté
-        rarity_multiplier = calculate_rarity_multiplier(rarity)
+        rarity_multiplier = calculate_rarity_multiplier(rarity.name)
 
         # Créer un hash de métriques pour chaque slot
         slot_metrics = slots_costs.map do |slot_cost|
@@ -41,14 +41,14 @@ module DataLab
           adjusted_roi = (slot_roi * slot_progression).round(0)
 
           # Récupérer la valeur du coût en dollars pour ce slot
-          slot_cost_value = slot_cost[:"3. flex_cost"].is_a?(String) ? 
-                             slot_cost[:"3. flex_cost"].gsub('$', '').to_f : 
+          slot_cost_value = slot_cost[:"3. flex_cost"].is_a?(String) ?
+                             slot_cost[:"3. flex_cost"].gsub('$', '').to_f :
                              slot_cost[:"3. flex_cost"].to_f
 
           # Calculer le nb_tokens_roi en fonction du coût et de la valeur BFT en base
           bft_value = Constants::CurrencyConstants.currency_rates[:bft]
           tokens_roi = bft_value > 0 ? (slot_cost_value / bft_value).round(0) : 0
-          
+
           # Récupérer directement les valeurs des constantes pour le bonus BFT
           slot_id = slot_cost[:"1. slot"]
           # Traiter spécifiquement le cas du slot 1 pour avoir 0%
@@ -70,7 +70,7 @@ module DataLab
           }
         end
 
-        [rarity, slot_metrics]
+        [rarity.name, slot_metrics]
       end.to_h
 
       {
@@ -110,13 +110,14 @@ module DataLab
         query = query.where(rarities: { name: @badge_rarity })
       end
 
-      query.sort_by { |badge| Constants::BadgeConstants::RARITY_ORDER.index(badge.rarity.name) }
+      query.order('rarities.id ASC')
     end
 
     def calculate_bft_per_minute(rarity)
-      return 0 unless Constants::BadgeConstants::RARITY_ORDER.include?(rarity)
+      rarity_record = Rarity.find_by(name: rarity)
+      return 0 unless rarity_record
 
-      rarity_index = Constants::BadgeConstants::RARITY_ORDER.index(rarity)
+      rarity_index = rarity_record.id - 1 # Soustrait 1 car les IDs commencent à 1
       base_value = 15 # Valeur de base pour Common
 
       # Formule : base_value * (multiplier ^ rarity_index)
@@ -125,8 +126,9 @@ module DataLab
     end
 
     def calculate_max_energy(rarity)
-      return 0 unless Constants::BadgeConstants::RARITY_ORDER.include?(rarity)
-      Constants::BadgeConstants::RARITY_ORDER.index(rarity) + 1
+      rarity_record = Rarity.find_by(name: rarity)
+      return 0 unless rarity_record
+      rarity_record.id # L'ID correspond à l'énergie max
     end
 
     def calculate_bft_value_per_charge(rarity)
