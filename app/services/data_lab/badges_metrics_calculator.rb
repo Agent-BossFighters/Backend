@@ -214,8 +214,8 @@ module DataLab
     end
 
     def calculate_total_usd(flex_cost, sm_cost)
-      flex_rate = Currency.find_by(name: 'flex')&.price || 0
-      sm_rate = Currency.find_by(name: 'sm')&.price || 0
+      flex_rate = Currency.find_by(name: 'FLEX')&.price || 0
+      sm_rate = Currency.find_by(name: 'Sponsor Mark')&.price || 0
 
       (flex_cost * flex_rate + sm_cost * sm_rate).round(2)
     end

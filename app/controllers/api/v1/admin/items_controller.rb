@@ -13,6 +13,7 @@ class Api::V1::Admin::ItemsController < Api::V1::Admin::BaseController
   def create
     @item = Item.new(item_params)
     if @item.save
+      invalidate_admin_caches(:items)
       render json: item_json(@item), status: :created
     else
       render json: { errors: @item.errors.full_messages }, status: :unprocessable_entity
@@ -21,6 +22,7 @@ class Api::V1::Admin::ItemsController < Api::V1::Admin::BaseController
 
   def update
     if @item.update(item_params)
+      invalidate_admin_caches(:items)
       render json: item_json(@item)
     else
       render json: { errors: @item.errors.full_messages }, status: :unprocessable_entity
@@ -29,6 +31,7 @@ class Api::V1::Admin::ItemsController < Api::V1::Admin::BaseController
 
   def destroy
     @item.destroy
+    invalidate_admin_caches(:items)
     head :no_content
   end
 
