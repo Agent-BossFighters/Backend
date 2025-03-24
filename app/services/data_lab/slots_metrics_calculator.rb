@@ -7,6 +7,9 @@ module DataLab
       @user = user
       @badge_rarity = badge_rarity || "Common"
       @badges = load_badges
+      @user_rates = Constants::CurrencyConstants.user_currency_rates(@user)
+      @bft_value = Constants::CurrencyConstants.currency_rates[:bft]
+      @badge_calculator = DataLab::BadgesMetricsCalculator.new(user)
     end
 
     def calculate
@@ -33,35 +36,55 @@ module DataLab
           bonus_part = calculate_bonus_part(slot_cost[:"1. slot"])
           total_part = normal_part + bonus_part
 
-          # Calculer le ROI ajusté pour ce slot spécifique
-          slot_roi = (base_roi / rarity_multiplier).round(0)
-
-          # Ajuster le ROI en fonction de la progression du slot
-          slot_progression = total_part / 100.0  # Normaliser par rapport au slot 1
-          adjusted_roi = (slot_roi * slot_progression).round(0)
-
-          # Récupérer la valeur du coût en dollars pour ce slot
-          slot_cost_value = slot_cost[:"3. flex_cost"].is_a?(String) ?
-                             slot_cost[:"3. flex_cost"].gsub('$', '').to_f :
-                             slot_cost[:"3. flex_cost"].to_f
-
-          # Calculer le nb_tokens_roi en fonction du coût et de la valeur BFT en base
-          bft_value = Constants::CurrencyConstants.currency_rates[:bft]
-          tokens_roi = bft_value > 0 ? (slot_cost_value / bft_value).round(0) : 0
-
-          # Récupérer le bonus BFT directement depuis la base de données
+          # Récupérer directement les valeurs des constantes pour le bonus BFT
           slot_id = slot_cost[:"1. slot"]
-          slot = slots.find { |s| s.id == slot_id }
-          total_bonus_bft = slot_id == 1 ? 0 : (slot&.bonus_bft_percent || 0)
+
+
+          # Calculer le 1.total_flex
+          cumulative_flex = 0
+          slots_costs.each do |s|
+            if s[:"1. slot"] <= slot_id
+              cumulative_flex += s[:"2. nb_flex"].to_i
+            end
+          end
+          total_flex = cumulative_flex
+
+          # Calculer le 2.total_cost basé sur le total_flex
+          flex_value = @user_rates[:flex]
+          total_cost = format_currency(total_flex * flex_value)
+          # Puisonvertir total_cost en nombre en retirant le symbole $ et en convertissant en float
+          if total_cost.is_a?(String)
+            numeric_cost = total_cost.gsub('$', '').to_f
+          else
+            numeric_cost = total_cost.to_f
+          end
+
+          # Pour le 3. total_bonus_bft, utiliser la valeur de la base de données
+          slot = Slot.find_by(id: slot_id)
+          total_bonus_bft = slot&.bonus_bft_percent || 0
+
+          # Calculer le 4. nb_tokens_roi en fonction du coût et de la valeur BFT en base
+          tokens_roi = @bft_value > 0 ? (numeric_cost / @bft_value).round(0) : 0
+
+          # Calculer le 5. nb_charges_roi_1.0
+          badge_details = @badge_calculator.calculate[:badges_details]
+          badge_detail = badge_details.find { |m| m[:"1. rarity"] == rarity }
+          bft_per_max_charge = badge_detail && badge_detail[:"6. bft_per_max_charge"].to_f || 0
+
+          if tokens_roi  < 1
+            adjusted_roi = 0
+          else
+            adjusted_roi = (tokens_roi / (bft_per_max_charge * slot_id * (1+(total_bonus_bft / 100.0)))).round(2)
+          end
 
           {
-            "1. total_flex": slot_cost[:"2. nb_flex"],
-            "2. total_cost": slot_cost[:"3. flex_cost"],
+            "1. total_flex": total_flex,
+            "2. total_cost": total_cost,
             "3. total_bonus_bft": total_bonus_bft,
             "4. nb_tokens_roi": tokens_roi,
             "5. nb_charges_roi_1.0": adjusted_roi,
-            "6. nb_charges_roi_2.0": (adjusted_roi / 2.0).round(0),
-            "7. nb_charges_roi_3.0": (adjusted_roi / 3.0).round(0)
+            "6. nb_charges_roi_2.0": (adjusted_roi / 2.0).round(2),
+            "7. nb_charges_roi_3.0": (adjusted_roi / 3.0).round(2)
           }
         end
 
@@ -77,10 +100,8 @@ module DataLab
     private
 
     def calculate_slots_cost(slots)
-      user_rates = Constants::CurrencyConstants.user_currency_rates(@user)
-
       slots.map do |slot|
-        flex_amount = slot.flex_value * user_rates[:flex]
+        flex_amount = slot.flex_value * @user_rates[:flex]
 
         {
           "1. slot": slot.id,
