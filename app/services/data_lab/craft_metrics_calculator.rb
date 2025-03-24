@@ -10,17 +10,17 @@ module DataLab
     def calculate
       @badges.map do |badge|
         rarity = badge.rarity.name
-        craft_metrics = Constants::CRAFT_METRICS[rarity]
-        next unless craft_metrics
+        craft_data = badge.item_crafting
+        next unless craft_data
 
         {
           "1. rarity": rarity,
-          "2. supply": craft_metrics[:supply],
-          "3. nb_previous_rarity_item": craft_metrics[:previous_rarity_needed],
-          "4. flex_craft": craft_metrics[:bft_tokens],
-          "5. flex_craft_cost": format_currency(craft_metrics[:bft_tokens] * Constants::CurrencyConstants.currency_rates[:bft]),
-          "6. sp_marks_craft": craft_metrics[:sponsor_marks_reward],
-          "7. sp_marks_value": format_currency(craft_metrics[:sponsor_marks_reward] * Constants::CurrencyConstants.currency_rates[:sm])
+          "2. supply": badge.supply,
+          "3. nb_previous_rarity_item": craft_data.nb_lower_badge_to_craft,
+          "4. flex_craft": craft_data.craft_tokens,
+          "5. flex_craft_cost": format_currency(craft_data.craft_tokens * Constants::CurrencyConstants.currency_rates[:bft]),
+          "6. sp_marks_craft": craft_data.sponsor_marks_reward,
+          "7. sp_marks_value": format_currency(craft_data.sponsor_marks_reward * Constants::CurrencyConstants.currency_rates[:sm])
         }
       end.compact
     end
@@ -28,10 +28,10 @@ module DataLab
     private
 
     def load_badges
-      Item.includes(:type, :rarity)
+      Item.includes(:type, :rarity, :item_crafting)
           .joins(:rarity)
           .where(types: { name: 'Badge' })
-          .sort_by { |badge| Constants::RARITY_ORDER.index(badge.rarity.name) }
+          .order('rarities.id ASC')
     end
   end
 end

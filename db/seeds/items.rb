@@ -9,8 +9,21 @@ items = [
     rarity_name: "Common",
     efficiency: 1.0,
     supply: 200_000,
-    floorPrice: 7.98,
-    farming: { ratio: 1.0, in_game_time: 600 }
+    floorPrice: 7.99,
+    farming: { ratio: 1.0, in_game_time: 60 },
+    crafting: {
+      flex_craft: 1_320,
+      sponsor_mark_craft: 0,
+      nb_lower_badge_to_craft: 0,
+      craft_tokens: 112,
+      sponsor_marks_reward: 26
+    },
+    recharge: {
+      max_energy_recharge: 1,
+      time_to_charge: 480,
+      flex_charge: 500,
+      sponsor_mark_charge: 150
+    }
   },
   {
     name: "Initiate",
@@ -18,8 +31,21 @@ items = [
     rarity_name: "Uncommon",
     efficiency: 2.05,
     supply: 100_000,
-    floorPrice: 34.00,
-    farming: { ratio: 2.05, in_game_time: 600 }
+    floorPrice: 28.50,
+    farming: { ratio: 1.0, in_game_time: 120 },
+    crafting: {
+      flex_craft: 293,
+      sponsor_mark_craft: 2_400,
+      nb_lower_badge_to_craft: 2,
+      craft_tokens: 343,
+      sponsor_marks_reward: 80
+    },
+    recharge: {
+      max_energy_recharge: 2,
+      time_to_charge: 465,
+      flex_charge: 1400,
+      sponsor_mark_charge: 350
+    }
   },
   {
     name: "Encore",
@@ -27,8 +53,21 @@ items = [
     rarity_name: "Rare",
     efficiency: 4.20,
     supply: 50_000,
-    floorPrice: 95.00,
-    farming: { ratio: 2.15, in_game_time: 600 }
+    floorPrice: 82.50,
+    farming: { ratio: 1.0, in_game_time: 180 },
+    crafting: {
+      flex_craft: 1_356,
+      sponsor_mark_craft: 4_100,
+      nb_lower_badge_to_craft: 2,
+      craft_tokens: 812,
+      sponsor_marks_reward: 250
+    },
+    recharge: {
+      max_energy_recharge: 3,
+      time_to_charge: 450,
+      flex_charge: 2520,
+      sponsor_mark_charge: 1023
+    }
   },
   {
     name: "Contender",
@@ -36,8 +75,21 @@ items = [
     rarity_name: "Epic",
     efficiency: 12.92,
     supply: 25_000,
-    floorPrice: 409.00,
-    farming: { ratio: 8.72, in_game_time: 600 }
+    floorPrice: 410.00,
+    farming: { ratio: 1.0, in_game_time: 240 },
+    crafting: {
+      flex_craft: 25_900,
+      sponsor_mark_craft: 10_927,
+      nb_lower_badge_to_craft: 3,
+      craft_tokens: 812,
+      sponsor_marks_reward: 760
+    },
+    recharge: {
+      max_energy_recharge: 4,
+      time_to_charge: 435,
+      flex_charge: 4800,
+      sponsor_mark_charge: 1980
+    }
   },
   {
     name: "Challenger",
@@ -45,53 +97,131 @@ items = [
     rarity_name: "Legendary",
     efficiency: 39.74,
     supply: 10_000,
-    floorPrice: 2_900.00,
-    farming: { ratio: 26.82, in_game_time: 600 }
+    floorPrice: 1000.00,
+    farming: { ratio: 1.0, in_game_time: 300 },
+    crafting: {
+      flex_craft: 99_400,
+      sponsor_mark_craft: 21_700,
+      nb_lower_badge_to_craft: 3,
+      craft_tokens: 2500,
+      sponsor_marks_reward: 2300
+    },
+    recharge: {
+      max_energy_recharge: 5,
+      time_to_charge: 420,
+      flex_charge: 12000,
+      sponsor_mark_charge: 4065
+    }
   },
   {
     name: "Veteran",
     type_name: "Badge",
     rarity_name: "Mythic",
-    efficiency: 100.0,
+    efficiency: 122.19,
     supply: 5_000,
-    floorPrice: 8_900.00,
-    farming: { ratio: 60.0, in_game_time: 600 }
+    floorPrice: 4000.00,
+    farming: { ratio: 1.0, in_game_time: 360 },
+    crafting: {
+      flex_craft: 92_700,
+      sponsor_mark_craft: 28_222,
+      nb_lower_badge_to_craft: 3,
+      craft_tokens: 7692,
+      sponsor_marks_reward: 7200
+    },
+    recharge: {
+      max_energy_recharge: 6,
+      time_to_charge: 405,
+      flex_charge: 21000,
+      sponsor_mark_charge: 8136
+    }
   },
   {
     name: "Champion",
     type_name: "Badge",
     rarity_name: "Exalted",
-    efficiency: 250.0,
-    supply: 2_000,
-    floorPrice: 25_000.00,
-    farming: { ratio: 150.0, in_game_time: 600 }
+    efficiency: 375.74,
+    supply: 1_000,
+    floorPrice: 100_000.00,
+    farming: { ratio: 1.0, in_game_time: 420 },
+    crafting: {
+      flex_craft: 368_192,
+      sponsor_mark_craft: 219_946,
+      nb_lower_badge_to_craft: 3,
+      craft_tokens: 23669,
+      sponsor_marks_reward: 3200
+    },
+    recharge: {
+      max_energy_recharge: 7,
+      time_to_charge: 390,
+      flex_charge: 9800,
+      sponsor_mark_charge: nil
+    }
   },
   {
     name: "Olympian",
     type_name: "Badge",
     rarity_name: "Exotic",
-    efficiency: 625.0,
-    supply: 1_000,
-    floorPrice: 75_000.00,
-    farming: { ratio: 375.0, in_game_time: 600 }
+    efficiency: 1540.54,
+    supply: 250,
+    floorPrice: 55_000.00,
+    farming: { ratio: 1.0, in_game_time: 480 },
+    crafting: {
+      flex_craft: 3_875,
+      sponsor_mark_craft: 800,
+      nb_lower_badge_to_craft: 4,
+      craft_tokens: 39612,
+      sponsor_marks_reward: 10000
+    },
+    recharge: {
+      max_energy_recharge: 8,
+      time_to_charge: 375,
+      flex_charge: 11200,
+      sponsor_mark_charge: nil
+    }
   },
   {
     name: "Prodigy",
     type_name: "Badge",
     rarity_name: "Transcendent",
-    efficiency: 1562.5,
-    supply: 500,
-    floorPrice: 225_000.00,
-    farming: { ratio: 937.5, in_game_time: 600 }
+    efficiency: 6316.20,
+    supply: 100,
+    floorPrice: 150000.00,
+    farming: { ratio: 1.0, in_game_time: 540 },
+    crafting: {
+      flex_craft: 4_350,
+      sponsor_mark_craft: 900,
+      nb_lower_badge_to_craft: 4,
+      craft_tokens: 224082,
+      sponsor_marks_reward: 31400
+    },
+    recharge: {
+      max_energy_recharge: 9,
+      time_to_charge: 360,
+      flex_charge: 12600,
+      sponsor_mark_charge: nil
+    }
   },
   {
     name: "MVP",
     type_name: "Badge",
     rarity_name: "Unique",
-    efficiency: 3906.25,
-    supply: 100,
-    floorPrice: 675_000.00,
-    farming: { ratio: 2343.75, in_game_time: 600 }
+    efficiency: 25896.42,
+    supply: 1,
+    floorPrice: 500000.00,
+    farming: { ratio: 1.0, in_game_time: 600 },
+    crafting: {
+      flex_craft: 4_825,
+      sponsor_mark_craft: 1000,
+      nb_lower_badge_to_craft: 4,
+      craft_tokens: 335172,
+      sponsor_marks_reward: 97400
+    },
+    recharge: {
+      max_energy_recharge: 10,
+      time_to_charge: 345,
+      flex_charge: 14000,
+      sponsor_mark_charge: nil
+    }
   },
 
   # Contracts
@@ -106,7 +236,9 @@ items = [
     crafting: {
       flex_craft: 1_320,
       sponsor_mark_craft: 0,
-      nb_lower_badge_to_craft: 0
+      nb_lower_badge_to_craft: 0,
+      craft_time: 120,  # 2 heures en minutes
+      max_level: 10
     },
     recharge: {
       max_energy_recharge: 1,
@@ -126,7 +258,9 @@ items = [
     crafting: {
       flex_craft: 293,
       sponsor_mark_craft: 2_400,
-      nb_lower_badge_to_craft: 2
+      nb_lower_badge_to_craft: 2,
+      craft_time: 180,  # 3 heures en minutes
+      max_level: 20
     },
     recharge: {
       max_energy_recharge: 2,
@@ -330,7 +464,11 @@ items.each do |item_data|
     ItemCrafting.create_with(
       flex_craft: item_data[:crafting][:flex_craft],
       sponsor_mark_craft: item_data[:crafting][:sponsor_mark_craft],
-      nb_lower_badge_to_craft: item_data[:crafting][:nb_lower_badge_to_craft]
+      nb_lower_badge_to_craft: item_data[:crafting][:nb_lower_badge_to_craft],
+      craft_tokens: item_data[:crafting][:craft_tokens],
+      sponsor_marks_reward: item_data[:crafting][:sponsor_marks_reward],
+      craft_time: item_data[:crafting][:craft_time],
+      max_level: item_data[:crafting][:max_level]
     ).find_or_create_by!(item: item)
   end
 
