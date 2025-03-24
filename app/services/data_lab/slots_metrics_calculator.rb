@@ -31,6 +31,7 @@ module DataLab
 
         # Créer un hash de métriques pour chaque slot
         slot_metrics = slots_costs.map do |slot_cost|
+
           # Calculer le multiplicateur de progression pour ce slot
           normal_part = calculate_normal_part(slot_cost[:"1. slot"])
           bonus_part = calculate_bonus_part(slot_cost[:"1. slot"])
@@ -38,7 +39,6 @@ module DataLab
 
           # Récupérer directement les valeurs des constantes pour le bonus BFT
           slot_id = slot_cost[:"1. slot"]
-
 
           # Calculer le 1.total_flex
           cumulative_flex = 0
@@ -52,26 +52,28 @@ module DataLab
           # Calculer le 2.total_cost basé sur le total_flex
           flex_value = @user_rates[:flex]
           total_cost = format_currency(total_flex * flex_value)
-          # Puisonvertir total_cost en nombre en retirant le symbole $ et en convertissant en float
+
+          # Puis convertir total_cost en nombre en retirant le symbole $ et en convertissant en float
           if total_cost.is_a?(String)
             numeric_cost = total_cost.gsub('$', '').to_f
           else
             numeric_cost = total_cost.to_f
           end
 
-          # Pour le 3. total_bonus_bft, utiliser la valeur de la base de données
+          # Pour le 3. total_bonus_bft
           slot = Slot.find_by(id: slot_id)
-          total_bonus_bft = slot&.bonus_bft_percent || 0
+          total_bonus_bft = slot.bonus_bft_percent
 
           # Calculer le 4. nb_tokens_roi en fonction du coût et de la valeur BFT en base
           tokens_roi = @bft_value > 0 ? (numeric_cost / @bft_value).round(0) : 0
 
           # Calculer le 5. nb_charges_roi_1.0
           badge_details = @badge_calculator.calculate[:badges_details]
-          badge_detail = badge_details.find { |m| m[:"1. rarity"] == rarity }
+          badge_detail = badge_details.find { |m| m[:"1. rarity"] == @badge_rarity }
           bft_per_max_charge = badge_detail && badge_detail[:"6. bft_per_max_charge"].to_f || 0
 
-          if tokens_roi  < 1
+
+          if tokens_roi  < 1 
             adjusted_roi = 0
           else
             adjusted_roi = (tokens_roi / (bft_per_max_charge * slot_id * (1+(total_bonus_bft / 100.0)))).round(2)
@@ -101,15 +103,24 @@ module DataLab
 
     def calculate_slots_cost(slots)
       slots.map do |slot|
+        #Pour le 3. flex_cost
         flex_amount = slot.flex_value * @user_rates[:flex]
+
+        #Pour le 5. bft_per_badge
+        badge_details = @badge_calculator.calculate[:badges_details]
+        badge_detail = badge_details.find { |m| m[:"1. rarity"] == "Common" }
+        bft_per_badge = badge_detail && badge_detail[:"6. bft_per_max_charge"].to_f || 0
+
+        #Pour le 6. bonus_per_badge
+        bonus_per_badge = ((bft_per_badge*(1+(slot.bonus_value/100.0)))-bft_per_badge).round(2)
 
         {
           "1. slot": slot.id,
           "2. nb_flex": slot.flex_value,
           "3. flex_cost": format_currency(flex_amount),
           "4. bonus_bft": slot.bonus_value,
-          normalPart: calculate_normal_part(slot.id),
-          bonusPart: calculate_bonus_part(slot.id)
+          "5. bft_per_badge": bft_per_badge,
+          "6. bonus_per_badge": bonus_per_badge,
         }
       end
     end
@@ -159,7 +170,7 @@ module DataLab
                 .where(rarities: { name: rarity }, types: { name: 'Badge' })
                 .first
 
-      return { flex: 0, sm: 0 } unless item&.item_recharge
+      return { flex: 0, sm: 0 } unless item.item_recharge
 
       {
         flex: item.item_recharge.flex_charge || 0,
@@ -224,7 +235,7 @@ module DataLab
       adjusted_cost = (total_cost * multiplier).round(2)
 
       slot = Slot.find_by(id: nb_slots)
-      total_bonus_bft = slot&.bonus_bft_percent || 0
+      total_bonus_bft = slot.bonus_bft_percent || 0
 
       {
         "1. total_flex": adjusted_flex,
