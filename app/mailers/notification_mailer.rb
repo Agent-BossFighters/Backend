@@ -3,7 +3,7 @@ class NotificationMailer < ApplicationMailer
 
   def welcome_email(user)
     @user = user
-    @url = 'https://agent-bossfighters.com/login'
+    @url = 'https://agent-bossfighters.com/#/users/login'
 
     mail(
       to: @user.email,
