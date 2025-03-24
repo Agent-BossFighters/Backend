@@ -5,7 +5,7 @@ module DataLab
 
     def initialize(user, badge_rarity = "Common")
       @user = user
-      @badge_rarity = badge_rarity || "Common"
+      @badge_rarity = badge_rarity
       @badges = load_badges
       @user_rates = Constants::CurrencyConstants.user_currency_rates(@user)
       @bft_value = Constants::CurrencyConstants.currency_rates[:bft]
@@ -69,7 +69,7 @@ module DataLab
 
           # Calculer le 5. nb_charges_roi_1.0
           badge_details = @badge_calculator.calculate[:badges_details]
-          badge_detail = badge_details.find { |m| m[:"1. rarity"] == @badge_rarity }
+          badge_detail = badge_details.find { |m| m[:"1. rarity"] == rarity.name }
           bft_per_max_charge = badge_detail && badge_detail[:"6. bft_per_max_charge"].to_f || 0
 
 
