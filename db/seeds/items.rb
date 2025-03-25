@@ -234,7 +234,7 @@ items = [
     floorPrice: 40.00,
     farming: { in_game_time: 48 * 60 },
     crafting: {
-      flex_craft: 1_320,
+      flex_craft: 1300,
       sponsor_mark_craft: 0,
       nb_lower_badge_to_craft: 0,
       craft_time: 120,  # 2h
@@ -256,8 +256,8 @@ items = [
     floorPrice: 55.00,
     farming: { in_game_time: 72 * 60 },
     crafting: {
-      flex_craft: 293,
-      sponsor_mark_craft: 2_400,
+      flex_craft: 300,
+      sponsor_mark_craft: 444,
       nb_lower_badge_to_craft: 2,
       craft_time: 180,  # 3h
       max_level: 20
@@ -278,11 +278,11 @@ items = [
     floorPrice: 120.00,
     farming: { in_game_time: 96 * 60 },
     crafting: {
-      flex_craft: 1_356,
-      sponsor_mark_craft: 4_100,
+      flex_craft: 1200,
+      sponsor_mark_craft: 790,
       nb_lower_badge_to_craft: 2,
-      craft_time: 0, # N/A
-      max_level: 0
+      craft_time: 240,  # 4h
+      max_level: 30
     },
     recharge: {
       max_energy_recharge: 3,
@@ -300,11 +300,11 @@ items = [
     floorPrice: 390.00,
     farming: { in_game_time: 120 * 60 },
     crafting: {
-      flex_craft: 25_900,
-      sponsor_mark_craft: 10_927,
+      flex_craft: 5400,
+      sponsor_mark_craft: 2363,
       nb_lower_badge_to_craft: 3,
-      craft_time: 0, # N/A
-      max_level: 0
+      craft_time: 300,  # 5h
+      max_level: 40
     },
     recharge: {
       max_energy_recharge: 4,
@@ -322,11 +322,11 @@ items = [
     floorPrice: 560.00,
     farming: { in_game_time: 144 * 60 },
     crafting: {
-      flex_craft: 99_400,
-      sponsor_mark_craft: 21_700,
+      flex_craft: 22300,
+      sponsor_mark_craft: 6946,
       nb_lower_badge_to_craft: 3,
-      craft_time: 0, # N/A
-      max_level: 0
+      craft_time: 360,  # 6h
+      max_level: 50
     },
     recharge: {
       max_energy_recharge: 5,
@@ -344,11 +344,11 @@ items = [
     floorPrice: 789.00,
     farming: { in_game_time: 168 * 60 },
     crafting: {
-      flex_craft: 368_192,
-      sponsor_mark_craft: 60_500,
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 3,
-      craft_time: 0, # N/A
-      max_level: 0
+      craft_time: 420,  # 7h
+      max_level: 60
     },
     recharge: {
       max_energy_recharge: 6,
@@ -366,11 +366,11 @@ items = [
     floorPrice: 4_500.00,
     farming: { in_game_time: 192 * 60 },
     crafting: {
-      flex_craft: 500_000,
-      sponsor_mark_craft: 219_946,
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 3,
-      craft_time: 0, # N/A
-      max_level: 0
+      craft_time: 480,  # 8h
+      max_level: 70
     },
     recharge: {
       max_energy_recharge: 7,
@@ -388,11 +388,11 @@ items = [
     floorPrice: 15_000.00,
     farming: { in_game_time: 216 * 60 },
     crafting: {
-      flex_craft: 750_000,
-      sponsor_mark_craft: 300_000,
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 4,
-      craft_time: 0, # N/A
-      max_level: 0
+      craft_time: 540,  # 9h
+      max_level: 80
     },
     recharge: {
       max_energy_recharge: 8,
@@ -410,11 +410,11 @@ items = [
     floorPrice: 45_000.00,
     farming: { in_game_time: 240 * 60 },
     crafting: {
-      flex_craft: 1_000_000,
-      sponsor_mark_craft: 400_000,
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 4,
-      craft_time: 0, # N/A
-      max_level: 0
+      craft_time: 600,  # 10h
+      max_level: 90
     },
     recharge: {
       max_energy_recharge: 9,
@@ -428,15 +428,15 @@ items = [
     type_name: "Contract",
     rarity_name: "Unique",
     efficiency: 3906.25,
-    supply: 10,
+    supply: 1,
     floorPrice: 135_000.00,
     farming: { in_game_time: 264 * 60 },
     crafting: {
-      flex_craft: 1_500_000,
-      sponsor_mark_craft: 500_000,
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 4,
-      craft_time: 0, # N/A
-      max_level: 0
+      craft_time: 660,  # 11h
+      max_level: 100
     },
     recharge: {
       max_energy_recharge: 10,

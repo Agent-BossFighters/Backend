@@ -43,20 +43,45 @@ module DataLab
         recharge_cost = calculate_recharge_cost(contract)
         craft_data = contract.item_crafting
 
+        # Pour les raretés supérieures à Legendary, on retourne "N/A"
+        is_high_rarity = %w[Mythic Exalted Exotic Transcendent Unique].include?(rarity)
+
+        flex_craft = if is_high_rarity
+          "N/A"
+        else
+          craft_data&.flex_craft || 0
+        end
+
+        marks_craft = if is_high_rarity
+          "N/A"
+        else
+          craft_data&.sponsor_mark_craft || 0
+        end
+
+        # Calcul du total craft cost en dollars
+        total_craft_cost = if is_high_rarity
+          "N/A"
+        else
+          flex_value = flex_craft.to_i * @currency_rates['FLEX']
+          marks_value = marks_craft.to_i * @currency_rates['Sponsor Marks']
+          format_currency(flex_value + marks_value)
+        end
+
         {
           "1. rarity": rarity,
           "2. item": contract.name,
           "3. supply": contract.supply || 0,
           "4. floor_price": format_currency(contract.floorPrice),
-          "5. lvl_max": craft_data&.max_level || 0,
+          "5. lvl_max": craft_data&.max_level || "N/A",
           "6. max_energy": contract.item_recharge&.max_energy_recharge || 0,
-          "7. time_to_craft": format_hours(calculate_craft_time(contract)),
+          "7. time_to_craft": format_hours(craft_data&.craft_time),
           "8. nb_badges_required": craft_data&.nb_lower_badge_to_craft || 0,
-          "9. flex_craft": craft_data&.craft_tokens || 0,
-          "10. sp_marks_craft": craft_data&.sponsor_marks_reward || 0,
-          "11. time_to_charge": calculate_recharge_time(contract),
-          "12. flex_charge": recharge_cost&.[](:flex),
-          "13. sp_marks_charge": recharge_cost&.[](:sm)
+          "9. flex_craft": flex_craft,
+          "10. sp_marks_craft": marks_craft,
+          "11. total_craft_cost": total_craft_cost,
+          "12. time_to_charge": calculate_recharge_time(contract),
+          "13. flex_charge": contract.item_recharge&.flex_charge || "N/A",
+          "14. sp_marks_charge": contract.item_recharge&.sponsor_mark_charge || "N/A"
         }
       end
     end
@@ -64,30 +89,32 @@ module DataLab
     def calculate_level_up_costs
       sp_marks_data = []
       sp_marks_cost_data = []
+      total_sp_marks_data = []
       total_cost_data = []
-      total_cost = 0
+      total_sp_marks = 0
+      previous_cost = 0
 
       @level_costs_cache.each do |level_cost|
         sp_marks = level_cost.sponsor_mark_cost
         sp_marks_cost = (sp_marks * @currency_rates['Sponsor Marks']).round(2)
+        total_sp_marks += sp_marks
 
-        total_cost += sp_marks
+        # Calcul du coût total (somme du coût précédent et du coût actuel)
+        current_total_cost = previous_cost + sp_marks_cost
+        previous_cost = current_total_cost
 
         sp_marks_data << sp_marks
         sp_marks_cost_data << format_currency(sp_marks_cost)
-        total_cost_data << total_cost
+        total_sp_marks_data << total_sp_marks
+        total_cost_data << format_currency(current_total_cost)
       end
 
       {
         sp_marks_nb: sp_marks_data,
         sp_marks_cost: sp_marks_cost_data,
+        total_sp_marks: total_sp_marks_data,
         total_cost: total_cost_data
       }
-    end
-
-    def calculate_craft_time(contract)
-      return 0 if contract.nil? || contract.item_crafting.nil?
-      contract.item_crafting.craft_time || 0
     end
 
     def calculate_recharge_cost(contract)

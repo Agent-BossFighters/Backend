@@ -159,18 +159,30 @@ module Api
 
             puts "✅ Utilisateur trouvé : #{user.email}"
 
-             success = user.update(
-               isPremium: true,
-               stripe_customer_id: session.customer,
-               stripe_subscription_id: session.subscription.id
-             )
-             PaymentMailer.payment_succeeded_email(user).deliver_later
+            success = user.update(
+              isPremium: true,
+              stripe_customer_id: session.customer,
+              stripe_subscription_id: session.subscription.id
+            )
+            PaymentMailer.payment_succeeded_email(user).deliver_later
+
+            # Générer un nouveau token JWT avec les informations mises à jour
+            new_token = user.generate_jwt
+            puts "🔑 Nouveau token JWT généré"
 
             render json: {
               success: true,
               status: 'complete',
               current_period_end: Time.at(session.subscription.current_period_end),
-              customer_email: session.customer_details&.email
+              customer_email: session.customer_details&.email,
+              user: {
+                id: user.id,
+                email: user.email,
+                username: user.username,
+                isPremium: user.isPremium,
+                is_admin: user.is_admin
+              },
+              token: new_token
             }, status: :ok
           else
             puts "⚠️ Subscription non trouvée dans la session"
