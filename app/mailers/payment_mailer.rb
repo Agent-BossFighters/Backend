@@ -23,4 +23,11 @@ class PaymentMailer < ApplicationMailer
     @user = user
     mail(to: @user.email, subject: 'Agent: Action Required to Complete Payment ⏳')
   end
+
+  def donation_thank_you_email(user)
+    @user = user
+    if @user
+      mail(to: @user.email, subject: 'Agent: Thank You for Your Donation 💝')
+    end
+  end
 end
