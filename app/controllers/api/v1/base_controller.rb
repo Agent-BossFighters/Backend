@@ -33,8 +33,8 @@ class Api::V1::BaseController < ApplicationController
 
     Rails.logger.error "Authentication failed"
     render json: {
-      error: 'Unauthorized',
-      message: 'Invalid or missing authentication token'
+      error: 'Invalid session. Please reconnect.',
+      message: 'Invalid or expired session'
     }, status: :unauthorized
   end
 
@@ -66,7 +66,17 @@ class Api::V1::BaseController < ApplicationController
         true,
         algorithm: 'HS256'
       )
-      @current_user = User.find(decoded.first['id'])
+      
+      user = User.find(decoded.first['id'])
+      token_jti = decoded.first['jti']
+      
+      # Vérifier le JTI du token
+      if user.valid_jti?(token_jti)
+        @current_user = user
+      else
+        Rails.logger.error "Invalid JTI for user #{user.id}: #{token_jti}"
+        @current_user = nil
+      end
     rescue JWT::DecodeError => e
       Rails.logger.error "JWT Decode Error: #{e.message}"
       nil

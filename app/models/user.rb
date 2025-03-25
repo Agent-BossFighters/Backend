@@ -24,15 +24,29 @@ class User < ApplicationRecord
 
   # JWT token generation
   def generate_jwt
-    JWT.encode(
+    new_jti = SecureRandom.uuid
+    
+    success = update_column(:current_jti, new_jti)
+
+    token = JWT.encode(
       {
         id: id,
         email: email,
         username: username,
-        exp: 60.days.from_now.to_i
+        exp: 60.days.from_now.to_i,
+        jti: new_jti
       },
       Rails.application.credentials.devise_jwt_secret_key!
     )
+    token
+  end
+
+  def invalidate_jwt
+    update_column(:current_jti, nil)
+  end
+
+  def valid_jti?(token_jti)
+    current_jti.present? && token_jti == current_jti
   end
 
   def on_jwt_dispatch(_token, _payload)

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     return if current_user
 
-    render json: { error: 'Unauthorized' }, status: :unauthorized
+    render json: { error: 'Invalid session. Please reconnect.' }, status: :unauthorized
   end
 
   def current_user
@@ -24,7 +24,16 @@ class ApplicationController < ActionController::Base
         true,
         algorithm: 'HS256'
       )
-      @current_user = User.find(decoded.first['id'])
+      
+      user = User.find(decoded.first['id'])
+      token_jti = decoded.first['jti']
+      
+      # Vérifie si le JTI du token correspond à celui stocké en base
+      if user.valid_jti?(token_jti)
+        @current_user = user
+      else
+        @current_user = nil
+      end
     rescue JWT::DecodeError, ActiveRecord::RecordNotFound
       nil
     end
