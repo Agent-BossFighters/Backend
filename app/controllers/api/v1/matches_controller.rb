@@ -1,6 +1,7 @@
 module Api
   module V1
     class MatchesController < Api::V1::BaseController
+      before_action :authenticate_user!
       before_action :isPremium_user!, only: [:monthly, :monthly_summary]
       def index
         @matches = current_user.matches.includes(:badge_used).order(created_at: :desc)
