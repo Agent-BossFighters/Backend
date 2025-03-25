@@ -187,13 +187,9 @@ module DataLab
       badge_price = badge.floorPrice.to_f
       total_cost = badge_price + recharge_cost.to_f
 
-      # Pour le premier tableau (metrics_data)
-      # ROI : Gain par charge / Prix du badge (sans recharge)
-      roi = bft_value_per_max_charge / badge_price
-
-      # Pour le deuxième tableau (details_data)
-      # NB CHARGES ROI : Prix total (badge + recharge) / Gain par charge
+      # Calcul du ROI
       charges_needed = total_cost / bft_value_per_max_charge
+      roi =  (total_cost+(((total_cost/bft_value_per_max_charge)-1)*recharge_cost))/bft_value_per_max_charge
 
       {
         roi: roi.round(2),
