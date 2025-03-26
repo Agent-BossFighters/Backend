@@ -114,18 +114,18 @@ Rails.application.routes.draw do
           get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
         end
 
+        # Routes Donation
+        scope '/donations' do
+          post 'create', to: 'donation#create', as: 'donation_create'
+          get 'success', to: 'donation#success', as: 'donation_success'
+          get 'cancel', to: 'donation#cancel', as: 'donation_cancel'
+        end
+
         # Webhook Stripe
-        post 'webhook', to: 'checkout#webhook', as: 'stripe_webhook'
+        post 'webhook', to: 'webhook#webhook', as: 'stripe_webhook'
 
         # Portail client Stripe
         post 'customer-portal', to: 'customer_portal#create', as: 'customer_portal'
-
-        # Routes Crypto
-        scope '/crypto' do
-          post 'metamask', to: 'crypto_payments#metamask'
-          get 'verify/:tx_hash', to: 'crypto_payments#verify', constraints: { tx_hash: /0x[a-fA-F0-9]{64}/ }
-          post 'onramp', to: 'checkout#create_crypto_onramp', as: 'crypto_onramp'
-        end
       end
 
       # Routes d'administration
@@ -139,10 +139,10 @@ Rails.application.routes.draw do
 
         # Ajoutez cette ligne pour les devises
         resources :currencies
-        
+
         # Ajout de la ressource items pour l'administration
         resources :items
-        
+
         # Autres ressources d'administration
         resources :matches, only: [:index, :show, :destroy]
         resources :nfts, only: [:index, :show, :destroy]

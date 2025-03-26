@@ -8,10 +8,23 @@ module DataLab
       @slots_used = slots_used.to_i.clamp(1, 5)  # Limiter entre 1 et 5 slots
       @bft_multiplier = bft_multiplier.to_f.clamp(0.0, 10.0)  # Limiter le multiplicateur
       @slot = Slot.find_by(id: @slots_used)
+      @badges_by_rarity = {}  # Cache pour les badges par rareté
+
+      # Cache pour les taux de devises
+      @currency_rates = {
+        'FLEX' => Currency.find_by(name: 'FLEX')&.price || 0,
+        'Sponsor Marks' => Currency.find_by(name: 'Sponsor Marks')&.price || 0,
+        'BFT' => Currency.find_by(name: '$BFT')&.price || 0
+      }
+
+      # Cache pour les coûts de recharge
+      @recharge_costs = {}
     end
 
     def calculate
       badges = load_badges
+      cache_badges(badges)  # Mettre en cache les badges par rareté
+      cache_recharge_costs(badges)  # Mettre en cache les coûts de recharge
       {
         badges_metrics: calculate_badges_metrics(badges),
         badges_details: calculate_badges_details(badges)
@@ -25,6 +38,26 @@ module DataLab
           .joins(:rarity)
           .where(types: { name: 'Badge' })
           .order('rarities.id ASC')
+    end
+
+    def cache_badges(badges)
+      @badges_by_rarity = badges.each_with_object({}) do |badge, hash|
+        hash[badge.rarity.name] = badge
+      end
+    end
+
+    def cache_recharge_costs(badges)
+      badges.each do |badge|
+        rarity = badge.rarity.name
+        @recharge_costs[rarity] = {
+          flex: badge.item_recharge&.flex_charge || 0,
+          sm: badge.item_recharge&.sponsor_mark_charge || 0
+        }
+        @recharge_costs[rarity][:total_usd] = calculate_total_usd(
+          @recharge_costs[rarity][:flex],
+          @recharge_costs[rarity][:sm]
+        )
+      end
     end
 
     def calculate_badges_metrics(badges)
@@ -49,7 +82,7 @@ module DataLab
         "3. supply": badge.supply || 0,
         "4. floor_price": format_currency(badge.floorPrice),
         "5. efficiency": badge.efficiency,
-        "6. ratio": badge.item_farming&.ratio || 0,
+        "6. ratio": calculate_ratio(badge),
         "7. max_energy": max_energy,
         "8. time_to_charge": recharge_time,
         "9. in_game_time": calculate_in_game_time(badge),
@@ -172,10 +205,7 @@ module DataLab
       bft_per_max_charge = calculate_bft_per_max_charge(badge)
       return 0 if bft_per_max_charge.nil?
 
-      bft_currency = Currency.find_by(name: '$BFT')
-      bft_rate = bft_currency&.price || 0
-
-      (bft_per_max_charge * bft_rate).round(2)
+      (bft_per_max_charge * @currency_rates['BFT']).round(2)
     end
 
     def calculate_cost_per_hour(recharge_cost, recharge_time)
@@ -192,28 +222,35 @@ module DataLab
     end
 
     def calculate_recharge_cost(rarity)
-      badge = Item.includes(:item_recharge)
-                 .joins(:rarity)
-                 .where(rarities: { name: rarity }, types: { name: 'Badge' })
-                 .first
-
-      return { flex: 0, sm: 0, total_usd: 0 } unless badge&.item_recharge
-
-      flex_cost = badge.item_recharge.flex_charge || 0
-      sm_cost = badge.item_recharge.sponsor_mark_charge || 0
-
-      {
-        flex: flex_cost,
-        sm: sm_cost,
-        total_usd: calculate_total_usd(flex_cost, sm_cost)
-      }
+      @recharge_costs[rarity] || { flex: 0, sm: 0, total_usd: 0 }
     end
 
     def calculate_total_usd(flex_cost, sm_cost)
-      flex_rate = Currency.find_by(name: 'FLEX')&.price || 0
-      sm_rate = Currency.find_by(name: 'Sponsor Mark')&.price || 0
+      (flex_cost * @currency_rates['FLEX'] + sm_cost * @currency_rates['Sponsor Marks']).round(2)
+    end
 
-      (flex_cost * flex_rate + sm_cost * sm_rate).round(2)
+    def calculate_ratio(badge)
+      return 1.0 if badge.rarity.name == "Common"
+
+      previous_rarity = find_previous_rarity(badge.rarity)
+      return 1.0 unless previous_rarity
+
+      previous_badge = @badges_by_rarity[previous_rarity]
+      return 1.0 unless previous_badge
+
+      (badge.efficiency - previous_badge.efficiency).round(2)
+    end
+
+    def find_previous_rarity(current_rarity)
+      rarity_order = [
+        "Common", "Uncommon", "Rare", "Epic", "Legendary",
+        "Mythic", "Exalted", "Exotic", "Transcendent", "Unique"
+      ]
+
+      current_index = rarity_order.index(current_rarity.name)
+      return nil if current_index.nil? || current_index == 0
+
+      rarity_order[current_index - 1]
     end
   end
 end

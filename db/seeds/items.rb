@@ -10,7 +10,7 @@ items = [
     efficiency: 1.0,
     supply: 200_000,
     floorPrice: 7.99,
-    farming: { ratio: 1.0, in_game_time: 60 },
+    farming: { in_game_time: 60 },
     crafting: {
       flex_craft: 1_320,
       sponsor_mark_craft: 0,
@@ -32,7 +32,7 @@ items = [
     efficiency: 2.05,
     supply: 100_000,
     floorPrice: 28.50,
-    farming: { ratio: 1.0, in_game_time: 120 },
+    farming: { in_game_time: 120 },
     crafting: {
       flex_craft: 293,
       sponsor_mark_craft: 2_400,
@@ -54,7 +54,7 @@ items = [
     efficiency: 4.20,
     supply: 50_000,
     floorPrice: 82.50,
-    farming: { ratio: 1.0, in_game_time: 180 },
+    farming: { in_game_time: 180 },
     crafting: {
       flex_craft: 1_356,
       sponsor_mark_craft: 4_100,
@@ -76,7 +76,7 @@ items = [
     efficiency: 12.92,
     supply: 25_000,
     floorPrice: 410.00,
-    farming: { ratio: 1.0, in_game_time: 240 },
+    farming: { in_game_time: 240 },
     crafting: {
       flex_craft: 25_900,
       sponsor_mark_craft: 10_927,
@@ -98,7 +98,7 @@ items = [
     efficiency: 39.74,
     supply: 10_000,
     floorPrice: 1000.00,
-    farming: { ratio: 1.0, in_game_time: 300 },
+    farming: { in_game_time: 300 },
     crafting: {
       flex_craft: 99_400,
       sponsor_mark_craft: 21_700,
@@ -120,7 +120,7 @@ items = [
     efficiency: 122.19,
     supply: 5_000,
     floorPrice: 4000.00,
-    farming: { ratio: 1.0, in_game_time: 360 },
+    farming: { in_game_time: 360 },
     crafting: {
       flex_craft: 92_700,
       sponsor_mark_craft: 28_222,
@@ -142,7 +142,7 @@ items = [
     efficiency: 375.74,
     supply: 1_000,
     floorPrice: 100_000.00,
-    farming: { ratio: 1.0, in_game_time: 420 },
+    farming: { in_game_time: 420 },
     crafting: {
       flex_craft: 368_192,
       sponsor_mark_craft: 219_946,
@@ -164,7 +164,7 @@ items = [
     efficiency: 1540.54,
     supply: 250,
     floorPrice: 55_000.00,
-    farming: { ratio: 1.0, in_game_time: 480 },
+    farming: { in_game_time: 480 },
     crafting: {
       flex_craft: 3_875,
       sponsor_mark_craft: 800,
@@ -186,7 +186,7 @@ items = [
     efficiency: 6316.20,
     supply: 100,
     floorPrice: 150000.00,
-    farming: { ratio: 1.0, in_game_time: 540 },
+    farming: { in_game_time: 540 },
     crafting: {
       flex_craft: 4_350,
       sponsor_mark_craft: 900,
@@ -208,7 +208,7 @@ items = [
     efficiency: 25896.42,
     supply: 1,
     floorPrice: 500000.00,
-    farming: { ratio: 1.0, in_game_time: 600 },
+    farming: { in_game_time: 600 },
     crafting: {
       flex_craft: 4_825,
       sponsor_mark_craft: 1000,
@@ -232,17 +232,17 @@ items = [
     efficiency: 1.0,
     supply: 50_000,
     floorPrice: 40.00,
-    farming: { ratio: 1.0, in_game_time: 48 * 60 },
+    farming: { in_game_time: 48 * 60 },
     crafting: {
-      flex_craft: 1_320,
+      flex_craft: 1300,
       sponsor_mark_craft: 0,
       nb_lower_badge_to_craft: 0,
-      craft_time: 120,  # 2 heures en minutes
+      craft_time: 120,  # 2h
       max_level: 10
     },
     recharge: {
       max_energy_recharge: 1,
-      time_to_charge: 8 * 60,
+      time_to_charge: 48 * 60, # 48h
       flex_charge: 130,
       sponsor_mark_charge: 290
     }
@@ -254,17 +254,17 @@ items = [
     efficiency: 2.05,
     supply: 35_000,
     floorPrice: 55.00,
-    farming: { ratio: 2.05, in_game_time: 72 * 60 },
+    farming: { in_game_time: 72 * 60 },
     crafting: {
-      flex_craft: 293,
-      sponsor_mark_craft: 2_400,
+      flex_craft: 300,
+      sponsor_mark_craft: 444,
       nb_lower_badge_to_craft: 2,
-      craft_time: 180,  # 3 heures en minutes
+      craft_time: 180,  # 3h
       max_level: 20
     },
     recharge: {
       max_energy_recharge: 2,
-      time_to_charge: 7 * 60 + 45,
+      time_to_charge: 72 * 60, # 72h
       flex_charge: 440,
       sponsor_mark_charge: 960
     }
@@ -276,17 +276,19 @@ items = [
     efficiency: 4.20,
     supply: 20_000,
     floorPrice: 120.00,
-    farming: { ratio: 2.15, in_game_time: 96 * 60 },
+    farming: { in_game_time: 96 * 60 },
     crafting: {
-      flex_craft: 1_356,
-      sponsor_mark_craft: 4_100,
-      nb_lower_badge_to_craft: 2
+      flex_craft: 1200,
+      sponsor_mark_craft: 790,
+      nb_lower_badge_to_craft: 2,
+      craft_time: 240,  # 4h
+      max_level: 30
     },
     recharge: {
       max_energy_recharge: 3,
-      time_to_charge: 7 * 60 + 30,
-      flex_charge: 1_662,
-      sponsor_mark_charge: 2_943
+      time_to_charge: 96 * 60, # 96h
+      flex_charge: 1662,
+      sponsor_mark_charge: 2943
     }
   },
   {
@@ -296,17 +298,19 @@ items = [
     efficiency: 12.92,
     supply: 10_000,
     floorPrice: 390.00,
-    farming: { ratio: 8.72, in_game_time: 120 * 60 },
+    farming: { in_game_time: 120 * 60 },
     crafting: {
-      flex_craft: 25_900,
-      sponsor_mark_craft: 10_927,
-      nb_lower_badge_to_craft: 3
+      flex_craft: 5400,
+      sponsor_mark_craft: 2363,
+      nb_lower_badge_to_craft: 3,
+      craft_time: 300,  # 5h
+      max_level: 40
     },
     recharge: {
       max_energy_recharge: 4,
-      time_to_charge: 7 * 60 + 15,
-      flex_charge: 5_852,
-      sponsor_mark_charge: 10_340
+      time_to_charge: 120 * 60, # 120h
+      flex_charge: 5852,
+      sponsor_mark_charge: 10340
     }
   },
   {
@@ -316,17 +320,19 @@ items = [
     efficiency: 39.74,
     supply: 5_000,
     floorPrice: 560.00,
-    farming: { ratio: 26.82, in_game_time: 144 * 60 },
+    farming: { in_game_time: 144 * 60 },
     crafting: {
-      flex_craft: 99_400,
-      sponsor_mark_craft: 21_700,
-      nb_lower_badge_to_craft: 3
+      flex_craft: 22300,
+      sponsor_mark_craft: 6946,
+      nb_lower_badge_to_craft: 3,
+      craft_time: 360,  # 6h
+      max_level: 50
     },
     recharge: {
       max_energy_recharge: 5,
-      time_to_charge: 7 * 60,
-      flex_charge: 19_665,
-      sponsor_mark_charge: 34_770
+      time_to_charge: 144 * 60, # 144h
+      flex_charge: 19665,
+      sponsor_mark_charge: 34770
     }
   },
   {
@@ -336,17 +342,19 @@ items = [
     efficiency: 100.0,
     supply: 2_500,
     floorPrice: 789.00,
-    farming: { ratio: 60.0, in_game_time: 168 * 60 },
+    farming: { in_game_time: 168 * 60 },
     crafting: {
-      flex_craft: 368_192,
-      sponsor_mark_craft: 60_500,
-      nb_lower_badge_to_craft: 3
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
+      nb_lower_badge_to_craft: 3,
+      craft_time: 420,  # 7h
+      max_level: 60
     },
     recharge: {
       max_energy_recharge: 6,
-      time_to_charge: 6 * 60 + 45,
-      flex_charge: 57_948,
-      sponsor_mark_charge: 300_642
+      time_to_charge: 168 * 60, # 168h
+      flex_charge: 57948,
+      sponsor_mark_charge: 300642
     }
   },
   {
@@ -356,17 +364,19 @@ items = [
     efficiency: 250.0,
     supply: 1_000,
     floorPrice: 4_500.00,
-    farming: { ratio: 150.0, in_game_time: 192 * 60 },
+    farming: { in_game_time: 192 * 60 },
     crafting: {
-      flex_craft: 500_000,
-      sponsor_mark_craft: 219_946,
-      nb_lower_badge_to_craft: 3
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
+      nb_lower_badge_to_craft: 3,
+      craft_time: 480,  # 8h
+      max_level: 70
     },
     recharge: {
       max_energy_recharge: 7,
-      time_to_charge: 6 * 60 + 30,
-      flex_charge: 100_000,
-      sponsor_mark_charge: 500_000
+      time_to_charge: 192 * 60, # 192h
+      flex_charge: 100000,
+      sponsor_mark_charge: 500000
     }
   },
   {
@@ -376,17 +386,19 @@ items = [
     efficiency: 625.0,
     supply: 250,
     floorPrice: 15_000.00,
-    farming: { ratio: 375.0, in_game_time: 216 * 60 },
+    farming: { in_game_time: 216 * 60 },
     crafting: {
-      flex_craft: 750_000,
-      sponsor_mark_craft: 300_000,
-      nb_lower_badge_to_craft: 4
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
+      nb_lower_badge_to_craft: 4,
+      craft_time: 540,  # 9h
+      max_level: 80
     },
     recharge: {
       max_energy_recharge: 8,
-      time_to_charge: 6 * 60 + 15,
-      flex_charge: 150_000,
-      sponsor_mark_charge: 750_000
+      time_to_charge: 216 * 60, # 216h
+      flex_charge: 150000,
+      sponsor_mark_charge: 750000
     }
   },
   {
@@ -396,17 +408,19 @@ items = [
     efficiency: 1562.5,
     supply: 100,
     floorPrice: 45_000.00,
-    farming: { ratio: 937.5, in_game_time: 240 * 60 },
+    farming: { in_game_time: 240 * 60 },
     crafting: {
-      flex_craft: 1_000_000,
-      sponsor_mark_craft: 400_000,
-      nb_lower_badge_to_craft: 4
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
+      nb_lower_badge_to_craft: 4,
+      craft_time: 600,  # 10h
+      max_level: 90
     },
     recharge: {
       max_energy_recharge: 9,
-      time_to_charge: 6 * 60,
-      flex_charge: 200_000,
-      sponsor_mark_charge: 1_000_000
+      time_to_charge: 240 * 60, # 240h
+      flex_charge: 200000,
+      sponsor_mark_charge: 1000000
     }
   },
   {
@@ -414,19 +428,21 @@ items = [
     type_name: "Contract",
     rarity_name: "Unique",
     efficiency: 3906.25,
-    supply: 10,
+    supply: 1,
     floorPrice: 135_000.00,
-    farming: { ratio: 2343.75, in_game_time: 264 * 60 },
+    farming: { in_game_time: 264 * 60 },
     crafting: {
-      flex_craft: 1_500_000,
-      sponsor_mark_craft: 500_000,
-      nb_lower_badge_to_craft: 4
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
+      nb_lower_badge_to_craft: 4,
+      craft_time: 660,  # 11h
+      max_level: 100
     },
     recharge: {
       max_energy_recharge: 10,
-      time_to_charge: 5 * 60 + 45,
-      flex_charge: 250_000,
-      sponsor_mark_charge: 1_500_000
+      time_to_charge: 264 * 60, # 264h
+      flex_charge: 250000,
+      sponsor_mark_charge: 1500000
     }
   }
 ]
@@ -453,7 +469,6 @@ items.each do |item_data|
   # Créer les données de farming si présentes
   if item_data[:farming]
     ItemFarming.create_with(
-      ratio: item_data[:farming][:ratio],
       in_game_time: item_data[:farming][:in_game_time],
       efficiency: item_data[:efficiency]
     ).find_or_create_by!(item: item)

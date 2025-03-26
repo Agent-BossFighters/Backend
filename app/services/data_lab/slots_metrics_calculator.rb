@@ -73,7 +73,7 @@ module DataLab
           bft_per_max_charge = badge_detail && badge_detail[:"6. bft_per_max_charge"].to_f || 0
 
 
-          if tokens_roi  < 1 
+          if tokens_roi  < 1
             adjusted_roi = 0
           else
             adjusted_roi = (tokens_roi / (bft_per_max_charge * slot_id * (1+(total_bonus_bft / 100.0)))).round(2)
@@ -121,6 +121,8 @@ module DataLab
           "4. bonus_bft": slot.bonus_value,
           "5. bft_per_badge": bft_per_badge,
           "6. bonus_per_badge": bonus_per_badge,
+          normalPart: calculate_normal_part(slot.id),
+          bonusPart: calculate_bonus_part(slot.id)
         }
       end
     end
