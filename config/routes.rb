@@ -115,7 +115,7 @@ Rails.application.routes.draw do
         end
 
         # Routes Donation
-        scope '/donation' do
+        scope '/donations' do
           post 'create', to: 'donation#create', as: 'donation_create'
           get 'success', to: 'donation#success', as: 'donation_success'
           get 'cancel', to: 'donation#cancel', as: 'donation_cancel'

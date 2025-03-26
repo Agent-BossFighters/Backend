@@ -8,6 +8,14 @@ module Api
         begin
           puts "🔵 Starting donation session creation"
 
+          base_url = ENV['FRONTEND_URL']&.gsub(/\/+$/, '')
+
+          unless base_url
+            puts "❌ FRONTEND_URL missing"
+            render json: { error: "Configuration error: FRONTEND_URL missing" }, status: :internal_server_error
+            return
+          end
+
           # Extract amount from params, default to nil if not present
           amount = if params[:amount].present?
             params[:amount].to_i
@@ -27,14 +35,6 @@ module Api
             return
           end
 
-          base_url = ENV['FRONTEND_URL']&.gsub(/\/+$/, '')
-
-          unless base_url
-            puts "❌ FRONTEND_URL missing"
-            render json: { error: "Configuration error: FRONTEND_URL missing" }, status: :internal_server_error
-            return
-          end
-
           session_params = {
             mode: 'payment',
             payment_method_types: ['card'],
@@ -51,8 +51,8 @@ module Api
               user_id: current_user.id,
               donation: true
             },
-            success_url: "#{base_url}/payments/donations/success?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url: "#{base_url}/payments/cancel",
+            success_url: "#{base_url}#/payments/donation-success?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url: "#{base_url}#/payments/cancel",
             locale: params[:locale] || detect_locale_from_header
           }
 
@@ -70,6 +70,7 @@ module Api
           @session = Stripe::Checkout::Session.create(session_params)
 
           puts "✅ Donation session created successfully: #{@session.id}"
+          puts "🔗 Checkout URL: #{@session.url}"
 
           render json: { url: @session.url, session_id: @session.id }, status: :ok
         rescue Stripe::StripeError => e
@@ -84,6 +85,7 @@ module Api
       def success
         begin
           session_id = params[:session_id]
+          puts "🔄 Processing success callback for session: #{session_id}"
 
           unless session_id
             puts "❌ Session ID missing"
@@ -93,6 +95,7 @@ module Api
 
           puts "🔍 Retrieving donation session #{session_id}"
           session = Stripe::Checkout::Session.retrieve(session_id)
+          puts "📊 Session status: #{session.payment_status}"
 
           if session.payment_status == 'paid'
             puts "💝 Donation received successfully"
@@ -100,7 +103,9 @@ module Api
             user = User.find_by(id: session.metadata.user_id)
 
             if user
+              puts "👤 User found: #{user.email}"
               PaymentMailer.donation_thank_you_email(user).deliver_later
+              puts "📧 Thank you email queued for delivery"
               new_token = user.generate_jwt
               puts "🔑 New JWT token generated"
 
@@ -119,6 +124,7 @@ module Api
                 }
               }, status: :ok
             else
+              puts "⚠️ User not found for session"
               render json: {
                 success: true,
                 status: 'complete',
@@ -140,6 +146,7 @@ module Api
       end
 
       def cancel
+        puts "🔄 Processing cancel callback"
         render json: {
           success: false,
           status: 'cancelled',
