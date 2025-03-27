@@ -70,7 +70,7 @@ module DataLab
           # Calculer le 5. nb_charges_roi_1.0
           badge_details = @badge_calculator.calculate[:badges_details]
           badge_detail = badge_details.find { |m| m[:"1. rarity"] == rarity.name }
-          bft_per_max_charge = badge_detail && badge_detail[:"6. bft_per_max_charge"].to_f || 0
+          bft_per_max_charge = badge_detail && (badge_detail[:"6. bft_per_max_charge"].to_f / 100.0) || 0
 
 
           if tokens_roi  < 1
