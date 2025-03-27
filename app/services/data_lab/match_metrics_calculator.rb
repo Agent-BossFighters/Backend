@@ -42,9 +42,17 @@ module DataLab
     def calculate_luckrate
       return 0 unless @match.badge_used.any?
 
-      @match.badge_used
-        .select { |badge| badge && badge.rarity.downcase != 'select' }
-        .sum { |badge| Constants::MatchConstants::LUCK_RATES[badge.rarity.downcase] || 0 }
+      @match.badge_used.sum do |badge|
+        # Trouver l'item correspondant à la rareté du badge
+        rarity = Rarity.find_by(name: badge.rarity.capitalize)
+        next 0 unless rarity
+
+        item = Item.joins(:type)
+                   .where(types: { name: 'Badge' }, rarity_id: rarity.id)
+                   .first
+
+        (item&.efficiency || 0) * 100
+      end
     end
 
     def calculate_profit

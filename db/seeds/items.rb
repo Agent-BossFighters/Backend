@@ -7,7 +7,7 @@ items = [
     name: "Rookie",
     type_name: "Badge",
     rarity_name: "Common",
-    efficiency: 1.0,
+    efficiency: 100,  # 100%
     supply: 200_000,
     floorPrice: 7.99,
     farming: { in_game_time: 60 },
@@ -29,7 +29,7 @@ items = [
     name: "Initiate",
     type_name: "Badge",
     rarity_name: "Uncommon",
-    efficiency: 2.05,
+    efficiency: 205,  # 205%
     supply: 100_000,
     floorPrice: 28.50,
     farming: { in_game_time: 120 },
@@ -51,7 +51,7 @@ items = [
     name: "Encore",
     type_name: "Badge",
     rarity_name: "Rare",
-    efficiency: 4.20,
+    efficiency: 420,  # 420%
     supply: 50_000,
     floorPrice: 82.50,
     farming: { in_game_time: 180 },
@@ -73,7 +73,7 @@ items = [
     name: "Contender",
     type_name: "Badge",
     rarity_name: "Epic",
-    efficiency: 12.92,
+    efficiency: 1292,  # 1292%
     supply: 25_000,
     floorPrice: 410.00,
     farming: { in_game_time: 240 },
@@ -95,7 +95,7 @@ items = [
     name: "Challenger",
     type_name: "Badge",
     rarity_name: "Legendary",
-    efficiency: 39.74,
+    efficiency: 3974,  # 3974%
     supply: 10_000,
     floorPrice: 1000.00,
     farming: { in_game_time: 300 },
@@ -117,7 +117,7 @@ items = [
     name: "Veteran",
     type_name: "Badge",
     rarity_name: "Mythic",
-    efficiency: 122.19,
+    efficiency: 12219,  # 12219%
     supply: 5_000,
     floorPrice: 4000.00,
     farming: { in_game_time: 360 },
@@ -139,7 +139,7 @@ items = [
     name: "Champion",
     type_name: "Badge",
     rarity_name: "Exalted",
-    efficiency: 375.74,
+    efficiency: 37574,  # 37574%
     supply: 1_000,
     floorPrice: 100_000.00,
     farming: { in_game_time: 420 },
@@ -161,7 +161,7 @@ items = [
     name: "Olympian",
     type_name: "Badge",
     rarity_name: "Exotic",
-    efficiency: 1540.54,
+    efficiency: 154054,  # 154054%
     supply: 250,
     floorPrice: 55_000.00,
     farming: { in_game_time: 480 },
@@ -183,7 +183,7 @@ items = [
     name: "Prodigy",
     type_name: "Badge",
     rarity_name: "Transcendent",
-    efficiency: 6316.20,
+    efficiency: 631620,  # 631620%
     supply: 100,
     floorPrice: 150000.00,
     farming: { in_game_time: 540 },
@@ -205,7 +205,7 @@ items = [
     name: "MVP",
     type_name: "Badge",
     rarity_name: "Unique",
-    efficiency: 25896.42,
+    efficiency: 2589642,  # 2589642%
     supply: 1,
     floorPrice: 500000.00,
     farming: { in_game_time: 600 },

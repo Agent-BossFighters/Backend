@@ -46,13 +46,12 @@ class Match < ApplicationRecord
     return 0 if badge_used.empty?
 
     badge_used.sum do |badge|
-      case badge.rarity.downcase
-      when 'common' then 1
-      when 'rare' then 2
-      when 'epic' then 3
-      when 'legendary' then 4
-      else 0
-      end
+      # Trouver l'item correspondant à la rareté du badge
+      item = Item.joins(:rarity)
+                 .where(rarities: { name: badge.rarity }, types: { name: 'Badge' })
+                 .first
+
+      item&.efficiency || 0
     end
   end
 end
