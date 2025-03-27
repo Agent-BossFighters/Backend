@@ -112,7 +112,7 @@ module DataLab
         bft_per_badge = badge_detail && badge_detail[:"6. bft_per_max_charge"].to_f || 0
 
         #Pour le 6. bonus_per_badge
-        bonus_per_badge = ((bft_per_badge*(1+(slot.bonus_value/100.0)))-bft_per_badge).round(2)
+        bonus_per_badge = ((bft_per_badge*(1+(slot.bonus_value/100.0)))-bft_per_badge).round(0)
 
         {
           "1. slot": slot.id,

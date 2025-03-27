@@ -34,7 +34,7 @@ module DataLab
     end
 
     def load_level_costs
-      ::ContractLevelCost.order(:level).limit(30).to_a
+      ::ContractLevelCost.order(:level).limit(100).to_a
     end
 
     def calculate_contracts_metrics(contracts)

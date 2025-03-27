@@ -31,7 +31,17 @@ costs = [
   { level: 27, flex_cost: 2700, sponsor_mark_cost: 3399 },
   { level: 28, flex_cost: 2800, sponsor_mark_cost: 3587 },
   { level: 29, flex_cost: 2900, sponsor_mark_cost: 3786 },
-  { level: 30, flex_cost: 3000, sponsor_mark_cost: 3996 }
+  { level: 30, flex_cost: 3000, sponsor_mark_cost: 3996 },
+  { level: 31, flex_cost: 3100, sponsor_mark_cost: 7752 },
+  { level: 32, flex_cost: 3200, sponsor_mark_cost: 8061 },
+  { level: 33, flex_cost: 3300, sponsor_mark_cost: 8374 },
+  { level: 34, flex_cost: 3400, sponsor_mark_cost: 8690 },
+  { level: 35, flex_cost: 3500, sponsor_mark_cost: 9010 },
+  { level: 36, flex_cost: 3600, sponsor_mark_cost: 9334 },
+  { level: 37, flex_cost: 3700, sponsor_mark_cost: 9661 },
+  { level: 38, flex_cost: 3800, sponsor_mark_cost: 9993 },
+  { level: 39, flex_cost: 3900, sponsor_mark_cost: 10327 },
+  { level: 40, flex_cost: 4000, sponsor_mark_cost: 10666 }
 ]
 
 # Création ou mise à jour des coûts de niveau
