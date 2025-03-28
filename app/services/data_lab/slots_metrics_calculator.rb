@@ -76,7 +76,7 @@ module DataLab
           if tokens_roi  < 1
             adjusted_roi = 0
           else
-            adjusted_roi = (tokens_roi / (bft_per_max_charge * slot_id * (1+(total_bonus_bft / 100.0)))).round(2)
+            adjusted_roi = (tokens_roi / (bft_per_max_charge * slot_id * (1+(total_bonus_bft / 100.0)))).round(0)
           end
 
           {
