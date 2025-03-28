@@ -7,7 +7,7 @@ items = [
     name: "Rookie",
     type_name: "Badge",
     rarity_name: "Common",
-    efficiency: 100,  # 100%
+    efficiency: 1.0,  # 100%
     supply: 200_000,
     floorPrice: 7.99,
     farming: { in_game_time: 60 },
@@ -29,7 +29,7 @@ items = [
     name: "Initiate",
     type_name: "Badge",
     rarity_name: "Uncommon",
-    efficiency: 205,  # 205%
+    efficiency: 2.05,  # 205%
     supply: 100_000,
     floorPrice: 28.50,
     farming: { in_game_time: 120 },
@@ -51,7 +51,7 @@ items = [
     name: "Encore",
     type_name: "Badge",
     rarity_name: "Rare",
-    efficiency: 420,  # 420%
+    efficiency: 4.20,  # 420%
     supply: 50_000,
     floorPrice: 82.50,
     farming: { in_game_time: 180 },
@@ -73,7 +73,7 @@ items = [
     name: "Contender",
     type_name: "Badge",
     rarity_name: "Epic",
-    efficiency: 1292,  # 1292%
+    efficiency: 12.92,  # 1292%
     supply: 25_000,
     floorPrice: 410.00,
     farming: { in_game_time: 240 },
@@ -95,7 +95,7 @@ items = [
     name: "Challenger",
     type_name: "Badge",
     rarity_name: "Legendary",
-    efficiency: 3974,  # 3974%
+    efficiency: 39.74,  # 3974%
     supply: 10_000,
     floorPrice: 1000.00,
     farming: { in_game_time: 300 },
@@ -117,7 +117,7 @@ items = [
     name: "Veteran",
     type_name: "Badge",
     rarity_name: "Mythic",
-    efficiency: 12219,  # 12219%
+    efficiency: 122.19,  # 12219%
     supply: 5_000,
     floorPrice: 4000.00,
     farming: { in_game_time: 360 },
@@ -139,7 +139,7 @@ items = [
     name: "Champion",
     type_name: "Badge",
     rarity_name: "Exalted",
-    efficiency: 37574,  # 37574%
+    efficiency: 375.74,  # 37574%
     supply: 1_000,
     floorPrice: 100_000.00,
     farming: { in_game_time: 420 },
@@ -161,7 +161,7 @@ items = [
     name: "Olympian",
     type_name: "Badge",
     rarity_name: "Exotic",
-    efficiency: 154054,  # 154054%
+    efficiency: 1540.54,  # 154054%
     supply: 250,
     floorPrice: 55_000.00,
     farming: { in_game_time: 480 },
@@ -183,7 +183,7 @@ items = [
     name: "Prodigy",
     type_name: "Badge",
     rarity_name: "Transcendent",
-    efficiency: 631620,  # 631620%
+    efficiency: 6316.20,  # 631620%
     supply: 100,
     floorPrice: 150000.00,
     farming: { in_game_time: 540 },
@@ -205,7 +205,7 @@ items = [
     name: "MVP",
     type_name: "Badge",
     rarity_name: "Unique",
-    efficiency: 2589642,  # 2589642%
+    efficiency: 25896.42,  # 2589642%
     supply: 1,
     floorPrice: 500000.00,
     farming: { in_game_time: 600 },
@@ -229,7 +229,7 @@ items = [
     name: "Rookie",
     type_name: "Contract",
     rarity_name: "Common",
-    efficiency: 1.0,
+    efficiency: 100,
     supply: 50_000,
     floorPrice: 40.00,
     farming: { in_game_time: 48 * 60 },
@@ -251,7 +251,7 @@ items = [
     name: "Initiate",
     type_name: "Contract",
     rarity_name: "Uncommon",
-    efficiency: 2.05,
+    efficiency: 205,
     supply: 35_000,
     floorPrice: 55.00,
     farming: { in_game_time: 72 * 60 },
@@ -273,7 +273,7 @@ items = [
     name: "Encore",
     type_name: "Contract",
     rarity_name: "Rare",
-    efficiency: 4.20,
+    efficiency: 420,
     supply: 20_000,
     floorPrice: 120.00,
     farming: { in_game_time: 96 * 60 },
@@ -295,7 +295,7 @@ items = [
     name: "Contender",
     type_name: "Contract",
     rarity_name: "Epic",
-    efficiency: 12.92,
+    efficiency: 1292,
     supply: 10_000,
     floorPrice: 390.00,
     farming: { in_game_time: 120 * 60 },
@@ -317,7 +317,7 @@ items = [
     name: "Challenger",
     type_name: "Contract",
     rarity_name: "Legendary",
-    efficiency: 39.74,
+    efficiency: 3974,
     supply: 5_000,
     floorPrice: 560.00,
     farming: { in_game_time: 144 * 60 },
@@ -339,7 +339,7 @@ items = [
     name: "Veteran",
     type_name: "Contract",
     rarity_name: "Mythic",
-    efficiency: 100.0,
+    efficiency: 10000,  # 10000%
     supply: 2_500,
     floorPrice: 789.00,
     farming: { in_game_time: 168 * 60 },
@@ -361,7 +361,7 @@ items = [
     name: "Champion",
     type_name: "Contract",
     rarity_name: "Exalted",
-    efficiency: 250.0,
+    efficiency: 25000,  # 25000%
     supply: 1_000,
     floorPrice: 4_500.00,
     farming: { in_game_time: 192 * 60 },
@@ -383,7 +383,7 @@ items = [
     name: "Olympian",
     type_name: "Contract",
     rarity_name: "Exotic",
-    efficiency: 625.0,
+    efficiency: 62500,  # 62500%
     supply: 250,
     floorPrice: 15_000.00,
     farming: { in_game_time: 216 * 60 },
@@ -405,7 +405,7 @@ items = [
     name: "Prodigy",
     type_name: "Contract",
     rarity_name: "Transcendent",
-    efficiency: 1562.5,
+    efficiency: 156250,  # 156250%
     supply: 100,
     floorPrice: 45_000.00,
     farming: { in_game_time: 240 * 60 },
@@ -427,7 +427,7 @@ items = [
     name: "MVP",
     type_name: "Contract",
     rarity_name: "Unique",
-    efficiency: 3906.25,
+    efficiency: 390625,  # 390625%
     supply: 1,
     floorPrice: 135_000.00,
     farming: { in_game_time: 264 * 60 },
