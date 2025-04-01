@@ -9,6 +9,7 @@ class Match < ApplicationRecord
   before_validation :normalize_map
   before_validation :calculate_energy_used
   before_save :calculate_values
+  before_update :reset_luckrate
 
   # Validations essentielles
   validates :build, presence: true
@@ -26,7 +27,8 @@ class Match < ApplicationRecord
   end
 
   def calculate_energy_used
-    if time.present? && energyUsed.nil?
+    # Recalculer energyUsed si le temps a changé ou si energyUsed est nil
+    if time.present? && (energyUsed.nil? || time_changed?)
       self.energyUsed = (time.to_f / 10.0).round(2)
     end
   end
@@ -53,5 +55,9 @@ class Match < ApplicationRecord
 
       item&.efficiency || 0
     end
+  end
+
+  def reset_luckrate
+    self.luckrate = 0
   end
 end

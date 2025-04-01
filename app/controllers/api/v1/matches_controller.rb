@@ -29,10 +29,20 @@ module Api
           unless @match.user_id == current_user.id
             return render json: { error: "Non autorisé" }, status: :unauthorized
           end
+          
+          if match_params[:badge_used_attributes].present?
+            match_params[:badge_used_attributes].each do |attrs|
+            end
+          end
 
           if @match.update(match_params)
             render json: { match: match_json(@match) }
           else
+            if @match.badge_used.any?
+              @match.badge_used.each do |badge|
+              end
+            end
+            
             render json: {
               errors: @match.errors.full_messages,
               badge_errors: @match.badge_used.map { |b| b.errors.full_messages }.flatten
@@ -268,7 +278,8 @@ module Api
           :totalPremiumCurrency,
           :bonusMultiplier,
           :perksMultiplier,
-          badge_used_attributes: [:slot, :rarity, :_destroy]
+          :energyUsed,
+          badge_used_attributes: [:id, :slot, :rarity, :nftId, :_destroy]
         )
       end
     end
