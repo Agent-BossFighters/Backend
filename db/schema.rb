@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_25_143213) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_01_000002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "quest_type", ["daily", "unique", "weekly", "social", "event"]
 
   create_table "badge_useds", force: :cascade do |t|
     t.bigint "match_id", null: false
@@ -173,6 +177,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_143213) do
     t.index ["user_id"], name: "index_player_cycles_on_user_id"
   end
 
+  create_table "quests", force: :cascade do |t|
+    t.string "quest_id", null: false
+    t.string "title", limit: 100, null: false
+    t.text "description"
+    t.enum "quest_type", null: false, enum_type: "quest_type"
+    t.integer "xp_reward", default: 0, null: false
+    t.string "icon_url"
+    t.integer "progress_required", default: 1, null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quest_id"], name: "index_quests_on_quest_id", unique: true
+  end
+
   create_table "rarities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -228,6 +246,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_143213) do
     t.datetime "updated_at", null: false
     t.float "bftBonus", default: 0.0
     t.index ["user_id"], name: "index_user_builds_on_user_id"
+  end
+
+  create_table "user_quest_completions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "quest_id", null: false
+    t.date "completion_date"
+    t.integer "progress", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "quest_id", "completion_date"], name: "idx_user_quests_unique_completion", unique: true
+    t.index ["user_id"], name: "index_user_quest_completions_on_user_id"
   end
 
   create_table "user_recharges", force: :cascade do |t|
@@ -295,6 +324,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_143213) do
   add_foreign_key "transactions", "payment_methods"
   add_foreign_key "transactions", "users"
   add_foreign_key "user_builds", "users"
+  add_foreign_key "user_quest_completions", "quests", primary_key: "quest_id"
+  add_foreign_key "user_quest_completions", "users"
   add_foreign_key "user_recharges", "users"
   add_foreign_key "user_slots", "slots"
   add_foreign_key "user_slots", "users"
