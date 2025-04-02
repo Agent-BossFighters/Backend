@@ -28,8 +28,20 @@ Rails.application.routes.draw do
         collection do
           patch 'tactics', to: 'users#update_tactics'
           get 'flex_packs', to: 'users#get_flex_packs'
+          patch 'level_exp', to: 'users#update_level_exp'
+        end
+        
+        member do
+          get 'xp', to: 'users#get_xp'
         end
       end
+
+      resources :quests, only: [:index, :show] do
+        member do
+          patch 'progress', to: 'quests#update_progress'
+        end
+      end
+
       resources :badges do
         collection do
           get 'owned', to: 'badges#owned_badges'

@@ -66,6 +66,21 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
   end
 
+  def update_level_exp
+    if current_user.update(level_exp_params)
+      render json: {
+        message: 'Level and experience successfully updated',
+        user: current_user,
+        level_stats: {
+          current_level: current_user.level,
+          experience: current_user.experience
+        }
+      }
+    else
+      render json: { errors: current_user.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   def get_flex_packs
     packs = DataLab::CurrencyRatesService::FLEX_PACKS.map.with_index(1) do |pack, index|
       {
@@ -101,6 +116,22 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
   end
 
+  def get_xp
+    @user = User.find(params[:id])
+    render json: {
+      user: {
+        id: @user.id,
+        level: @user.level,
+        experience: @user.experience
+      },
+      level_stats: {
+        current_level: @user.level,
+        experience: @user.experience,
+        next_level_experience: @user.level * 1000 # Utilise la même formule que dans check_level_up
+      }
+    }
+  end
+
   private
 
   def calculate_user_stats
@@ -133,5 +164,9 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def tactics_params
     params.require(:user).permit(:flex_pack)
+  end
+
+  def level_exp_params
+    params.require(:user).permit(:level, :experience)
   end
 end
