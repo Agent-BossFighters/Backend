@@ -2,7 +2,7 @@ module Api
   module V1
     class TournamentsController < ApplicationController
       before_action :authenticate_user!
-      before_action :set_tournament, except: [:index, :create]
+      before_action :set_tournament, except: [:index, :create, :my_tournaments]
       before_action :ensure_premium_user, only: [:create]
       before_action :ensure_admin, only: [:update, :destroy]
 
@@ -59,6 +59,34 @@ module Api
       def destroy
         @tournament.destroy
         head :no_content
+      end
+
+      def my_tournaments
+        # Récupérer les IDs des équipes dans lesquelles l'utilisateur est membre
+        member_team_ids = TeamMember.where(user_id: current_user.id).pluck(:team_id)
+        
+        # Récupérer les IDs des équipes dont l'utilisateur est capitaine
+        captain_team_ids = Team.where(captain_id: current_user.id).pluck(:id)
+        
+        # Combiner tous les IDs d'équipes
+        all_team_ids = (member_team_ids + captain_team_ids).uniq
+        
+        # Récupérer tous les tournois associés à ces équipes
+        @tournaments = Tournament.joins(:teams)
+                                 .where(teams: { id: all_team_ids })
+                                 .includes(:creator, :boss, :teams)
+                                 .order(created_at: :desc)
+                                 .distinct
+        
+        render json: {
+          tournaments: @tournaments.as_json(
+            include: { 
+              creator: { only: [:id, :username] },
+              boss: { only: [:id, :username] },
+              teams: { only: [:id, :name] }
+            }
+          )
+        }
       end
 
       private
