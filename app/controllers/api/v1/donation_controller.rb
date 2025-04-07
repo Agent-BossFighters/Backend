@@ -42,7 +42,7 @@ module Api
             line_items: [{
               price_data: {
                 currency: 'eur',
-                product: ENV['STRIPE_DONATION_PRODUCT_ID'],
+                product: ENV['VITE_STRIPE_DONATION_PRODUCT_ID'],
                 unit_amount: amount,
               },
               quantity: 1
