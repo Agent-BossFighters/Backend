@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_03_204933) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_09_110227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -257,9 +257,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_03_204933) do
     t.decimal "total_damage", precision: 10, scale: 2, default: "0.0"
     t.decimal "total_survival_time", precision: 10, scale: 2, default: "0.0"
     t.bigint "tournament_id", null: false
-    t.bigint "captain_id", null: false
+    t.bigint "captain_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_empty", default: false
     t.index ["captain_id"], name: "index_teams_on_captain_id"
     t.index ["invitation_code"], name: "index_teams_on_invitation_code", unique: true, where: "(invitation_code IS NOT NULL)"
     t.index ["tournament_id", "name"], name: "index_teams_on_tournament_id_and_name", unique: true
@@ -317,6 +318,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_03_204933) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "rounds", default: 1, null: false
+    t.boolean "auto_create_teams", default: false
     t.index ["boss_id"], name: "index_tournaments_on_boss_id"
     t.index ["creator_id"], name: "index_tournaments_on_creator_id"
     t.index ["entry_code"], name: "index_tournaments_on_entry_code", unique: true, where: "(entry_code IS NOT NULL)"

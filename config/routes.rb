@@ -176,6 +176,7 @@ Rails.application.routes.draw do
           member do
             post :join
             delete :leave
+            delete 'kick/:member_id', to: 'teams#kick', as: :kick_member
           end
         end
         

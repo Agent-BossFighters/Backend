@@ -39,7 +39,32 @@ module Api
       end
 
       def create
-        service = TournamentCreationService.new(creator: current_user, params: tournament_params)
+        # Permettre des paramètres à la racine ou dans l'objet tournament
+        tournament_data = params[:tournament].present? ? params[:tournament] : params
+        
+        # Convertir explicitement les types pour éviter les erreurs de validation
+        processed_params = {
+          name: tournament_data[:name],
+          tournament_type: tournament_data[:tournament_type].to_i,
+          status: tournament_data[:status].to_i,
+          rules: tournament_data[:rules],
+          agent_level_required: tournament_data[:agent_level_required].to_i,
+          players_per_team: tournament_data[:players_per_team].to_i,
+          min_players_per_team: tournament_data[:min_players_per_team].to_i,
+          max_teams: tournament_data[:max_teams].to_i,
+          rounds: tournament_data[:rounds].to_i,
+          auto_create_teams: tournament_data[:auto_create_teams] == true || tournament_data[:auto_create_teams] == "true"
+        }
+        
+        # Détection du type de tournoi pour configurer correctement le boss
+        if processed_params[:tournament_type] <= 1 && !tournament_data[:boss_id]
+          processed_params[:boss_id] = current_user.id
+        end
+        
+        service = TournamentCreationService.new(
+          user: current_user, 
+          tournament_params: processed_params
+        )
         
         if @tournament = service.call
           render json: { tournament: @tournament.as_json(include: :creator) }, status: :created
@@ -96,34 +121,12 @@ module Api
       end
 
       def tournament_params
-        params = self.params.require(:tournament).permit(
-          :name, :tournament_type, :rules, :entry_code,
-          :agent_level_required, :players_per_team, :min_players_per_team,
-          :max_teams, :is_premium_only, :boss_id, :status, :rounds
+        params.require(:tournament).permit(
+          :name, :tournament_type, :status, :rules, 
+          :agent_level_required, :players_per_team, 
+          :min_players_per_team, :max_teams, 
+          :rounds, :is_premium_only, :boss_id, :auto_create_teams
         )
-        
-        # Transformer 'pending' en 'draft'
-        params[:status] = 'draft' if params[:status] == 'pending'
-        
-        # Si le nombre de rounds n'est pas spécifié, utiliser une valeur par défaut
-        # basée sur le type de tournoi
-        unless params[:rounds].present?
-          params[:rounds] = case params[:tournament_type].to_i
-                            when 0, 1  # showtime_survival ou showtime_score
-                              1
-                            when 2      # arena
-                              3
-                            else
-                              1
-                            end
-        end
-        
-        # Valider que les rounds sont soit 1 soit 3
-        if params[:rounds].to_i != 1 && params[:rounds].to_i != 3
-          params[:rounds] = params[:rounds].to_i < 2 ? 1 : 3
-        end
-        
-        params
       end
 
       def ensure_premium_user
