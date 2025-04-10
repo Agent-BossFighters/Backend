@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_01_000002) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_09_110227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -198,6 +198,27 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_000002) do
     t.string "color"
   end
 
+  create_table "rounds", force: :cascade do |t|
+    t.integer "round_number", null: false
+    t.decimal "team_a_damage", precision: 10, scale: 2, default: "0.0"
+    t.decimal "team_b_damage", precision: 10, scale: 2, default: "0.0"
+    t.decimal "team_a_survival_time", precision: 10, scale: 2, default: "0.0"
+    t.decimal "team_b_survival_time", precision: 10, scale: 2, default: "0.0"
+    t.integer "team_a_points", default: 0
+    t.integer "team_b_points", default: 0
+    t.bigint "match_id", null: false
+    t.bigint "boss_a_id"
+    t.bigint "boss_b_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tournament_match_id", null: false
+    t.index ["boss_a_id"], name: "index_rounds_on_boss_a_id"
+    t.index ["boss_b_id"], name: "index_rounds_on_boss_b_id"
+    t.index ["match_id", "round_number"], name: "index_rounds_on_match_id_and_round_number", unique: true
+    t.index ["match_id"], name: "index_rounds_on_match_id"
+    t.index ["tournament_match_id"], name: "index_rounds_on_tournament_match_id"
+  end
+
   create_table "slots", force: :cascade do |t|
     t.bigint "currency_id", null: false
     t.bigint "game_id", null: false
@@ -215,6 +236,94 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_000002) do
     t.float "bonus_value"
     t.index ["currency_id"], name: "index_slots_on_currency_id"
     t.index ["game_id"], name: "index_slots_on_game_id"
+  end
+
+  create_table "team_members", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "slot_number", null: false
+    t.boolean "is_boss_eligible", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id", "slot_number"], name: "index_team_members_on_team_id_and_slot_number", unique: true
+    t.index ["team_id", "user_id"], name: "index_team_members_on_team_id_and_user_id", unique: true
+    t.index ["team_id"], name: "index_team_members_on_team_id"
+    t.index ["user_id"], name: "index_team_members_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "invitation_code"
+    t.decimal "total_damage", precision: 10, scale: 2, default: "0.0"
+    t.decimal "total_survival_time", precision: 10, scale: 2, default: "0.0"
+    t.bigint "tournament_id", null: false
+    t.bigint "captain_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_empty", default: false
+    t.index ["captain_id"], name: "index_teams_on_captain_id"
+    t.index ["invitation_code"], name: "index_teams_on_invitation_code", unique: true, where: "(invitation_code IS NOT NULL)"
+    t.index ["tournament_id", "name"], name: "index_teams_on_tournament_id_and_name", unique: true
+    t.index ["tournament_id"], name: "index_teams_on_tournament_id"
+  end
+
+  create_table "tournament_admins", force: :cascade do |t|
+    t.bigint "tournament_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "is_creator", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tournament_id", "is_creator"], name: "index_tournament_admins_on_tournament_id_and_is_creator"
+    t.index ["tournament_id", "user_id"], name: "index_tournament_admins_on_tournament_id_and_user_id", unique: true
+    t.index ["tournament_id"], name: "index_tournament_admins_on_tournament_id"
+    t.index ["user_id"], name: "index_tournament_admins_on_user_id"
+  end
+
+  create_table "tournament_matches", force: :cascade do |t|
+    t.integer "match_type", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "round_number", null: false
+    t.datetime "scheduled_time"
+    t.integer "team_a_points", default: 0
+    t.integer "team_b_points", default: 0
+    t.bigint "tournament_id", null: false
+    t.bigint "team_a_id", null: false
+    t.bigint "team_b_id"
+    t.bigint "boss_id", null: false
+    t.bigint "winner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boss_id"], name: "index_tournament_matches_on_boss_id"
+    t.index ["status"], name: "index_tournament_matches_on_status"
+    t.index ["team_a_id"], name: "index_tournament_matches_on_team_a_id"
+    t.index ["team_b_id"], name: "index_tournament_matches_on_team_b_id"
+    t.index ["tournament_id", "round_number"], name: "index_tournament_matches_on_tournament_id_and_round_number"
+    t.index ["tournament_id"], name: "index_tournament_matches_on_tournament_id"
+    t.index ["winner_id"], name: "index_tournament_matches_on_winner_id"
+  end
+
+  create_table "tournaments", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "tournament_type", null: false
+    t.integer "status", default: 0, null: false
+    t.text "rules"
+    t.string "entry_code"
+    t.integer "agent_level_required", default: 0, null: false
+    t.integer "players_per_team", null: false
+    t.integer "min_players_per_team"
+    t.integer "max_teams", null: false
+    t.boolean "is_premium_only", default: false, null: false
+    t.bigint "creator_id", null: false
+    t.bigint "boss_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "rounds", default: 1, null: false
+    t.boolean "auto_create_teams", default: false
+    t.index ["boss_id"], name: "index_tournaments_on_boss_id"
+    t.index ["creator_id"], name: "index_tournaments_on_creator_id"
+    t.index ["entry_code"], name: "index_tournaments_on_entry_code", unique: true, where: "(entry_code IS NOT NULL)"
+    t.index ["status"], name: "index_tournaments_on_status"
+    t.index ["tournament_type"], name: "index_tournaments_on_tournament_type"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -319,8 +428,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_000002) do
   add_foreign_key "matches", "users"
   add_foreign_key "nfts", "items", column: "itemId"
   add_foreign_key "player_cycles", "users"
+  add_foreign_key "rounds", "tournament_matches"
+  add_foreign_key "rounds", "tournament_matches", column: "match_id"
+  add_foreign_key "rounds", "users", column: "boss_a_id"
+  add_foreign_key "rounds", "users", column: "boss_b_id"
   add_foreign_key "slots", "currencies"
   add_foreign_key "slots", "games"
+  add_foreign_key "team_members", "teams"
+  add_foreign_key "team_members", "users"
+  add_foreign_key "teams", "tournaments"
+  add_foreign_key "teams", "users", column: "captain_id"
+  add_foreign_key "tournament_admins", "tournaments"
+  add_foreign_key "tournament_admins", "users"
+  add_foreign_key "tournament_matches", "teams", column: "team_a_id"
+  add_foreign_key "tournament_matches", "teams", column: "team_b_id"
+  add_foreign_key "tournament_matches", "teams", column: "winner_id"
+  add_foreign_key "tournament_matches", "tournaments"
+  add_foreign_key "tournament_matches", "users", column: "boss_id"
+  add_foreign_key "tournaments", "users", column: "boss_id"
+  add_foreign_key "tournaments", "users", column: "creator_id"
   add_foreign_key "transactions", "payment_methods"
   add_foreign_key "transactions", "users"
   add_foreign_key "user_builds", "users"

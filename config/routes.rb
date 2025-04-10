@@ -167,6 +167,25 @@ Rails.application.routes.draw do
         patch 'game_currencies/bft', to: 'game_currencies#update_bft'
         patch 'game_currencies/sponsor_marks', to: 'game_currencies#update_sponsor_marks'
       end
+
+      # Route spécifique pour les tournois de l'utilisateur - doit être AVANT resources :tournaments
+      get 'tournaments/my_tournaments', to: 'tournaments#my_tournaments'
+      
+      resources :tournaments do
+        resources :teams do
+          member do
+            post :join
+            delete :leave
+            delete 'kick/:member_id', to: 'teams#kick', as: :kick_member
+          end
+        end
+        
+        resources :tournament_matches do
+          member do
+            patch :update_results
+          end
+        end
+      end
     end
   end
 end
