@@ -45,6 +45,19 @@ class Tournament < ApplicationRecord
   after_create :add_creator_as_admin
   before_validation :set_default_rounds
 
+  # Helper methods
+  def registration_open?
+    open?
+  end
+
+  def full?
+    teams.count >= max_teams
+  end
+
+  def survival?
+    showtime_survival? || showtime_score?
+  end
+
   # Détermine le nombre de rounds par défaut en fonction du type de tournoi
   def default_rounds
     if arena?
@@ -88,4 +101,4 @@ class Tournament < ApplicationRecord
   def add_creator_as_admin
     tournament_admins.create!(user: creator, is_creator: true)
   end
-end 
+end
