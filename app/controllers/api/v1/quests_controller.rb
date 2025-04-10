@@ -36,7 +36,7 @@ module Api
 
       def show
         render json: {
-          quest: format_quest(@quest),
+          quest: format_quest(@quest, current_user),
           user_progress: current_user.quest_progress(@quest.quest_id)
         }
       end
@@ -65,7 +65,7 @@ module Api
         # Si la quête est déjà complétée, ne rien faire sauf si on force la complétion
         if @completion.persisted? && @completion.completed? && !params[:force]
           render json: {
-            quest: format_quest(@quest),
+            quest: format_quest(@quest, current_user),
             progress: @completion.progress,
             completed: true,
             experience_gained: 0,
@@ -105,7 +105,7 @@ module Api
           end
           
           render json: {
-            quest: format_quest(@quest),
+            quest: format_quest(@quest, current_user),
             progress: @completion.progress,
             completed: @completion.completed?,
             experience_gained: experience_gained,
@@ -140,14 +140,13 @@ module Api
           id: quest.quest_id,
           name: quest.title,
           description: quest.description,
-          icon: quest.icon,
+          icon: quest.icon_url,
           quest_type: quest.quest_type,
           current_progress: current_progress,
           progress_required: quest.progress_required,
           completed: is_completed,
           completable: is_completable,
-          reward_xp: quest.xp_reward,
-          reward_coins: quest.reward_coins
+          reward_xp: quest.xp_reward
         }
       end
     end
