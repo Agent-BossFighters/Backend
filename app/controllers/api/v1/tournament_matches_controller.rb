@@ -126,20 +126,47 @@ module Api
           survival_params = nil
           
           if params[:results].present?
-            survival_params = params.require(:results).permit(:survival_time)
+            # Format standard avec tous les paramètres
+            survival_params = params.require(:results).permit(:survival_time, :boss_damage, :lives_left)
           elsif params[:match] && params[:match][:survival_time].present?
-            survival_params = { survival_time: params[:match][:survival_time] }
+            # Format avec match.survival_time
+            survival_params = { 
+              survival_time: params[:match][:survival_time],
+              boss_damage: params[:match][:boss_damage],
+              lives_left: params[:match][:lives_left]
+            }
           elsif params[:match] && params[:match][:team_a_points].present?
-            survival_params = { survival_time: params[:match][:team_a_points] }
+            # Format avec match.team_a_points
+            survival_params = { 
+              survival_time: params[:match][:team_a_points],
+              boss_damage: params[:match][:boss_damage],
+              lives_left: params[:match][:lives_left]
+            }
           elsif params[:survival_time].present?
-            survival_params = { survival_time: params[:survival_time] }
+            # Format direct avec survival_time
+            survival_params = { 
+              survival_time: params[:survival_time],
+              boss_damage: params[:boss_damage],
+              lives_left: params[:lives_left]
+            }
           elsif params[:team_a_points].present?
-            survival_params = { survival_time: params[:team_a_points] }
+            # Format direct avec team_a_points
+            survival_params = { 
+              survival_time: params[:team_a_points],
+              boss_damage: params[:boss_damage],
+              lives_left: params[:lives_left]
+            }
           else
-            survival_params = { survival_time: params[:score] || 0 }
+            # Format minimal
+            survival_params = { 
+              survival_time: params[:score] || 0,
+              boss_damage: params[:boss_damage] || 0,
+              lives_left: params[:lives_left] || 0
+            }
           end
           
           Rails.logger.info("Paramètres de survie extraits : #{survival_params.inspect}")
+          Rails.logger.info("Paramètres de résultats : #{survival_params.inspect}")
           survival_params
         end
       end

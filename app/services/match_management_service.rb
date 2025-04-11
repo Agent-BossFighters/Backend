@@ -125,23 +125,29 @@ class MatchManagementService
     # Pour les tournois de survie, on attend un score de survie
     survival_time = results[:survival_time].to_i
     
+    # Récupérer les nouvelles informations pour le départage
+    boss_damage = results[:boss_damage].to_i
+    lives_left = results[:lives_left].to_i
+    
     # Journaliser les valeurs pour le débogage
     Rails.logger.info("Mise à jour des résultats du match #{match.id}")
     Rails.logger.info("Survival time: #{survival_time}, Type: #{survival_time.class}")
+    Rails.logger.info("Boss damage: #{boss_damage}, Lives left: #{lives_left}")
     Rails.logger.info("Results: #{results.inspect}")
     
-    # Mettre à jour le match avec les points de l'équipe A (le temps de survie)
-    match_attributes = {
-      team_a_points: survival_time,
-      winner: survival_time > 0 ? match.team_a : nil,
-      status: :completed
-    }
+    # Mettre à jour le match avec les points correspondants selon le type de tournoi
+    if @tournament.showtime_survival?
+      # Pour Survival: temps de survie et dégâts du boss
+      match.team_a_points = survival_time
+      match.team_b_points = boss_damage  # On utilise team_b_points pour stocker les dégâts du boss
+    elsif @tournament.showtime_score?
+      # Pour Score Counter: score total et vies restantes
+      match.team_a_points = survival_time  # ici survival_time représente le score
+      match.team_b_points = lives_left  # On utilise team_b_points pour stocker les vies restantes
+    end
     
-    Rails.logger.info("Attributs de mise à jour: #{match_attributes.inspect}")
-    
-    # Sauvegarder les attributs
-    match.team_a_points = survival_time
-    match.winner = survival_time > 0 ? match.team_a : nil
+    # Définir le gagnant et marquer comme complété
+    match.winner = match.team_a_points > 0 ? match.team_a : nil
     match.status = :completed
     
     # Journaliser l'état du match avant la sauvegarde
