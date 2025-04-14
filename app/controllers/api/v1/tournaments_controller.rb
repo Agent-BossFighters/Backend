@@ -17,7 +17,8 @@ module Api
               creator: { only: [:id, :username] },
               boss: { only: [:id, :username] },
               teams: { only: [:id, :name] }
-            }
+            },
+            methods: [:players_count]
           )
         }
       end
@@ -56,6 +57,11 @@ module Api
           auto_create_teams: tournament_data[:auto_create_teams] == true || tournament_data[:auto_create_teams] == "true"
         }
         
+        # Ajouter le code d'entrée s'il est présent
+        if tournament_data[:entry_code].present?
+          processed_params[:entry_code] = tournament_data[:entry_code].to_s
+        end
+        
         # Détection du type de tournoi pour configurer correctement le boss
         if processed_params[:tournament_type] <= 1 && !tournament_data[:boss_id]
           processed_params[:boss_id] = current_user.id
@@ -74,8 +80,107 @@ module Api
       end
 
       def update
+        # Récupérer les paramètres originaux du tournoi
+        original_max_teams = @tournament.max_teams
+        
+        # Traiter les options supplémentaires
+        options = params[:options] || {}
+        delete_higher_id_teams = options[:delete_higher_id_teams].present? ? 
+                                (options[:delete_higher_id_teams].to_s == "true") : false
+        create_missing_teams = options[:create_missing_teams].present? ? 
+                              (options[:create_missing_teams].to_s == "true") : false
+
+        # Mettre à jour le tournoi
         if @tournament.update(tournament_params)
-          render json: { tournament: @tournament.as_json }
+          # Gérer la suppression des équipes si le nombre max a été réduit
+          if tournament_params[:max_teams].present? && 
+             tournament_params[:max_teams].to_i < original_max_teams &&
+             delete_higher_id_teams
+            
+            # Calculer combien d'équipes doivent être gardées
+            teams_to_keep = tournament_params[:max_teams].to_i
+            
+            # Récupérer toutes les équipes du tournoi
+            all_teams = @tournament.teams
+            current_teams_count = all_teams.count
+            
+            # Si nous avons plus d'équipes que nécessaire
+            if current_teams_count > teams_to_keep
+              # Trier par ID décroissant (supprimer les équipes avec les ID les plus élevés)
+              teams_by_id_desc = all_teams.order(id: :desc).to_a
+              # Prendre les équipes excédentaires (avec les ID les plus élevés)
+              teams_to_delete = teams_by_id_desc.first(current_teams_count - teams_to_keep)
+              
+              # Supprimer chaque équipe et ses membres
+              teams_to_delete.each do |team|
+                
+                # Vérifier si l'équipe a des membres
+                if team.team_members.exists?
+                  # La suppression des membres est gérée automatiquement par dependent: :destroy
+                end
+                
+                # Supprimer l'équipe
+                team.destroy
+              end
+            end
+          end
+          
+          # Gérer la création de nouvelles équipes si le nombre max a été augmenté
+          if tournament_params[:max_teams].present? && 
+             tournament_params[:max_teams].to_i > original_max_teams &&
+             create_missing_teams
+            
+            # Calculer combien d'équipes doivent être créées
+            current_teams_count = @tournament.teams.count
+            new_max_teams = tournament_params[:max_teams].to_i
+            teams_to_create = new_max_teams - current_teams_count
+            
+            if teams_to_create > 0
+              
+              # Définir le créateur du tournoi comme capitaine temporaire
+              # Si le créateur n'est pas disponible, utilisez l'utilisateur actuel
+              temp_captain_id = @tournament.creator_id || current_user.id
+              
+              # Déterminer les lettres disponibles pour les nouvelles équipes
+              existing_letters = @tournament.teams.pluck(:name).map { |name| name.split(' ').last }
+              
+              # Créer les équipes manquantes
+              teams_created = []
+              
+              teams_to_create.times do |i|
+                # Trouver la prochaine lettre disponible
+                next_letter = nil
+                ('A'..'Z').each do |letter|
+                  unless existing_letters.include?(letter)
+                    next_letter = letter
+                    existing_letters << letter
+                    break
+                  end
+                end
+                
+                # Si toutes les lettres sont utilisées, utiliser un index numérique
+                name = next_letter ? "Team #{next_letter}" : "Team #{current_teams_count + i + 1}"
+                
+                begin
+                  # Créer directement sans callback pour éviter l'ajout du capitaine comme membre
+                  team = Team.new(
+                    name: name,
+                    is_empty: true,
+                    captain_id: temp_captain_id,
+                    tournament_id: @tournament.id
+                  )
+                  
+                  # Désactiver complètement les callbacks pour s'assurer que le créateur du tournoi ne sera pas ajouté comme membre
+                  team.save(validate: false)
+                  
+                  teams_created << team
+                rescue => e
+                end
+              end
+            end
+          end
+          
+          render json: { tournament: @tournament.reload.as_json }
         else
           render json: { errors: @tournament.errors }, status: :unprocessable_entity
         end
@@ -109,7 +214,8 @@ module Api
               creator: { only: [:id, :username] },
               boss: { only: [:id, :username] },
               teams: { only: [:id, :name] }
-            }
+            },
+            methods: [:players_count]
           )
         }
       end
@@ -125,7 +231,7 @@ module Api
           :name, :tournament_type, :status, :rules, 
           :agent_level_required, :players_per_team, 
           :min_players_per_team, :max_teams, 
-          :rounds, :is_premium_only, :boss_id, :auto_create_teams
+          :rounds, :is_premium_only, :boss_id, :auto_create_teams, :entry_code
         )
       end
 

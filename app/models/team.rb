@@ -81,6 +81,9 @@ class Team < ApplicationRecord
   private
 
   def add_captain_as_member
+    # Ne pas ajouter le capitaine comme membre s'il est créateur ou administrateur du tournoi
+    return if tournament&.tournament_admins&.exists?(user_id: captain_id)
+    
     team_members.create!(
       user_id: captain_id,
       slot_number: 1,
