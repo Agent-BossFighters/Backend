@@ -12,11 +12,13 @@ Rails.application.routes.draw do
         path_names: {
           sign_in: 'login',
           sign_out: 'logout',
-          registration: 'signup'
+          registration: 'signup',
+          password: 'password'
         },
         controllers: {
           sessions: 'api/v1/sessions',
-          registrations: 'api/v1/registrations'
+          registrations: 'api/v1/registrations',
+          passwords: 'api/v1/passwords'
         },
         defaults: { format: :json }
 
@@ -30,7 +32,7 @@ Rails.application.routes.draw do
           get 'flex_packs', to: 'users#get_flex_packs'
           patch 'level_exp', to: 'users#update_level_exp'
         end
-        
+
         member do
           get 'xp', to: 'users#get_xp'
         end
@@ -170,7 +172,7 @@ Rails.application.routes.draw do
 
       # Route spécifique pour les tournois de l'utilisateur - doit être AVANT resources :tournaments
       get 'tournaments/my_tournaments', to: 'tournaments#my_tournaments'
-      
+
       resources :tournaments do
         resources :teams do
           member do
@@ -179,7 +181,7 @@ Rails.application.routes.draw do
             delete 'kick/:member_id', to: 'teams#kick', as: :kick_member
           end
         end
-        
+
         resources :tournament_matches do
           member do
             patch :update_results

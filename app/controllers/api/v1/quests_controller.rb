@@ -7,15 +7,15 @@ module Api
       def index
         begin
           @quests = Quest.active
-          
+
           render json: {
-            quests: @quests.map { |quest| 
+            quests: @quests.map { |quest|
               # Pour la quête daily_matches, obtenir le nombre réel de matchs
-              current_progress = quest.quest_id == 'daily_matches' ? 
-                quest.daily_matches_count(current_user) : 
+              current_progress = quest.quest_id == 'daily_matches' ?
+                quest.daily_matches_count(current_user) :
                 current_user.quest_progress(quest.quest_id)
-              
-                
+
+
               {
                 id: quest.quest_id,
                 title: quest.title,
@@ -48,20 +48,20 @@ module Api
         )
 
         new_progress = params[:progress].to_i
-        
+
         # Assurer qu'on a une valeur de progression
         if params[:progress].nil?
           return render json: { error: "La progression doit être spécifiée" }, status: :unprocessable_entity
         end
-        
+
         unless @quest.completable_by?(current_user)
           return render json: { error: "Cette quête n'est pas disponible actuellement" }, status: :unprocessable_entity
         end
 
-        
+
         old_progress = @completion.progress || 0  # Utiliser 0 si nil
         old_experience = current_user.experience.to_f || 0  # Sauvegarder la valeur d'expérience avant mise à jour
-        
+
         # Si la quête est déjà complétée, ne rien faire sauf si on force la complétion
         if @completion.persisted? && @completion.completed? && !params[:force]
           render json: {
@@ -75,9 +75,9 @@ module Api
           }
           return
         end
-        
+
         @completion.progress = new_progress
-        
+
         # Calculer si cette mise à jour va compléter la quête
         will_complete = new_progress >= @quest.progress_required && old_progress.to_i < @quest.progress_required
 
@@ -85,17 +85,17 @@ module Api
           # Récupérer les données à jour après sauvegarde
           # Force un rechargement des données utilisateur
           current_user.reload
-          
+
           # S'assurer que les valeurs ne sont jamais nil
           current_level = current_user.level || 1
           current_experience = current_user.experience || 0
-          
+
 
           # Si la quête est complétée maintenant mais ne l'était pas avant, assurons-nous que l'XP est attribuée
           experience_gained = 0
           if will_complete
             experience_gained = @quest.xp_reward
-            
+
             # S'assurer que les valeurs dans la réponse sont cohérentes
             if current_user.experience.to_f < old_experience.to_f + experience_gained
               current_user.update_columns(experience: old_experience.to_f + experience_gained)
@@ -103,7 +103,7 @@ module Api
               current_experience = current_user.experience || 0
             end
           end
-          
+
           render json: {
             quest: format_quest(@quest, current_user),
             progress: @completion.progress,
@@ -126,16 +126,16 @@ module Api
 
       def format_quest(quest, user)
         current_progress = user.quest_progress(quest.quest_id)
-        
+
         # Pour la quête daily_matches, utiliser le nombre réel de matchs joués
         if quest.quest_id == 'daily_matches'
           custom_progress = quest.daily_matches_count(user)
           current_progress = custom_progress
         end
-        
+
         is_completed = user.has_completed_quest?(quest.quest_id)
         is_completable = quest.completable_by?(user) && !is_completed
-        
+
         {
           id: quest.quest_id,
           name: quest.title,
@@ -151,4 +151,4 @@ module Api
       end
     end
   end
-end 
+end
