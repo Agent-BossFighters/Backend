@@ -66,6 +66,13 @@ class Tournament < ApplicationRecord
       1  # Pour les tournois de survie, un seul round par défaut
     end
   end
+  
+  # Retourne le nombre total de joueurs inscrits dans ce tournoi
+  def players_count
+    # Utiliser une requête SQL efficace pour compter tous les membres d'équipe
+    # associés à ce tournoi
+    TeamMember.joins(:team).where(teams: { tournament_id: id }).count
+  end
 
   private
 

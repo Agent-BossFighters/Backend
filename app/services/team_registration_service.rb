@@ -12,6 +12,9 @@ class TeamRegistrationService
     @team = nil
     @errors = []
     
+    # Vérifier les codes d'entrée et d'invitation
+    return false unless validate_codes
+    
     # Récupérer l'équipe par ID ou code d'invitation
     find_team
     
@@ -32,6 +35,39 @@ class TeamRegistrationService
   end
 
   private
+
+  def validate_codes
+    # Vérifier le code d'entrée du tournoi si nécessaire
+    if @tournament.entry_code.present?
+      if @team_params[:entry_code].blank?
+        add_error("Tournament entry code is required")
+        return false
+      end
+      
+      unless @tournament.entry_code === @team_params[:entry_code]
+        add_error("Invalid tournament entry code")
+        return false
+      end
+    end
+
+    # Vérifier le code d'invitation si l'équipe est privée
+    if @team_params[:id].present?
+      team = @tournament.teams.find_by(id: @team_params[:id])
+      if team&.invitation_code.present?
+        if @team_params[:invitation_code].blank?
+          add_error("Team invitation code is required")
+          return false
+        end
+        
+        unless team.invitation_code === @team_params[:invitation_code]
+          add_error("Invalid team invitation code")
+          return false
+        end
+      end
+    end
+
+    true
+  end
 
   def can_register?
     return add_error("Tournament is not open for registration") unless @tournament.registration_open?
@@ -107,11 +143,20 @@ class TeamRegistrationService
       # Assigner un slot disponible si non spécifié
       slot_number = @team_params[:slot_number] || @team.next_available_slot
 
+      # Vérifier si c'est la première personne à rejoindre l'équipe
+      is_first_member = @team.is_empty
+
       # Mettre à jour le statut is_empty et définir le capitaine si c'est la première personne à rejoindre
       ActiveRecord::Base.transaction do
         # Si l'équipe est vide et n'a pas de capitaine, définir ce joueur comme capitaine
-        if @team.is_empty && @team.captain_id.nil?
+        if is_first_member && @team.captain_id.nil?
           @team.update_column(:captain_id, @user.id)
+
+          # Si la request contient private et que c'est true, générer un code d'invitation
+          if @team_params[:private] == true || @team_params[:private] == "true" || 
+             @team_params[:is_private] == true || @team_params[:is_private] == "true"
+            @team.generate_invitation_code
+          end
         end
 
         # Mettre à jour is_empty directement en SQL pour éviter les validations

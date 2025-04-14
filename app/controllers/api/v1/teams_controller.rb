@@ -97,10 +97,23 @@ module Api
         service_params[:id] = params[:id] if params[:id].present?
         service_params[:invitation_code] = params[:invitation_code] if params[:invitation_code].present?
         service_params[:team_letter] = params[:team_letter] if params[:team_letter].present?
+        service_params[:entry_code] = params[:entry_code] if params[:entry_code].present?
+        
+        # Si le paramètre private est présent, l'ajouter à service_params
+        service_params[:private] = params[:private] if params[:private].present?
         
         # Valider que nous avons au moins un identifiant d'équipe ou un code d'invitation
         if service_params[:id].blank? && service_params[:invitation_code].blank? && service_params[:team_letter].blank?
           return render json: { error: "Team ID, invitation code, or team letter is required" }, status: :unprocessable_entity
+        end
+        
+        # Si nous avons un ID d'équipe, vérifier si l'équipe existe et si elle requiert un code d'invitation
+        if service_params[:id].present?
+          team = Team.find_by(id: service_params[:id])
+          
+          if team.present? && team.invitation_code.present? && service_params[:invitation_code] != team.invitation_code
+            return render json: { error: "Invalid invitation code for private team" }, status: :unauthorized
+          end
         end
         
         service = TeamRegistrationService.new(
