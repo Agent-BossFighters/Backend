@@ -82,8 +82,8 @@ class Team < ApplicationRecord
 
   def add_captain_as_member
     # Ne rien faire si pas de capitaine
-    return unless captain_id.present?
-    
+    return unless captain_id.present?    
+
     # Ne pas ajouter le capitaine comme membre s'il est créateur ou administrateur du tournoi
     return if tournament&.tournament_admins&.exists?(user_id: captain_id)
     

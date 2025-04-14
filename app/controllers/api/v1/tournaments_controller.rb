@@ -176,7 +176,6 @@ module Api
                   
                   teams_created << team
                 rescue => e
-                  Rails.logger.error("Error creating team #{name}: #{e.message}")
                 end
               end
             end

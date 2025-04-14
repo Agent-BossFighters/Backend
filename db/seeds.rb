@@ -11,7 +11,8 @@ seed_files = [
   'currency_packs.rb',# Création des packs de currencies
   'slots.rb',         # Création des slots (dépend des currencies)
   'items.rb',         # Création de tous les items (badges et contrats)
-  'contract_level_costs.rb' # Coûts de niveau des contrats
+  'contract_level_costs.rb', # Coûts de niveau des contrats
+  'quests.rb'         # Création des missions quotidiennes
 ]
 
 puts "\nDébut du seeding..."
