@@ -113,14 +113,15 @@ module Api
               
               # Supprimer chaque équipe et ses membres
               teams_to_delete.each do |team|
-                
-                # Vérifier si l'équipe a des membres
-                if team.team_members.exists?
-                  # La suppression des membres est gérée automatiquement par dependent: :destroy
+                begin
+                  # Supprimer d'abord tous les membres de l'équipe
+                  team.team_members.destroy_all
+                  
+                  # Puis supprimer l'équipe elle-même
+                  team.destroy
+                rescue => e
+                  next
                 end
-                
-                # Supprimer l'équipe
-                team.destroy
               end
             end
           end
@@ -162,15 +163,15 @@ module Api
                 name = next_letter ? "Team #{next_letter}" : "Team #{current_teams_count + i + 1}"
                 
                 begin
-                  # Créer directement sans callback pour éviter l'ajout du capitaine comme membre
+                  # Créer l'équipe sans capitaine
                   team = Team.new(
                     name: name,
                     is_empty: true,
-                    captain_id: temp_captain_id,
+                    captain_id: nil,  # Pas de capitaine par défaut
                     tournament_id: @tournament.id
                   )
                   
-                  # Désactiver complètement les callbacks pour s'assurer que le créateur du tournoi ne sera pas ajouté comme membre
+                  # Désactiver les validations pour permettre la création sans capitaine
                   team.save(validate: false)
                   
                   teams_created << team

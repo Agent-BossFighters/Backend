@@ -146,9 +146,8 @@ class MatchManagementService
       match.team_b_points = lives_left  # On utilise team_b_points pour stocker les vies restantes
     end
     
-    # Définir le gagnant et marquer comme complété
+    # Définir le gagnant si un score a été enregistré
     match.winner = match.team_a_points > 0 ? match.team_a : nil
-    match.status = :completed
     
     # Journaliser l'état du match avant la sauvegarde
     Rails.logger.info("Match avant sauvegarde: #{match.attributes.inspect}")
@@ -173,7 +172,6 @@ class MatchManagementService
     elsif match.team_b_points > match.team_a_points
       match.update!(winner: match.team_b)
     end
-    match.update!(status: :completed)
   end
 
   def tournament_completed?
@@ -181,7 +179,8 @@ class MatchManagementService
   end
 
   def update_tournament_status
-    @tournament.update!(status: :completed)
+    # Ne pas forcer le statut du tournoi à completed
+    # Le statut sera géré par l'interface utilisateur
   end
 
   def admin_or_creator?
