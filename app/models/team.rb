@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
   # Relations
   belongs_to :tournament
-  belongs_to :captain, class_name: 'User'
+  belongs_to :captain, class_name: 'User', optional: true
   has_many :team_members, dependent: :destroy do
     # Observer pour mettre à jour is_empty lorsque des membres sont ajoutés ou supprimés
     def after_add(team_member)
@@ -81,6 +81,9 @@ class Team < ApplicationRecord
   private
 
   def add_captain_as_member
+    # Ne rien faire si pas de capitaine
+    return unless captain_id.present?
+    
     # Ne pas ajouter le capitaine comme membre s'il est créateur ou administrateur du tournoi
     return if tournament&.tournament_admins&.exists?(user_id: captain_id)
     
@@ -92,6 +95,9 @@ class Team < ApplicationRecord
   end
 
   def captain_meets_requirements
+    # Ne rien faire si pas de capitaine
+    return unless captain_id.present?
+    
     if tournament.agent_level_required > 0 && captain && captain.level < tournament.agent_level_required
       errors.add(:captain, "does not meet the minimum level requirement")
     end
