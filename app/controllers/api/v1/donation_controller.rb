@@ -31,7 +31,7 @@ module Api
           end
 
           if amount < 100  # Minimum 1€ (100 cents)
-            render json: { error: "Minimum amount is 1€" }, status: :unprocessable_entity
+            render json: { error: "Minimum amount is 1$" }, status: :unprocessable_entity
             return
           end
 
@@ -41,7 +41,7 @@ module Api
             billing_address_collection: 'auto',  # Make postal code optional
             line_items: [{
               price_data: {
-                currency: 'eur',
+                currency: 'usd',
                 product: ENV['STRIPE_DONATION_PRODUCT_ID'],
                 unit_amount: amount,
               },
