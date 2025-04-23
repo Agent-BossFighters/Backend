@@ -14,7 +14,7 @@ class NotificationMailer < ApplicationMailer
   def reset_password_instructions(user, token, _opts = {})
     @user = user
     @token = token
-    @reset_url = "http://127.0.0.1:5173/#/users/password/reset?reset_password_token=#{token}"
+    @reset_url = "http://agent-bossfighters.com/#/users/password/reset?reset_password_token=#{token}"
 
     mail(
       to: @user.email,
