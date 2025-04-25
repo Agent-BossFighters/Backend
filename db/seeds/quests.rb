@@ -21,3 +21,13 @@ Quest.create!(
   active: true
 )
 
+# Quêtes Sociales
+Quest.create!(
+  quest_id: 'twitter_follow_and_interact',
+  title: 'Follow us on X',
+  description: 'Follow @ThibaultLENORM2 on X and interact with our latest tweet (Like, Retweet, Reply)',
+  quest_type: 'social',
+  xp_reward: 300,
+  progress_required: 1,
+  active: true
+)

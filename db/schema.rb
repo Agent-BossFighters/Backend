@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_09_110227) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_25_100024) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -188,6 +188,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_110227) do
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "target_tweet_id"
+    t.string "target_tweet_url"
+    t.string "validation_type", default: "retweet"
+    t.string "zealy_quest_id"
     t.index ["quest_id"], name: "index_quests_on_quest_id", unique: true
   end
 
@@ -236,6 +240,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_110227) do
     t.float "bonus_value"
     t.index ["currency_id"], name: "index_slots_on_currency_id"
     t.index ["game_id"], name: "index_slots_on_game_id"
+  end
+
+  create_table "social_quest_submissions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "quest_id", null: false
+    t.string "submitted_tweet_url", null: false
+    t.boolean "valid", default: false
+    t.datetime "validated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "quest_id"], name: "index_social_quest_submissions_on_user_id_and_quest_id", unique: true
+    t.index ["user_id"], name: "index_social_quest_submissions_on_user_id"
   end
 
   create_table "team_members", force: :cascade do |t|
@@ -408,12 +424,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_110227) do
     t.integer "flex_pack", default: 1
     t.string "session_token"
     t.string "current_jti"
+    t.string "zealy_user_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["is_admin"], name: "index_users_on_is_admin"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["session_token"], name: "index_users_on_session_token"
     t.index ["stripe_customer_id"], name: "index_users_on_stripe_customer_id"
     t.index ["username"], name: "index_users_on_username", unique: true
+    t.index ["zealy_user_id"], name: "index_users_on_zealy_user_id", unique: true
   end
 
   add_foreign_key "badge_useds", "matches"
@@ -434,6 +452,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_110227) do
   add_foreign_key "rounds", "users", column: "boss_b_id"
   add_foreign_key "slots", "currencies"
   add_foreign_key "slots", "games"
+  add_foreign_key "social_quest_submissions", "quests", primary_key: "quest_id"
+  add_foreign_key "social_quest_submissions", "users"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "tournaments"

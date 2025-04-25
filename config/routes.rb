@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  # Route Zealy webhook - doit être en dehors du namespace api/v1 pour éviter l'authentification
+  post '/zealy/webhook', to: 'api/v1/zealy#webhook'
+
   namespace :api do
     namespace :v1 do
       devise_for :users,
@@ -188,6 +191,11 @@ Rails.application.routes.draw do
           end
         end
       end
+
+      # Routes Zealy
+      get 'zealy/connect', to: 'zealy#connect'
+      get 'zealy/callback', to: 'zealy#callback'
+      post 'zealy/sync_quests', to: 'zealy#sync_quests'
     end
   end
 end
