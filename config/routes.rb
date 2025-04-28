@@ -194,8 +194,9 @@ Rails.application.routes.draw do
 
       # Routes Zealy
       get 'zealy/connect', to: 'zealy#connect'
-      get 'zealy/callback', to: 'zealy#callback'
+      post 'zealy/callback', to: 'zealy#callback'
       post 'zealy/sync_quests', to: 'zealy#sync_quests'
+      get 'zealy/community_status', to: 'zealy#check_community_status'
     end
   end
 end

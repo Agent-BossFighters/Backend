@@ -23,6 +23,17 @@ Quest.create!(
 
 # Quêtes Sociales
 Quest.create!(
+  quest_id: 'zealy_connect',
+  title: 'Join the Agent\'s community on Zealy',
+  description: 'Connect to Zealy and follow our community to earn rewards',
+  quest_type: 'social',
+  xp_reward: 100,
+  progress_required: 1,
+  active: true,
+  icon_url: 'zealy.png'
+)
+
+Quest.create!(
   quest_id: 'twitter_follow_and_interact',
   title: 'Follow us on X',
   description: 'Follow @ThibaultLENORM2 on X and interact with our latest tweet (Like, Retweet, Reply)',

@@ -23,6 +23,9 @@ module Api
           # Synchroniser les quêtes Zealy
           Quest.sync_with_zealy(current_user)
 
+          # Vérifier et compléter la quête Zealy si nécessaire
+          handle_zealy_quest_completion(current_user)
+
           render json: {
             message: "Connexion Zealy réussie",
             user: current_user
@@ -32,13 +35,60 @@ module Api
         end
       end
 
-      def sync_quests
-        # Synchroniser les quêtes Zealy pour l'utilisateur
-        Quest.sync_with_zealy(current_user)
+      def check_community_status
+        begin
+          Rails.logger.info "Checking community status for user: #{current_user.id}"
 
-        render json: {
-          message: "Quêtes Zealy synchronisées avec succès"
-        }
+          # Vérifier si l'utilisateur a un ID Zealy
+          unless current_user.zealy_user_id.present?
+            return render json: { joined: false, error: "User not connected to Zealy" }
+          end
+
+          # Vérifier le statut de la communauté
+          status = ZealyService.new.check_community_status(current_user.zealy_user_id)
+          render json: status
+        rescue => e
+          Rails.logger.error("Error checking community status: #{e.message}")
+          render json: { joined: false, error: e.message }, status: :internal_server_error
+        end
+      end
+
+      def sync_quests
+        begin
+          Rails.logger.info "Starting Zealy quest sync for user: #{current_user.id}"
+
+          # Vérifier si l'utilisateur a un ID Zealy
+          unless current_user.zealy_user_id.present?
+            return render json: { error: "User not connected to Zealy" }, status: :unprocessable_entity
+          end
+
+          # Synchroniser les quêtes Zealy pour l'utilisateur
+          Quest.sync_with_zealy(current_user)
+
+          render json: {
+            message: "Quêtes Zealy synchronisées avec succès"
+          }
+        rescue => e
+          Rails.logger.error("Error syncing Zealy quests: #{e.message}")
+          Rails.logger.error(e.backtrace.join("\n"))
+          render json: { error: e.message }, status: :internal_server_error
+        end
+      end
+
+      def check_quest_status
+        quest = Quest.find_by!(quest_id: params[:quest_id])
+
+        if quest.quest_id == 'zealy_connect'
+          # Vérifier si l'utilisateur est connecté à Zealy
+          is_completed = current_user.zealy_user_id.present?
+
+          render json: {
+            completed: is_completed,
+            progress: is_completed ? 1 : 0
+          }
+        else
+          render json: { error: "Quête non supportée" }, status: :unprocessable_entity
+        end
       end
 
       def community
@@ -94,6 +144,26 @@ module Api
       end
 
       private
+
+      def handle_zealy_quest_completion(user)
+        quest = Quest.find_by(quest_id: 'zealy_connect')
+        return unless quest
+
+        # Vérifier si la quête n'est pas déjà complétée
+        unless quest.completed_today_by?(user)
+          # Créer ou mettre à jour la complétion de la quête
+          UserQuestCompletion.create_or_find_by!(
+            user: user,
+            quest: quest,
+            completion_date: Date.current,
+            progress: quest.progress_required
+          )
+
+          # Mettre à jour l'XP de l'utilisateur
+          current_xp = user.experience || 0
+          user.update!(experience: current_xp + quest.xp_reward)
+        end
+      end
 
       def handle_quest_succeeded(data)
         return unless data['user'] && data['quest']
