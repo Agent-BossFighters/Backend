@@ -20,11 +20,12 @@ module DataLab
 
         flex_cost = calculate_flex_cost(craft_data.craft_tokens)
         sp_marks_value = calculate_sp_marks_value(craft_data.sponsor_marks_reward)
+        nb_previous_rarity = calculate_nb_previous_rarity(rarity)
 
         {
           "1. rarity": rarity,
           "2. supply": badge.supply,
-          "3. nb_previous_rarity_item": craft_data.nb_lower_badge_to_craft,
+          "3. nb_previous_rarity_item": nb_previous_rarity,
           "4. flex_craft": craft_data.craft_tokens,
           "5. flex_craft_cost": format_currency(flex_cost),
           "6. sp_marks_craft": craft_data.sponsor_marks_reward,
@@ -34,6 +35,10 @@ module DataLab
     end
 
     private
+
+    def calculate_nb_previous_rarity(rarity)
+      rarity.downcase == 'common' ? 0 : 2
+    end
 
     def load_badges
       Item.includes(:type, :rarity, :item_crafting)

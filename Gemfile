@@ -83,3 +83,6 @@ gem 'stripe'
 # Pour gérer CORS
 gem 'rack-cors'
 gem 'httparty'
+
+#pour réinitialiser les level chaque moi
+gem 'whenever', require: false

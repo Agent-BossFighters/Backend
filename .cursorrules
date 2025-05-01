@@ -1,0 +1,85 @@
+{
+  "language": "fr",
+  "responsePrefix": "🤖 - Oui mon maître",
+  "rules": [
+    {
+      "description": "Les réponses doivent être en français, mais tout ce qui est code, commentaires et contenu de fichier doit être en anglais.",
+      "match": "*",
+      "condition": "always",
+      "action": {
+        "ensureLanguage": {
+          "response": "fr",
+          "code": "en"
+        }
+      }
+    },
+    {
+      "description": "Chaque hook, utilitaire ou composant doit être dans son propre fichier.",
+      "match": "function",
+      "condition": "isReusable",
+      "action": {
+        "enforceSingleFunctionPerFile": true
+      }
+    },
+    {
+      "description": "Créer les hooks généraux dans src/shared/hook/.",
+      "match": "use[A-Z].*",
+      "condition": "isReactHook && isGlobal",
+      "action": {
+        "createFile": "src/shared/hook/{{functionName}}.ts",
+        "importInto": "currentFile"
+      }
+    },
+    {
+      "description": "Créer les hooks spécifiques dans le dossier hooks de la feature courante.",
+      "match": "use[A-Z].*",
+      "condition": "isReactHook && isFeatureScoped",
+      "action": {
+        "createFile": "src/features/{{featureName}}/hooks/{{functionName}}.ts",
+        "importInto": "currentFile"
+      }
+    },
+    {
+      "description": "Créer les fonctions utilitaires globales dans src/utils.",
+      "match": "*",
+      "condition": "isUtilityFunction && isGlobal",
+      "action": {
+        "createFile": "src/utils/{{functionName}}.ts",
+        "importInto": "currentFile"
+      }
+    },
+    {
+      "description": "Créer les fonctions utilitaires spécifiques dans le dossier utils de la feature courante.",
+      "match": "*",
+      "condition": "isUtilityFunction && isFeatureScoped",
+      "action": {
+        "createFile": "src/features/{{featureName}}/utils/{{functionName}}.ts",
+        "importInto": "currentFile"
+      }
+    },
+    {
+      "description": "Respecter les principes DRY, POO et SOLID pour toute création de logique.",
+      "match": "*",
+      "condition": "always",
+      "action": {
+        "enforcePrinciples": ["DRY", "POO", "SOLID"]
+      }
+    },
+    {
+      "description": "Les noms de fichiers doivent correspondre au nom de la fonction ou du composant.",
+      "match": "*",
+      "condition": "createsFile",
+      "action": {
+        "nameStrategy": "matchFunctionName"
+      }
+    },
+    {
+      "description": "En cas d'ambiguïté sur le scope (global ou spécifique à une feature), demander à l'utilisateur de choisir.",
+      "match": "function",
+      "condition": "isReusable && !isGlobal && !isFeatureScoped",
+      "action": {
+        "askUser": "Ce hook ou utilitaire est-il global ou spécifique à une feature ?"
+      }
+    }
+  ]
+}

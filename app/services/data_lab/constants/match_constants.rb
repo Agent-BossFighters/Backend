@@ -4,7 +4,7 @@ module DataLab
       include DataLab::Constants::CurrencyConstants
 
       ENERGY_CONSUMPTION = {
-        RATE_PER_MINUTE: 0.1
+        ONE_ENERGY_MINUTES: 60.0
       }.freeze
 
       VALID_MAPS = %w[toxic_river award radiation_rift].freeze

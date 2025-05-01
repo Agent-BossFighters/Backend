@@ -31,7 +31,9 @@ module DataLab
       }
     end
 
-    private
+    def calculate_recharge_cost(rarity)
+      @recharge_costs[rarity] || { flex: 0, sm: 0, total_usd: 0 }
+    end
 
     def load_badges
       Item.includes(:type, :rarity, :item_farming, :item_recharge, :item_crafting)
@@ -59,6 +61,8 @@ module DataLab
         )
       end
     end
+
+    private
 
     def calculate_badges_metrics(badges)
       badges.map do |badge|
@@ -219,10 +223,6 @@ module DataLab
 
     def valid_badge?(badge)
       badge&.rarity&.name.present?
-    end
-
-    def calculate_recharge_cost(rarity)
-      @recharge_costs[rarity] || { flex: 0, sm: 0, total_usd: 0 }
     end
 
     def calculate_total_usd(flex_cost, sm_cost)

@@ -62,6 +62,14 @@ class User < ApplicationRecord
       .exists?
   end
 
+  def reset_monthly_level
+    update_columns(
+      level: 1,
+      experience: 0,
+      updated_at: Time.current
+    )
+  end
+
   # JWT token generation
   def generate_jwt
     new_jti = SecureRandom.uuid

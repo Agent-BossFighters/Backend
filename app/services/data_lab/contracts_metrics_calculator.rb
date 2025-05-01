@@ -74,12 +74,12 @@ module DataLab
           "4. floor_price": format_currency(contract.floorPrice),
           "5. lvl_max": craft_data&.max_level || "N/A",
           "6. max_energy": contract.item_recharge&.max_energy_recharge || 0,
-          "7. time_to_craft": format_hours(craft_data&.craft_time),
+          "7. time_to_craft": calculate_recharge_time(contract),
           "8. nb_badges_required": craft_data&.nb_lower_badge_to_craft || 0,
           "9. flex_craft": flex_craft,
           "10. sp_marks_craft": marks_craft,
           "11. total_craft_cost": total_craft_cost,
-          "12. time_to_charge": calculate_recharge_time(contract),
+          "12. time_to_charge": format_hours(craft_data&.craft_time), 
           "13. flex_charge": contract.item_recharge&.flex_charge || "N/A",
           "14. sp_marks_charge": contract.item_recharge&.sponsor_mark_charge || "N/A"
         }
@@ -134,7 +134,8 @@ module DataLab
     def format_hours(minutes)
       return "N/A" if minutes.nil? || minutes.zero?
       hours = minutes / 60
-      "#{hours}h"
+      remaining_minutes = minutes % 60
+      format("%dh%02d", hours, remaining_minutes)
     end
   end
 end
