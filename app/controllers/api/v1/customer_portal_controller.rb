@@ -7,7 +7,7 @@ module Api
         # Création d'une session du portail client
         portal_session = Stripe::BillingPortal::Session.create({
           customer: current_user.stripe_customer_id,
-          return_url: ENV['FRONTEND_URL'],
+          return_url: ENV["FRONTEND_URL"],
           configuration: {
             features: {
               subscription_cancel: { enabled: true },
@@ -15,7 +15,7 @@ module Api
               invoice_history: { enabled: true }
             }
           },
-          locale: 'en'
+          locale: "en"
         })
 
         # Redirection vers le portail client
@@ -28,7 +28,7 @@ module Api
 
       def authenticate_user!
         unless current_user
-          render json: { error: 'Authentication required' }, status: :unauthorized
+          render json: { error: "Authentication required" }, status: :unauthorized
         end
       end
     end

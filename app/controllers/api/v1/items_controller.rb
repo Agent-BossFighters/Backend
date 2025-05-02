@@ -84,8 +84,8 @@ class Api::V1::ItemsController < Api::V1::BaseController
     {
       id: item.id,
       name: item.name,
-      type: item.type.as_json(only: [:id, :name]),
-      rarity: item.rarity.as_json(only: [:id, :name, :color]),
+      type: item.type.as_json(only: [ :id, :name ]),
+      rarity: item.rarity.as_json(only: [ :id, :name, :color ]),
       efficiency: item.efficiency,
       supply: item.supply,
       floorPrice: item.floorPrice,

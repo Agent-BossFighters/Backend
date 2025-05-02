@@ -6,17 +6,17 @@ class Api::V1::SessionsController < Devise::SessionsController
   def create
     user = User.find_by(email: sign_in_params[:email])
     if user&.valid_password?(sign_in_params[:password])
-      
+
       # Utiliser la méthode generate_jwt du modèle User au lieu de créer le JWT directement
       token = user.generate_jwt
 
       render json: {
         user: user,
         token: token,
-        message: 'Logged in successfully'
+        message: "Logged in successfully"
       }, status: :ok
     else
-      render json: { error: 'Invalid credentials' }, status: :unauthorized
+      render json: { error: "Invalid credentials" }, status: :unauthorized
     end
   end
 
@@ -26,8 +26,8 @@ class Api::V1::SessionsController < Devise::SessionsController
       current_user.invalidate_jwt
       Rails.logger.info "Invalidated JWT for user: #{current_user.email}"
     end
-    
-    render json: { message: 'Logged out successfully' }, status: :ok
+
+    render json: { message: "Logged out successfully" }, status: :ok
   end
 
   private

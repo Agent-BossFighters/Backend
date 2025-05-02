@@ -7,27 +7,27 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     return if current_user
 
-    render json: { error: 'Invalid session. Please reconnect.' }, status: :unauthorized
+    render json: { error: "Invalid session. Please reconnect." }, status: :unauthorized
   end
 
   def current_user
     return @current_user if defined?(@current_user)
 
-    header = request.headers['Authorization']
+    header = request.headers["Authorization"]
     return nil unless header
 
-    token = header.split(' ').last
+    token = header.split(" ").last
     begin
       decoded = JWT.decode(
         token,
         Rails.application.credentials.devise_jwt_secret_key!,
         true,
-        algorithm: 'HS256'
+        algorithm: "HS256"
       )
-      
-      user = User.find(decoded.first['id'])
-      token_jti = decoded.first['jti']
-      
+
+      user = User.find(decoded.first["id"])
+      token_jti = decoded.first["jti"]
+
       # Vérifie si le JTI du token correspond à celui stocké en base
       if user.valid_jti?(token_jti)
         @current_user = user
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   def authenticate_admin!
     authenticate_user!
     unless current_user&.admin?
-      render json: { error: 'Accès refusé. Droits d\'administrateur requis.' }, status: :forbidden
+      render json: { error: "Accès refusé. Droits d'administrateur requis." }, status: :forbidden
     end
   end
 end

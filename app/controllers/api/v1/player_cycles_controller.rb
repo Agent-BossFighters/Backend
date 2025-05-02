@@ -1,6 +1,6 @@
 class Api::V1::PlayerCyclesController < Api::V1::BaseController
   before_action :authenticate_user!
-  before_action :set_cycle, only: [:show, :update, :destroy]
+  before_action :set_cycle, only: [ :show, :update, :destroy ]
 
   def index
     @cycles = current_user.player_cycles

@@ -23,6 +23,6 @@ class CreateMatches < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    add_index :matches, [:user_id, :date]
+    add_index :matches, [ :user_id, :date ]
   end
 end

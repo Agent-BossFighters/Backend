@@ -17,4 +17,4 @@ class TournamentAdmin < ApplicationRecord
       errors.add(:is_creator, "creator status cannot be removed")
     end
   end
-end 
+end

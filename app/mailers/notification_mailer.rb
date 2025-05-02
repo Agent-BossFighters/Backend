@@ -1,13 +1,13 @@
 class NotificationMailer < ApplicationMailer
-  default from: ENV['MAILJET_SENDER_EMAIL']
+  default from: ENV["MAILJET_SENDER_EMAIL"]
 
   def welcome_email(user)
     @user = user
-    @url = 'https://agent-bossfighters.com/#/users/login'
+    @url = "https://agent-bossfighters.com/#/users/login"
 
     mail(
       to: @user.email,
-      subject: 'Welcome to Agent-BossFighters!'
+      subject: "Welcome to Agent-BossFighters!"
     )
   end
 
@@ -18,7 +18,7 @@ class NotificationMailer < ApplicationMailer
 
     mail(
       to: @user.email,
-      subject: 'Reset your password'
+      subject: "Reset your password"
     )
   end
 end

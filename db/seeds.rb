@@ -8,7 +8,7 @@ seed_files = [
   'types.rb',         # Définition des types d'items
   'game.rb',          # Création du jeu
   'currencies.rb',    # Création des currencies
-  'currency_packs.rb',# Création des packs de currencies
+  'currency_packs.rb', # Création des packs de currencies
   'slots.rb',         # Création des slots (dépend des currencies)
   'items.rb',         # Création de tous les items (badges et contrats)
   'contract_level_costs.rb', # Coûts de niveau des contrats

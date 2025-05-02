@@ -8,7 +8,7 @@ class CreateTournamentAdmins < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    add_index :tournament_admins, [:tournament_id, :user_id], unique: true
-    add_index :tournament_admins, [:tournament_id, :is_creator]
+    add_index :tournament_admins, [ :tournament_id, :user_id ], unique: true
+    add_index :tournament_admins, [ :tournament_id, :is_creator ]
   end
 end

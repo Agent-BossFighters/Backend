@@ -84,5 +84,5 @@ gem "stripe"
 gem "rack-cors"
 gem "httparty"
 
-#pour réinitialiser les level chaque moi
+# pour réinitialiser les level chaque moi
 gem "whenever", require: false

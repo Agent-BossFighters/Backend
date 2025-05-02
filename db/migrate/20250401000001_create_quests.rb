@@ -33,4 +33,4 @@ class CreateQuests < ActiveRecord::Migration[8.0]
       DROP TYPE IF EXISTS quest_type;
     SQL
   end
-end 
+end

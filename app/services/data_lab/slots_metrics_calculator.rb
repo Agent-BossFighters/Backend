@@ -31,7 +31,6 @@ module DataLab
 
         # Créer un hash de métriques pour chaque slot
         slot_metrics = slots_costs.map do |slot_cost|
-
           # Calculer le multiplicateur de progression pour ce slot
           normal_part = calculate_normal_part(slot_cost[:"1. slot"])
           bonus_part = calculate_bonus_part(slot_cost[:"1. slot"])
@@ -55,7 +54,7 @@ module DataLab
 
           # Puis convertir total_cost en nombre en retirant le symbole $ et en convertissant en float
           if total_cost.is_a?(String)
-            numeric_cost = total_cost.gsub('$', '').to_f
+            numeric_cost = total_cost.gsub("$", "").to_f
           else
             numeric_cost = total_cost.to_f
           end
@@ -90,7 +89,7 @@ module DataLab
           }
         end
 
-        [rarity.name, slot_metrics]
+        [ rarity.name, slot_metrics ]
       end.to_h
 
       {
@@ -103,15 +102,15 @@ module DataLab
 
     def calculate_slots_cost(slots)
       slots.map do |slot|
-        #Pour le 3. flex_cost
+        # Pour le 3. flex_cost
         flex_amount = slot.flex_value * @user_rates[:flex]
 
-        #Pour le 5. bft_per_badge
+        # Pour le 5. bft_per_badge
         badge_details = @badge_calculator.calculate[:badges_details]
         badge_detail = badge_details.find { |m| m[:"1. rarity"] == "Common" }
         bft_per_badge = badge_detail && badge_detail[:"6. bft_per_max_charge"].to_f || 0
 
-        #Pour le 6. bonus_per_badge
+        # Pour le 6. bonus_per_badge
         bonus_per_badge = ((bft_per_badge*(1+(slot.bonus_value/100.0)))-bft_per_badge).round(0)
 
         {
@@ -130,13 +129,13 @@ module DataLab
     def load_badges
       query = Item.includes(:type, :rarity)
                  .joins(:rarity)
-                 .where(types: { name: 'Badge' })
+                 .where(types: { name: "Badge" })
 
       if @badge_rarity
         query = query.where(rarities: { name: @badge_rarity })
       end
 
-      query.order('rarities.id ASC')
+      query.order("rarities.id ASC")
     end
 
     def calculate_bft_per_minute(rarity)
@@ -169,7 +168,7 @@ module DataLab
     def calculate_recharge_cost(rarity)
       item = Item.includes(:item_recharge)
                 .joins(:rarity)
-                .where(rarities: { name: rarity }, types: { name: 'Badge' })
+                .where(rarities: { name: rarity }, types: { name: "Badge" })
                 .first
 
       return { flex: 0, sm: 0 } unless item.item_recharge

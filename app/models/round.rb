@@ -1,8 +1,8 @@
 class Round < ApplicationRecord
   # Relations
-  belongs_to :match, class_name: 'TournamentMatch'
-  belongs_to :boss_a, class_name: 'User', optional: true
-  belongs_to :boss_b, class_name: 'User', optional: true
+  belongs_to :match, class_name: "TournamentMatch"
+  belongs_to :boss_a, class_name: "User", optional: true
+  belongs_to :boss_b, class_name: "User", optional: true
   has_one :tournament, through: :match
 
   # Validations
@@ -52,4 +52,4 @@ class Round < ApplicationRecord
       team_b_points: match.rounds.sum(:team_b_points)
     )
   end
-end 
+end

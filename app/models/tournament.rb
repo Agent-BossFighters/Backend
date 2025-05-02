@@ -15,8 +15,8 @@ class Tournament < ApplicationRecord
   }
 
   # Relations
-  belongs_to :creator, class_name: 'User'
-  belongs_to :boss, class_name: 'User', optional: true
+  belongs_to :creator, class_name: "User"
+  belongs_to :boss, class_name: "User", optional: true
   has_many :tournament_admins, dependent: :destroy
   has_many :admins, through: :tournament_admins, source: :user
   has_many :teams, dependent: :destroy
@@ -26,7 +26,7 @@ class Tournament < ApplicationRecord
   validates :name, presence: true
   validates :tournament_type, presence: true
   validates :status, presence: true
-  validates :players_per_team, presence: true, 
+  validates :players_per_team, presence: true,
             numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 5 }
   validates :max_teams, presence: true,
             numericality: { only_integer: true, greater_than: 1 }
@@ -66,7 +66,7 @@ class Tournament < ApplicationRecord
       1  # Pour les tournois de survie, un seul round par défaut
     end
   end
-  
+
   # Retourne le nombre total de joueurs inscrits dans ce tournoi
   def players_count
     # Utiliser une requête SQL efficace pour compter tous les membres d'équipe

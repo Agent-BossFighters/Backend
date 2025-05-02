@@ -1,28 +1,28 @@
 begin
-  if defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.table_exists?('payment_methods')
+  if defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.table_exists?("payment_methods")
     Rails.application.config.after_initialize do
       unless Rails.env.test?
-        PaymentMethod.find_or_create_by(provider: 'stripe') do |pm|
-          pm.name = 'Carte bancaire'
-          pm.settings = { currencies: ['eur', 'usd'] }
+        PaymentMethod.find_or_create_by(provider: "stripe") do |pm|
+          pm.name = "Carte bancaire"
+          pm.settings = { currencies: [ "eur", "usd" ] }
         end
 
-        PaymentMethod.find_or_create_by(provider: 'metamask') do |pm|
-          pm.name = 'MetaMask'
+        PaymentMethod.find_or_create_by(provider: "metamask") do |pm|
+          pm.name = "MetaMask"
           pm.settings = {
-            networks: ['ethereum', 'bsc'],
-            currencies: ['eth', 'bnb']
+            networks: [ "ethereum", "bsc" ],
+            currencies: [ "eth", "bnb" ]
           }
         end
 
-        PaymentMethod.find_or_create_by(provider: 'coinbase') do |pm|
-          pm.name = 'Coinbase'
-          pm.settings = { currencies: ['btc', 'eth', 'usdt'] }
+        PaymentMethod.find_or_create_by(provider: "coinbase") do |pm|
+          pm.name = "Coinbase"
+          pm.settings = { currencies: [ "btc", "eth", "usdt" ] }
         end
 
-        PaymentMethod.find_or_create_by(provider: 'binance') do |pm|
-          pm.name = 'Binance Pay'
-          pm.settings = { currencies: ['bnb', 'busd'] }
+        PaymentMethod.find_or_create_by(provider: "binance") do |pm|
+          pm.name = "Binance Pay"
+          pm.settings = { currencies: [ "bnb", "busd" ] }
         end
       end
     end

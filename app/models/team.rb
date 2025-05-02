@@ -1,20 +1,20 @@
 class Team < ApplicationRecord
   # Relations
   belongs_to :tournament
-  belongs_to :captain, class_name: 'User', optional: true
+  belongs_to :captain, class_name: "User", optional: true
   has_many :team_members, dependent: :destroy do
     # Observer pour mettre à jour is_empty lorsque des membres sont ajoutés ou supprimés
     def after_add(team_member)
       proxy_association.owner.update_column(:is_empty, false) if proxy_association.owner.is_empty
     end
-    
+
     def after_remove(team_member)
       proxy_association.owner.update_column(:is_empty, true) if proxy_association.owner.team_members.count == 0
     end
   end
   has_many :players, through: :team_members, source: :player
-  has_many :matches_as_team1, class_name: 'Match', foreign_key: 'team1_id'
-  has_many :matches_as_team2, class_name: 'Match', foreign_key: 'team2_id'
+  has_many :matches_as_team1, class_name: "Match", foreign_key: "team1_id"
+  has_many :matches_as_team2, class_name: "Match", foreign_key: "team2_id"
 
   # Callbacks
   after_create :add_captain_as_member
@@ -35,7 +35,7 @@ class Team < ApplicationRecord
   end
 
   def matches
-    Match.where('team1_id = ? OR team2_id = ?', id, id)
+    Match.where("team1_id = ? OR team2_id = ?", id, id)
   end
 
   def full?
@@ -66,7 +66,7 @@ class Team < ApplicationRecord
 
   def next_available_slot
     return 1 if team_members.empty?
-    
+
     # Trouver le premier slot disponible
     max_slots = tournament ? tournament.players_per_team : 5
     (1..max_slots).detect do |slot|
@@ -82,11 +82,11 @@ class Team < ApplicationRecord
 
   def add_captain_as_member
     # Ne rien faire si pas de capitaine
-    return unless captain_id.present?    
+    return unless captain_id.present?
 
     # Ne pas ajouter le capitaine comme membre s'il est créateur ou administrateur du tournoi
     return if tournament&.tournament_admins&.exists?(user_id: captain_id)
-    
+
     team_members.create!(
       user_id: captain_id,
       slot_number: 1,
@@ -97,7 +97,7 @@ class Team < ApplicationRecord
   def captain_meets_requirements
     # Ne rien faire si pas de capitaine
     return unless captain_id.present?
-    
+
     if tournament.agent_level_required > 0 && captain && captain.level < tournament.agent_level_required
       errors.add(:captain, "does not meet the minimum level requirement")
     end
@@ -105,7 +105,7 @@ class Team < ApplicationRecord
 
   def validate_team_size
     return unless tournament
-    
+
     if tournament.survival? || tournament.arena?
       if team_members.count > tournament.players_per_team
         errors.add(:base, "Team cannot have more than #{tournament.players_per_team} members")
@@ -115,10 +115,10 @@ class Team < ApplicationRecord
 
   def players_not_boss_if_survival
     return unless tournament&.survival?
-    
+
     boss_eligible_count = team_members.where(is_boss_eligible: true).count
     if boss_eligible_count == 0
       errors.add(:base, "Team must have at least one boss-eligible player")
     end
   end
-end 
+end
