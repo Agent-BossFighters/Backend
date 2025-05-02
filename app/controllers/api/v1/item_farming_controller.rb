@@ -2,8 +2,8 @@ class Api::V1::ItemFarmingController < Api::V1::BaseController
   before_action :authenticate_user!
 
   def index
-    @item_farmings = ItemFarming.includes(item: [:type, :rarity])
-                               .where(items: { types: { name: ['Badge', 'Contract'] }})
+    @item_farmings = ItemFarming.includes(item: [ :type, :rarity ])
+                               .where(items: { types: { name: [ "Badge", "Contract" ] } })
 
     render json: {
       farmings: @item_farmings.map { |farming| farming_json(farming) }
@@ -11,12 +11,12 @@ class Api::V1::ItemFarmingController < Api::V1::BaseController
   end
 
   def show
-    @item_farming = ItemFarming.includes(item: [:type, :rarity]).find(params[:id])
+    @item_farming = ItemFarming.includes(item: [ :type, :rarity ]).find(params[:id])
 
     calculator = case @item_farming.item.type.name
-    when 'Badge'
+    when "Badge"
       DataLab::BadgesMetricsCalculator.new(current_user)
-    when 'Contract'
+    when "Contract"
       DataLab::ContractsMetricsCalculator.new(current_user)
     end
 
@@ -49,16 +49,16 @@ class Api::V1::ItemFarmingController < Api::V1::BaseController
 
   def farming_metrics(item, metrics)
     case item.type.name
-    when 'Badge'
+    when "Badge"
       badge_metrics = metrics[:badges_metrics].find { |m| m[:"1. rarity"] == item.rarity.name }
       {
         max_energy: badge_metrics[:"5. max_energy"],
         in_game_time: badge_metrics[:"7. in_game_time"],
         bft_per_minute: badge_metrics[:"9. bft_per_minute"],
         bft_per_max_charge: badge_metrics[:"10. bft_per_max_charge"],
-        bft_value_per_max_charge: badge_metrics[:"11. bft_value_per_max_charge"]&.gsub('$', '')&.to_f
+        bft_value_per_max_charge: badge_metrics[:"11. bft_value_per_max_charge"]&.gsub("$", "")&.to_f
       }
-    when 'Contract'
+    when "Contract"
       contract_metrics = metrics[:contracts].find { |m| m[:"1. rarity"] == item.rarity.name }
       {
         max_energy: contract_metrics[:"6. max_energy"],

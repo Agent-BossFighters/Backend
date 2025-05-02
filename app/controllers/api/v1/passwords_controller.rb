@@ -14,7 +14,7 @@ module Api
         user = User.find_by(email: email)
         if user.nil?
           Rails.logger.error "User not found with email: #{email}"
-          return render json: { error: 'Email not found' }, status: :not_found
+          return render json: { error: "Email not found" }, status: :not_found
         end
 
         Rails.logger.info "User found: #{user.inspect}"
@@ -25,7 +25,7 @@ module Api
 
         if successfully_sent?(resource)
           Rails.logger.info "Reset password instructions sent successfully to #{email}"
-          render json: { message: 'Reset password instructions have been sent to your email.' }, status: :ok
+          render json: { message: "Reset password instructions have been sent to your email." }, status: :ok
         else
           Rails.logger.error "Failed to send reset password instructions. Errors: #{resource.errors.full_messages}"
           render json: { error: resource.errors.full_messages }, status: :unprocessable_entity
@@ -39,7 +39,7 @@ module Api
 
         if resource.errors.empty?
           resource.unlock_access! if unlockable?(resource)
-          render json: { message: 'Password has been reset successfully.' }, status: :ok
+          render json: { message: "Password has been reset successfully." }, status: :ok
         else
           Rails.logger.error "Failed to reset password. Errors: #{resource.errors.full_messages}"
           render json: { error: resource.errors.full_messages }, status: :unprocessable_entity

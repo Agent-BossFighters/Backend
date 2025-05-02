@@ -1,7 +1,7 @@
 module Api
   module V1
     class ZealyController < Api::V1::BaseController
-      before_action :authenticate_user!, except: [:connect]
+      before_action :authenticate_user!, except: [ :connect ]
 
       def connect
         # Générer l'URL de redirection Zealy
@@ -86,7 +86,7 @@ module Api
       def check_quest_status
         quest = Quest.find_by!(quest_id: params[:quest_id])
 
-        if quest.quest_id == 'zealy_connect'
+        if quest.quest_id == "zealy_connect"
           # Vérifier si l'utilisateur est connecté à Zealy
           is_completed = current_user.zealy_user_id.present?
 
@@ -111,7 +111,7 @@ module Api
       private
 
       def handle_zealy_quest_completion(user)
-        quest = Quest.find_by(quest_id: 'zealy_connect')
+        quest = Quest.find_by(quest_id: "zealy_connect")
         return unless quest
 
         # Vérifier si la quête n'est pas déjà complétée

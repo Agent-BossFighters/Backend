@@ -1,4 +1,4 @@
-require 'net/http'
+require "net/http"
 
 module Api
   module V1
@@ -10,7 +10,7 @@ module Api
         begin
           puts "🔵 Début de la création de la session Stripe"
 
-          base_url = ENV['FRONTEND_URL']&.gsub(/\/+$/, '')
+          base_url = ENV["FRONTEND_URL"]&.gsub(/\/+$/, "")
 
           unless base_url
             puts "❌ FRONTEND_URL manquant"
@@ -19,12 +19,12 @@ module Api
           end
 
           session_params = {
-            mode: 'subscription',
-            payment_method_types: ['card', 'paypal', 'link'],
-            line_items: [{
+            mode: "subscription",
+            payment_method_types: [ "card", "paypal", "link" ],
+            line_items: [ {
               price: params[:priceId],
               quantity: 1
-            }],
+            } ],
             subscription_data: {
               metadata: {
                 user_id: current_user.id
@@ -66,14 +66,14 @@ module Api
 
           unless session_id
             puts "❌ Session ID manquante"
-            render json: { success: false, status: 'incomplete', error: 'Session ID missing' }, status: :bad_request
+            render json: { success: false, status: "incomplete", error: "Session ID missing" }, status: :bad_request
             return
           end
 
           puts "🔍 Récupération de la session Stripe #{session_id}"
           session = Stripe::Checkout::Session.retrieve({
             id: session_id,
-            expand: ['subscription']
+            expand: [ "subscription" ]
           })
 
           puts "📌 Session récupérée : #{session.inspect}"
@@ -85,7 +85,7 @@ module Api
 
             if user.nil?
               puts "❌ Utilisateur introuvable avec ID #{session.metadata.user_id}"
-              render json: { success: false, error: "User not found", status: 'error' }, status: :not_found
+              render json: { success: false, error: "User not found", status: "error" }, status: :not_found
               return
             end
 
@@ -103,7 +103,7 @@ module Api
 
             render json: {
               success: true,
-              status: 'complete',
+              status: "complete",
               current_period_end: Time.at(session.subscription.current_period_end),
               customer_email: session.customer_details&.email,
               user: {
@@ -119,45 +119,45 @@ module Api
             puts "⚠️ Subscription non trouvée dans la session"
             render json: {
               success: false,
-              status: 'incomplete'
+              status: "incomplete"
             }, status: :ok
           end
         rescue => e
           puts "❌ Erreur dans success : #{e.message}"
-          render json: { success: false, error: e.message, status: 'error' }, status: :unprocessable_entity
+          render json: { success: false, error: e.message, status: "error" }, status: :unprocessable_entity
         end
       end
 
       def cancel
         render json: {
           success: false,
-          status: 'cancelled',
-          message: 'Payment cancelled by user'
+          status: "cancelled",
+          message: "Payment cancelled by user"
         }, status: :ok
       end
 
       private
 
       def detect_locale_from_header
-        accept_language = request.headers['Accept-Language']
-        return 'en' unless accept_language
+        accept_language = request.headers["Accept-Language"]
+        return "en" unless accept_language
 
-        preferred_language = accept_language.split(',').first&.split(';')&.first&.downcase
-        return 'en' unless preferred_language
+        preferred_language = accept_language.split(",").first&.split(";")&.first&.downcase
+        return "en" unless preferred_language
 
         case preferred_language
-        when 'fr', 'fr-fr'
-          'fr'
-        when 'zh', 'zh-cn'
-          'zh'
+        when "fr", "fr-fr"
+          "fr"
+        when "zh", "zh-cn"
+          "zh"
         else
-          'en'
+          "en"
         end
       end
 
       def authenticate_user!
         unless current_user
-          render json: { error: 'Authentication required' }, status: :unauthorized
+          render json: { error: "Authentication required" }, status: :unauthorized
         end
       end
     end

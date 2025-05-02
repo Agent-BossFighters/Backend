@@ -8,8 +8,8 @@ module DataLab
       @contracts_cache = nil
       @level_costs_cache = nil
       @currency_rates = {
-        'FLEX' => Currency.find_by(name: 'FLEX')&.price || 0,
-        'Sponsor Marks' => Currency.find_by(name: 'Sponsor Marks')&.price || 0
+        "FLEX" => Currency.find_by(name: "FLEX")&.price || 0,
+        "Sponsor Marks" => Currency.find_by(name: "Sponsor Marks")&.price || 0
       }
     end
 
@@ -28,8 +28,8 @@ module DataLab
     def load_contracts
       Item.includes(:type, :rarity, :item_crafting, :item_farming, :item_recharge)
           .joins(:rarity)
-          .where(types: { name: 'Contract' })
-          .order('rarities.id ASC')
+          .where(types: { name: "Contract" })
+          .order("rarities.id ASC")
           .to_a
     end
 
@@ -62,8 +62,8 @@ module DataLab
         total_craft_cost = if is_high_rarity
           "N/A"
         else
-          flex_value = flex_craft.to_i * @currency_rates['FLEX']
-          marks_value = marks_craft.to_i * @currency_rates['Sponsor Marks']
+          flex_value = flex_craft.to_i * @currency_rates["FLEX"]
+          marks_value = marks_craft.to_i * @currency_rates["Sponsor Marks"]
           format_currency(flex_value + marks_value)
         end
 
@@ -74,12 +74,12 @@ module DataLab
           "4. floor_price": format_currency(contract.floorPrice),
           "5. lvl_max": craft_data&.max_level || "N/A",
           "6. max_energy": contract.item_recharge&.max_energy_recharge || 0,
-          "7. time_to_craft": format_hours(craft_data&.craft_time),
+          "7. time_to_craft": calculate_recharge_time(contract),
           "8. nb_badges_required": craft_data&.nb_lower_badge_to_craft || 0,
           "9. flex_craft": flex_craft,
           "10. sp_marks_craft": marks_craft,
           "11. total_craft_cost": total_craft_cost,
-          "12. time_to_charge": calculate_recharge_time(contract),
+          "12. time_to_charge": format_hours(craft_data&.craft_time),
           "13. flex_charge": contract.item_recharge&.flex_charge || "N/A",
           "14. sp_marks_charge": contract.item_recharge&.sponsor_mark_charge || "N/A"
         }
@@ -96,7 +96,7 @@ module DataLab
 
       @level_costs_cache.each do |level_cost|
         sp_marks = level_cost.sponsor_mark_cost
-        sp_marks_cost = (sp_marks * @currency_rates['Sponsor Marks']).round(2)
+        sp_marks_cost = (sp_marks * @currency_rates["Sponsor Marks"]).round(2)
         total_sp_marks += sp_marks
 
         # Calcul du coût total (somme du coût précédent et du coût actuel)
@@ -134,7 +134,8 @@ module DataLab
     def format_hours(minutes)
       return "N/A" if minutes.nil? || minutes.zero?
       hours = minutes / 60
-      "#{hours}h"
+      remaining_minutes = minutes % 60
+      format("%dh%02d", hours, remaining_minutes)
     end
   end
 end

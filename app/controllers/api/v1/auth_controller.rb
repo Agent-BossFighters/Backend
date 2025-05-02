@@ -1,5 +1,5 @@
 class Api::V1::AuthController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:create]
+  skip_before_action :authenticate_user!, only: [ :create ]
 
   def create
     user = User.find_by(email: sign_in_params[:email])
@@ -15,7 +15,7 @@ class Api::V1::AuthController < ApplicationController
         }
       }
     else
-      render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity
+      render json: { errors: { "email or password" => [ "is invalid" ] } }, status: :unprocessable_entity
     end
   end
 

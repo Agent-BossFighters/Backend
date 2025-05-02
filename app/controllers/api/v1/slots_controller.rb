@@ -87,7 +87,7 @@ class Api::V1::SlotsController < ApplicationController
   def calculate_slot_metrics(slot)
     user_slots = slot.user_slots
     {
-      average_profit: user_slots.joins(:matches).average('matches.profit'),
+      average_profit: user_slots.joins(:matches).average("matches.profit"),
       energy_efficiency: calculate_energy_efficiency(user_slots),
       usage_count: user_slots.count
     }

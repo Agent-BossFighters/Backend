@@ -35,19 +35,19 @@ class TournamentCreationService
   def create_tournament
     tournament = Tournament.new(@tournament_params)
     tournament.creator = @user
-    
+
     # Assigner automatiquement le créateur comme boss pour les tournois de survie
     if (tournament.tournament_type == 0 || tournament.tournament_type == 1) && !@tournament_params[:boss_id]
       tournament.boss = @user
     end
-    
+
     tournament.save!
     tournament
   end
 
   def create_empty_teams(tournament)
     max_teams = tournament.max_teams
-    ('A'..'Z').first(max_teams).each_with_index do |letter, index|
+    ("A".."Z").first(max_teams).each_with_index do |letter, index|
       begin
         # Créer l'équipe sans validation
         team = Team.new(
@@ -56,10 +56,10 @@ class TournamentCreationService
           is_empty: true,
           captain_id: nil
         )
-        
+
         # Sauvegarder sans validation
         team.save(validate: false)
-        
+
       rescue => e
         @errors << "Exception lors de la création de la Team #{letter}: #{e.message}"
         raise ActiveRecord::Rollback
@@ -89,4 +89,4 @@ class TournamentCreationService
     @errors << message
     false
   end
-end 
+end

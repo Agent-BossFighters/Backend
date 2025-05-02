@@ -33,18 +33,18 @@ class User < ApplicationRecord
   end
 
   def daily_quests(date = Date.current)
-    available_quests(date).select { |quest| quest.type == 'daily' }
+    available_quests(date).select { |quest| quest.type == "daily" }
   end
 
   def weekly_quests(date = Date.current)
-    available_quests(date).select { |quest| quest.type == 'weekly' }
+    available_quests(date).select { |quest| quest.type == "weekly" }
   end
 
   def completed_quests(date = Date.current)
     user_quest_completions
       .includes(:quest)
       .where(completion_date: date)
-      .where('progress >= quests.progress_required')
+      .where("progress >= quests.progress_required")
       .map(&:quest)
   end
 
@@ -58,14 +58,22 @@ class User < ApplicationRecord
   def has_completed_quest?(quest_id, date = Date.current)
     user_quest_completions
       .where(quest_id: quest_id, completion_date: date)
-      .where('progress >= (SELECT progress_required FROM quests WHERE quest_id = ?)', quest_id)
+      .where("progress >= (SELECT progress_required FROM quests WHERE quest_id = ?)", quest_id)
       .exists?
+  end
+
+  def reset_monthly_level
+    update_columns(
+      level: 1,
+      experience: 0,
+      updated_at: Time.current
+    )
   end
 
   # JWT token generation
   def generate_jwt
     new_jti = SecureRandom.uuid
-    
+
     success = update_column(:current_jti, new_jti)
 
     token = JWT.encode(
@@ -120,7 +128,7 @@ class User < ApplicationRecord
   # Méthode de débogage pour les matchs
   def todays_matches(date = Date.current)
     day_matches = matches.where(created_at: date.beginning_of_day..date.end_of_day)
-    
+
     day_matches
   end
 

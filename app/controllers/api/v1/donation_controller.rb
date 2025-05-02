@@ -8,7 +8,7 @@ module Api
         begin
           puts "🔵 Starting donation session creation"
 
-          base_url = ENV['FRONTEND_URL']&.gsub(/\/+$/, '')
+          base_url = ENV["FRONTEND_URL"]&.gsub(/\/+$/, "")
 
           unless base_url
             puts "❌ FRONTEND_URL missing"
@@ -36,17 +36,17 @@ module Api
           end
 
           session_params = {
-            mode: 'payment',
-            payment_method_types: ['card'],
-            billing_address_collection: 'auto',  # Make postal code optional
-            line_items: [{
+            mode: "payment",
+            payment_method_types: [ "card" ],
+            billing_address_collection: "auto",  # Make postal code optional
+            line_items: [ {
               price_data: {
-                currency: 'usd',
-                product: ENV['STRIPE_DONATION_PRODUCT_ID'],
-                unit_amount: amount,
+                currency: "usd",
+                product: ENV["STRIPE_DONATION_PRODUCT_ID"],
+                unit_amount: amount
               },
               quantity: 1
-            }],
+            } ],
             metadata: {
               user_id: current_user.id,
               donation: true
@@ -89,7 +89,7 @@ module Api
 
           unless session_id
             puts "❌ Session ID missing"
-            render json: { success: false, error: 'Session ID missing' }, status: :bad_request
+            render json: { success: false, error: "Session ID missing" }, status: :bad_request
             return
           end
 
@@ -97,7 +97,7 @@ module Api
           session = Stripe::Checkout::Session.retrieve(session_id)
           puts "📊 Session status: #{session.payment_status}"
 
-          if session.payment_status == 'paid'
+          if session.payment_status == "paid"
             puts "💝 Donation received successfully"
 
             user = User.find_by(id: session.metadata.user_id)
@@ -111,7 +111,7 @@ module Api
 
               render json: {
                 success: true,
-                status: 'complete',
+                status: "complete",
                 amount: session.amount_total,
                 customer_email: session.customer_details&.email,
                 token: new_token,
@@ -127,7 +127,7 @@ module Api
               puts "⚠️ User not found for session"
               render json: {
                 success: true,
-                status: 'complete',
+                status: "complete",
                 amount: session.amount_total,
                 customer_email: session.customer_details&.email
               }, status: :ok
@@ -136,7 +136,7 @@ module Api
             puts "⚠️ Donation payment not completed"
             render json: {
               success: false,
-              status: 'incomplete'
+              status: "incomplete"
             }, status: :ok
           end
         rescue => e
@@ -149,27 +149,27 @@ module Api
         puts "🔄 Processing cancel callback"
         render json: {
           success: false,
-          status: 'cancelled',
-          message: 'Donation cancelled by user'
+          status: "cancelled",
+          message: "Donation cancelled by user"
         }, status: :ok
       end
 
       private
 
       def detect_locale_from_header
-        accept_language = request.headers['Accept-Language']
-        return 'en' unless accept_language
+        accept_language = request.headers["Accept-Language"]
+        return "en" unless accept_language
 
-        preferred_language = accept_language.split(',').first&.split(';')&.first&.downcase
-        return 'en' unless preferred_language
+        preferred_language = accept_language.split(",").first&.split(";")&.first&.downcase
+        return "en" unless preferred_language
 
         case preferred_language
-        when 'fr', 'fr-fr'
-          'fr'
-        when 'zh', 'zh-cn'
-          'zh'
+        when "fr", "fr-fr"
+          "fr"
+        when "zh", "zh-cn"
+          "zh"
         else
-          'en'
+          "en"
         end
       end
     end

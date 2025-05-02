@@ -1,6 +1,6 @@
 class Api::V1::UserBuildsController < Api::V1::BaseController
   before_action :authenticate_user!
-  before_action :set_build, only: [:show, :update, :destroy]
+  before_action :set_build, only: [ :show, :update, :destroy ]
 
   def index
     @builds = current_user.user_builds

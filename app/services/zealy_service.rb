@@ -1,21 +1,21 @@
 class ZealyService
   include HTTParty
-  base_uri 'https://api-v2.zealy.io'
+  base_uri "https://api-v2.zealy.io"
 
   # Limite de taux : 50 requêtes par seconde
   RATE_LIMIT = 50
   RATE_WINDOW = 1.second
 
   def initialize
-    @api_key = ENV['ZEALY_API_KEY']
-    @subdomain = 'agentbossfighterstest'
+    @api_key = ENV["ZEALY_API_KEY"]
+    @subdomain = "agentbossfighterstest"
     Rails.logger.info "Initializing ZealyService with API key: #{@api_key.present? ? 'Present' : 'Missing'}"
     raise "ZEALY_API_KEY is not configured" unless @api_key.present?
 
     @headers = {
-      'x-api-key' => @api_key,
-      'Content-Type' => 'application/json',
-      'Accept' => '*/*'
+      "x-api-key" => @api_key,
+      "Content-Type" => "application/json",
+      "Accept" => "*/*"
     }
   end
 
@@ -47,10 +47,10 @@ class ZealyService
         quests = get_user_quests(user_id)
 
         {
-          joined: user_info.present? && user_info['id'].present?,
+          joined: user_info.present? && user_info["id"].present?,
           quest_completed: quests.any? { |quest|
-            quest['name'] == 'Join the Agent\'s community on Zealy' &&
-            quest['status'] == 'success'
+            quest["name"] == "Join the Agent's community on Zealy" &&
+            quest["status"] == "success"
           },
           user: user_info
         }
@@ -70,13 +70,13 @@ class ZealyService
         Rails.logger.info "Received #{zealy_quests.size} quests from Zealy"
 
         zealy_quests.each do |zealy_quest|
-          quest = Quest.find_or_initialize_by(zealy_quest_id: zealy_quest['id'])
+          quest = Quest.find_or_initialize_by(zealy_quest_id: zealy_quest["id"])
           quest.update!(
-            title: zealy_quest['name'],
-            description: zealy_quest['description'],
-            xp_reward: zealy_quest['xp'],
+            title: zealy_quest["name"],
+            description: zealy_quest["description"],
+            xp_reward: zealy_quest["xp"],
             progress_required: 1,
-            quest_type: 'social',
+            quest_type: "social",
             active: true
           )
         end

@@ -1,7 +1,7 @@
 class Api::V1::OpenLootController < ApplicationController
   def badges
     page = params[:page] || 1
-    sort = params[:sort] || 'name:asc'
+    sort = params[:sort] || "name:asc"
 
     response = OpenLootService.new.get_badges(page, sort)
     render json: response
@@ -9,7 +9,7 @@ class Api::V1::OpenLootController < ApplicationController
 
   def showrunner_contracts
     page = params[:page] || 1
-    sort = params[:sort] || 'name:asc'
+    sort = params[:sort] || "name:asc"
 
     response = OpenLootService.new.get_showrunner_contracts(page, sort)
     render json: response
@@ -22,7 +22,7 @@ class Api::V1::OpenLootController < ApplicationController
   end
 
   def currency_stats
-    currency_id = params[:currency_id] || '711bc69c-a9f2-4683-acd5-616a5eb7eead'
+    currency_id = params[:currency_id] || "711bc69c-a9f2-4683-acd5-616a5eb7eead"
     response = OpenLootService.new.get_currency_stats(currency_id)
     render json: response
   end

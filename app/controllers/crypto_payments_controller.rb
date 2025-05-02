@@ -12,10 +12,10 @@ class CryptoPaymentsController < ApplicationController
       # Créer la transaction
       transaction = Transaction.create!(
         user: current_user,
-        payment_method: PaymentMethod.find_by(provider: 'metamask'),
+        payment_method: PaymentMethod.find_by(provider: "metamask"),
         amount: amount,
-        currency: 'ETH',
-        status: 'pending',
+        currency: "ETH",
+        status: "pending",
         external_id: tx_hash,
         metadata: {
           currency_type: currency_type,
@@ -24,7 +24,7 @@ class CryptoPaymentsController < ApplicationController
       )
 
       render json: {
-        status: 'pending',
+        status: "pending",
         transaction: transaction
       }, status: :ok
     rescue => e
@@ -41,8 +41,8 @@ class CryptoPaymentsController < ApplicationController
       # Ceci est un exemple, il faudra adapter selon la blockchain
       tx_status = Web3Service.verify_transaction(tx_hash)
 
-      if tx_status == 'confirmed'
-        transaction.update(status: 'completed')
+      if tx_status == "confirmed"
+        transaction.update(status: "completed")
         # Créditer le compte utilisateur
       end
 

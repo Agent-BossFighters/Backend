@@ -1,5 +1,5 @@
 class Api::V1::Admin::ItemsController < Api::V1::Admin::BaseController
-  before_action :set_item, only: [:show, :update, :destroy]
+  before_action :set_item, only: [ :show, :update, :destroy ]
 
   def index
     @items = Item.includes(:type, :rarity).all
@@ -49,12 +49,12 @@ class Api::V1::Admin::ItemsController < Api::V1::Admin::BaseController
     {
       id: item.id,
       name: item.name,
-      type: item.type.as_json(only: [:id, :name]),
-      rarity: item.rarity.as_json(only: [:id, :name, :color]),
+      type: item.type.as_json(only: [ :id, :name ]),
+      rarity: item.rarity.as_json(only: [ :id, :name, :color ]),
       efficiency: item.efficiency,
       supply: item.supply,
       floorPrice: item.floorPrice,
       total_minted: item.nfts.count
     }
   end
-end 
+end

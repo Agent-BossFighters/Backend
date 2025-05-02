@@ -6,23 +6,23 @@ module Api
 
       def webhook
         # Add CORS headers
-        response.headers['Access-Control-Allow-Origin'] = '*'
-        response.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, User-Agent'
-        response.headers['Access-Control-Max-Age'] = '86400' # 24 hours
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type, User-Agent"
+        response.headers["Access-Control-Max-Age"] = "86400" # 24 hours
 
         # Gérer les requêtes OPTIONS pour les tests
-        if request.method == 'OPTIONS'
-          return render json: { status: 'ok' }, status: :ok
+        if request.method == "OPTIONS"
+          return render json: { status: "ok" }, status: :ok
         end
 
         Rails.logger.info "🔵 [ZEALY WEBHOOK] Début du traitement"
         Rails.logger.info "🔵 [ZEALY WEBHOOK] Méthode: #{request.method}"
-        Rails.logger.info "🔵 [ZEALY WEBHOOK] Headers: #{request.headers.to_h.select { |k,v| k.start_with?('HTTP_') }}"
+        Rails.logger.info "🔵 [ZEALY WEBHOOK] Headers: #{request.headers.to_h.select { |k, v| k.start_with?('HTTP_') }}"
 
         begin
           # Vérification des headers
-          unless request.headers['User-Agent'] == 'Zealy-Webhook'
+          unless request.headers["User-Agent"] == "Zealy-Webhook"
             Rails.logger.error "❌ [ZEALY WEBHOOK] User-Agent invalide"
             return render json: { error: "Invalid User-Agent" }, status: :unauthorized
           end
@@ -35,10 +35,10 @@ module Api
 
           # Vérification du secret selon le type d'événement
           expected_secret = case payload[:type]
-          when 'JOINED_COMMUNITY', 'LEFT_COMMUNITY'
-            ENV['ZEALY_WEBHOOK_COMMUNITY_SECRET']
+          when "JOINED_COMMUNITY", "LEFT_COMMUNITY"
+            ENV["ZEALY_WEBHOOK_COMMUNITY_SECRET"]
           else
-            ENV['ZEALY_WEBHOOK_SECRET']
+            ENV["ZEALY_WEBHOOK_SECRET"]
           end
 
           unless payload[:secret] == expected_secret
@@ -51,23 +51,23 @@ module Api
 
           # Traitement de l'événement
           case payload[:type]
-          when 'JOINED_COMMUNITY'
+          when "JOINED_COMMUNITY"
             handle_joined_community(payload[:data])
-          when 'LEFT_COMMUNITY'
+          when "LEFT_COMMUNITY"
             handle_left_community(payload[:data])
-          when 'QUEST_SUCCEEDED'
+          when "QUEST_SUCCEEDED"
             handle_quest_succeeded(payload[:data])
-          when 'QUEST_CLAIMED'
+          when "QUEST_CLAIMED"
             handle_quest_claimed(payload[:data])
-          when 'QUEST_FAILED'
+          when "QUEST_FAILED"
             handle_quest_failed(payload[:data])
-          when 'QUEST_CLAIM_STATUS_UPDATED'
+          when "QUEST_CLAIM_STATUS_UPDATED"
             handle_quest_claim_status_updated(payload[:data])
-          when 'SPRINT_STARTED'
+          when "SPRINT_STARTED"
             handle_sprint_started(payload[:data])
-          when 'SPRINT_ENDED'
+          when "SPRINT_ENDED"
             handle_sprint_ended(payload[:data])
-          when 'USER_BANNED'
+          when "USER_BANNED"
             handle_user_banned(payload[:data])
           else
             Rails.logger.info "⚠️ [ZEALY WEBHOOK] Type d'événement non géré: #{payload[:type]}"
@@ -92,7 +92,7 @@ module Api
         user = User.find_by(zealy_user_id: data[:user][:id])
         return unless user
 
-        quest = Quest.find_by(quest_id: 'zealy_connect')
+        quest = Quest.find_by(quest_id: "zealy_connect")
         return unless quest
 
         # Créer ou mettre à jour la complétion de la quête
@@ -211,7 +211,7 @@ module Api
         )
 
         case data[:status]
-        when 'success'
+        when "success"
           completion.progress = quest.progress_required
           completion.completable = false
           if completion.save && !completion.completed?
@@ -219,7 +219,7 @@ module Api
             user.update!(experience: current_xp + quest.xp_reward)
             Rails.logger.info "🌟 [ZEALY WEBHOOK] XP ajoutée: +#{quest.xp_reward}"
           end
-        when 'failed'
+        when "failed"
           completion.progress = 0
           completion.completable = false
           completion.save

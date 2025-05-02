@@ -2,7 +2,7 @@ module Api
   module V1
     class MatchesController < Api::V1::BaseController
       before_action :authenticate_user!
-      before_action :isPremium_user!, only: [:monthly, :monthly_summary]
+      before_action :isPremium_user!, only: [ :monthly, :monthly_summary ]
       def index
         @matches = current_user.matches.includes(:badge_used).order(created_at: :desc)
         render json: { matches: matches_json(@matches) }
@@ -29,7 +29,7 @@ module Api
           unless @match.user_id == current_user.id
             return render json: { error: "Non autorisé" }, status: :unauthorized
           end
-          
+
           if match_params[:badge_used_attributes].present?
             match_params[:badge_used_attributes].each do |attrs|
             end
@@ -42,7 +42,7 @@ module Api
               @match.badge_used.each do |badge|
               end
             end
-            
+
             render json: {
               errors: @match.errors.full_messages,
               badge_errors: @match.badge_used.map { |b| b.errors.full_messages }.flatten
@@ -87,9 +87,9 @@ module Api
             },
             profit: calculations.sum { |c| c[:profit] }.round(2),
             results: {
-              win: @matches.where(result: 'win').count,
-              loss: @matches.where(result: 'loss').count,
-              draw: @matches.where(result: 'draw').count
+              win: @matches.where(result: "win").count,
+              loss: @matches.where(result: "loss").count,
+              draw: @matches.where(result: "draw").count
             }
           },
           matches: matches_json(@matches)
@@ -101,9 +101,9 @@ module Api
           date = if params[:date]
                    raise Date::Error, "Format de date invalide. Utilisez YYYY-MM" unless params[:date].match?(/^\d{4}-\d{2}$/)
                    Date.parse("#{params[:date]}-01")
-                 else
+          else
                    Date.current
-                 end
+          end
 
           start_date = date.beginning_of_month
           end_date = date.end_of_month
@@ -122,7 +122,7 @@ module Api
           daily_matches.each do |day, day_matches|
             calculations = day_matches.map { |m| DataLab::MatchMetricsCalculator.new(m).calculate }
 
-            daily_metrics[day.strftime('%Y-%m-%d')] = {
+            daily_metrics[day.strftime("%Y-%m-%d")] = {
               matches: matches_json(day_matches),
               total_matches: day_matches.count,
               total_energy: calculations.sum { |c| c[:energyUsed] }.round(2),
@@ -137,9 +137,9 @@ module Api
               },
               profit: calculations.sum { |c| c[:profit] }.round(2),
               results: {
-                win: day_matches.count { |m| m.result == 'win' },
-                loss: day_matches.count { |m| m.result == 'loss' },
-                draw: day_matches.count { |m| m.result == 'draw' }
+                win: day_matches.count { |m| m.result == "win" },
+                loss: day_matches.count { |m| m.result == "loss" },
+                draw: day_matches.count { |m| m.result == "draw" }
               },
               win_rate: calculate_win_rate(day_matches)
             }
@@ -156,9 +156,9 @@ module Api
           date = if params[:date]
                    raise Date::Error, "Format de date invalide. Utilisez YYYY-MM" unless params[:date].match?(/^\d{4}-\d{2}$/)
                    Date.parse("#{params[:date]}-01")
-                 else
+          else
                    Date.current
-                 end
+          end
 
           start_date = date.beginning_of_month
           end_date = date.end_of_month
@@ -187,9 +187,9 @@ module Api
               },
               profit: calculations.sum { |c| c[:profit] }.round(2),
               results: {
-                win: @matches.where(result: 'win').count,
-                loss: @matches.where(result: 'loss').count,
-                draw: @matches.where(result: 'draw').count
+                win: @matches.where(result: "win").count,
+                loss: @matches.where(result: "loss").count,
+                draw: @matches.where(result: "draw").count
               },
               winRate: calculate_win_rate(@matches)
             }
@@ -263,7 +263,7 @@ module Api
 
       def calculate_win_rate(matches)
         return 0.0 if matches.empty?
-        wins = matches.count { |m| m.result == 'win' }
+        wins = matches.count { |m| m.result == "win" }
         ((wins.to_f / matches.count) * 100).round(1)
       end
 
@@ -279,7 +279,7 @@ module Api
           :bonusMultiplier,
           :perksMultiplier,
           :energyUsed,
-          badge_used_attributes: [:id, :slot, :rarity, :nftId, :_destroy]
+          badge_used_attributes: [ :id, :slot, :rarity, :nftId, :_destroy ]
         )
       end
     end

@@ -12,6 +12,6 @@ class CreateTeams < ActiveRecord::Migration[7.1]
     end
 
     add_index :teams, :invitation_code, unique: true, where: "invitation_code IS NOT NULL"
-    add_index :teams, [:tournament_id, :name], unique: true
+    add_index :teams, [ :tournament_id, :name ], unique: true
   end
 end

@@ -32,7 +32,7 @@ module DataLab
       HOURS_PER_ENERGY = 1
 
       # Temps de réduction possibles (en pourcentage)
-      DISCOUNT_TIMES = [5, 9, 10, 13, 16, 20, 25].freeze
+      DISCOUNT_TIMES = [ 5, 9, 10, 13, 16, 20, 25 ].freeze
     end
   end
 end

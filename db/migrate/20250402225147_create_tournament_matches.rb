@@ -16,7 +16,7 @@ class CreateTournamentMatches < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    add_index :tournament_matches, [:tournament_id, :round_number]
+    add_index :tournament_matches, [ :tournament_id, :round_number ]
     add_index :tournament_matches, :status
   end
 end

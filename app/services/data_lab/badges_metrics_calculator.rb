@@ -12,9 +12,9 @@ module DataLab
 
       # Cache pour les taux de devises
       @currency_rates = {
-        'FLEX' => Currency.find_by(name: 'FLEX')&.price || 0,
-        'Sponsor Marks' => Currency.find_by(name: 'Sponsor Marks')&.price || 0,
-        'BFT' => Currency.find_by(name: '$BFT')&.price || 0
+        "FLEX" => Currency.find_by(name: "FLEX")&.price || 0,
+        "Sponsor Marks" => Currency.find_by(name: "Sponsor Marks")&.price || 0,
+        "BFT" => Currency.find_by(name: "$BFT")&.price || 0
       }
 
       # Cache pour les coûts de recharge
@@ -31,13 +31,15 @@ module DataLab
       }
     end
 
-    private
+    def calculate_recharge_cost(rarity)
+      @recharge_costs[rarity] || { flex: 0, sm: 0, total_usd: 0 }
+    end
 
     def load_badges
       Item.includes(:type, :rarity, :item_farming, :item_recharge, :item_crafting)
           .joins(:rarity)
-          .where(types: { name: 'Badge' })
-          .order('rarities.id ASC')
+          .where(types: { name: "Badge" })
+          .order("rarities.id ASC")
     end
 
     def cache_badges(badges)
@@ -59,6 +61,8 @@ module DataLab
         )
       end
     end
+
+    private
 
     def calculate_badges_metrics(badges)
       badges.map do |badge|
@@ -205,7 +209,7 @@ module DataLab
       bft_per_max_charge = calculate_bft_per_max_charge(badge)
       return 0 if bft_per_max_charge.nil?
 
-      (bft_per_max_charge * @currency_rates['BFT']).round(2)
+      (bft_per_max_charge * @currency_rates["BFT"]).round(2)
     end
 
     def calculate_cost_per_hour(recharge_cost, recharge_time)
@@ -221,12 +225,8 @@ module DataLab
       badge&.rarity&.name.present?
     end
 
-    def calculate_recharge_cost(rarity)
-      @recharge_costs[rarity] || { flex: 0, sm: 0, total_usd: 0 }
-    end
-
     def calculate_total_usd(flex_cost, sm_cost)
-      (flex_cost * @currency_rates['FLEX'] + sm_cost * @currency_rates['Sponsor Marks']).round(2)
+      (flex_cost * @currency_rates["FLEX"] + sm_cost * @currency_rates["Sponsor Marks"]).round(2)
     end
 
     def calculate_ratio(badge)

@@ -3,6 +3,6 @@ FactoryBot.define do
     sequence(:name) { |n| "Payment Method #{n}" }
     sequence(:provider) { |n| "provider_#{n}" }
     is_active { true }
-    settings { { currencies: ['eur'] } }
+    settings { { currencies: [ 'eur' ] } }
   end
 end

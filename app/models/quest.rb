@@ -13,21 +13,27 @@ class Quest < ApplicationRecord
   # Scopes
   scope :active, -> { where(active: true) }
   scope :by_type, ->(quest_type) { where(quest_type: quest_type) }
-  scope :daily, -> { where(quest_type: 'daily') }
-  scope :social, -> { where(quest_type: 'social') }
+  scope :daily, -> { where(quest_type: "daily") }
+  scope :social, -> { where(quest_type: "social") }
 
   # Méthodes d'instance
   def completable_by?(user, date = Date.current)
     return false unless active?
 
+    # Vérification spécifique pour la quête daily_matches
+    if quest_id == "daily_matches"
+      # Vérifier si l'utilisateur a joué suffisamment de matchs aujourd'hui
+      return false unless has_enough_matches?(user)
+    end
+
     case quest_type
-    when 'daily'
+    when "daily"
       !completed_today_by?(user, date)
-    when 'unique'
+    when "unique"
       !ever_completed_by?(user)
-    when 'weekly'
+    when "weekly"
       !completed_this_week_by?(user, date)
-    when 'social'
+    when "social"
       if zealy_quest?
         # Pour Zealy, on vérifie si la quête n'est pas déjà complétée
         !completed_today_by?(user, date)
@@ -35,7 +41,7 @@ class Quest < ApplicationRecord
         # Pour les autres quêtes sociales
         !completed_today_by?(user, date)
       end
-    when 'event'
+    when "event"
       true
     else
       false
@@ -43,14 +49,14 @@ class Quest < ApplicationRecord
   end
 
   def has_enough_matches?(user, date = Date.current)
-    return true unless quest_id == 'daily_matches'
+    return true unless quest_id == "daily_matches"
 
     match_count = daily_matches_count(user, date)
     match_count >= progress_required
   end
 
   def daily_matches_count(user, date = Date.current)
-    return 0 unless quest_id == 'daily_matches'
+    return 0 unless quest_id == "daily_matches"
 
     day_start = date.beginning_of_day
     day_end = date.end_of_day
@@ -92,10 +98,10 @@ class Quest < ApplicationRecord
   end
 
   def self.zealy_quest
-    find_by(quest_id: 'zealy_connect')
+    find_by(quest_id: "zealy_connect")
   end
 
   def zealy_quest?
-    quest_id == 'zealy_connect'
+    quest_id == "zealy_connect"
   end
 end

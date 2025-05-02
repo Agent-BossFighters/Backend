@@ -2,7 +2,7 @@ module Api
   module V1
     class QuestsController < Api::V1::BaseController
       before_action :authenticate_user!
-      before_action :set_quest, only: [:show, :update_progress]
+      before_action :set_quest, only: [ :show, :update_progress ]
 
       def index
         begin
@@ -15,7 +15,7 @@ module Api
                 current_progress = current_user.zealy_user_id.present? ? 1 : 0
               else
                 # Pour la quête daily_matches, obtenir le nombre réel de matchs
-                current_progress = quest.quest_id == 'daily_matches' ?
+                current_progress = quest.quest_id == "daily_matches" ?
                   quest.daily_matches_count(current_user) :
                   current_user.quest_progress(quest.quest_id)
               end
@@ -170,7 +170,7 @@ module Api
         end
 
         # Pour la quête daily_matches, utiliser le nombre réel de matchs joués
-        if quest.quest_id == 'daily_matches'
+        if quest.quest_id == "daily_matches"
           custom_progress = quest.daily_matches_count(user)
           current_progress = custom_progress
         end

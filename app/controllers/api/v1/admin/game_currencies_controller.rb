@@ -1,7 +1,7 @@
 class Api::V1::Admin::GameCurrenciesController < Api::V1::Admin::BaseController
   def index
-    @bft = Currency.find_by(symbol: 'BFT')
-    @sponsor_marks = Currency.find_by(symbol: 'SM')
+    @bft = Currency.find_by(symbol: "BFT")
+    @sponsor_marks = Currency.find_by(symbol: "SM")
 
     render json: {
       bft: @bft,
@@ -10,7 +10,7 @@ class Api::V1::Admin::GameCurrenciesController < Api::V1::Admin::BaseController
   end
 
   def update_bft
-    @bft = Currency.find_by(symbol: 'BFT')
+    @bft = Currency.find_by(symbol: "BFT")
 
     if @bft.update(bft_params)
       render json: @bft
@@ -20,7 +20,7 @@ class Api::V1::Admin::GameCurrenciesController < Api::V1::Admin::BaseController
   end
 
   def update_sponsor_marks
-    @sponsor_marks = Currency.find_by(symbol: 'SM')
+    @sponsor_marks = Currency.find_by(symbol: "SM")
 
     if @sponsor_marks.update(sponsor_marks_params)
       DataLab::CurrencyRatesService.invalidate_cache  # Invalider le cache pour forcer la mise à jour du taux

@@ -11,16 +11,16 @@ class TeamRegistrationService
   def call
     @team = nil
     @errors = []
-    
+
     # Vérifier les codes d'entrée et d'invitation
     return false unless validate_codes
-    
+
     # Récupérer l'équipe par ID ou code d'invitation
     find_team
-    
+
     # Vérifier si l'utilisateur est autorisé à s'inscrire
     return false unless can_register?
-    
+
     return false if @errors.any?
 
     if @team.present?
@@ -43,7 +43,7 @@ class TeamRegistrationService
         add_error("Tournament entry code is required")
         return false
       end
-      
+
       unless @tournament.entry_code === @team_params[:entry_code]
         add_error("Invalid tournament entry code")
         return false
@@ -58,7 +58,7 @@ class TeamRegistrationService
           add_error("Team invitation code is required")
           return false
         end
-        
+
         unless team.invitation_code === @team_params[:invitation_code]
           add_error("Invalid team invitation code")
           return false
@@ -82,7 +82,7 @@ class TeamRegistrationService
     if @team_params[:invitation_code].present?
       @team = @tournament.teams.find_by(invitation_code: @team_params[:invitation_code])
       add_error("Invalid invitation code") if @team.nil?
-    elsif @team_params[:id].present? && @team_params[:id] != 'id'
+    elsif @team_params[:id].present? && @team_params[:id] != "id"
       @team = @tournament.teams.find_by(id: @team_params[:id])
       add_error("Team not found") if @team.nil?
     elsif @team_params[:team_letter].present?
@@ -116,7 +116,7 @@ class TeamRegistrationService
     rescue => e
       add_error(e.message)
     end
-    
+
     @errors.empty?
   end
 
@@ -153,7 +153,7 @@ class TeamRegistrationService
           @team.update_column(:captain_id, @user.id)
 
           # Si la request contient private et que c'est true, générer un code d'invitation
-          if @team_params[:private] == true || @team_params[:private] == "true" || 
+          if @team_params[:private] == true || @team_params[:private] == "true" ||
              @team_params[:is_private] == true || @team_params[:is_private] == "true"
             @team.generate_invitation_code
           end
@@ -170,7 +170,7 @@ class TeamRegistrationService
           slot_number: slot_number,
           is_boss_eligible: @tournament.survival? || @tournament.arena?
         )
-        
+
         unless team_member.save
           team_member.errors.full_messages.each { |msg| add_error(msg) }
           raise ActiveRecord::Rollback
@@ -180,7 +180,7 @@ class TeamRegistrationService
       add_error(e.message)
       return false
     end
-    
+
     true
   end
 
@@ -198,7 +198,7 @@ class TeamRegistrationService
   end
 
   def valid_slot?(slot_number)
-    slot_number.present? && 
+    slot_number.present? &&
     slot_number.between?(1, @tournament.players_per_team)
   end
 
@@ -206,4 +206,4 @@ class TeamRegistrationService
     @errors << message
     nil
   end
-end 
+end

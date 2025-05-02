@@ -13,10 +13,10 @@ class TournamentMatch < ApplicationRecord
 
   # Relations
   belongs_to :tournament
-  belongs_to :team_a, class_name: 'Team'
-  belongs_to :team_b, class_name: 'Team', optional: true
-  belongs_to :winner, class_name: 'Team', optional: true
-  belongs_to :boss, class_name: 'User', optional: true
+  belongs_to :team_a, class_name: "Team"
+  belongs_to :team_b, class_name: "Team", optional: true
+  belongs_to :winner, class_name: "Team", optional: true
+  belongs_to :boss, class_name: "User", optional: true
   has_many :rounds, dependent: :destroy
 
   # Validations
@@ -29,12 +29,12 @@ class TournamentMatch < ApplicationRecord
   validate :validate_team_b_presence
 
   # Scopes
-  scope :upcoming, -> { where(status: :scheduled).where('scheduled_time > ?', Time.current) }
+  scope :upcoming, -> { where(status: :scheduled).where("scheduled_time > ?", Time.current) }
   scope :in_progress, -> { where(status: :in_progress) }
   scope :completed, -> { where(status: :completed) }
 
   def completed?
-    status == 'completed'
+    status == "completed"
   end
 
   private
@@ -74,4 +74,4 @@ class TournamentMatch < ApplicationRecord
       errors.add(:team_b, "must be present for arena tournaments")
     end
   end
-end 
+end
