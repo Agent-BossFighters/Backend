@@ -1,7 +1,7 @@
 module Api
   module V1
     class ZealyController < Api::V1::BaseController
-      before_action :authenticate_user!, except: [:webhook]
+      before_action :authenticate_user!, except: [:connect]
 
       def connect
         # Générer l'URL de redirection Zealy
@@ -46,6 +46,14 @@ module Api
 
           # Vérifier le statut de la communauté
           status = ZealyService.new.check_community_status(current_user.zealy_user_id)
+
+          # Ajouter le statut de la communauté spécifique
+          community = params[:community]
+          if community.present?
+            status[:community] = community
+            status[:community_joined] = status[:joined] && status[:quest_completed]
+          end
+
           render json: status
         rescue => e
           Rails.logger.error("Error checking community status: #{e.message}")
@@ -100,49 +108,6 @@ module Api
         render json: { error: e.message }, status: :unprocessable_entity
       end
 
-      def webhook
-        # Vérifier que c'est bien une requête POST
-        unless request.post?
-          Rails.logger.error("Invalid HTTP method: #{request.method}")
-          return render json: { error: 'Method not allowed' }, status: :method_not_allowed
-        end
-
-        # Vérifier les en-têtes requis
-        unless request.headers['User-Agent'] == 'Zealy-Webhook' &&
-               request.headers['Content-Type'].to_s.include?('application/json')
-          Rails.logger.error("Invalid headers: #{request.headers}")
-          return render json: { error: 'Invalid headers' }, status: :bad_request
-        end
-
-        # Parser le payload
-        begin
-          payload = JSON.parse(request.raw_post)
-        rescue JSON::ParserError => e
-          Rails.logger.error("Invalid JSON payload: #{e.message}")
-          return render json: { error: 'Invalid JSON payload' }, status: :bad_request
-        end
-
-        # Vérifier le secret
-        webhook_secret = ENV['ZEALY_WEBHOOK_SECRET']
-        unless payload['secret'] == webhook_secret
-          Rails.logger.error("Invalid webhook secret received")
-          return render json: { error: 'Invalid webhook secret' }, status: :unauthorized
-        end
-
-        # Ne traiter que l'événement QUEST_SUCCEEDED
-        unless payload['type'] == 'QUEST_SUCCEEDED'
-          return render json: { status: 'ignored' }, status: :ok
-        end
-
-        # Traiter l'événement
-        handle_quest_succeeded(payload['data'])
-        render json: { status: 'success' }, status: :ok
-
-      rescue StandardError => e
-        Rails.logger.error("Webhook error: #{e.message}")
-        render json: { error: e.message }, status: :internal_server_error
-      end
-
       private
 
       def handle_zealy_quest_completion(user)
@@ -163,27 +128,6 @@ module Api
           current_xp = user.experience || 0
           user.update!(experience: current_xp + quest.xp_reward)
         end
-      end
-
-      def handle_quest_succeeded(data)
-        return unless data['user'] && data['quest']
-
-        user = User.find_by(zealy_user_id: data['user']['id'])
-        quest = Quest.find_by(zealy_quest_id: data['quest']['id'])
-
-        return unless user && quest
-
-        # Créer ou mettre à jour la complétion de la quête
-        UserQuestCompletion.create_or_find_by!(
-          user: user,
-          quest: quest,
-          completion_date: Date.current,
-          progress: quest.progress_required
-        )
-
-        # Mettre à jour l'XP de l'utilisateur
-        current_xp = user.experience || 0
-        user.update!(experience: current_xp + quest.xp_reward)
       end
     end
   end

@@ -29,19 +29,8 @@ class Quest < ApplicationRecord
       !completed_this_week_by?(user, date)
     when 'social'
       if zealy_quest?
-        # Pour la quête Zealy, vérifier si l'utilisateur est connecté à Zealy
-        # et a réellement rejoint la communauté
-        return false unless user.zealy_user_id.present?
-        return false if completed_today_by?(user, date)
-
-        begin
-          zealy_service = ZealyService.new
-          community_status = zealy_service.check_community_status(user.zealy_user_id)
-          community_status[:joined]
-        rescue => e
-          Rails.logger.error "Failed to verify Zealy status: #{e.message}"
-          false
-        end
+        # Pour Zealy, on vérifie si la quête n'est pas déjà complétée
+        !completed_today_by?(user, date)
       else
         # Pour les autres quêtes sociales
         !completed_today_by?(user, date)

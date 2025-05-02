@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Route Zealy webhook - doit être en dehors du namespace api/v1 pour éviter l'authentification
-  post '/zealy/webhook', to: 'api/v1/zealy#webhook'
+  post '/zealy/webhook', to: 'api/v1/zealy_webhook#webhook'
 
   namespace :api do
     namespace :v1 do

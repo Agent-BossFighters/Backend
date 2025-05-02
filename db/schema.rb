@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_28_073522) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_29_211224) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -380,6 +380,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_073522) do
     t.integer "progress", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "completable", default: false, null: false
+    t.index ["completable"], name: "index_user_quest_completions_on_completable"
     t.index ["user_id", "quest_id", "completion_date"], name: "idx_user_quests_unique_completion", unique: true
     t.index ["user_id"], name: "index_user_quest_completions_on_user_id"
   end
