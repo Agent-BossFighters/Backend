@@ -33,13 +33,12 @@ class Api::V1::BaseController < ApplicationController
 
     Rails.logger.error "Authentication failed"
     render json: {
-      error: 'Invalid session. Please reconnect.',
-      message: 'Invalid or expired session'
+      error: "Invalid session. Please reconnect.",
+      message: "Invalid or expired session"
     }, status: :unauthorized
   end
 
   def isPremium_user!
-
     if current_user.isPremium
       Rails.logger.info "User is premium: #{current_user.id}"
       return true
@@ -47,29 +46,29 @@ class Api::V1::BaseController < ApplicationController
 
     Rails.logger.error "Authentication failed"
     render json: {
-      error: 'Unauthorized',
-      message: 'User need Premium to access this feature'
+      error: "Unauthorized",
+      message: "User need Premium to access this feature"
     }, status: :unauthorized
   end
 
   def current_user
     return @current_user if defined?(@current_user)
 
-    header = request.headers['Authorization']
+    header = request.headers["Authorization"]
     return nil unless header
 
-    token = header.split(' ').last
+    token = header.split(" ").last
     begin
       decoded = JWT.decode(
         token,
         Rails.application.credentials.devise_jwt_secret_key!,
         true,
-        algorithm: 'HS256'
+        algorithm: "HS256"
       )
-      
-      user = User.find(decoded.first['id'])
-      token_jti = decoded.first['jti']
-      
+
+      user = User.find(decoded.first["id"])
+      token_jti = decoded.first["jti"]
+
       # Vérifier le JTI du token
       if user.valid_jti?(token_jti)
         @current_user = user

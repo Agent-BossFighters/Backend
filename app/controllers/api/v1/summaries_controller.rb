@@ -23,9 +23,9 @@ module Api
           },
           profit: total_calculations.sum { |c| c[:profit] }.round(2),
           results: {
-            win: matches.where(result: 'win').count,
-            loss: matches.where(result: 'loss').count,
-            draw: matches.where(result: 'draw').count
+            win: matches.where(result: "win").count,
+            loss: matches.where(result: "loss").count,
+            draw: matches.where(result: "draw").count
           }
         }
       end
@@ -35,9 +35,9 @@ module Api
           date = if params[:date]
                    raise Date::Error, "Format de date invalide. Utilisez YYYY-MM" unless params[:date].match?(/^\d{4}-\d{2}$/)
                    Date.parse("#{params[:date]}-01")
-                 else
+          else
                    Date.current
-                 end
+          end
 
           start_date = date.beginning_of_month
           end_date = date.end_of_month
@@ -59,9 +59,9 @@ module Api
             },
             profit: total_calculations.sum { |c| c[:profit] }.round(2),
             results: {
-              win: matches.where(result: 'win').count,
-              loss: matches.where(result: 'loss').count,
-              draw: matches.where(result: 'draw').count
+              win: matches.where(result: "win").count,
+              loss: matches.where(result: "loss").count,
+              draw: matches.where(result: "draw").count
             }
           }
         rescue Date::Error => e

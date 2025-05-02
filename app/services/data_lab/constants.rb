@@ -1,6 +1,6 @@
-require_relative 'constants/currency_constants'
-require_relative 'constants/game_constants'
-require_relative 'constants/match_constants'
+require_relative "constants/currency_constants"
+require_relative "constants/game_constants"
+require_relative "constants/match_constants"
 
 module DataLab
   module Constants
@@ -48,7 +48,7 @@ module DataLab
 
         item = Item.includes(:item_recharge)
                   .joins(:rarity)
-                  .where(rarities: { name: rarity }, types: { name: 'Badge' })
+                  .where(rarities: { name: rarity }, types: { name: "Badge" })
                   .first
 
         return nil unless item&.item_recharge

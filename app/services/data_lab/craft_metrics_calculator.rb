@@ -6,8 +6,8 @@ module DataLab
       @user = user
       @badges = nil
       @currency_rates = {
-        'bft' => Constants::CurrencyConstants.currency_rates[:bft],
-        'sm' => Constants::CurrencyConstants.currency_rates[:sm]
+        "bft" => Constants::CurrencyConstants.currency_rates[:bft],
+        "sm" => Constants::CurrencyConstants.currency_rates[:sm]
       }
     end
 
@@ -37,25 +37,25 @@ module DataLab
     private
 
     def calculate_nb_previous_rarity(rarity)
-      rarity.downcase == 'common' ? 0 : 2
+      rarity.downcase == "common" ? 0 : 2
     end
 
     def load_badges
       Item.includes(:type, :rarity, :item_crafting)
           .joins(:rarity)
-          .where(types: { name: 'Badge' })
-          .order('rarities.id ASC')
+          .where(types: { name: "Badge" })
+          .order("rarities.id ASC")
           .to_a
     end
 
     def calculate_flex_cost(tokens)
       return 0 unless tokens
-      (tokens * @currency_rates['bft']).round(2)
+      (tokens * @currency_rates["bft"]).round(2)
     end
 
     def calculate_sp_marks_value(sp_marks)
       return 0 unless sp_marks
-      (sp_marks * @currency_rates['sm']).round(2)
+      (sp_marks * @currency_rates["sm"]).round(2)
     end
   end
 end

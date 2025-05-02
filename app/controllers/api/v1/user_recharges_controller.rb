@@ -1,8 +1,8 @@
 class Api::V1::UserRechargesController < Api::V1::BaseController
   before_action :authenticate_user!
-  before_action :set_recharge, only: [:show, :update]
+  before_action :set_recharge, only: [ :show, :update ]
 
-  VALID_DISCOUNT_TIMES = [5, 9, 10, 13, 16, 20, 25].freeze
+  VALID_DISCOUNT_TIMES = [ 5, 9, 10, 13, 16, 20, 25 ].freeze
 
   def index
     @recharges = current_user.user_recharges
@@ -70,7 +70,7 @@ class Api::V1::UserRechargesController < Api::V1::BaseController
   def calculate_usage_stats
     {
       total_uses: @recharge.discountNumber,
-      remaining_uses: [@recharge.discountNumber, 0].max,
+      remaining_uses: [ @recharge.discountNumber, 0 ].max,
       total_time_saved: @recharge.discountTime * @recharge.discountNumber
     }
   end

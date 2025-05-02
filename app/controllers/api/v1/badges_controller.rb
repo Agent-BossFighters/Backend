@@ -1,8 +1,8 @@
 class Api::V1::BadgesController < Api::V1::BaseController
   def index
     @items = Item.joins(:type, :rarity)
-                 .where(types: { name: 'Badge' })
-                 .order('rarities.name ASC')
+                 .where(types: { name: "Badge" })
+                 .order("rarities.name ASC")
 
     render json: {
       badges: @items.map { |item| badge_json(item) }
@@ -10,10 +10,10 @@ class Api::V1::BadgesController < Api::V1::BaseController
   end
 
   def owned_badges
-    @nfts = Nft.joins(item: [:type, :rarity])
-               .where(items: { type_id: Type.find_by(name: 'Badge').id })
+    @nfts = Nft.joins(item: [ :type, :rarity ])
+               .where(items: { type_id: Type.find_by(name: "Badge").id })
                .where(owner: current_user.id.to_s)
-               .order('rarities.name ASC')
+               .order("rarities.name ASC")
 
     render json: {
       badges: @nfts.map { |nft| nft_json(nft) }
@@ -23,7 +23,7 @@ class Api::V1::BadgesController < Api::V1::BaseController
   def show
     @badge = Item.joins(:type, :rarity)
                 .includes(:item_farming, :item_recharge)  # Important pour les métriques
-                .where(types: { name: 'Badge' })
+                .where(types: { name: "Badge" })
                 .find(params[:id])
 
     render json: {
@@ -44,8 +44,8 @@ class Api::V1::BadgesController < Api::V1::BaseController
       issueId: nft.issueId,
       itemId: nft.itemId,
       name: nft.item.name,
-      type: nft.item.type.as_json(only: [:id, :name]),
-      rarity: nft.item.rarity.as_json(only: [:id, :name, :color]),
+      type: nft.item.type.as_json(only: [ :id, :name ]),
+      rarity: nft.item.rarity.as_json(only: [ :id, :name, :color ]),
       efficiency: nft.item.efficiency,
       supply: nft.item.supply,
       floorPrice: nft.item.floorPrice,
@@ -58,7 +58,7 @@ class Api::V1::BadgesController < Api::V1::BaseController
     {
       id: item.id,
       name: item.name,
-      rarity: item.rarity.as_json(only: [:id, :name, :color]),
+      rarity: item.rarity.as_json(only: [ :id, :name, :color ]),
       efficiency: item.efficiency,
       supply: item.supply,
       floorPrice: item.floorPrice,

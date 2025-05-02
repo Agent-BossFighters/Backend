@@ -32,15 +32,15 @@ class Api::V1::UsersController < Api::V1::BaseController
     unless current_user.valid_password?(params[:user][:current_password])
       return render json: { error: "Le mot de passe actuel est incorrect" }, status: :unauthorized
     end
-    
+
     # Créer les paramètres de mise à jour
     update_params = user_params
-    
+
     # Si un nouveau mot de passe est fourni, l'ajouter aux paramètres
     if params[:user][:password].present?
       update_params = update_params.merge(password: params[:user][:password])
     end
-    
+
     # Mettre à jour l'utilisateur
     if current_user.update(update_params)
       render json: current_user
@@ -53,12 +53,12 @@ class Api::V1::UsersController < Api::V1::BaseController
     if current_user.update(tactics_params)
       # Invalider le cache pour que les nouveaux taux soient utilisés
       DataLab::CurrencyRatesService.invalidate_cache
-      
+
       # Invalider le cache de Data Lab pour cet utilisateur
       Rails.cache.delete_matched("data_lab/*/#{current_user.id}*")
-      
+
       render json: {
-        message: 'Tactics successfully updated',
+        message: "Tactics successfully updated",
         user: current_user
       }
     else
@@ -69,7 +69,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def update_level_exp
     if current_user.update(level_exp_params)
       render json: {
-        message: 'Level and experience successfully updated',
+        message: "Level and experience successfully updated",
         user: current_user,
         level_stats: {
           current_level: current_user.level,
@@ -102,17 +102,17 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def destroy
     if current_user.destroy
-      render json: { message: 'User successfully deleted' }, status: :ok
+      render json: { message: "User successfully deleted" }, status: :ok
     else
-      render json: { error: 'Failed to delete user' }, status: :unprocessable_entity
+      render json: { error: "Failed to delete user" }, status: :unprocessable_entity
     end
   end
 
   def delete_profile
     if current_user&.destroy
-      render json: { message: 'Profile successfully deleted' }, status: :ok
+      render json: { message: "Profile successfully deleted" }, status: :ok
     else
-      render json: { error: 'Failed to delete profile' }, status: :unprocessable_entity
+      render json: { error: "Failed to delete profile" }, status: :unprocessable_entity
     end
   end
 

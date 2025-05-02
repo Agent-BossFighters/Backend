@@ -7,7 +7,7 @@ module Api
         puts "🔵 Webhook Stripe reçu !"
 
         payload = request.body.read
-        #sig_header = request.env['HTTP_STRIPE_SIGNATURE']
+        # sig_header = request.env['HTTP_STRIPE_SIGNATURE']
 
         begin
           # event = Stripe::Webhook.construct_event(
@@ -18,23 +18,23 @@ module Api
           puts "🟢 Event Stripe détecté : #{event[:type]}"
 
           case event[:type]
-          when 'checkout.session.completed'
+          when "checkout.session.completed"
             handle_subscription_created(event[:data][:object])
-          when 'customer.subscription.created'
+          when "customer.subscription.created"
             handle_subscription_created(event[:data][:object])
-          when 'customer.subscription.updated'
+          when "customer.subscription.updated"
             handle_subscription_updated(event[:data][:object])
-          when 'customer.subscription.deleted'
+          when "customer.subscription.deleted"
             handle_subscription_deleted(event[:data][:object])
-          when 'invoice.payment_succeeded'
+          when "invoice.payment_succeeded"
             handle_payment_succeeded(event[:data][:object])
-          when 'invoice.payment_failed'
+          when "invoice.payment_failed"
             handle_payment_failed(event[:data][:object])
-          when 'invoice.payment_action_required'
+          when "invoice.payment_action_required"
             handle_payment_action_required(event[:data][:object])
-          when 'crypto.onramp.session.completed'
+          when "crypto.onramp.session.completed"
             handle_crypto_onramp_completed(event[:data][:object])
-          when 'crypto.onramp.session.failed'
+          when "crypto.onramp.session.failed"
             handle_crypto_onramp_failed(event[:data][:object])
           else
             puts "⚠️ Webhook ignoré : #{event[:type]}"

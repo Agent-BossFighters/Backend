@@ -19,19 +19,19 @@ class Quest < ApplicationRecord
     return false unless active?
 
     # Vérification spécifique pour la quête daily_matches
-    if quest_id == 'daily_matches'
+    if quest_id == "daily_matches"
       # Vérifier si l'utilisateur a joué suffisamment de matchs aujourd'hui
       return false unless has_enough_matches?(user)
     end
 
     case quest_type
-    when 'daily'
+    when "daily"
       !completed_today_by?(user, date)
-    when 'unique'
+    when "unique"
       !ever_completed_by?(user)
-    when 'weekly'
+    when "weekly"
       !completed_this_week_by?(user, date)
-    when 'social', 'event'
+    when "social", "event"
       true # La logique spécifique peut être ajoutée selon les besoins
     else
       false
@@ -40,29 +40,29 @@ class Quest < ApplicationRecord
 
   def has_enough_matches?(user, date = Date.current)
     # Pour la quête daily_matches, vérifier si l'utilisateur a joué 5 matchs aujourd'hui
-    if quest_id == 'daily_matches'
+    if quest_id == "daily_matches"
       # Utiliser la même méthode que daily_matches_count pour la cohérence
       match_count = daily_matches_count(user, date)
       return match_count >= progress_required
     end
-    
+
     # Pour les autres quêtes, toujours retourner true (pas de vérification supplémentaire)
     true
   end
 
   def daily_matches_count(user, date = Date.current)
     # Pour la quête daily_matches, retourner le nombre de matchs joués aujourd'hui
-    if quest_id == 'daily_matches'
+    if quest_id == "daily_matches"
       # Définir la plage de la journée complète
       day_start = date.beginning_of_day
       day_end = date.end_of_day
-      
+
       # Compter les matchs créés aujourd'hui
       matches_count = user.matches.where("created_at BETWEEN ? AND ?", day_start, day_end).count
-            
+
       return matches_count
     end
-    
+
     # Pour les autres quêtes, retourner 0
     0
   end
@@ -96,4 +96,4 @@ class Quest < ApplicationRecord
     # Par défaut, retourner toutes les quêtes actives
     active
   end
-end 
+end

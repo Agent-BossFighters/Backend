@@ -1,7 +1,7 @@
 class TeamMember < ApplicationRecord
   # Relations
   belongs_to :team
-  belongs_to :player, class_name: 'User', foreign_key: 'user_id'
+  belongs_to :player, class_name: "User", foreign_key: "user_id"
   has_one :tournament, through: :team
 
   # Validations
@@ -39,4 +39,4 @@ class TeamMember < ApplicationRecord
       errors.add(:player, "does not meet the minimum level requirement")
     end
   end
-end 
+end

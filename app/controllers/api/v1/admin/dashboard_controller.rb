@@ -7,8 +7,8 @@ class Api::V1::Admin::DashboardController < Api::V1::Admin::BaseController
       matches_count: Match.count,
       nfts_count: Nft.count,
       currencies: {
-        bft: Currency.find_by(symbol: 'BFT'),
-        sponsor_marks: Currency.find_by(symbol: 'SM')
+        bft: Currency.find_by(symbol: "BFT"),
+        sponsor_marks: Currency.find_by(symbol: "SM")
       },
       recent_users: User.order(created_at: :desc).limit(5),
       recent_matches: Match.order(created_at: :desc).limit(5)

@@ -24,7 +24,7 @@ class MatchManagementService
     # Mais pour les tests, il est possible que le match soit encore en scheduled
     # Donc on ne vérifie pas le statut pour le moment
     # return false unless can_update_results?(match)
-    
+
     begin
       ActiveRecord::Base.transaction do
         # Pour un tournoi de survie, utilisons update_survival_results
@@ -33,7 +33,7 @@ class MatchManagementService
         else
           update_arena_results(match, results)
         end
-        
+
         # Après avoir mis à jour les résultats, on vérifie si le tournoi est terminé
         update_tournament_status if tournament_completed?
         true
@@ -50,11 +50,11 @@ class MatchManagementService
     # Pour les tournois de survie, le statut doit être :scheduled
     status_value = if @params[:status].present?
                     # Si le status est 'pending', on le remplace par 'scheduled'
-                    @params[:status] == 'pending' ? :scheduled : @params[:status].to_sym 
-                  else 
+                    @params[:status] == "pending" ? :scheduled : @params[:status].to_sym
+    else
                     :scheduled
-                  end
-    
+    end
+
     attributes = {
       tournament: @tournament,
       match_type: (@tournament.showtime_survival? || @tournament.showtime_score?) ? :survival : :arena,
@@ -64,20 +64,20 @@ class MatchManagementService
       boss: determine_boss,
       status: status_value
     }
-    
+
     # Pour un tournoi de type arène, il faut une équipe B
     # Pour un tournoi de type survie, l'équipe B est optionnelle
     if @params[:team_b_id].present?
       attributes[:team_b_id] = @params[:team_b_id]
     end
-    
+
     TournamentMatch.create!(attributes)
   end
 
   def create_rounds(match)
     # Utiliser le nombre de rounds défini dans le tournoi (par défaut 3 pour les tournois d'arène)
     rounds_count = @tournament.rounds || 3
-    
+
     rounds_count.times do |i|
       match.rounds.create!(
         round_number: i + 1
@@ -124,17 +124,17 @@ class MatchManagementService
   def update_survival_results(match, results)
     # Pour les tournois de survie, on attend un score de survie
     survival_time = results[:survival_time].to_i
-    
+
     # Récupérer les nouvelles informations pour le départage
     boss_damage = results[:boss_damage].to_i
     lives_left = results[:lives_left].to_i
-    
+
     # Journaliser les valeurs pour le débogage
     Rails.logger.info("Mise à jour des résultats du match #{match.id}")
     Rails.logger.info("Survival time: #{survival_time}, Type: #{survival_time.class}")
     Rails.logger.info("Boss damage: #{boss_damage}, Lives left: #{lives_left}")
     Rails.logger.info("Results: #{results.inspect}")
-    
+
     # Mettre à jour le match avec les points correspondants selon le type de tournoi
     if @tournament.showtime_survival?
       # Pour Survival: temps de survie et dégâts du boss
@@ -145,13 +145,13 @@ class MatchManagementService
       match.team_a_points = survival_time  # ici survival_time représente le score
       match.team_b_points = lives_left  # On utilise team_b_points pour stocker les vies restantes
     end
-    
+
     # Définir le gagnant si un score a été enregistré
     match.winner = match.team_a_points > 0 ? match.team_a : nil
-    
+
     # Journaliser l'état du match avant la sauvegarde
     Rails.logger.info("Match avant sauvegarde: #{match.attributes.inspect}")
-    
+
     # Sauvegarder le match
     if match.save
       Rails.logger.info("Match sauvegardé avec succès")
@@ -186,4 +186,4 @@ class MatchManagementService
   def admin_or_creator?
     @tournament.tournament_admins.exists?(user_id: @params[:current_user_id])
   end
-end 
+end

@@ -61,9 +61,9 @@ module DataLab
 
     def self.get_user_rates(user)
       rates = get_rates
-      
+
       rates[:flex] = get_user_flex_rate(user)
-      
+
       rates
     end
   end

@@ -20,4 +20,3 @@ Quest.create!(
   progress_required: 5,
   active: true
 )
-

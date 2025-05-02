@@ -23,7 +23,7 @@ class Match < ApplicationRecord
   private
 
   def normalize_map
-    self.map = map.gsub(' ', '_') if map.present?
+    self.map = map.gsub(" ", "_") if map.present?
   end
 
   def calculate_energy_used
@@ -50,7 +50,7 @@ class Match < ApplicationRecord
     badge_used.sum do |badge|
       # Trouver l'item correspondant à la rareté du badge
       item = Item.joins(:rarity)
-                 .where(rarities: { name: badge.rarity }, types: { name: 'Badge' })
+                 .where(rarities: { name: badge.rarity }, types: { name: "Badge" })
                  .first
 
       item&.efficiency || 0
