@@ -5,7 +5,20 @@ module Api
       skip_before_action :authenticate_user!
 
       def webhook
+        # Add CORS headers
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, User-Agent'
+        response.headers['Access-Control-Max-Age'] = '86400' # 24 hours
+
+        # Gérer les requêtes OPTIONS pour les tests
+        if request.method == 'OPTIONS'
+          return render json: { status: 'ok' }, status: :ok
+        end
+
         Rails.logger.info "🔵 [ZEALY WEBHOOK] Début du traitement"
+        Rails.logger.info "🔵 [ZEALY WEBHOOK] Méthode: #{request.method}"
+        Rails.logger.info "🔵 [ZEALY WEBHOOK] Headers: #{request.headers.to_h.select { |k,v| k.start_with?('HTTP_') }}"
 
         begin
           # Vérification des headers
