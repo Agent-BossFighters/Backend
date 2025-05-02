@@ -13,6 +13,8 @@ class Quest < ApplicationRecord
   # Scopes
   scope :active, -> { where(active: true) }
   scope :by_type, ->(quest_type) { where(quest_type: quest_type) }
+  scope :daily, -> { where(quest_type: "daily") }
+  scope :social, -> { where(quest_type: "social") }
 
   # Méthodes d'instance
   def completable_by?(user, date = Date.current)
@@ -31,40 +33,35 @@ class Quest < ApplicationRecord
       !ever_completed_by?(user)
     when "weekly"
       !completed_this_week_by?(user, date)
-    when "social", "event"
-      true # La logique spécifique peut être ajoutée selon les besoins
+    when "social"
+      if zealy_quest?
+        # Pour Zealy, on vérifie si la quête n'est pas déjà complétée
+        !completed_today_by?(user, date)
+      else
+        # Pour les autres quêtes sociales
+        !completed_today_by?(user, date)
+      end
+    when "event"
+      true
     else
       false
     end
   end
 
   def has_enough_matches?(user, date = Date.current)
-    # Pour la quête daily_matches, vérifier si l'utilisateur a joué 5 matchs aujourd'hui
-    if quest_id == "daily_matches"
-      # Utiliser la même méthode que daily_matches_count pour la cohérence
-      match_count = daily_matches_count(user, date)
-      return match_count >= progress_required
-    end
+    return true unless quest_id == "daily_matches"
 
-    # Pour les autres quêtes, toujours retourner true (pas de vérification supplémentaire)
-    true
+    match_count = daily_matches_count(user, date)
+    match_count >= progress_required
   end
 
   def daily_matches_count(user, date = Date.current)
-    # Pour la quête daily_matches, retourner le nombre de matchs joués aujourd'hui
-    if quest_id == "daily_matches"
-      # Définir la plage de la journée complète
-      day_start = date.beginning_of_day
-      day_end = date.end_of_day
+    return 0 unless quest_id == "daily_matches"
 
-      # Compter les matchs créés aujourd'hui
-      matches_count = user.matches.where("created_at BETWEEN ? AND ?", day_start, day_end).count
+    day_start = date.beginning_of_day
+    day_end = date.end_of_day
 
-      return matches_count
-    end
-
-    # Pour les autres quêtes, retourner 0
-    0
+    user.matches.where(created_at: day_start..day_end).count
   end
 
   def completed_today_by?(user, date = Date.current)
@@ -93,7 +90,18 @@ class Quest < ApplicationRecord
 
   # Méthodes de classe
   def self.available_quests
-    # Par défaut, retourner toutes les quêtes actives
     active
+  end
+
+  def self.sync_with_zealy(user)
+    ZealyService.new.sync_user_quests(user)
+  end
+
+  def self.zealy_quest
+    find_by(quest_id: "zealy_connect")
+  end
+
+  def zealy_quest?
+    quest_id == "zealy_connect"
   end
 end
