@@ -1,8 +1,8 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    # origins_list = [ENV['FRONTEND_URL']] # URL de production from .env
+    # origins_list = [ENV['FRONTEND_URL'], "https://api.stripe.com"] # URL de production from .env
 
-    origins_list = "http://localhost:3001", "https://api.stripe.com", "https://agent-bossfighters.com"
+    origins_list = "http://localhost:3001", "https://api.stripe.com", "https://agent-bossfighters.com", "https://staging.agent-bossfighters.com"
 
     # Ajouter les URLs de développement si on est en environnement de développement
     if Rails.env.development?
