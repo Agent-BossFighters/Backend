@@ -7,8 +7,9 @@ module DataLab
       @user = user
       @contracts_cache = nil
       @level_costs_cache = nil
+      @user_rates = Constants::CurrencyConstants.user_currency_rates(@user)
       @currency_rates = {
-        "FLEX" => Currency.find_by(name: "FLEX")&.price || 0,
+        # "FLEX" => Currency.find_by(name: "FLEX")&.price || 0,
         "Sponsor Marks" => Currency.find_by(name: "Sponsor Marks")&.price || 0
       }
     end
@@ -44,7 +45,7 @@ module DataLab
         craft_data = contract.item_crafting
 
         # Pour les raretés supérieures à Legendary, on retourne "N/A"
-        is_high_rarity = %w[Mythic Exalted Exotic Transcendent Unique].include?(rarity)
+        is_high_rarity = %w[Exotic Transcendent Unique].include?(rarity)
 
         flex_craft = if is_high_rarity
           "N/A"
@@ -62,7 +63,7 @@ module DataLab
         total_craft_cost = if is_high_rarity
           "N/A"
         else
-          flex_value = flex_craft.to_i * @currency_rates["FLEX"]
+          flex_value = flex_craft.to_i * @user_rates[:flex]
           marks_value = marks_craft.to_i * @currency_rates["Sponsor Marks"]
           format_currency(flex_value + marks_value)
         end
