@@ -1,5 +1,8 @@
 puts "Creating quests..."
 
+# Supprimer toutes les quêtes existantes
+Quest.destroy_all
+
 # Quêtes Quotidiennes
 Quest.create!(
   quest_id: 'daily_login',
@@ -19,27 +22,4 @@ Quest.create!(
   xp_reward: 250,
   progress_required: 5,
   active: true
-)
-
-# Quêtes Sociales
-Quest.create!(
-  quest_id: 'zealy_connect',
-  title: "Join the Agent's community on Zealy",
-  description: 'Connect to Zealy and follow our community!',
-  quest_type: 'social',
-  xp_reward: 100,
-  progress_required: 1,
-  active: true,
-  zealy_quest_id: nil # Pas d'ID Zealy car ce n'est pas une quest Zealy, mais un event communautaire
-)
-
-Quest.create!(
-  quest_id: 'twitter_follow_and_interact',
-  title: 'Follow us on X',
-  description: 'Follow @ThibaultLENORM2 on X! (Like, Retweet, Reply)',
-  quest_type: 'social',
-  xp_reward: 300,
-  progress_required: 1,
-  active: true,
-  zealy_quest_id: '087066fe-8701-4db8-af6f-0eded2892bb6' # <-- ID Zealy réel
 )

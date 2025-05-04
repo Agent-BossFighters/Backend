@@ -14,7 +14,6 @@ class Quest < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :by_type, ->(quest_type) { where(quest_type: quest_type) }
   scope :daily, -> { where(quest_type: "daily") }
-  scope :social, -> { where(quest_type: "social") }
 
   # Méthodes d'instance
   def completable_by?(user, date = Date.current)
@@ -33,16 +32,6 @@ class Quest < ApplicationRecord
       !ever_completed_by?(user)
     when "weekly"
       !completed_this_week_by?(user, date)
-    when "social"
-      if zealy_quest?
-        # Pour Zealy, on vérifie si la quête n'est pas déjà complétée
-        !completed_today_by?(user, date)
-      else
-        # Pour les autres quêtes sociales
-        !completed_today_by?(user, date)
-      end
-    when "event"
-      true
     else
       false
     end
@@ -91,17 +80,5 @@ class Quest < ApplicationRecord
   # Méthodes de classe
   def self.available_quests
     active
-  end
-
-  def self.sync_with_zealy(user)
-    ZealyService.new.sync_user_quests(user)
-  end
-
-  def self.zealy_quest
-    find_by(quest_id: "zealy_connect")
-  end
-
-  def zealy_quest?
-    quest_id == "zealy_connect"
   end
 end

@@ -10,15 +10,10 @@ module Api
 
           render json: {
             quests: @quests.map { |quest|
-              # Pour la quête Zealy, vérifier si l'utilisateur est connecté
-              if quest.zealy_quest?
-                current_progress = current_user.zealy_user_id.present? ? 1 : 0
-              else
-                # Pour la quête daily_matches, obtenir le nombre réel de matchs
-                current_progress = quest.quest_id == "daily_matches" ?
-                  quest.daily_matches_count(current_user) :
-                  current_user.quest_progress(quest.quest_id)
-              end
+              # Pour la quête daily_matches, obtenir le nombre réel de matchs
+              current_progress = quest.quest_id == "daily_matches" ?
+                quest.daily_matches_count(current_user) :
+                current_user.quest_progress(quest.quest_id)
 
               {
                 id: quest.quest_id,
@@ -53,28 +48,6 @@ module Api
         if @quest.completed_today_by?(current_user) && !params[:force]
           Rails.logger.info "Quest already completed today by user"
           return render json: { error: "Cette quête a déjà été complétée aujourd'hui" }, status: :unprocessable_entity
-        end
-
-        # Pour la quête Zealy, faire une vérification complète
-        if @quest.zealy_quest?
-          unless current_user.zealy_user_id.present?
-            Rails.logger.error "User not connected to Zealy"
-            return render json: { error: "Vous devez être connecté à Zealy pour compléter cette quête" }, status: :unprocessable_entity
-          end
-
-          # Vérifier avec l'API Zealy si l'utilisateur a réellement rejoint la communauté
-          begin
-            zealy_service = ZealyService.new
-            community_status = zealy_service.check_community_status(current_user.zealy_user_id)
-
-            unless community_status[:joined]
-              Rails.logger.error "User has not joined Zealy community"
-              return render json: { error: "Vous devez rejoindre la communauté Zealy pour compléter cette quête" }, status: :unprocessable_entity
-            end
-          rescue => e
-            Rails.logger.error "Failed to verify Zealy community status: #{e.message}"
-            return render json: { error: "Impossible de vérifier votre statut Zealy" }, status: :internal_server_error
-          end
         end
 
         @completion = current_user.user_quest_completions.find_or_initialize_by(
@@ -162,12 +135,7 @@ module Api
       end
 
       def format_quest(quest, user)
-        # Pour la quête Zealy, vérifier si l'utilisateur est connecté
-        if quest.zealy_quest?
-          current_progress = user.zealy_user_id.present? ? 1 : 0
-        else
-          current_progress = user.quest_progress(quest.quest_id)
-        end
+        current_progress = user.quest_progress(quest.quest_id)
 
         # Pour la quête daily_matches, utiliser le nombre réel de matchs joués
         if quest.quest_id == "daily_matches"
