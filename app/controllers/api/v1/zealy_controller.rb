@@ -114,9 +114,8 @@ module Api
         quest = Quest.find_by(quest_id: "zealy_connect")
         return unless quest
 
-        # Vérifier si la quête n'est pas déjà complétée
-        unless quest.completed_today_by?(user)
-          # Créer ou mettre à jour la complétion de la quête
+        if ZealyService.new.quest_completed_on_zealy?(user.zealy_user_id, quest.zealy_quest_id)
+          # Marquer la quête comme complétée et donner la récompense
           UserQuestCompletion.create_or_find_by!(
             user: user,
             quest: quest,
@@ -127,6 +126,14 @@ module Api
           # Mettre à jour l'XP de l'utilisateur
           current_xp = user.experience || 0
           user.update!(experience: current_xp + quest.xp_reward)
+
+          render json: {
+            message: "Quête Zealy complétée avec succès",
+            user: user
+          }
+        else
+          # Refuser le claim, afficher un message d'erreur
+          render json: { error: "Quête Zealy non complétée" }, status: :unprocessable_entity
         end
       end
     end

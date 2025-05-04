@@ -19,11 +19,13 @@ module Api
         Rails.logger.info "🔵 [ZEALY WEBHOOK] Début du traitement"
         Rails.logger.info "🔵 [ZEALY WEBHOOK] Méthode: #{request.method}"
         Rails.logger.info "🔵 [ZEALY WEBHOOK] Headers: #{request.headers.to_h.select { |k, v| k.start_with?('HTTP_') }}"
+        Rails.logger.info "🔵 [ZEALY WEBHOOK] IP: #{request.remote_ip}"
+        Rails.logger.info "🔵 [ZEALY WEBHOOK] User-Agent: #{request.headers['User-Agent']}"
 
         begin
           # Vérification des headers
           unless request.headers["User-Agent"] == "Zealy-Webhook"
-            Rails.logger.error "❌ [ZEALY WEBHOOK] User-Agent invalide"
+            Rails.logger.error "❌ [ZEALY WEBHOOK] User-Agent invalide: #{request.headers['User-Agent']}"
             return render json: { error: "Invalid User-Agent" }, status: :unauthorized
           end
 
@@ -43,6 +45,8 @@ module Api
 
           unless payload[:secret] == expected_secret
             Rails.logger.error "❌ [ZEALY WEBHOOK] Secret invalide pour l'événement #{payload[:type]}"
+            Rails.logger.error "❌ [ZEALY WEBHOOK] Secret reçu: #{payload[:secret]}"
+            Rails.logger.error "❌ [ZEALY WEBHOOK] Secret attendu: #{expected_secret}"
             return render json: { error: "Invalid secret" }, status: :unauthorized
           end
 
@@ -63,12 +67,6 @@ module Api
             handle_quest_failed(payload[:data])
           when "QUEST_CLAIM_STATUS_UPDATED"
             handle_quest_claim_status_updated(payload[:data])
-          when "SPRINT_STARTED"
-            handle_sprint_started(payload[:data])
-          when "SPRINT_ENDED"
-            handle_sprint_ended(payload[:data])
-          when "USER_BANNED"
-            handle_user_banned(payload[:data])
           else
             Rails.logger.info "⚠️ [ZEALY WEBHOOK] Type d'événement non géré: #{payload[:type]}"
           end
@@ -126,6 +124,7 @@ module Api
       end
 
       def handle_quest_succeeded(data)
+        Rails.logger.info data
         Rails.logger.info "✨ [ZEALY WEBHOOK] Traitement QUEST_SUCCEEDED"
         user = User.find_by(zealy_user_id: data[:user][:id])
         return unless user
@@ -141,6 +140,7 @@ module Api
         # Marquer la quête comme complétée et non complétable immédiatement
         completion.progress = quest.progress_required
         completion.completable = false
+        completion.completed = true
 
         if completion.save
           # Ajouter l'XP immédiatement
@@ -224,25 +224,6 @@ module Api
           completion.completable = false
           completion.save
         end
-      end
-
-      def handle_sprint_started(data)
-        Rails.logger.info "🏃 [ZEALY WEBHOOK] Traitement SPRINT_STARTED"
-        # TODO: Implémenter la logique pour le début d'un sprint
-      end
-
-      def handle_sprint_ended(data)
-        Rails.logger.info "🏁 [ZEALY WEBHOOK] Traitement SPRINT_ENDED"
-        # TODO: Implémenter la logique pour la fin d'un sprint
-      end
-
-      def handle_user_banned(data)
-        Rails.logger.info "🚫 [ZEALY WEBHOOK] Traitement USER_BANNED"
-        user = User.find_by(zealy_user_id: data[:user][:id])
-        return unless user
-
-        # Marquer l'utilisateur comme banni
-        user.update!(zealy_user_id: nil)
       end
     end
   end

@@ -24,13 +24,13 @@ Quest.create!(
 # Quêtes Sociales
 Quest.create!(
   quest_id: 'zealy_connect',
-  title: 'Join the Agent\'s community on Zealy',
+  title: "Join the Agent's community on Zealy",
   description: 'Connect to Zealy and follow our community!',
   quest_type: 'social',
   xp_reward: 100,
   progress_required: 1,
   active: true,
-  icon_url: 'zealy.png'
+  zealy_quest_id: nil # Pas d'ID Zealy car ce n'est pas une quest Zealy, mais un event communautaire
 )
 
 Quest.create!(
@@ -40,5 +40,6 @@ Quest.create!(
   quest_type: 'social',
   xp_reward: 300,
   progress_required: 1,
-  active: true
+  active: true,
+  zealy_quest_id: '087066fe-8701-4db8-af6f-0eded2892bb6' # <-- ID Zealy réel
 )

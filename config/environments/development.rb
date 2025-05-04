@@ -77,4 +77,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailjet
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: "localhost:3000" }
+
+  # Autoriser les requêtes depuis ngrok
+  config.hosts << "d1c1-176-147-127-49.ngrok-free.app"
+  config.hosts << ".ngrok-free.app"  # Autorise tous les sous-domaines ngrok
 end

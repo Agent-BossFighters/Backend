@@ -129,6 +129,30 @@ class ZealyService
     end
   end
 
+  def member_of_community?(zealy_user_id)
+    response = HTTParty.post(
+      "#{self.class.base_uri}/public/communities/#{@subdomain}/member",
+      headers: @headers,
+      body: { userId: zealy_user_id }.to_json
+    )
+    Rails.logger.info "Zealy member check response: #{response.code} - #{response.body}"
+    response.code == 200
+  end
+
+  def quest_completed_on_zealy?(zealy_user_id, zealy_quest_id)
+    response = HTTParty.get(
+      "#{self.class.base_uri}/public/communities/#{@subdomain}/reviews",
+      headers: @headers,
+      query: {
+        userId: zealy_user_id,
+        questId: zealy_quest_id,
+        status: "success"
+      }
+    )
+    items = JSON.parse(response.body)["items"] rescue []
+    items.any?
+  end
+
   private
 
   def with_rate_limiting
