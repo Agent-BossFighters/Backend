@@ -9,6 +9,8 @@ module DataLab
       @bft_multiplier = bft_multiplier.to_f.clamp(0.0, 10.0)  # Limiter le multiplicateur
       @slot = Slot.find_by(id: @slots_used)
       @badges_by_rarity = {}  # Cache pour les badges par rareté
+      @user_rates = Constants::CurrencyConstants.user_currency_rates(@user)
+      @sponsor_marks_value = Constants::CurrencyConstants.currency_rates[:sm]
 
       # Cache pour les taux de devises
       @currency_rates = {
@@ -42,6 +44,14 @@ module DataLab
           .order("rarities.id ASC")
     end
 
+    def load_contracts
+      Item.includes(:type, :rarity, :item_crafting, :item_farming, :item_recharge)
+          .joins(:rarity)
+          .where(types: { name: "Contract" })
+          .order("rarities.id ASC")
+          .to_a
+    end
+
     def cache_badges(badges)
       @badges_by_rarity = badges.each_with_object({}) do |badge, hash|
         hash[badge.rarity.name] = badge
@@ -49,16 +59,35 @@ module DataLab
     end
 
     def cache_recharge_costs(badges)
+      # Chargement des contrats
+      contracts = load_contracts
+      contracts_by_rarity = contracts.each_with_object({}) do |contract, hash|
+        hash[contract.rarity.name] = contract
+      end
+
+      # Pour chaque badge, stocker les coûts de recharge du contrat correspondant
       badges.each do |badge|
         rarity = badge.rarity.name
+        contract = contracts_by_rarity[rarity]
+        max_energy = badge.item_recharge&.max_energy_recharge.to_f
+
+        if contract && contract.item_recharge
+          flex_cost = contract.item_recharge.flex_charge.to_f * @user_rates[:flex]
+          sm_cost = contract.item_recharge.sponsor_mark_charge.to_f * @sponsor_marks_value
+          total_recharge_cost = (flex_cost + sm_cost) * max_energy
+        else
+          # Si aucun contrat n'est trouvé, mettre "N/A"
+          flex_cost = "N/A"
+          sm_cost = "N/A"
+          total_recharge_cost = "N/A"
+        end
+
         @recharge_costs[rarity] = {
-          flex: badge.item_recharge&.flex_charge || 0,
-          sm: badge.item_recharge&.sponsor_mark_charge || 0
+          flex: flex_cost,
+          sm: sm_cost,
+          max_energy: max_energy,
+          total_usd: total_recharge_cost.round(2)
         }
-        @recharge_costs[rarity][:total_usd] = calculate_total_usd(
-          @recharge_costs[rarity][:flex],
-          @recharge_costs[rarity][:sm]
-        )
       end
     end
 
@@ -78,7 +107,7 @@ module DataLab
       max_energy = badge.item_recharge&.max_energy_recharge
       bft_value_per_max_charge = calculate_bft_value_per_max_charge(badge)
       recharge_time = calculate_recharge_time(badge)
-      roi_data = calculate_roi_data(badge, recharge_cost&.[](:total_usd), bft_value_per_max_charge)
+      roi_data = calculate_roi_data(badge, recharge_cost[:total_usd], bft_value_per_max_charge)
 
       {
         "1. rarity": rarity,
@@ -90,8 +119,8 @@ module DataLab
         "7. max_energy": max_energy,
         "8. time_to_charge": recharge_time,
         "9. in_game_time": calculate_in_game_time(badge),
-        "10. recharge_cost": format_currency(recharge_cost&.[](:total_usd)),
-        "11. cost_per_hour": format_currency(calculate_cost_per_hour(recharge_cost&.[](:total_usd), recharge_time)),
+        "10. recharge_cost": format_currency(recharge_cost[:total_usd]),
+        "11. cost_per_hour": format_currency(calculate_cost_per_hour(recharge_cost[:total_usd], recharge_time)),
         "12. bft_per_minute": bft_per_minute,
         "13. bft_per_max_charge": calculate_bft_per_max_charge(badge),
         "14. bft_value_per_max_charge": format_currency(bft_value_per_max_charge),
@@ -111,13 +140,16 @@ module DataLab
       rarity = badge.rarity.name
       recharge_cost = calculate_recharge_cost(rarity)
       bft_value_per_max_charge = calculate_bft_value_per_max_charge(badge)
-      roi_data = calculate_roi_data(badge, recharge_cost&.[](:total_usd), bft_value_per_max_charge)
+
+      # Mise à jour du calcul du ROI avec le coût de recharge
+      roi_data = calculate_roi_data(badge, recharge_cost[:total_usd], bft_value_per_max_charge)
+      total_cost = badge.floorPrice.to_f + recharge_cost[:total_usd]
 
       {
         "1. rarity": rarity,
         "2. badge_price": format_currency(badge.floorPrice),
-        "3. full_recharge_price": format_currency(recharge_cost&.[](:total_usd)),
-        "4. total_cost": format_currency(calculate_total_cost(badge, recharge_cost)),
+        "3. full_recharge_price": format_currency(recharge_cost[:total_usd]),
+        "4. total_cost": format_currency(total_cost),
         "5. in_game_minutes": calculate_in_game_minutes(badge),
         "6. bft_per_max_charge": calculate_bft_per_max_charge(badge),
         "7. bft_value": format_currency(bft_value_per_max_charge),
@@ -168,11 +200,23 @@ module DataLab
 
     def calculate_recharge_time(badge)
       return nil unless valid_badge?(badge)
-      return nil unless badge.item_recharge
-      minutes = badge.item_recharge.time_to_charge
-      hours = minutes / 60
-      remaining_minutes = minutes % 60
-      format("%dh%02d", hours, remaining_minutes)
+
+      rarity = badge.rarity.name
+      contract = Item.includes(:item_crafting)
+                    .joins(:rarity, :type)
+                    .where(types: { name: "Contract" }, rarities: { name: rarity })
+                    .first
+
+      max_energy = badge.item_recharge&.max_energy_recharge.to_f
+
+      if contract && contract.item_crafting
+        minutes = contract.item_crafting.craft_time.to_f * max_energy
+        hours = minutes / 60
+        remaining_minutes = minutes % 60
+        format("%dh%02d", hours, remaining_minutes)
+      else
+        "N/A"
+      end
     end
 
     def calculate_roi_data(badge, recharge_cost, bft_value_per_max_charge)

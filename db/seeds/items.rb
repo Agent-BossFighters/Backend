@@ -122,8 +122,8 @@ items = [
     floorPrice: 4000.00,
     farming: { in_game_time: 360 },
     crafting: {
-      flex_craft: 92_700,
-      sponsor_mark_craft: 28_222,
+      flex_craft: 14331,
+      sponsor_mark_craft: 489,
       nb_lower_badge_to_craft: 3,
       craft_tokens: 12500,
       sponsor_marks_reward: 7200
@@ -144,8 +144,8 @@ items = [
     floorPrice: 100_000.00,
     farming: { in_game_time: 420 },
     crafting: {
-      flex_craft: 368_192,
-      sponsor_mark_craft: 219_946,
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 3,
       craft_tokens: 9616,
       sponsor_marks_reward: 3200
@@ -166,8 +166,8 @@ items = [
     floorPrice: 55_000.00,
     farming: { in_game_time: 480 },
     crafting: {
-      flex_craft: 3_875,
-      sponsor_mark_craft: 800,
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 4,
       craft_tokens: nil,
       sponsor_marks_reward: 10000
@@ -188,8 +188,8 @@ items = [
     floorPrice: 150000.00,
     farming: { in_game_time: 540 },
     crafting: {
-      flex_craft: 4_350,
-      sponsor_mark_craft: 900,
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 4,
       craft_tokens: nil,
       sponsor_marks_reward: 31400
@@ -210,8 +210,8 @@ items = [
     floorPrice: 500000.00,
     farming: { in_game_time: 600 },
     crafting: {
-      flex_craft: 4_825,
-      sponsor_mark_craft: 1000,
+      flex_craft: nil,
+      sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 4,
       craft_tokens: nil,
       sponsor_marks_reward: 97400
@@ -237,14 +237,14 @@ items = [
       flex_craft: 1347,
       sponsor_mark_craft: 0,
       nb_lower_badge_to_craft: 0,
-      craft_time: 480,  # 8h
+      craft_time: 180,  # 3h
       max_level: 10
     },
     recharge: {
       max_energy_recharge: 1,
       time_to_charge: 48 * 60, # 48h
-      flex_charge: 283,
-      sponsor_mark_charge: 16
+      flex_charge: 152,
+      sponsor_mark_charge: 7
     }
   },
   {
@@ -257,16 +257,16 @@ items = [
     farming: { in_game_time: 72 * 60 },
     crafting: {
       flex_craft: 475,
-      sponsor_mark_craft: 218,
+      sponsor_mark_craft: 114,
       nb_lower_badge_to_craft: 2,
-      craft_time: 470,  # 7h50
+      craft_time: 178,  # 2h58
       max_level: 20
     },
     recharge: {
       max_energy_recharge: 2,
       time_to_charge: 72 * 60, # 72h
-      flex_charge: 579,
-      sponsor_mark_charge: 40
+      flex_charge: 296,
+      sponsor_mark_charge: 14
     }
   },
   {
@@ -278,17 +278,17 @@ items = [
     floorPrice: 120.00,
     farming: { in_game_time: 96 * 60 },
     crafting: {
-      flex_craft: 1689,
-      sponsor_mark_craft: 458,
+      flex_craft: 1403,
+      sponsor_mark_craft: 228,
       nb_lower_badge_to_craft: 2,
-      craft_time: 461,  # 7h41
+      craft_time: 173,  # 2h53
       max_level: 30
     },
     recharge: {
       max_energy_recharge: 3,
       time_to_charge: 96 * 60, # 96h
-      flex_charge: 1137,
-      sponsor_mark_charge: 66
+      flex_charge: 553,
+      sponsor_mark_charge: 26
     }
   },
   {
@@ -300,17 +300,17 @@ items = [
     floorPrice: 390.00,
     farming: { in_game_time: 120 * 60 },
     crafting: {
-      flex_craft: 7755,
-      sponsor_mark_craft: 1414,
+      flex_craft: 5809,
+      sponsor_mark_craft: 672,
       nb_lower_badge_to_craft: 3,
-      craft_time: 451,  # 7h31
+      craft_time: 164,  # 2h44
       max_level: 40
     },
     recharge: {
       max_energy_recharge: 4,
       time_to_charge: 120 * 60, # 120h
-      flex_charge: 3167,
-      sponsor_mark_charge: 183
+      flex_charge: 1493,
+      sponsor_mark_charge: 70
     }
   },
   {
@@ -322,17 +322,17 @@ items = [
     floorPrice: 560.00,
     farming: { in_game_time: 144 * 60 },
     crafting: {
-      flex_craft: 32917,
-      sponsor_mark_craft: 4215,
+      flex_craft: 23025,
+      sponsor_mark_craft: 1940,
       nb_lower_badge_to_craft: 3,
-      craft_time: 442,  # 7h22
+      craft_time: 151,  # 2h31
       max_level: 50
     },
     recharge: {
       max_energy_recharge: 5,
       time_to_charge: 144 * 60, # 144h
-      flex_charge: 8647,
-      sponsor_mark_charge: 604
+      flex_charge: 3948,
+      sponsor_mark_charge: 186
     }
   },
   {
@@ -344,10 +344,10 @@ items = [
     floorPrice: 789.00,
     farming: { in_game_time: 168 * 60 },
     crafting: {
-      flex_craft: 132707,
-      sponsor_mark_craft: 12509,
+      flex_craft: 88538,
+      sponsor_mark_craft: 5574,
       nb_lower_badge_to_craft: 3,
-      craft_time: 420,  # 7h
+      craft_time: 135,  # 2h15
       max_level: 60
     },
     recharge: {
@@ -366,10 +366,10 @@ items = [
     floorPrice: 4_500.00,
     farming: { in_game_time: 192 * 60 },
     crafting: {
-      flex_craft: 517427,
-      sponsor_mark_craft: 37549,
+      flex_craft: 333389,
+      sponsor_mark_craft: 15869,
       nb_lower_badge_to_craft: 3,
-      craft_time: 387,  # 6h27
+      craft_time: 120,  # 2h
       max_level: 70
     },
     recharge: {
@@ -388,10 +388,10 @@ items = [
     floorPrice: 15_000.00,
     farming: { in_game_time: 216 * 60 },
     crafting: {
-      flex_craft: nil,
-      sponsor_mark_craft: nil,
+      flex_craft: 1649896,
+      sponsor_mark_craft: 62598,
       nb_lower_badge_to_craft: 4,
-      craft_time: 378,  # 6h18
+      craft_time: 103,  # 1h43
       max_level: 80
     },
     recharge: {
@@ -413,7 +413,7 @@ items = [
       flex_craft: nil,
       sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 4,
-      craft_time: 369,  # 6h0
+      craft_time: 84,  # 1h24
       max_level: 90
     },
     recharge: {
@@ -435,7 +435,7 @@ items = [
       flex_craft: nil,
       sponsor_mark_craft: nil,
       nb_lower_badge_to_craft: 4,
-      craft_time: 360,  # 6h
+      craft_time: 63,  # 1h03
       max_level: 100
     },
     recharge: {
