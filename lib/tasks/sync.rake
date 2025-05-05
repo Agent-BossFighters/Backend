@@ -22,6 +22,6 @@ namespace :sync do
 end
 
 desc "Synchronize all external data"
-task sync: ["sync:openloot"] do
+task sync: [ "sync:openloot" ] do
   puts "All synchronization tasks completed!"
 end

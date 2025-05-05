@@ -4,7 +4,7 @@ RSpec.describe MetricsCalculator do
   let(:user) { create(:user) }
 
   describe 'Badge Metrics' do
-    ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythic'].each do |rarity_name|
+    [ 'Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythic' ].each do |rarity_name|
       context "with #{rarity_name} badge" do
         let(:item) { create(:item, :badge, rarity_name: rarity_name) }
         let(:calculator) { described_class.new(item, user) }

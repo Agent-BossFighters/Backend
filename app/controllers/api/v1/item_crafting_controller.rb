@@ -2,8 +2,8 @@ class Api::V1::ItemCraftingController < Api::V1::BaseController
   before_action :authenticate_user!
 
   def index
-    @item_craftings = ItemCrafting.includes(item: [:type, :rarity])
-                                 .where(items: { types: { name: ['Badge', 'Contract'] }})
+    @item_craftings = ItemCrafting.includes(item: [ :type, :rarity ])
+                                 .where(items: { types: { name: [ "Badge", "Contract" ] } })
 
     render json: {
       craftings: @item_craftings.map { |crafting| crafting_json(crafting) }
@@ -11,12 +11,12 @@ class Api::V1::ItemCraftingController < Api::V1::BaseController
   end
 
   def show
-    @item_crafting = ItemCrafting.includes(item: [:type, :rarity]).find(params[:id])
+    @item_crafting = ItemCrafting.includes(item: [ :type, :rarity ]).find(params[:id])
 
     calculator = case @item_crafting.item.type.name
-    when 'Badge'
+    when "Badge"
       DataLab::BadgesMetricsCalculator.new(current_user)
-    when 'Contract'
+    when "Contract"
       DataLab::ContractsMetricsCalculator.new(current_user)
     end
 
@@ -50,16 +50,16 @@ class Api::V1::ItemCraftingController < Api::V1::BaseController
 
   def crafting_metrics(item, metrics)
     case item.type.name
-    when 'Badge'
+    when "Badge"
       badge_metrics = metrics[:badges_metrics].find { |m| m[:"1. rarity"] == item.rarity.name }
       {
-        total_cost: badge_metrics[:"4. floor_price"]&.gsub('$', '')&.to_f,
+        total_cost: badge_metrics[:"4. floor_price"]&.gsub("$", "")&.to_f,
         in_game_minutes: calculate_in_game_minutes(badge_metrics[:"7. in_game_time"]),
         bft_per_max_charge: badge_metrics[:"10. bft_per_max_charge"],
-        bft_value: badge_metrics[:"11. bft_value_per_max_charge"]&.gsub('$', '')&.to_f,
+        bft_value: badge_metrics[:"11. bft_value_per_max_charge"]&.gsub("$", "")&.to_f,
         roi: badge_metrics[:"12. roi"]
       }
-    when 'Contract'
+    when "Contract"
       contract_metrics = metrics[:contracts].find { |m| m[:"1. rarity"] == item.rarity.name }
       {
         flex_craft: contract_metrics[:"9. flex_craft"],

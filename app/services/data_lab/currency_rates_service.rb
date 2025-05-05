@@ -1,5 +1,13 @@
 module DataLab
   class CurrencyRatesService
+    # Taux de change par défaut
+    DEFAULT_RATES = {
+      flex: 0.00743,
+      bft: 3.0,
+      sm: 0.028,  # Taux par défaut pour les Sponsor Marks
+      energy: 1.49
+    }.freeze
+
     FLEX_PACKS = [
       { amount: 480, price: 4.99, bonus: 0 },      # 0.0104 par FLEX
       { amount: 1_730, price: 14.99, bonus: 20 },  # 0.00867 par FLEX
@@ -9,13 +17,23 @@ module DataLab
       { amount: 67_330, price: 499.99, bonus: 40 } # 0.00743 par FLEX
     ].freeze
 
+    # Index des packs pour faciliter la recherche
+    PACK_IDS = {
+      1 => 0, # 480 FLEX
+      2 => 1, # 1_730 FLEX
+      3 => 2, # 3_610 FLEX
+      4 => 3, # 6_250 FLEX
+      5 => 4, # 12_990 FLEX
+      6 => 5  # 67_330 FLEX
+    }.freeze
+
     def self.get_rates
       Rails.cache.fetch("currency_rates", expires_in: 1.hour) do
         {
-          flex: Currency.find_by(name: "FLEX")&.price || 0.00743,
-          bft: Currency.find_by(name: "$BFT")&.price || 3.0,
-          sm: Currency.find_by(name: "Sponsor Marks")&.price || 0.01,
-          energy: Currency.find_by(name: "Energy")&.price || 1.49
+          flex: Currency.find_by(name: "FLEX")&.price || DEFAULT_RATES[:flex],
+          bft: Currency.find_by(name: "$BFT")&.price || DEFAULT_RATES[:bft],
+          sm: Currency.find_by(name: "Sponsor Marks")&.price || DEFAULT_RATES[:sm],  # Utiliser la valeur de la DB
+          energy: Currency.find_by(name: "Energy")&.price || DEFAULT_RATES[:energy]
         }
       end
     end
@@ -23,9 +41,30 @@ module DataLab
     def self.get_flex_packs
       FLEX_PACKS
     end
-    
+
     def self.invalidate_cache
       Rails.cache.delete("currency_rates")
     end
+
+    # Récupère le taux FLEX spécifique à l'utilisateur
+    def self.get_user_flex_rate(user)
+      default_rate = 0.0104
+
+      return default_rate unless user && user.flex_pack
+
+      pack_index = PACK_IDS[user.flex_pack]
+      return default_rate unless pack_index && FLEX_PACKS[pack_index]
+
+      pack = FLEX_PACKS[pack_index]
+      (pack[:price] / pack[:amount]).round(5)
+    end
+
+    def self.get_user_rates(user)
+      rates = get_rates
+
+      rates[:flex] = get_user_flex_rate(user)
+
+      rates
+    end
   end
-end 
+end

@@ -1,24 +1,24 @@
 class NotificationMailer < ApplicationMailer
-  default from: ENV['MAILJET_SENDER_EMAIL']
+  default from: ENV["MAILJET_SENDER_EMAIL"]
 
   def welcome_email(user)
     @user = user
-    @url = 'https://votre-domaine.com/login'
+    @url = "https://agent-bossfighters.com/#/users/login"
 
     mail(
       to: @user.email,
-      subject: 'Bienvenue sur Boss Fighters!'
+      subject: "Welcome to Agent-BossFighters!"
     )
   end
 
-  def match_summary(user, match)
+  def reset_password_instructions(user, token, _opts = {})
     @user = user
-    @match = match
-    @url = "https://votre-domaine.com/matches/#{match.id}"
+    @token = token
+    @reset_url = "http://agent-bossfighters.com/#/users/password/reset?reset_password_token=#{token}"
 
     mail(
       to: @user.email,
-      subject: 'Résumé de votre match Boss Fighters'
+      subject: "Reset your password"
     )
   end
 end

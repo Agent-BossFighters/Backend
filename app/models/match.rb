@@ -9,6 +9,7 @@ class Match < ApplicationRecord
   before_validation :normalize_map
   before_validation :calculate_energy_used
   before_save :calculate_values
+  before_update :reset_luckrate
 
   # Validations essentielles
   validates :build, presence: true
@@ -22,11 +23,12 @@ class Match < ApplicationRecord
   private
 
   def normalize_map
-    self.map = map.gsub(' ', '_') if map.present?
+    self.map = map.gsub(" ", "_") if map.present?
   end
 
   def calculate_energy_used
-    if time.present? && energyUsed.nil?
+    # Recalculer energyUsed si le temps a changé ou si energyUsed est nil
+    if time.present? && (energyUsed.nil? || time_changed?)
       self.energyUsed = (time.to_f / 10.0).round(2)
     end
   end
@@ -46,13 +48,16 @@ class Match < ApplicationRecord
     return 0 if badge_used.empty?
 
     badge_used.sum do |badge|
-      case badge.rarity.downcase
-      when 'common' then 1
-      when 'rare' then 2
-      when 'epic' then 3
-      when 'legendary' then 4
-      else 0
-      end
+      # Trouver l'item correspondant à la rareté du badge
+      item = Item.joins(:rarity)
+                 .where(rarities: { name: badge.rarity }, types: { name: "Badge" })
+                 .first
+
+      item&.efficiency || 0
     end
+  end
+
+  def reset_luckrate
+    self.luckrate = 0
   end
 end

@@ -33,6 +33,6 @@ class Api::V1::Admin::UsersController < Api::V1::Admin::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :isPremium, :is_admin)
+    params.require(:user).permit(:username, :email, :isPremium, :is_admin, :level, :experience)
   end
 end

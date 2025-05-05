@@ -1,5 +1,5 @@
 class Api::V1::Admin::CurrenciesController < Api::V1::Admin::BaseController
-  before_action :set_currency, only: [:show, :update, :destroy]
+  before_action :set_currency, only: [ :show, :update, :destroy ]
 
   def index
     @currencies = Currency.all
