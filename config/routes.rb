@@ -151,13 +151,11 @@ Rails.application.routes.draw do
           end
         end
 
-        # Ajoutez cette ligne pour les devises
+        # Ressources d'administration
         resources :currencies
-
-        # Ajout de la ressource items pour l'administration
         resources :items
-
-        # Autres ressources d'administration
+        resources :item_crafting
+        resources :item_recharge
         resources :matches, only: [ :index, :show, :destroy ]
         resources :nfts, only: [ :index, :show, :destroy ]
 
