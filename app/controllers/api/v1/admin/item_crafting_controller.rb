@@ -16,6 +16,7 @@ module Api
         def create
           @item_crafting = ItemCrafting.new(item_crafting_params)
           if @item_crafting.save
+            invalidate_caches
             render json: crafting_json(@item_crafting), status: :created
           else
             render json: { errors: @item_crafting.errors.full_messages }, status: :unprocessable_entity
@@ -24,6 +25,7 @@ module Api
 
         def update
           if @item_crafting.update(item_crafting_params)
+            invalidate_caches
             render json: crafting_json(@item_crafting)
           else
             render json: { errors: @item_crafting.errors.full_messages }, status: :unprocessable_entity
@@ -32,6 +34,7 @@ module Api
 
         def destroy
           @item_crafting.destroy
+          invalidate_caches
           head :no_content
         end
 
@@ -71,6 +74,14 @@ module Api
             created_at: crafting.created_at,
             updated_at: crafting.updated_at
           }
+        end
+
+        def invalidate_caches
+          # Invalider les caches spécifiques aux badges et contrats
+          invalidate_admin_caches(:items)
+          Rails.cache.delete_matched("data_lab/badges/*")
+          Rails.cache.delete_matched("data_lab/contracts/*")
+          Rails.cache.delete_matched("data_lab/craft/*")
         end
       end
     end

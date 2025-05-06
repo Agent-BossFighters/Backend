@@ -16,6 +16,7 @@ module Api
         def create
           @item_recharge = ItemRecharge.new(item_recharge_params)
           if @item_recharge.save
+            invalidate_caches
             render json: recharge_json(@item_recharge), status: :created
           else
             render json: { errors: @item_recharge.errors.full_messages }, status: :unprocessable_entity
@@ -24,6 +25,7 @@ module Api
 
         def update
           if @item_recharge.update(item_recharge_params)
+            invalidate_caches
             render json: recharge_json(@item_recharge)
           else
             render json: { errors: @item_recharge.errors.full_messages }, status: :unprocessable_entity
@@ -32,6 +34,7 @@ module Api
 
         def destroy
           @item_recharge.destroy
+          invalidate_caches
           head :no_content
         end
 
@@ -71,6 +74,14 @@ module Api
             created_at: recharge.created_at,
             updated_at: recharge.updated_at
           }
+        end
+
+        def invalidate_caches
+          # Invalider les caches spécifiques aux badges et contrats
+          invalidate_admin_caches(:items)
+          Rails.cache.delete_matched("data_lab/badges/*")
+          Rails.cache.delete_matched("data_lab/contracts/*")
+          Rails.cache.delete_matched("data_lab/craft/*")
         end
       end
     end
