@@ -52,7 +52,9 @@ module Api
             :sponsor_mark_craft,
             :nb_lower_badge_to_craft,
             :craft_time,
-            :max_level
+            :max_level,
+            :craft_tokens,
+            :sponsor_marks_reward
           )
         end
 
@@ -71,6 +73,8 @@ module Api
             nb_lower_badge_to_craft: crafting.nb_lower_badge_to_craft,
             craft_time: crafting.craft_time,
             max_level: crafting.max_level,
+            craft_tokens: crafting.craft_tokens,
+            sponsor_marks_reward: crafting.sponsor_marks_reward,
             created_at: crafting.created_at,
             updated_at: crafting.updated_at
           }
