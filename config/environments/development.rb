@@ -65,6 +65,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts = [
     "api-staging.agent-bossfighters.com",
+    "api.agent-bossfighters.com",
     "127.0.0.1",
     "localhost"
   ]
