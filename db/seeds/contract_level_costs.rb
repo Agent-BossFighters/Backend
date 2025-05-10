@@ -2,13 +2,13 @@ puts "\nCréation des coûts de niveau des contrats..."
 
 # Définition des coûts de niveau pour les contrats
 costs = [
-  { level: 1, flex_cost: 100, sponsor_mark_cost: 105 },
-  { level: 2, flex_cost: 200, sponsor_mark_cost: 212 },
-  { level: 3, flex_cost: 300, sponsor_mark_cost: 321 },
-  { level: 4, flex_cost: 400, sponsor_mark_cost: 431 },
-  { level: 5, flex_cost: 500, sponsor_mark_cost: 543 },
-  { level: 6, flex_cost: 600, sponsor_mark_cost: 658 },
-  { level: 7, flex_cost: 700, sponsor_mark_cost: 774 },
+  { level: 1, flex_cost: 100, sponsor_mark_cost: 0 },
+  { level: 2, flex_cost: 200, sponsor_mark_cost: 79 },
+  { level: 3, flex_cost: 300, sponsor_mark_cost: 159 },
+  { level: 4, flex_cost: 400, sponsor_mark_cost: 241 },
+  { level: 5, flex_cost: 500, sponsor_mark_cost: 324 },
+  { level: 6, flex_cost: 600, sponsor_mark_cost: 409 },
+  { level: 7, flex_cost: 700, sponsor_mark_cost: 495 },
   { level: 8, flex_cost: 800, sponsor_mark_cost: 893 },
   { level: 9, flex_cost: 900, sponsor_mark_cost: 952 },
   { level: 10, flex_cost: 1000, sponsor_mark_cost: 1014 },
@@ -52,4 +52,4 @@ costs.each do |cost|
   ).find_or_create_by!(level: cost[:level])
 end
 
-puts "✓ Coûts de niveau des contrats créés avec succès"
+puts "✓ Coûts de niveau des contrats créés avec succès XOXO"
