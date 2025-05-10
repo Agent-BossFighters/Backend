@@ -66,6 +66,14 @@ Rails.application.routes.draw do
           post "create"
         end
       end
+
+      # Routes pour l'API IPFS
+      scope "/ipfs" do
+        post "upload_file", to: "ipfs#upload_file"
+        post "hash_data", to: "ipfs#hash_data"
+        get "gateway_url", to: "ipfs#gateway_url"
+      end
+
       resources :user_builds do
         collection do
           post "create"
