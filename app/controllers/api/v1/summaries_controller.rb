@@ -10,11 +10,11 @@ module Api
         render json: {
           matchesCount: matches.count,
           energyUsed: {
-            amount: total_calculations.sum { |c| c[:energyUsed] }.round(2),
+            amount: total_calculations.sum { |c| c[:energyUsed] }.round(3),
             cost: total_calculations.sum { |c| c[:energyCost] }.round(2)
           },
           totalBft: {
-            amount: matches.sum(&:totalToken).to_f.round(2),
+            amount: matches.sum(&:totalToken).to_f.round(3),
             value: total_calculations.sum { |c| c[:tokenValue] }.round(2)
           },
           totalFlex: {
@@ -47,10 +47,10 @@ module Api
 
           render json: {
             total_matches: matches.count,
-            total_energy: total_calculations.sum { |c| c[:energyUsed] }.round(2),
+            total_energy: total_calculations.sum { |c| c[:energyUsed] }.round(3),
             total_energy_cost: total_calculations.sum { |c| c[:energyCost] }.round(2),
             total_bft: {
-              amount: matches.sum(&:totalToken).to_f.round(2),
+              amount: matches.sum(&:totalToken).to_f.round(3),
               value: total_calculations.sum { |c| c[:tokenValue] }.round(2)
             },
             total_flex: {

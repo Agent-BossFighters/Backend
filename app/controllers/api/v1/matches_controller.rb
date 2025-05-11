@@ -125,10 +125,10 @@ module Api
             daily_metrics[day.strftime("%Y-%m-%d")] = {
               matches: matches_json(day_matches),
               total_matches: day_matches.count,
-              total_energy: calculations.sum { |c| c[:energyUsed] }.round(2),
+              total_energy: calculations.sum { |c| c[:energyUsed] }.round(3),
               total_energy_cost: calculations.sum { |c| c[:energyCost] }.round(2),
               total_bft: {
-                amount: day_matches.sum(&:totalToken).to_f.round(2),
+                amount: day_matches.sum(&:totalToken).to_f.round(3),
                 value: calculations.sum { |c| c[:tokenValue] }.round(2)
               },
               total_flex: {
@@ -174,11 +174,11 @@ module Api
             summary: {
               matchesCount: @matches.count,
               energyUsed: {
-                amount: calculations.sum { |c| c[:energyUsed] }.round(2),
+                amount: calculations.sum { |c| c[:energyUsed] }.round(3),
                 cost: calculations.sum { |c| c[:energyCost] }.round(2)
               },
               totalBft: {
-                amount: @matches.sum(&:totalToken).to_f.round(2),
+                amount: @matches.sum(&:totalToken).to_f.round(3),
                 value: calculations.sum { |c| c[:tokenValue] }.round(2)
               },
               totalFlex: {

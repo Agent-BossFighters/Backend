@@ -17,7 +17,7 @@ class Match < ApplicationRecord
   validates :time, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :energyUsed, presence: true, numericality: { greater_than: 0 }
   validates :result, inclusion: { in: %w[win loss draw] }, allow_nil: true
-  validates :totalToken, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :totalToken, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :totalPremiumCurrency, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
 
   private
@@ -35,7 +35,7 @@ class Match < ApplicationRecord
 
   def calculate_values
     # Valeurs par défaut
-    self.energyCost = (energyUsed * 1.49).round(2)
+    self.energyCost = (energyUsed.to_f * 1.49).round(2)
     self.tokenValue = ((totalToken || 0) * 0.01).round(2)
     self.premiumCurrencyValue = ((totalPremiumCurrency || 0) * 0.00744).round(2)
     self.profit = (tokenValue + premiumCurrencyValue - energyCost).round(2)
