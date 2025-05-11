@@ -7,13 +7,12 @@ module Api
         puts "🔵 Webhook Stripe reçu !"
 
         payload = request.body.read
-        # sig_header = request.env['HTTP_STRIPE_SIGNATURE']
+        sig_header = request.env["HTTP_STRIPE_SIGNATURE"]
 
         begin
-          # event = Stripe::Webhook.construct_event(
-          #   payload, sig_header, ENV['STRIPE_WEBHOOK_SECRET']
-          # )
-          event = JSON.parse(payload, symbolize_names: true)
+          event = Stripe::Webhook.construct_event(
+            payload, sig_header, ENV["STRIPE_WEBHOOK_SECRET"]
+          )
 
           puts "🟢 Event Stripe détecté : #{event[:type]}"
 
@@ -40,7 +39,7 @@ module Api
             puts "⚠️ Webhook ignoré : #{event[:type]}"
           end
 
-          render json: { received: true }
+          render json: { received: true }, status: :ok
         rescue JSON::ParserError => e
           puts "❌ Erreur JSON : #{e.message}"
           render json: { error: e.message }, status: :bad_request
