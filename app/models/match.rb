@@ -29,7 +29,7 @@ class Match < ApplicationRecord
   def calculate_energy_used
     # Recalculer energyUsed si le temps a changé ou si energyUsed est nil
     if time.present? && (energyUsed.nil? || time_changed?)
-      self.energyUsed = (time.to_f / 10.0).round(2)
+      self.energyUsed = energyUsed.to_f
     end
   end
 
