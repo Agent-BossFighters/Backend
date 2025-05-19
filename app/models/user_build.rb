@@ -3,7 +3,7 @@ class UserBuild < ApplicationRecord
 
   validates :bftBonus, presence: true,
                       numericality: { greater_than_or_equal_to: 0.0,
-                                    less_than_or_equal_to: 600.0 }
+                                    less_than_or_equal_to: 3000.0 }
 
   def calculate_multiplier
     # Si bftBonus est 0, retourner 1.0 (pas de bonus)
