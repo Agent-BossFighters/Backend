@@ -13,8 +13,8 @@ class Team < ApplicationRecord
     end
   end
   has_many :players, through: :team_members, source: :player
-  has_many :matches_as_team1, class_name: "Match", foreign_key: "team1_id"
-  has_many :matches_as_team2, class_name: "Match", foreign_key: "team2_id"
+  has_many :matches_as_team1, class_name: "TournamentMatch", foreign_key: "team_a_id", dependent: :destroy
+  has_many :matches_as_team2, class_name: "TournamentMatch", foreign_key: "team_b_id", dependent: :destroy
 
   # Callbacks
   after_create :add_captain_as_member
@@ -35,7 +35,7 @@ class Team < ApplicationRecord
   end
 
   def matches
-    Match.where("team1_id = ? OR team2_id = ?", id, id)
+    TournamentMatch.where("team_a_id = ? OR team_b_id = ?", id, id)
   end
 
   def full?
