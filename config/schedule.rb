@@ -5,5 +5,5 @@ every 1.day, at: "4:30 am" do
 end
 
 every "0 0 1 * *" do
-  rake "users:reset_monthly_levels"
+  command "cd /root/Backend && RAILS_ENV=production bundle exec rake users:reset_monthly_levels --silent >> log/cron.log 2>&1"
 end

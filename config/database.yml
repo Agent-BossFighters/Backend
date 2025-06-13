@@ -80,9 +80,11 @@ test:
 #
 production:
   <<: *default
-  database: agentv2_production
+  database: agentv2_development
   username: agentv2
   password: <%= ENV["AGENTV2_DATABASE_PASSWORD"] %>
+  host: localhost
+  port: 5432
   cache:
     database: agentv2_production_cache
     migrations_paths: db/cache_migrate
