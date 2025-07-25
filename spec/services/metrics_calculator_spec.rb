@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MetricsCalculator do
+RSpec.describe DataLab::MetricsCalculator do
   let(:user) { create(:user) }
 
   describe 'Badge Metrics' do

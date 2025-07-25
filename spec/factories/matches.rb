@@ -8,7 +8,6 @@ FactoryBot.define do
     feeCost { 10.0 }
     slots { 1 }
     luckrate { 1.0 }
-    time { 600 }
     energyUsed { 50 }
     energyCost { 5.0 }
     totalToken { 1000 }
