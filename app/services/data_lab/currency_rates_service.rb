@@ -5,7 +5,6 @@ module DataLab
       flex: 0.00743,
       bft: 3.0,
       sm: 0.028,  # Taux par défaut pour les Sponsor Marks
-      energy: 1.49
     }.freeze
 
     FLEX_PACKS = [
