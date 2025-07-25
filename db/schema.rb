@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_29_211224) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_25_093058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -127,7 +127,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_29_211224) do
     t.float "feeCost"
     t.integer "slots"
     t.float "luckrate"
-    t.integer "time"
     t.decimal "energyUsed", precision: 10, scale: 3
     t.float "energyCost"
     t.decimal "totalToken", precision: 10, scale: 3
