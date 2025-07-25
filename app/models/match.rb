@@ -7,14 +7,12 @@ class Match < ApplicationRecord
 
   # Callbacks
   before_validation :normalize_map
-  before_validation :calculate_energy_used
   before_save :calculate_values
   before_update :reset_luckrate
 
   # Validations essentielles
   validates :build, presence: true
   validates :map, presence: true, inclusion: { in: %w[toxic_river award radiation_rift] }
-  validates :time, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :energyUsed, presence: true, numericality: { greater_than: 0 }
   validates :result, inclusion: { in: %w[win loss draw] }, allow_nil: true
   validates :totalToken, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
@@ -26,16 +24,10 @@ class Match < ApplicationRecord
     self.map = map.gsub(" ", "_") if map.present?
   end
 
-  def calculate_energy_used
-    # Recalculer energyUsed si le temps a changé ou si energyUsed est nil
-    if time.present? && (energyUsed.nil? || time_changed?)
-      self.energyUsed = energyUsed.to_f
-    end
-  end
+
 
   def calculate_values
     # Valeurs par défaut
-    self.energyCost = (energyUsed.to_f * 1.49).round(2)
     self.tokenValue = ((totalToken || 0) * 0.01).round(2)
     self.premiumCurrencyValue = ((totalPremiumCurrency || 0) * 0.00744).round(2)
     self.profit = (tokenValue + premiumCurrencyValue - energyCost).round(2)
