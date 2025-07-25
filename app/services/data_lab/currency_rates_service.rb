@@ -4,7 +4,7 @@ module DataLab
     DEFAULT_RATES = {
       flex: 0.00743,
       bft: 3.0,
-      sm: 0.028,  # Taux par défaut pour les Sponsor Marks
+      sm: 0.028  # Taux par défaut pour les Sponsor Marks
     }.freeze
 
     FLEX_PACKS = [
