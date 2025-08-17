@@ -107,6 +107,8 @@ Rails.application.routes.draw do
       get "data_lab/contracts", to: "data_lab#contracts_metrics"
       get "data_lab/badges", to: "data_lab#badges_metrics"
       get "data_lab/craft", to: "data_lab#craft_metrics"
+      get "data_lab/forge", to: "data_lab#forge_metrics"
+      get "data_lab/perks_lock", to: "data_lab#perks_lock"
 
       get "profile", to: "users#profile"
       patch "profile", to: "users#update_profile"
@@ -163,6 +165,8 @@ Rails.application.routes.draw do
         resources :currencies
         resources :items
         resources :item_crafting
+        resources :forge_settings
+        resources :perks_lock_settings
         resources :item_recharge
         resources :matches, only: [ :index, :show, :destroy ]
         resources :nfts, only: [ :index, :show, :destroy ]

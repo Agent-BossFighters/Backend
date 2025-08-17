@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_25_093058) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_16_223802) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -56,6 +56,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_25_093058) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["currency_id"], name: "index_currency_packs_on_currency_id"
+  end
+
+  create_table "forge_settings", force: :cascade do |t|
+    t.bigint "rarity_id", null: false
+    t.string "operation_type", null: false
+    t.integer "supply"
+    t.integer "nb_previous_required"
+    t.integer "nb_digital_required"
+    t.integer "cash"
+    t.integer "fusion_core"
+    t.integer "bft_tokens"
+    t.integer "sponsor_marks_reward"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rarity_id", "operation_type"], name: "index_forge_settings_on_rarity_and_operation", unique: true
+    t.index ["rarity_id"], name: "index_forge_settings_on_rarity_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -160,6 +176,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_25_093058) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider"], name: "index_payment_methods_on_provider", unique: true
+  end
+
+  create_table "perks_lock_settings", force: :cascade do |t|
+    t.bigint "rarity_id", null: false
+    t.integer "star_0"
+    t.integer "star_1"
+    t.integer "star_2"
+    t.integer "star_3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rarity_id"], name: "index_perks_lock_settings_on_rarity_id", unique: true
   end
 
   create_table "player_cycles", force: :cascade do |t|
@@ -423,6 +450,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_25_093058) do
   add_foreign_key "badge_useds", "nfts", column: "nftId"
   add_foreign_key "currencies", "games"
   add_foreign_key "currency_packs", "currencies"
+  add_foreign_key "forge_settings", "rarities"
   add_foreign_key "item_craftings", "items"
   add_foreign_key "item_farmings", "items"
   add_foreign_key "item_recharges", "items"
@@ -430,6 +458,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_25_093058) do
   add_foreign_key "items", "types"
   add_foreign_key "matches", "users"
   add_foreign_key "nfts", "items", column: "itemId"
+  add_foreign_key "perks_lock_settings", "rarities"
   add_foreign_key "player_cycles", "users"
   add_foreign_key "rounds", "tournament_matches"
   add_foreign_key "rounds", "tournament_matches", column: "match_id"
