@@ -12,10 +12,10 @@ module DataLab
     end
 
     def calculate
-      @badges = load_badges
-      @badges.map do |badge|
-        rarity = badge.rarity.name
-        craft_data = badge.item_crafting
+      @badges = load_items
+      @badges.map do |item|
+        rarity = item.rarity.name
+        craft_data = item.item_crafting
         next unless craft_data
 
         flex_cost = calculate_flex_cost(craft_data.craft_tokens)
@@ -24,7 +24,7 @@ module DataLab
 
         {
           "1. rarity": rarity,
-          "2. supply": badge.supply,
+          "2. supply": item.supply,
           "3. nb_previous_rarity_item": nb_previous_rarity,
           "4. flex_craft": craft_data.craft_tokens,
           "5. flex_craft_cost": format_currency(flex_cost),
@@ -40,7 +40,7 @@ module DataLab
       rarity.downcase == "common" ? 0 : 2
     end
 
-    def load_badges
+    def load_items
       Item.includes(:type, :rarity, :item_crafting)
           .joins(:rarity)
           .where(types: { name: "Badge" })

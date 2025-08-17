@@ -13,13 +13,18 @@ module DataLab
     end
 
     def calculate
-      slots = Slot.includes(:currency, :game)
+      # Slots du jeu principal, ordonnés, avec IDs réinitialisés via seed
+      main_game = Game.find_by(name: "Boss Fighters")
+      slots_rel = Slot.includes(:currency, :game)
+                      .where(game: main_game)
+                      .order(:id)
+      slots = slots_rel.to_a
       slots_costs = calculate_slots_cost(slots)
 
       # Calculer les valeurs constantes une seule fois
-      total_flex = slots.sum(:unlockCurrencyNumber)
-      total_cost = slots.sum(:unlockPrice)
-      total_slots = slots.count
+      total_flex = slots_rel.sum(:unlockCurrencyNumber)
+      total_cost = slots_rel.sum(:unlockPrice)
+      total_slots = slots.length
 
       # Calculer le ROI de base (constant pour toutes les raretés)
       base_roi = 340  # Valeur constante observée
@@ -36,7 +41,7 @@ module DataLab
           bonus_part = calculate_bonus_part(slot_cost[:"1. slot"])
           total_part = normal_part + bonus_part
 
-          # Récupérer directement les valeurs des constantes pour le bonus BFT
+          # slot_id logique (1..N) plutôt que l'ID BD
           slot_id = slot_cost[:"1. slot"]
 
           # Calculer le 1.total_flex
@@ -59,9 +64,9 @@ module DataLab
             numeric_cost = total_cost.to_f
           end
 
-          # Pour le 3. total_bonus_bft
-          slot = Slot.find_by(id: slot_id)
-          total_bonus_bft = slot.bonus_bft_percent
+          # Pour le 3. total_bonus_bft: récupérer le slot N (index-1) dans la liste ordonnée
+          slot_record = slots[slot_id - 1]
+          total_bonus_bft = slot_record&.bonus_bft_percent || 0
 
           # Calculer le 4. nb_tokens_roi en fonction du coût et de la valeur BFT en base
           tokens_roi = @bft_value > 0 ? (numeric_cost / @bft_value).round(0) : 0
@@ -101,7 +106,7 @@ module DataLab
     private
 
     def calculate_slots_cost(slots)
-      slots.map do |slot|
+      slots.each_with_index.map do |slot, idx|
         # Pour le 3. flex_cost
         flex_amount = slot.flex_value * @user_rates[:flex]
 
@@ -114,14 +119,14 @@ module DataLab
         bonus_per_badge = ((bft_per_badge*(1+(slot.bonus_value/100.0)))-bft_per_badge).round(0)
 
         {
-          "1. slot": slot.id,
+          "1. slot": (idx + 1),
           "2. nb_flex": slot.flex_value,
           "3. flex_cost": format_currency(flex_amount),
           "4. bonus_bft": slot.bonus_value,
           "5. bft_per_badge": bft_per_badge,
           "6. bonus_per_badge": bonus_per_badge,
-          normalPart: calculate_normal_part(slot.id),
-          bonusPart: calculate_bonus_part(slot.id)
+          normalPart: calculate_normal_part(idx + 1),
+          bonusPart: calculate_bonus_part(idx + 1)
         }
       end
     end
@@ -235,8 +240,8 @@ module DataLab
       adjusted_flex = (total_flex * multiplier).round(0)
       adjusted_cost = (total_cost * multiplier).round(2)
 
-      slot = Slot.find_by(id: nb_slots)
-      total_bonus_bft = slot.bonus_bft_percent || 0
+      slot = slot_by_index(nb_slots)
+      total_bonus_bft = slot&.bonus_bft_percent || 0
 
       {
         "1. total_flex": adjusted_flex,
@@ -247,6 +252,11 @@ module DataLab
         "6. nb_charges_roi_2.0": ((base_roi * multiplier) / 2.0).round(0),
         "7. nb_charges_roi_3.0": ((base_roi * multiplier) / 3.0).round(0)
       }
+    end
+
+    def slot_by_index(n)
+      return nil if n.nil? || n <= 0
+      Slot.order(:id).offset(n - 1).first
     end
   end
 end

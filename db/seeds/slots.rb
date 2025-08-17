@@ -77,9 +77,11 @@ slots = [
   }
 ]
 
-puts "  - Création de #{slots.length} slots (1 gratuit, 4 payants)"
+puts "  - (Re)création de #{slots.length} slots (1 gratuit, 4 payants)"
 
-# Création des slots
+# Nettoyage idempotent fort: on réinitialise la table et la séquence pour garder des IDs 1..5
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE slots RESTART IDENTITY CASCADE")
+
 slots.each do |slot_data|
   Slot.create!(slot_data)
 end

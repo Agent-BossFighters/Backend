@@ -12,7 +12,8 @@ seed_files = [
   'slots.rb',         # Création des slots (dépend des currencies)
   'items.rb',         # Création de tous les items (badges et contrats)
   'contract_level_costs.rb', # Coûts de niveau des contrats
-  'quests.rb'         # Création des missions quotidiennes
+  'quests.rb',         # Création des missions quotidiennes
+  'forge.rb'          # Création des réglages Forge & Perks lock
 ]
 
 puts "\nDébut du seeding..."
